@@ -1,0 +1,3 @@
+[submodule "sample-projects/sade-textgrid-default-project"]
+	path = sample-projects/sade-textgrid-default-project
+	url = git@github.com:ubbo/sade-textgrid-default-project.git
