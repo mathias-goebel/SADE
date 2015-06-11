@@ -1,4 +1,5 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tgs="http://www.textgrid.info/namespaces/middleware/tgsearch" exclude-result-prefixes="xs tei tgs xi" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tgs="http://www.textgrid.info/namespaces/middleware/tgsearch" exclude-result-prefixes="xs tei tgs xi" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
     <xsl:import href="./tei-stylesheets/html/html.xsl"/>
     <xsl:include href="tghtml-common.xsl"/>
 
@@ -32,12 +33,8 @@
     <xsl:template name="stdheader">
         <xsl:param name="title">(no title)</xsl:param>
     </xsl:template>
-            <xsl:template match="anchor[ends-with(@xml:id, '_start') or ends-with(@xml:id, '_end')]">
-                <span id="{@xml:id}"/>
-            </xsl:template>
-                <xsl:template match="text()">
-                <span class="hover-text"><xsl:value-of select="."/></span>
-            </xsl:template>
+            
+    
     <!-- Aus textstructure.xsl (tei-xsl 6.17). 
     Das Originaltemplate erzeugt für jedes div eine überschrift und ruft dann das Header-Template auf,
     das auch aus unseren <desc>-Only-Divs dann überschriften macht (zu allem Überfluss noch auf max. 10 Zeichen 
@@ -89,7 +86,7 @@
             <xsl:otherwise>
                 <xsl:if test="not($Depth = '') and tei:head"> <!-- <- mod. hier -tv -->
                     <xsl:variable name="Heading">
-                        <xsl:element name="{if (number($Depth)+$divOffset &gt;6) then 'div'                                                        else concat('h',number($Depth) +                                                        $divOffset)}">
+                        <xsl:element name="{if (number($Depth)+$divOffset &gt;6) then 'div' else concat('h',number($Depth) + $divOffset)}">
                             <xsl:choose>
                                 <xsl:when test="@rend">
                                     <xsl:call-template name="makeRendition"/>
@@ -431,4 +428,5 @@
     <xsl:template name="corpusBody">
         <xsl:apply-templates/>
     </xsl:template>
+    <xsl:template match="*/@style"/>
 </xsl:stylesheet>

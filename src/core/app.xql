@@ -1,6 +1,7 @@
 xquery version "3.0";
-
 module namespace app="http://sade/app";
+declare namespace tgmd="http://textgrid.info/namespaces/metadata/core/2010";
+
 import module namespace templates="http://exist-db.org/xquery/templates" at "templates.xql";
 import module namespace config="http://exist-db.org/xquery/apps/config" at "config.xqm";
 import module namespace config-params="http://exist-db.org/xquery/apps/config-params" at "config.xql";
@@ -111,8 +112,6 @@ function app:logo($node as node(), $model as map(*)) {
            
 };
 
-
-
 declare 
     %templates:wrap
     %templates:default("filter", "")
@@ -156,4 +155,65 @@ function app:list-projects($node as node(), $model as map(*), $filter as xs:stri
                             </div> else ()
 
 (:    return $projects:)
+};
+
+(: FONTANE STUFF :)
+declare 
+    %templates:wrap
+function app:cite($node as node(), $model as map(*)) {
+<span>
+      <a href="#" data-toggle="modal" data-target="#sendemail">Zitationsempfehlung</a> 
+                <!-- Modal window: -->
+                <div class="modal fade" id="sendemail" tabindex="-1" role="dialog" aria-labelledby="citationrecommendation" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">Zitationsempfehlung</h4>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="modal-body">
+                        {if (contains(request:get-url(), 'content')) then '' else 'Webseite zu'}<br/>
+                        Theodor Fontane: Notizbücher. Gabriele Radecke (Hrsg.).<br/>
+                        {request:get-url(), if (request:get-query-string()) then '?' || request:get-query-string() else ''}<br/>
+                        abgerufen am: {day-from-date(current-date())}. {month-from-date(current-date())}. {year-from-date(current-date())}
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- End of modal window -->
+</span>
+};
+
+declare function app:list($datadir, $param) {
+    let $metacoll := collection($datadir)
+
+return
+    for $nb in $metacoll//tgmd:object
+    where $nb//tgmd:format = 'text/xml' and $nb//tgmd:title/contains(., $param) and $nb//tgmd:revision = max($metacoll//tgmd:revision[preceding::tgmd:title[1] = $nb//tgmd:title])
+    order by $nb//tgmd:title/string()
+    return 
+        <div class="panel panel-blue">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{$nb//tgmd:title/string()}</h3>
+                    </div>
+                    <div class="panel-body">
+                      Revision: {$nb//tgmd:revision}
+                    </div>
+                  </div>
+};
+declare function app:listA($node as node(), $model as map(*)) {
+    app:list(config:param-value($model, 'data-dir') || '/xml/meta', ' A')
+};
+declare function app:listB($node as node(), $model as map(*)) {
+    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' B')
+};
+declare function app:listC($node as node(), $model as map(*)) {
+    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' C')
+};
+declare function app:listD($node as node(), $model as map(*)) {
+    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' D')
+};
+declare function app:listE($node as node(), $model as map(*)) {
+    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' E')
 };

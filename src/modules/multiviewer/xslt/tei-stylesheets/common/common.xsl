@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:fotex="http://www.tug.org/fotex" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="s tei fotex xsi sch fo" version="2.0">
+<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:fotex="http://www.tug.org/fotex" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="s tei fotex xsi sch fo" version="2.0">
     <xsl:import href="common_param.xsl"/>
     <xsl:import href="common_core.xsl"/>
     <xsl:import href="common_textstructure.xsl"/>

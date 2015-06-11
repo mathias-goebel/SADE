@@ -43,11 +43,9 @@ return
  <a>{($module, ($params[3] = $modules))}</a>
 else:)
 if ($exist:path eq "/" or $rel-path eq "/") then
-    (: forward root (project) path to index.html 
-    for textgrid we avoid the old SADE main page and go directly to the textgrid projects index.html
-    :)
+    (: forward root (project) path to index.html :)
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="textgrid/index.html"/>
+        <redirect url="index.html"/>
     </dispatch>
 else      
 (: else

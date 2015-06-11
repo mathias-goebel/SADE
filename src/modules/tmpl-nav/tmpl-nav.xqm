@@ -47,31 +47,7 @@ function nav:subitem($node as node(), $model as map(*)) {
         <a href="{string($model("subitem")/@link)}">{string($model("subitem")/@label)}</a>
         else <span>&#160;</span>
 };
-(: no call for subitemchoice...
-declare
-function nav:subitemchoice($node as node(), $model as map(*)) {
 
-    let $item := $model("subitem")
-    let $type := local-name($item)
-    let $choosen := $node/*[@data-nav-choice=$type]
-    
-    return 
-    switch($type)
-        case "submenu" return
-            <span>todo</span>
-        case "item" return
-            element { node-name($choosen) } {
-                $choosen/@* , <a href="{string($item/@link)}">{string($item/@label)}</a>
-            }
-        case "divider" return
-            element { node-name($choosen) } {
-                $choosen/@* 
-            }
-        default return
-            <b>not defined: {node-name($model("subitem"))}</b>
-
-};
-:)
 declare function nav:edit($node as node(), $model as map(*)) {
 let $new := request:get-parameter("new", "0")
 return
