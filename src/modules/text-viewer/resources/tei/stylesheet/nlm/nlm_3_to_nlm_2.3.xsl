@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" exclude-result-prefixes="#all">
-
-  <!--
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" exclude-result-prefixes="#all"><!--
         Written by Martin Holmes, University of Victoria Humanities Computing and 
     Media Centre, beginning in 2008.
     
@@ -32,16 +30,13 @@
     <xsl:output method="xml" doctype-public="-//NLM//DTD Journal Publishing DTD v2.3 20070202//EN" doctype-system="http://dtd.nlm.nih.gov/publishing/2.3/journalpublishing.dtd" xpath-default-namespace="" indent="yes"/>
     <xsl:template match="/">
         <xsl:apply-templates/>
-    </xsl:template>
-  
-  <!--    Root element needs its article-type attribute massaging a bit. -->
-    <!-- We have an ontology of TEI contribution types; this does not match 
+    </xsl:template><!--    Root element needs its article-type attribute massaging a bit. --><!-- We have an ontology of TEI contribution types; this does not match 
      NLM at all. In NLM 3.0, the list of article-type values is suggested but 
      not fixed, so we can use those which are appropriate, and use our own 
      where there's no match. In 2.3, the list is fixed, so we'd have to convert 
      all our non-matching ones to "other". -->
     <xsl:template match="article">
-        <article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
             <xsl:choose>
                 <xsl:when test="@article-type='fiction'">
                     <xsl:attribute name="article-type">other</xsl:attribute>
@@ -55,16 +50,12 @@
             </xsl:choose>
             <xsl:apply-templates/>
         </article>
-    </xsl:template>
-  
-<!-- The 3.0 element-citation is just citation in 2.3. -->
+    </xsl:template><!-- The 3.0 element-citation is just citation in 2.3. -->
     <xsl:template match="element-citation">
         <citation>
             <xsl:apply-templates/>
         </citation>
-    </xsl:template>
-  
-<!-- The 3.0 element <styled-content> doesn't exist. Each type of content 
+    </xsl:template><!-- The 3.0 element <styled-content> doesn't exist. Each type of content 
 will need to be handled separately. -->
     <xsl:template match="styled-content[@style-type='scare quotes']">
     "<xsl:apply-templates/>"
@@ -76,12 +67,8 @@ will need to be handled separately. -->
     </xsl:template>
     <xsl:template match="styled-content[@style-type='XML tag']">
         <monospace>&lt;<xsl:apply-templates/>&gt;</monospace>
-    </xsl:template>
-  
-<!-- The @orientation attribute is required in 3.0 and not allowed in 2.3. -->
-    <xsl:template match="@orientation"/>
-  
-<!-- @specific-use is not allowed on table-wrap. -->
+    </xsl:template><!-- The @orientation attribute is required in 3.0 and not allowed in 2.3. -->
+    <xsl:template match="@orientation"/><!-- @specific-use is not allowed on table-wrap. -->
     <xsl:template match="table-wrap">
         <xsl:element name="table-wrap">
             <xsl:if test="@specific-use">
@@ -89,9 +76,7 @@ will need to be handled separately. -->
             </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-  
-<!-- @specific-use is also not allowed on disp-quote. -->
+    </xsl:template><!-- @specific-use is also not allowed on disp-quote. -->
     <xsl:template match="disp-quote">
         <xsl:element name="disp-quote">
             <xsl:if test="@specific-use">
@@ -99,10 +84,7 @@ will need to be handled separately. -->
             </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-  
-  
-<!-- The person-group/@person-group-type attribute in 2.3 is limited to a 
+    </xsl:template><!-- The person-group/@person-group-type attribute in 2.3 is limited to a 
 fixed list of items.  Some of our types will not do. -->
     <xsl:template match="person-group">
         <person-group>
@@ -113,14 +95,10 @@ fixed list of items.  Some of our types will not do. -->
             </xsl:if>
             <xsl:apply-templates/>
         </person-group>
-    </xsl:template>
-  
-<!-- named-content elements cannot occur inside ext-link. -->
+    </xsl:template><!-- named-content elements cannot occur inside ext-link. -->
     <xsl:template match="named-content[ancestor::ext-link]">
         <xsl:value-of select="."/>
-    </xsl:template>
-  
-<!--  Lastly, a generic copy-all template with low priority, so that stuff not 
+    </xsl:template><!--  Lastly, a generic copy-all template with low priority, so that stuff not 
       handled above is copied to the output. -->
     <xsl:template match="@*|node()|text()|comment()|processing-instruction()" priority="-1">
         <xsl:copy>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:m="http://www.w3.org/1998/Math/MathML" exclude-result-prefixes="tei m" version="2.0">
-    <!-- import base conversion style -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" exclude-result-prefixes="tei m" version="2.0"><!-- import base conversion style -->
     <xsl:import href="../../../latex2/tei.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -20,10 +19,7 @@
         </desc>
     </doc>
     <xsl:param name="reencode">false</xsl:param>
-    <xsl:param name="numberHeadings">false</xsl:param>
-
-
-<!-- deal with weird @rend values -->
+    <xsl:param name="numberHeadings">false</xsl:param><!-- deal with weird @rend values -->
     <xsl:template match="tei:hi[@rend='bo']">
 \textbf{<xsl:apply-templates/>}
 </xsl:template>
@@ -38,9 +34,7 @@
 </xsl:template>
     <xsl:template match="tei:hi[@rend='ulw']">
 \uwave{<xsl:apply-templates/>}
-</xsl:template>
-
-<!-- do weird list types -->
+</xsl:template><!-- do weird list types -->
     <xsl:template match="tei:list[@type='number']">
 \begin{enumerate}
           <xsl:apply-templates select="tei:item"/>
@@ -50,10 +44,7 @@
 \begin{list}{\quad}{}
           <xsl:apply-templates select="tei:item"/>
 \end{list}
-</xsl:template>
-
-
-<!-- xsl:template match="tei:byline/text()">
+</xsl:template><!-- xsl:template match="tei:byline/text()">
 \author{<xsl:value-of select="."/>}
 </xsl:template-->
     <xsl:template match="tei:docAuthor">

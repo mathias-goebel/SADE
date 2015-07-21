@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:its="http://www.w3.org/2005/11/its" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" version="2.0" exclude-result-prefixes="teidocx cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn its">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:its="http://www.w3.org/2005/11/its" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="teidocx cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn its">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>TEI stylesheet to convert TEI XML to Word DOCX XML.</p>
@@ -42,9 +42,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:param name="header-doc" as="item()+" required="yes"/>
     <xsl:param name="document-doc"/>
-    <xsl:param name="debug">true</xsl:param>
-
-	  <!-- identity transform -->
+    <xsl:param name="debug">true</xsl:param><!-- identity transform -->
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:param name="tocDefinition"/>
         <xsl:choose>
@@ -104,9 +102,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:param name="alias"/>
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:choose>
-
-	           <!-- if we find w:sdt section we don't replace the content -->
+            <xsl:choose><!-- if we find w:sdt section we don't replace the content -->
                 <xsl:when test=".//w:sdt">
                     <xsl:message>copy stdContent <xsl:value-of select="$alias"/> as is</xsl:message>
                     <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
@@ -119,8 +115,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:message>set sdtContent for dropdown <xsl:value-of select="$alias"/> = <xsl:value-of select="$content"/>
                         </xsl:message>
                     </xsl:if>
-                    <w:r>
-		            <!-- copy any existing rPr, it may contain character formatting  -->
+                    <w:r><!-- copy any existing rPr, it may contain character formatting  -->
                         <xsl:copy-of select="w:r/w:rPr"/>
                         <w:t>
                             <xsl:value-of select="ancestor::w:sdt/w:sdtPr/w:dropDownList//w:listItem[@w:value=$content]/@w:displayText"/>
@@ -129,8 +124,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="content">
-                        <xsl:apply-templates select="$header-doc//*[@iso:meta=$alias]" mode="tei">
-		              <!-- pass an existing pPr and rPr to new elements since it may contain important character formatting  -->
+                        <xsl:apply-templates select="$header-doc//*[@iso:meta=$alias]" mode="tei"><!-- pass an existing pPr and rPr to new elements since it may contain important character formatting  -->
                             <xsl:with-param name="rPr" select="./w:r[1]/w:rPr"/>
                         </xsl:apply-templates>
                     </xsl:variable>
@@ -138,8 +132,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:message>set sdtContent for textfield <xsl:value-of select="$alias"/> = <xsl:value-of select="$content"/>
                         </xsl:message>
                     </xsl:if>
-                    <xsl:choose>
-                <!-- content can contain w:p elements which must be caried over to produce a valid document -->
+                    <xsl:choose><!-- content can contain w:p elements which must be caried over to produce a valid document -->
                         <xsl:when test="w:p">
                             <xsl:element name="w:p">
                                 <xsl:apply-templates select="w:p/@*"/>
@@ -189,8 +182,7 @@ of this software, even if advised of the possibility of such damage.
                             </xsl:message>
                         </xsl:if>
                         <xsl:for-each select="$tocElems">
-                            <xsl:message>insert toc section para</xsl:message>
-                      <!-- do not copy any section breaks -->
+                            <xsl:message>insert toc section para</xsl:message><!-- do not copy any section breaks -->
                             <xsl:if test="not(.//w:sectPr)">
                                 <xsl:apply-templates select=".">
                                     <xsl:with-param name="tocDefinition" select="$tocDefinition"/>
@@ -201,12 +193,10 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:when test="name(.) = 'w:p' and . = '#foreword'">
                         <xsl:if test="$debug = 'true'">
                             <xsl:message>insert foreword section</xsl:message>
-                        </xsl:if>
-		                <!-- copy all front/w:p from zzForeword onwards -->
+                        </xsl:if><!-- copy all front/w:p from zzForeword onwards -->
                         <xsl:variable name="fwHeader" select="$document-doc/w:document/w:body/front/w:p[w:pPr/w:pStyle/@w:val = 'zzForeword'][1]"/>
                         <xsl:copy-of select="$fwHeader"/>
-                        <xsl:for-each select="$fwHeader/following-sibling::*">
-		                  <!-- do not copy any section breaks -->
+                        <xsl:for-each select="$fwHeader/following-sibling::*"><!-- do not copy any section breaks -->
                             <xsl:if test="not(.//w:sectPr)">
                                 <xsl:copy-of select="."/>
                             </xsl:if>

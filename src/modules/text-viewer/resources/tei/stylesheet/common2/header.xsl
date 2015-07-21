@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the header module. </p>
@@ -114,12 +114,10 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="normalize-space($who)=concat('$Author', '$')"/>
-            <xsl:when test="starts-with($who,'$Author')">
-        <!-- it's RCS -->
+            <xsl:when test="starts-with($who,'$Author')"><!-- it's RCS -->
                 <xsl:value-of select="normalize-space(substring-before(substring-after($who,'Author'),'$'))"/>
             </xsl:when>
-            <xsl:when test="starts-with($who,'$LastChangedBy')">
-        <!-- it's Subversion -->
+            <xsl:when test="starts-with($who,'$LastChangedBy')"><!-- it's Subversion -->
                 <xsl:value-of select="normalize-space(substring-before(substring-after($who,'LastChangedBy:'),'$'))"/>
             </xsl:when>
             <xsl:otherwise>
@@ -142,7 +140,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:if test="not($realauthor = '')">
             <p xmlns="http://www.w3.org/1999/xhtml" class="mainAuthor">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">authorWord</xsl:with-param>
                 </xsl:call-template>
@@ -156,7 +154,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">revisedWord</xsl:with-param>
                 </xsl:call-template>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:copy-of select="$revauthor"/>
                 <xsl:text>)</xsl:text>
             </p>
@@ -189,16 +187,14 @@ of this software, even if advised of the possibility of such damage.
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="starts-with($when,'$Date')">
-        <!-- it's RCS -->
+            <xsl:when test="starts-with($when,'$Date')"><!-- it's RCS -->
                 <xsl:value-of select="substring($when,16,2)"/>
                 <xsl:text>/</xsl:text>
                 <xsl:value-of select="substring($when,13,2)"/>
                 <xsl:text>/</xsl:text>
                 <xsl:value-of select="substring($when,8,4)"/>
             </xsl:when>
-            <xsl:when test="starts-with($when,'$LastChangedDate')">
-        <!-- it's Subversion-->
+            <xsl:when test="starts-with($when,'$LastChangedDate')"><!-- it's Subversion-->
                 <xsl:value-of select="substring-before(substring-after($when,'('),')')"/>
             </xsl:when>
             <xsl:otherwise>
@@ -360,7 +356,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:text>&gt;.</xsl:text>
     </xsl:template>
     <xsl:template match="tei:idno">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:idno[@type='doi']"/>

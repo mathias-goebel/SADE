@@ -127,14 +127,9 @@ They are placed into a separate namespace, and should not interfere
 with the correct validation of conformant XSL FO documents.
 
 ==================================================================== -->
-<xsl:stylesheet xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rx="http://www.renderx.com/XSL/Extensions" version="1.0" exclude-result-prefixes="fo rx">
-    <xsl:output method="xml" omit-xml-declaration="yes"/>
-
-   <!-- Strictness level. Currently used levels: 0 (loose), 1 (normal), 2 (pedantic) -->
-    <xsl:param name="strictness">1</xsl:param>
-
-   <!-- =================================== -->
-<!-- Match topmost node - must be <root> -->
+<xsl:stylesheet xmlns:rx="http://www.renderx.com/XSL/Extensions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" exclude-result-prefixes="fo rx">
+    <xsl:output method="xml" omit-xml-declaration="yes"/><!-- Strictness level. Currently used levels: 0 (loose), 1 (normal), 2 (pedantic) -->
+    <xsl:param name="strictness">1</xsl:param><!-- =================================== --><!-- Match topmost node - must be <root> -->
     <xsl:template match="/">
         <xsl:if test="not(fo:root)">
             <xsl:call-template name="print-error">
@@ -151,11 +146,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="fo:root"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Root                                -->
+    </xsl:template><!-- =================================== --><!-- Root                                -->
     <xsl:template match="fo:root">
         <xsl:if test="@*[.='inherit']">
             <xsl:call-template name="print-warning">
@@ -199,9 +190,7 @@ with the correct validation of conformant XSL FO documents.
             <xsl:call-template name="print-error">
                 <xsl:with-param name="msg">Element '<xsl:value-of select="name(fo:layout-master-set[1])"/>' shall be placed before the first '<xsl:value-of select="name(fo:page-sequence[1])"/>' element. </xsl:with-param>
             </xsl:call-template>
-        </xsl:if>
-
-      <!-- Tests of RenderX extension elements -->
+        </xsl:if><!-- Tests of RenderX extension elements -->
         <xsl:if test="count(rx:meta-info) &gt; 1">
             <xsl:call-template name="print-error">
                 <xsl:with-param name="msg">There can be only one '<xsl:value-of select="name(rx:meta-info[1])"/>' element as a child of '<xsl:value-of select="name()"/>'. </xsl:with-param>
@@ -223,11 +212,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Layout-master-set                   -->
+    </xsl:template><!-- =================================== --><!-- Layout-master-set                   -->
     <xsl:template match="fo:layout-master-set">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -240,11 +225,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Simple-page-master                  -->
+    </xsl:template><!-- =================================== --><!-- Simple-page-master                  -->
     <xsl:template match="fo:simple-page-master">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -294,10 +275,7 @@ with the correct validation of conformant XSL FO documents.
             <xsl:call-template name="print-error">
                 <xsl:with-param name="msg">There can be only one '<xsl:value-of select="name(fo:region-end[1])"/>' element inside '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
-        </xsl:if>
-
-      <!-- I didn't want to control the ordering of regions; -->
-  <!-- but they convinced me...                          -->
+        </xsl:if><!-- I didn't want to control the ordering of regions; --><!-- but they convinced me...                          -->
         <xsl:if test="$strictness &gt; 0">
             <xsl:if test="fo:region-body/preceding-sibling::*[self::fo:region-before                                                    or self::fo:region-after                                                    or self::fo:region-start                                                    or self::fo:region-end]                or fo:region-before/preceding-sibling::*[self::fo:region-after                                                    or self::fo:region-start                                                    or self::fo:region-end]                or fo:region-after/preceding-sibling::*[self::fo:region-start                                                    or self::fo:region-end]                or fo:region-start/preceding-sibling::fo:region-end">
                 <xsl:call-template name="print-warning">
@@ -306,10 +284,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:if>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Regions                             -->
+    </xsl:template><!-- =================================== --><!-- Regions                             -->
     <xsl:template match="fo:region-body                    | fo:region-before                    | fo:region-after                    | fo:region-start                    | fo:region-end">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -352,11 +327,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:call-template>
             </xsl:if>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Page-sequence-master                -->
+    </xsl:template><!-- =================================== --><!-- Page-sequence-master                -->
     <xsl:template match="fo:page-sequence-master">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -383,11 +354,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Page master references              -->
+    </xsl:template><!-- =================================== --><!-- Page master references              -->
     <xsl:template match="fo:single-page-master-reference                    | fo:repeatable-page-master-reference                    | fo:conditional-page-master-reference">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -396,11 +363,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'master-reference' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Repeatable-page-master-alternatives -->
+    </xsl:template><!-- =================================== --><!-- Repeatable-page-master-alternatives -->
     <xsl:template match="fo:repeatable-page-master-alternatives">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -413,10 +376,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Rx:meta-info                        -->
+    </xsl:template><!-- =================================== --><!-- Rx:meta-info                        -->
     <xsl:template match="rx:meta-info">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -429,11 +389,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:meta-field                       -->
+    </xsl:template><!-- =================================== --><!-- Rx:meta-field                       -->
     <xsl:template match="rx:meta-field">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -447,19 +403,12 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'value' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Rx:page-device                      -->
+    </xsl:template><!-- =================================== --><!-- Rx:page-device                      -->
     <xsl:template match="rx:page-device" mode="report-intrusive-elements">
         <xsl:call-template name="print-error">
             <xsl:with-param name="msg">Element 'page-device' is obsolete;  use &lt;?xep-postscript-* ?&gt; processing instructions instead.</xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Declarations                        -->
+    </xsl:template><!-- =================================== --><!-- Declarations                        -->
     <xsl:template match="fo:declarations">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -467,11 +416,7 @@ with the correct validation of conformant XSL FO documents.
             <xsl:with-param name="reason">Only 'color-profile' elements are permitted in this context.</xsl:with-param>
         </xsl:apply-templates>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Color-profile                       -->
+    </xsl:template><!-- =================================== --><!-- Color-profile                       -->
     <xsl:template match="fo:color-profile">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -485,11 +430,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'src' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:outline                        -->
+    </xsl:template><!-- =================================== --><!-- Rx:outline                        -->
     <xsl:template match="rx:outline">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -502,11 +443,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:bookmark                         -->
+    </xsl:template><!-- =================================== --><!-- Rx:bookmark                         -->
     <xsl:template match="rx:bookmark">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -539,21 +476,13 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:bookmark-label                   -->
+    </xsl:template><!-- =================================== --><!-- Rx:bookmark-label                   -->
     <xsl:template match="rx:bookmark-label">
         <xsl:apply-templates select="@*"/>
         <xsl:apply-templates select="*" mode="report-intrusive-elements">
             <xsl:with-param name="reason">Only plain text is permitted in this context.</xsl:with-param>
         </xsl:apply-templates>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Page-sequence                       -->
+    </xsl:template><!-- =================================== --><!-- Page-sequence                       -->
     <xsl:template match="fo:page-sequence">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -591,20 +520,12 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Title                               -->
+    </xsl:template><!-- =================================== --><!-- Title                               -->
     <xsl:template match="fo:title">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="inline-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Flow and static-content             -->
+    </xsl:template><!-- =================================== --><!-- Flow and static-content             -->
     <xsl:template match="fo:flow | fo:static-content">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
@@ -623,11 +544,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:flow-section                     -->
+    </xsl:template><!-- =================================== --><!-- Rx:flow-section                     -->
     <xsl:template match="rx:flow-section">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
@@ -637,29 +554,17 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Block                               -->
+    </xsl:template><!-- =================================== --><!-- Block                               -->
     <xsl:template match="fo:block">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Containers                          -->
+    </xsl:template><!-- =================================== --><!-- Containers                          -->
     <xsl:template match="fo:block-container | fo:inline-container">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Bidi-override                       -->
+    </xsl:template><!-- =================================== --><!-- Bidi-override                       -->
     <xsl:template match="fo:bidi-override">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="inline-level"/>
@@ -669,11 +574,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Character                           -->
+    </xsl:template><!-- =================================== --><!-- Character                           -->
     <xsl:template match="fo:character">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -682,11 +583,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'character' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Initial-property-set                -->
+    </xsl:template><!-- =================================== --><!-- Initial-property-set                -->
     <xsl:template match="fo:initial-property-set">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -714,11 +611,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Line-numerator                      -->
+    </xsl:template><!-- =================================== --><!-- Line-numerator                      -->
     <xsl:template match="rx:ruler">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -746,11 +639,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- External-graphic                    -->
+    </xsl:template><!-- =================================== --><!-- External-graphic                    -->
     <xsl:template match="fo:external-graphic">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -759,45 +648,24 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'src' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Instream-foreign-object             -->
+    </xsl:template><!-- =================================== --><!-- Instream-foreign-object             -->
     <xsl:template match="fo:instream-foreign-object">
-        <xsl:apply-templates select="@*"/>
-      <!-- only the attributes are checked -->
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Inline                              -->
+        <xsl:apply-templates select="@*"/><!-- only the attributes are checked -->
+    </xsl:template><!-- =================================== --><!-- Inline                              -->
     <xsl:template match="fo:inline">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Leader                              -->
+    </xsl:template><!-- =================================== --><!-- Leader                              -->
     <xsl:template match="fo:leader">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="inline-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Page-number                         -->
+    </xsl:template><!-- =================================== --><!-- Page-number                         -->
     <xsl:template match="fo:page-number">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Page-number-citation                -->
+    </xsl:template><!-- =================================== --><!-- Page-number-citation                -->
     <xsl:template match="fo:page-number-citation">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -806,10 +674,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'ref-id' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-   <!-- ========================================================== -->
-<!-- Rx:page-number-citation-last (actually an XSL 1.1 element) -->
+    </xsl:template><!-- ========================================================== --><!-- Rx:page-number-citation-last (actually an XSL 1.1 element) -->
     <xsl:template match="rx:page-number-citation-last">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -818,11 +683,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'ref-id' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:pinpoint                        -->
+    </xsl:template><!-- =================================== --><!-- Rx:pinpoint                        -->
     <xsl:template match="rx:pinpoint">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -831,11 +692,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'value' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:page-index                       -->
+    </xsl:template><!-- =================================== --><!-- Rx:page-index                       -->
     <xsl:template match="rx:page-index">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -853,10 +710,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Rx:index-item                       -->
+    </xsl:template><!-- =================================== --><!-- Rx:index-item                       -->
     <xsl:template match="rx:index-item">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -865,11 +719,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Attribute 'ref-key' is required for '<xsl:value-of select="name()"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Rx:begin-index-range                -->
+    </xsl:template><!-- =================================== --><!-- Rx:begin-index-range                -->
     <xsl:template match="rx:begin-index-range">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -902,10 +752,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Rx:end-index-range                  -->
+    </xsl:template><!-- =================================== --><!-- Rx:end-index-range                  -->
     <xsl:template match="rx:end-index-range">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -937,11 +784,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Table-and-caption                   -->
+    </xsl:template><!-- =================================== --><!-- Table-and-caption                   -->
     <xsl:template match="fo:table-and-caption">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -969,20 +812,12 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Table-caption                       -->
+    </xsl:template><!-- =================================== --><!-- Table-caption                       -->
     <xsl:template match="fo:table-caption">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Table                               -->
+    </xsl:template><!-- =================================== --><!-- Table                               -->
     <xsl:template match="fo:table">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1025,11 +860,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Row group elements                  -->
+    </xsl:template><!-- =================================== --><!-- Row group elements                  -->
     <xsl:template match="fo:table-body | fo:table-header | fo:table-footer">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1049,11 +880,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Table-row                           -->
+    </xsl:template><!-- =================================== --><!-- Table-row                           -->
     <xsl:template match="fo:table-row">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1066,19 +893,12 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Table-cell                          -->
+    </xsl:template><!-- =================================== --><!-- Table-cell                          -->
     <xsl:template match="fo:table-cell">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- List-block                          -->
+    </xsl:template><!-- =================================== --><!-- List-block                          -->
     <xsl:template match="fo:list-block">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1086,11 +906,7 @@ with the correct validation of conformant XSL FO documents.
             <xsl:with-param name="reason">Only 'list-item' or 'marker' elements are permitted in this context.</xsl:with-param>
         </xsl:apply-templates>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- List-item                           -->
+    </xsl:template><!-- =================================== --><!-- List-item                           -->
     <xsl:template match="fo:list-item">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1138,20 +954,12 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- List item subcomponents             -->
+    </xsl:template><!-- =================================== --><!-- List item subcomponents             -->
     <xsl:template match="fo:list-item-label | fo:list-item-body">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Footnote                            -->
+    </xsl:template><!-- =================================== --><!-- Footnote                            -->
     <xsl:template match="fo:footnote">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1188,39 +996,23 @@ with the correct validation of conformant XSL FO documents.
             <xsl:call-template name="inline-level"/>
         </xsl:for-each>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Footnote-body                       -->
+    </xsl:template><!-- =================================== --><!-- Footnote-body                       -->
     <xsl:template match="fo:footnote-body">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Float                               -->
+    </xsl:template><!-- =================================== --><!-- Float                               -->
     <xsl:template match="fo:float">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="block-level"/>
         <xsl:call-template name="out-of-line"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Wrapper                             -->
+    </xsl:template><!-- =================================== --><!-- Wrapper                             -->
     <xsl:template match="fo:wrapper">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- === =============================== -->
-<!-- Marker                              -->
+    </xsl:template><!-- === =============================== --><!-- Marker                              -->
     <xsl:template match="fo:marker">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
@@ -1270,10 +1062,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-   <!-- === =============================== -->
-<!-- Retrieve-marker                     -->
+    </xsl:template><!-- === =============================== --><!-- Retrieve-marker                     -->
     <xsl:template match="fo:retrieve-marker">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -1287,11 +1076,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Element '<xsl:value-of select="name()"/>' should be a descendant of 'static-content'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- === =============================== -->
-<!-- Basic-link                          -->
+    </xsl:template><!-- === =============================== --><!-- Basic-link                          -->
     <xsl:template match="fo:basic-link">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
@@ -1306,11 +1091,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Multi-switch                        -->
+    </xsl:template><!-- =================================== --><!-- Multi-switch                        -->
     <xsl:template match="fo:multi-switch">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1318,11 +1099,7 @@ with the correct validation of conformant XSL FO documents.
             <xsl:with-param name="reason">Only 'multi-case' elements are permitted in this context.</xsl:with-param>
         </xsl:apply-templates>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Multi-case                          -->
+    </xsl:template><!-- =================================== --><!-- Multi-case                          -->
     <xsl:template match="fo:multi-case">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
@@ -1332,11 +1109,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- ===================================== -->
-<!-- Multi-toggle                          -->
+    </xsl:template><!-- ===================================== --><!-- Multi-toggle                          -->
     <xsl:template match="fo:multi-toggle">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="mixed-level"/>
@@ -1346,11 +1119,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- ===================================== -->
-<!-- Multi-properties                    -->
+    </xsl:template><!-- ===================================== --><!-- Multi-properties                    -->
     <xsl:template match="fo:multi-properties">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="no-text"/>
@@ -1378,11 +1147,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:call-template>
         </xsl:if>
         <xsl:apply-templates select="*"/>
-    </xsl:template>
-
-
-   <!-- ===================================== -->
-<!-- Multi-property-set                    -->
+    </xsl:template><!-- ===================================== --><!-- Multi-property-set                    -->
     <xsl:template match="fo:multi-property-set">
         <xsl:apply-templates select="@*"/>
         <xsl:call-template name="empty-element"/>
@@ -1396,13 +1161,7 @@ with the correct validation of conformant XSL FO documents.
                 <xsl:with-param name="msg">Element '<xsl:value-of select="name()"/>' should be a child of 'multi-properties'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- =================================== -->
-<!-- Common structure-checking templates -->
-
-<!-- Check for block-level elements         -->
+    </xsl:template><!-- =================================== --><!-- Common structure-checking templates --><!-- Check for block-level elements         -->
     <xsl:template name="block-level">
         <xsl:call-template name="no-text">
             <xsl:with-param name="reason">Only block-level elements are permitted in this context.</xsl:with-param>
@@ -1413,10 +1172,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:for-each select="fo:wrapper | fo:multi-switch/fo:multi-case | fo:multi-properties">
             <xsl:call-template name="block-level"/>
         </xsl:for-each>
-    </xsl:template>
-
-
-   <!-- Check for inline-level elements         -->
+    </xsl:template><!-- Check for inline-level elements         -->
     <xsl:template name="inline-level">
         <xsl:apply-templates select="*[not(self::fo:bidi-override                                   or self::fo:character                                   or self::fo:external-graphic                                   or self::fo:instream-foreign-object                                   or self::fo:inline                                   or self::fo:inline-container                                   or self::fo:leader                                   or self::fo:page-number                                   or self::fo:page-number-citation                                   or self::fo:basic-link                                   or self::fo:multi-toggle                                   or self::fo:footnote                                   or self::fo:float                                   or self::fo:wrapper                                   or self::fo:marker                                   or self::fo:retrieve-marker                                   or self::fo:multi-switch                                   or self::fo:multi-properties                                  or self::rx:page-index                                   or self::rx:page-number-citation-last                                   or self::rx:page-index                                   or self::rx:begin-index-range                                   or self::rx:end-index-range                                   or self::rx:pinpoint)]" mode="report-intrusive-elements-inline">
             <xsl:with-param name="reason">Only inline-level elements are permitted in this context.</xsl:with-param>
@@ -1424,10 +1180,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:for-each select="fo:wrapper | fo:multi-switch/fo:multi-case | fo:multi-properties | fo:multi-toggle | fo:inline | fo:basic-link | fo:bidi-override">
             <xsl:call-template name="inline-level"/>
         </xsl:for-each>
-    </xsl:template>
-
-
-   <!-- Check for mixed-level elements         -->
+    </xsl:template><!-- Check for mixed-level elements         -->
     <xsl:template name="mixed-level">
         <xsl:apply-templates select="*[not(self::fo:block                                   or self::fo:block-container                                   or self::fo:list-block                                   or self::fo:table                                   or self::fo:table-and-caption                                   or self::fo:bidi-override                                   or self::fo:character                                   or self::fo:external-graphic                                   or self::fo:initial-property-set                                   or self::fo:instream-foreign-object                                   or self::fo:inline                                   or self::fo:inline-container                                   or self::fo:leader                                   or self::fo:page-number                                   or self::fo:page-number-citation                                   or self::fo:basic-link                                   or self::fo:multi-toggle                                   or self::fo:footnote                                   or self::fo:float                                   or self::fo:wrapper                                   or self::fo:marker                                   or self::fo:retrieve-marker                                   or self::fo:multi-switch                                   or self::fo:multi-properties                                   or self::rx:page-number-citation-last                                   or self::rx:page-index                                   or self::rx:begin-index-range                                   or self::rx:end-index-range                                   or self::rx:pinpoint)]" mode="report-intrusive-elements-block">
             <xsl:with-param name="reason">Only block-level or inline-level elements are permitted in this context.</xsl:with-param>
@@ -1435,10 +1188,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:for-each select="fo:wrapper | fo:multi-switch/fo:multi-case | fo:multi-properties">
             <xsl:call-template name="mixed-level"/>
         </xsl:for-each>
-    </xsl:template>
-
-
-   <!-- Check constraints applicable to out-of-line elements  -->
+    </xsl:template><!-- Check constraints applicable to out-of-line elements  -->
     <xsl:template name="out-of-line">
         <xsl:if test="not(ancestor::fo:flow)">
             <xsl:call-template name="print-error">
@@ -1466,13 +1216,7 @@ with the correct validation of conformant XSL FO documents.
       '<xsl:value-of select="name(ancestor::*[@position='absolute' or @absolute-position='absolute'                                            or @position='fixed' or @absolute-position='fixed'][1])"/>'. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Auxiliary templates                 -->
-
-
-<!-- Check for non-blank #PCDATA -->
+    </xsl:template><!-- =================================== --><!-- Auxiliary templates                 --><!-- Check for non-blank #PCDATA -->
     <xsl:template name="no-text">
         <xsl:param name="reason" select="''"/>
         <xsl:if test="text()[normalize-space(.) != '']">
@@ -1486,21 +1230,14 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-   <!-- Check for element being EMPTY -->
+    </xsl:template><!-- Check for element being EMPTY -->
     <xsl:template name="empty-element">
         <xsl:if test="* | text()">
             <xsl:call-template name="print-error">
                 <xsl:with-param name="msg">Element '<xsl:value-of select="name()"/>' must be empty. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-
-
-   <!-- Report an element that may not be present in a given point -->
+    </xsl:template><!-- Report an element that may not be present in a given point -->
     <xsl:template match="*" mode="report-intrusive-elements" priority="-1">
         <xsl:param name="reason" select="''"/>
         <xsl:variable name="uri" select="namespace-uri()"/>
@@ -1553,10 +1290,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:apply-templates select="." mode="report-intrusive-elements">
             <xsl:with-param name="reason" select="$reason"/>
         </xsl:apply-templates>
-    </xsl:template>
-
-
-   <!-- Special case: report an invalid element contained in a wrapper -->
+    </xsl:template><!-- Special case: report an invalid element contained in a wrapper -->
     <xsl:template match="fo:wrapper/*                    | fo:multi-properties/*                    | fo:multi-case/*" mode="report-intrusive-elements-block">
         <xsl:param name="reason" select="''"/>
         <xsl:call-template name="print-error">
@@ -1578,26 +1312,12 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:if>
             </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- Default rules -->
+    </xsl:template><!-- Default rules -->
     <xsl:template match="*" priority="-1"/>
-    <xsl:template match="text()"/>
-
-
-   <!-- ##################################################################### -->
-<!-- Processing of attributes.                                             -->
-<!-- ##################################################################### -->
-
-<!-- Report any attribute not covered by enabling templates -->
+    <xsl:template match="text()"/><!-- ##################################################################### --><!-- Processing of attributes.                                             --><!-- ##################################################################### --><!-- Report any attribute not covered by enabling templates -->
     <xsl:template match="@*" priority="-2">
         <xsl:call-template name="complain-attribute"/>
-    </xsl:template>
-
-   <!-- Report any attribute in fo:layout-master-set etc. as invalid.         -->
-<!-- This is overridden by a rule with higher priority for those (few)     -->
-<!-- properties that actually may occur in these special positions         -->
+    </xsl:template><!-- Report any attribute in fo:layout-master-set etc. as invalid.         --><!-- This is overridden by a rule with higher priority for those (few)     --><!-- properties that actually may occur in these special positions         -->
     <xsl:template match="@*[not (parent::fo:root)                     and not (ancestor::fo:page-sequence)                     and not (parent::*/parent::fo:simple-page-master)]" priority="4">
         <xsl:call-template name="complain-attribute"/>
     </xsl:template>
@@ -1606,8 +1326,7 @@ with the correct validation of conformant XSL FO documents.
     </xsl:template>
     <xsl:template name="complain-attribute">
         <xsl:variable name="uri" select="namespace-uri()"/>
-        <xsl:choose>
-    <!-- Ignore attributes from XML namespace - xml:space, xml:base, etc. -->
+        <xsl:choose><!-- Ignore attributes from XML namespace - xml:space, xml:base, etc. -->
             <xsl:when test="$uri='http://www.w3.org/XML/1998/namespace'"/>
             <xsl:when test="$uri=''                  or $uri='http://www.w3.org/1999/XSL/Format'                  or $uri='http://www.renderx.com/XSL/Extensions'">
                 <xsl:call-template name="print-error">
@@ -1633,10 +1352,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:if test="parent::fo:external-graphic              or parent::fo:instream-foreign-object">
             <xsl:call-template name="complain-attribute"/>
         </xsl:if>
-    </xsl:template>
-
-   <!-- Report a value not in a list. Expressions (recognized by the presence -->
-<!-- of parentheses or operators) are excluded from validation.            -->
+    </xsl:template><!-- Report a value not in a list. Expressions (recognized by the presence --><!-- of parentheses or operators) are excluded from validation.            -->
     <xsl:template name="enumerated-values">
         <xsl:param name="valuelist"/>
         <xsl:variable name="value" select="normalize-space(.)"/>
@@ -1649,10 +1365,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-   <!-- Report a value that is not a valid number or length. Skips validation -->
-<!-- of attributes containing digits, parentheses, and math operators.     -->
+    </xsl:template><!-- Report a value that is not a valid number or length. Skips validation --><!-- of attributes containing digits, parentheses, and math operators.     -->
     <xsl:template name="quantitative-values">
         <xsl:param name="valuelist"/>
         <xsl:variable name="value" select="normalize-space(.)"/>
@@ -1680,9 +1393,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-   <!-- Check if a value is valid as a URL specifier -->
+    </xsl:template><!-- Check if a value is valid as a URL specifier -->
     <xsl:template name="check-url">
         <xsl:variable name="val" select="normalize-space()"/>
         <xsl:choose>
@@ -1694,9 +1405,7 @@ with the correct validation of conformant XSL FO documents.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-   <!-- 7.3. Accessibility properties - ubiquitous; not validated -->
+    </xsl:template><!-- 7.3. Accessibility properties - ubiquitous; not validated -->
     <xsl:template match="@source-document" priority="5">
         <xsl:variable name="val" select="normalize-space()"/>
         <xsl:choose>
@@ -1710,9 +1419,7 @@ with the correct validation of conformant XSL FO documents.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="@role" priority="5"/>
-
-   <!-- 7.4. Absolute position -->
+    <xsl:template match="@role" priority="5"/><!-- 7.4. Absolute position -->
     <xsl:template match="fo:block-container/@absolute-position">
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> auto absolute fixed inherit </xsl:with-param>
@@ -1722,9 +1429,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> auto inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.5. Aural properties. May happen everywhere in the flows. Not validated. -->
+    </xsl:template><!-- 7.5. Aural properties. May happen everywhere in the flows. Not validated. -->
     <xsl:template match="@azimuth"/>
     <xsl:template match="@cue-after"/>
     <xsl:template match="@cue-before"/>
@@ -1789,10 +1494,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> silent x-soft soft medium loud x-loud inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.6. Border, padding, and background -->
+    </xsl:template><!-- 7.6. Border, padding, and background -->
     <xsl:template priority="3" match="@background-attachment">
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> scroll fixed inherit </xsl:with-param>
@@ -1844,9 +1546,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> discard retain </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.7. Font properties  -->
+    </xsl:template><!-- 7.7. Font properties  -->
     <xsl:template match="@font-family">
         <xsl:call-template name="disable-on-graphics"/>
     </xsl:template>
@@ -1864,7 +1564,7 @@ with the correct validation of conformant XSL FO documents.
     </xsl:template>
     <xsl:template match="@font-stretch">
         <xsl:call-template name="disable-on-graphics"/>
-        <xsl:call-template name="quantitative-values"> <!-- this is kinda sorta extension -->
+        <xsl:call-template name="quantitative-values"><!-- this is kinda sorta extension -->
             <xsl:with-param name="valuelist"> normal wider narrower ultra-condensed extra-condensed condensed semi-condensed semi-expanded expanded extra-expanded ultra-expanded inherit </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
@@ -1891,9 +1591,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> normal bold bolder lighter inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.8. Hyphenation  -->
+    </xsl:template><!-- 7.8. Hyphenation  -->
     <xsl:template match="@country">
         <xsl:call-template name="disable-on-graphics"/>
     </xsl:template>
@@ -1917,10 +1615,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.9 - 7.10. Margin properties - block and inline  -->
+    </xsl:template><!-- 7.9 - 7.10. Margin properties - block and inline  -->
     <xsl:template match="@margin-top                    | @margin-bottom                    | @margin-left                    | @margin-right">
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> auto inherit </xsl:with-param>
@@ -1948,17 +1643,12 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.11. Relative position  -->
+    </xsl:template><!-- 7.11. Relative position  -->
     <xsl:template match="@relative-position">
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> static relative inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.12. Area alignment  -->
+    </xsl:template><!-- 7.12. Area alignment  -->
     <xsl:template match="@alignment-adjust">
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> auto baseline before-edge text-before-edge middle central after-edge text-after-edge ideographic alphabetic hanging mathematical top bottom text-top text-bottom inherit </xsl:with-param>
@@ -1991,9 +1681,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> before baseline inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.13. Area dimensions  -->
+    </xsl:template><!-- 7.13. Area dimensions  -->
     <xsl:template match="@block-progression-dimension                    | @block-progression-dimension.minimum                    | @block-progression-dimension.optimum                    | @block-progression-dimension.maximum                    | @inline-progression-dimension                    | @inline-progression-dimension.minimum                    | @inline-progression-dimension.optimum                    | @inline-progression-dimension.maximum                    | @height                    | @width">
         <xsl:call-template name="disable-on-atomic-inlines"/>
         <xsl:call-template name="quantitative-values">
@@ -2029,10 +1717,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> auto integer-pixels resample-any-method inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.14. Block and line-related properties  -->
+    </xsl:template><!-- 7.14. Block and line-related properties  -->
     <xsl:template match="@hyphenation-keep">
         <xsl:call-template name="disable-on-atomic-inlines"/>
         <xsl:call-template name="enumerated-values">
@@ -2137,10 +1822,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> no-wrap wrap inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.15. Character properties -->
+    </xsl:template><!-- 7.15. Character properties -->
     <xsl:template match="fo:character/@character"/>
     <xsl:template match="@letter-spacing.minimum                     | @letter-spacing.optimum                      | @letter-spacing.maximum                      | @letter-spacing                     | @word-spacing.minimum                     | @word-spacing.optimum                     | @word-spacing.maximum                     | @word-spacing">
         <xsl:call-template name="disable-on-graphics"/>
@@ -2180,19 +1862,14 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> auto false true inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.16. Color properties -->
+    </xsl:template><!-- 7.16. Color properties -->
     <xsl:template match="@color"/>
     <xsl:template match="fo:color-profile/@color-profile-name" priority="5"/>
     <xsl:template match="fo:color-profile/@rendering-intent                    | fo:declarations/@rendering-intent                    | fo:root/@rendering-intent" priority="5">
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> auto perceptual relative-colorimetric saturation absolute-colorimetric inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.17. Float properties -->
+    </xsl:template><!-- 7.17. Float properties -->
     <xsl:template match="@clear">
         <xsl:call-template name="disable-on-atomic-inlines"/>
         <xsl:call-template name="disable-on-graphics"/>
@@ -2220,9 +1897,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> auto none line indent block inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.18. Keeps and breaks -->
+    </xsl:template><!-- 7.18. Keeps and breaks -->
     <xsl:template match="@break-after | @break-before">
         <xsl:call-template name="disable-on-atomic-inlines"/>
         <xsl:call-template name="disable-on-graphics"/>
@@ -2241,10 +1916,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.19. Layout-related properties -->
+    </xsl:template><!-- 7.19. Layout-related properties -->
     <xsl:template priority="3" match="@clip"/>
     <xsl:template priority="3" match="@overflow">
         <xsl:call-template name="enumerated-values">
@@ -2274,9 +1946,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> none all inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.20. Leader properties -->
+    </xsl:template><!-- 7.20. Leader properties -->
     <xsl:template match="@leader-alignment">
         <xsl:call-template name="disable-on-atomic-inlines"/>
         <xsl:call-template name="disable-on-graphics"/>
@@ -2318,9 +1988,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.21. Dynamic effects and hyperrefs -->
+    </xsl:template><!-- 7.21. Dynamic effects and hyperrefs -->
     <xsl:template match="fo:multi-property-set/@active-state">
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> link visited active hover focus </xsl:with-param>
@@ -2375,9 +2043,7 @@ with the correct validation of conformant XSL FO documents.
     <xsl:template match="fo:multi-toggle/@switch-to"/>
     <xsl:template match="fo:basic-link/@target-presentation-context"/>
     <xsl:template match="fo:basic-link/@target-processing-context"/>
-    <xsl:template match="fo:basic-link/@target-stylesheet"/>
-
-   <!-- 7.22. Marker properties -->
+    <xsl:template match="fo:basic-link/@target-stylesheet"/><!-- 7.22. Marker properties -->
     <xsl:template match="fo:marker/@marker-class-name"/>
     <xsl:template match="fo:retrieve-marker/@retrieve-class-name"/>
     <xsl:template match="fo:retrieve-marker/@retrieve-position">
@@ -2389,10 +2055,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> page page-sequence document </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.23. Number format properties -->
+    </xsl:template><!-- 7.23. Number format properties -->
     <xsl:template match="fo:page-sequence/@format | rx:ruler/@format"/>
     <xsl:template match="fo:page-sequence/@grouping-separator | rx:ruler/@grouping-separator"/>
     <xsl:template match="fo:page-sequence/@grouping-size | rx:ruler/@grouping-size">
@@ -2402,9 +2065,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> auto alphabetic traditional </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- 7.24. Pagination -->
+    </xsl:template><!-- 7.24. Pagination -->
     <xsl:template priority="5" match="fo:conditional-page-master-reference/@blank-or-not-blank">
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> blank not-blank any </xsl:with-param>
@@ -2468,9 +2129,7 @@ with the correct validation of conformant XSL FO documents.
             <xsl:with-param name="valuelist"> true false </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
-    <xsl:template priority="5" match="fo:region-body/@region-name                    | fo:region-before/@region-name                    | fo:region-after/@region-name                    | fo:region-start/@region-name                    | fo:region-end/@region-name"/>
-
-   <!-- 7.25. Table properties -->
+    <xsl:template priority="5" match="fo:region-body/@region-name                    | fo:region-before/@region-name                    | fo:region-after/@region-name                    | fo:region-start/@region-name                    | fo:region-end/@region-name"/><!-- 7.25. Table properties -->
     <xsl:template match="@border-after-precedence                    | @border-before-precedence                    | @border-end-precedence                    | @border-start-precedence">
         <xsl:call-template name="disable-on-atomic-inlines"/>
         <xsl:call-template name="disable-on-graphics"/>
@@ -2537,10 +2196,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> true false </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.26. Writing mode -->
+    </xsl:template><!-- 7.26. Writing mode -->
     <xsl:template match="@direction">
         <xsl:call-template name="disable-on-graphics"/>
         <xsl:call-template name="enumerated-values">
@@ -2580,10 +2236,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> lr-tb rl-tb tb-rl tb-lr lr-alternating-rl-tb lr-inverting-rl-tb lr-bt rl-bt bt-rl bt-lr lr-alternating-rl-bt lr-inverting-rl-bt tb-lr-in-lr-pairs lr rl tb inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.27. Miscellaneous properties -->
+    </xsl:template><!-- 7.27. Miscellaneous properties -->
     <xsl:template match="fo:external-graphic/@content-type                    | fo:instream-foreign-object/@content-type                    | rx:background-content-type" priority="3">
         <xsl:variable name="val" select="normalize-space()"/>
         <xsl:choose>
@@ -2629,10 +2282,7 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> auto inherit </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-
-   <!-- 7.28. Shorthands -->
+    </xsl:template><!-- 7.28. Shorthands -->
     <xsl:template priority="3" match="@background"/>
     <xsl:template priority="3" match="@background-position"/>
     <xsl:template priority="3" match="@border"/>
@@ -2685,10 +2335,7 @@ with the correct validation of conformant XSL FO documents.
     </xsl:template>
     <xsl:template match="@xml:lang">
         <xsl:call-template name="disable-on-graphics"/>
-    </xsl:template>
-
-
-   <!-- RenderX extensions -->
+    </xsl:template><!-- RenderX extensions -->
     <xsl:template match="@rx:background-content-width                    | @rx:background-content-height" priority="3">
         <xsl:call-template name="quantitative-values">
             <xsl:with-param name="valuelist"> auto scale-to-fit inherit </xsl:with-param>
@@ -2725,18 +2372,12 @@ with the correct validation of conformant XSL FO documents.
         <xsl:call-template name="enumerated-values">
             <xsl:with-param name="valuelist"> false true </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Print an error message              -->
+    </xsl:template><!-- =================================== --><!-- Print an error message              -->
     <xsl:template name="print-error">
         <xsl:param name="msg"/>
         <xsl:message>[error] <xsl:value-of select="normalize-space($msg)"/>
         </xsl:message>
-    </xsl:template>
-
-   <!-- =================================== -->
-<!-- Print a warning message             -->
+    </xsl:template><!-- =================================== --><!-- Print a warning message             -->
     <xsl:template name="print-warning">
         <xsl:param name="msg"/>
         <xsl:message>[warning] <xsl:value-of select="normalize-space($msg)"/>

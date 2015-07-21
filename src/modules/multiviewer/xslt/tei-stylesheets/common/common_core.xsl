@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tite="http://www.tei-c.org/ns/tite/1.0" exclude-result-prefixes="tei tite" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tite="http://www.tei-c.org/ns/tite/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei tite" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module. </p>
@@ -227,10 +227,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-   <!-- authors and editors -->
+    </xsl:template><!-- authors and editors -->
     <xsl:template match="tei:editor|tei:author">
         <xsl:choose>
             <xsl:when test="ancestor::tei:bibl">
@@ -258,8 +255,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:author|tei:editor" mode="mla">
-     <!-- <xsl:variable name="totalNbr">
+    <xsl:template match="tei:author|tei:editor" mode="mla"><!-- <xsl:variable name="totalNbr">
 	  <xsl:number select="ancestor::tei:listBibl"/>
         </xsl:variable>
         <xsl:value-of select="$totalNbr"/>. 
@@ -303,7 +299,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:author, ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -315,7 +311,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:when test="self::tei:author and following-sibling::tei:author">
                 <xsl:choose>
@@ -327,7 +323,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:author, ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                                 <xsl:text>, and </xsl:text>
                             </xsl:when>
@@ -357,7 +353,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:choose>
                     <xsl:when test="contains(self::tei:editor[@role='translator'], ',')">
                         <xsl:value-of select="substring-after(., ',')"/>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                         <xsl:value-of select="substring-before(., ',')"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -378,7 +374,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:apply-templates/>
                         <xsl:choose>
                             <xsl:when test="position() + 1 = last()">
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:text>, </xsl:text>
@@ -389,7 +385,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -398,7 +394,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:choose>
                         <xsl:choose>
                             <xsl:when test="position() + 1 = last()">
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:text>, </xsl:text>
@@ -412,7 +408,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:choose>
                                     <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                         <xsl:value-of select="substring-after(., ',')"/>
-                                        <xsl:text> </xsl:text>
+                                        <xsl:text/>
                                         <xsl:value-of select="substring-before(., ',')"/>
                                     </xsl:when>
                                     <xsl:otherwise>
@@ -442,7 +438,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -456,7 +452,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -482,7 +478,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -491,7 +487,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:choose>
                         <xsl:choose>
                             <xsl:when test="position() + 1 = last()">
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:text>, </xsl:text>
@@ -502,7 +498,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -515,7 +511,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:choose>
                             <xsl:when test="contains(self::tei:editor[@role='editor'], ',')">
                                 <xsl:value-of select="substring-after(., ',')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="substring-before(., ',')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -524,7 +520,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:choose>
                         <xsl:choose>
                             <xsl:when test="position() + 1 = last()">
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:text>, </xsl:text>
@@ -535,9 +531,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:nameLink"/>
-
-   <!-- title  -->
+    <xsl:template match="tei:nameLink"/><!-- title  -->
     <xsl:template match="tei:title" mode="simple">
         <xsl:value-of select="."/>
     </xsl:template>
@@ -599,7 +593,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:call-template>
                 <xsl:call-template name="makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -632,8 +626,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="letters">. </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
-            </xsl:when>
-<!--
+            </xsl:when><!--
          <xsl:when test="ancestor::tei:bibl">
 	   <xsl:apply-templates/>
          </xsl:when>
@@ -661,7 +654,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="following-sibling::* and (ancestor::tei:biblStruct  or ancestor::tei:biblFull)">
             <xsl:call-template name="makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -669,8 +662,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="tei:series">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:biblStruct//tei:date|tei:biblFull//tei:date">
-     <!--
+    <xsl:template match="tei:biblStruct//tei:date|tei:biblFull//tei:date"><!--
 	 <xsl:choose>
 	 <xsl:when test="starts-with(.,'$Date:')">
 	 <xsl:value-of select="substring-before(substring-after(.,'$Date:'),'$')"/>
@@ -716,9 +708,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:with-param name="letters">. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-   <!-- details and notes -->
+    </xsl:template><!-- details and notes -->
     <xsl:template match="tei:biblScope">
         <xsl:variable name="Unit" select="(@unit|@type)[1]"/>
         <xsl:choose>
@@ -791,21 +781,21 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="$Unit='vol' and      following-sibling::tei:biblScope[$Unit='issue']">
                 <xsl:call-template name="makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="$Unit='vol' and following-sibling::tei:biblScope">
                 <xsl:call-template name="makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="following-sibling::tei:biblScope">
                 <xsl:call-template name="makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -1070,7 +1060,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tei:head" mode="plain">
         <xsl:if test="preceding-sibling::tei:head">
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:if>
         <xsl:apply-templates mode="plain"/>
     </xsl:template>
@@ -1087,7 +1077,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:choose>
             <xsl:when test="@type='hyphenInWord'"/>
             <xsl:otherwise>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -1112,7 +1102,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="parent::tei:div"/>
             <xsl:when test="@type='hyphenInWord' and @rend='hidden'"/>
             <xsl:when test="@rend='hidden'">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:when test="@rend='-' or @type='hyphenInWord'">
                 <xsl:text>-</xsl:text>
@@ -1135,7 +1125,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:choose>
     </xsl:template>
     <xsl:template name="lineBreak">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Process forename</desc>
@@ -1155,7 +1145,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="parent::*/tei:forename">
             <xsl:for-each select="parent::*/tei:forename">
                 <xsl:apply-templates/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:for-each>
         </xsl:if>
         <xsl:apply-templates/>
@@ -1257,12 +1247,12 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:call-template name="horizontalRule"/>
             </xsl:when>
             <xsl:when test="@unit='line'">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>☛</xsl:text>
                 <xsl:value-of select="@unit"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="@n"/>
                 <xsl:text>☚</xsl:text>
             </xsl:otherwise>
@@ -1278,9 +1268,9 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="count(preceding-sibling::tei:docAuthor)&gt;1">
                     <xsl:text>,</xsl:text>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:sequence select="tei:i18n('and')"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:when test="following-sibling::tei:docAuthor">
                 <xsl:text>, </xsl:text>
@@ -1297,9 +1287,9 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="count(preceding-sibling::tei:author)&gt;1">
                     <xsl:text>,</xsl:text>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:sequence select="tei:i18n('and')"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:when test="following-sibling::tei:author">, </xsl:when>
         </xsl:choose>

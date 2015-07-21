@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:html="http://www.w3.org/1999/xhtml" version="2.0" exclude-result-prefixes="a fo rng tei teix">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" version="2.0" exclude-result-prefixes="a fo rng tei teix">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the header module,
@@ -68,8 +68,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:text>
 }</xsl:text>
                 </xsl:for-each>
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
             </style>
         </xsl:if>
         <xsl:if test="key('ALL-EXTRENDITION',1)">
@@ -127,8 +126,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:choose>
         </xsl:variable>
         <xsl:if test="preceding-sibling::tei:catRef">
-            <xsl:text> 
-    </xsl:text>
+            <xsl:text/>
         </xsl:if>
         <em>
             <xsl:value-of select="@scheme"/>
@@ -149,7 +147,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:if test="not($realauthor = '')">
             <p class="mainAuthor">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:sequence select="tei:i18n('authorWord')"/>
                 <xsl:text>: </xsl:text>
                 <xsl:copy-of select="$realauthor"/>
@@ -159,7 +157,7 @@ of this software, even if advised of the possibility of such damage.
             <p class="mainRevAuthor">
                 <xsl:text> (</xsl:text>
                 <xsl:sequence select="tei:i18n('revisedWord')"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:copy-of select="$revauthor"/>
                 <xsl:text>)</xsl:text>
             </p>

@@ -3,6 +3,8 @@ module namespace nav = "http://sade/tmpl-nav" ;
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace config="http://exist-db.org/xquery/apps/config" at "../../core/config.xqm";
 
+(: TODO: Nav ohne Link :)
+
 declare variable $nav:module-key := "tmpl-nav";
 
 declare
@@ -44,10 +46,37 @@ function nav:subitem($node as node(), $model as map(*)) {
     if($model("subitem")/@class) then
         <span class="{$model("subitem")/@class}">&#160;</span>
     else if ($model("subitem")/name() != 'divider') then
-        <a href="{string($model("subitem")/@link)}">{string($model("subitem")/@label)}</a>
+        element a { 
+            if(string($model("subitem")/@link)) then attribute href { string($model("subitem")/@link)} else (),
+            string($model("subitem")/@label)
+        }
         else <span>&#160;</span>
 };
+(: no call for subitemchoice...
+declare
+function nav:subitemchoice($node as node(), $model as map(*)) {
 
+    let $item := $model("subitem")
+    let $type := local-name($item)
+    let $choosen := $node/*[@data-nav-choice=$type]
+    
+    return 
+    switch($type)
+        case "submenu" return
+            <span>todo</span>
+        case "item" return
+            element { node-name($choosen) } {
+                $choosen/@* , <a href="{string($item/@link)}">{string($item/@label)}</a>
+            }
+        case "divider" return
+            element { node-name($choosen) } {
+                $choosen/@* 
+            }
+        default return
+            <b>not defined: {node-name($model("subitem"))}</b>
+
+};
+:)
 declare function nav:edit($node as node(), $model as map(*)) {
 let $new := request:get-parameter("new", "0")
 return

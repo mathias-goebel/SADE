@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" version="2.0" exclude-result-prefixes="tei iso">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0" exclude-result-prefixes="tei iso">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>TEI stylesheet to convert TEI XML to Word DOCX XML.</p>
@@ -39,9 +39,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: addisometa.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-  
-   <!-- identity transform -->
+    </doc><!-- identity transform -->
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy-of select="."/>
     </xsl:template>

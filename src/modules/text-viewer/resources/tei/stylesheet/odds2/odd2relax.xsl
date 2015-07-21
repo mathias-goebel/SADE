@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:i="http://www.iso.org/ns/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sch="http://purl.oclc.org/dsdl/schematron" exclude-result-prefixes="a fo html i rng s sch tei teix xi xs xsl" version="2.0">
+<xsl:stylesheet xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:i="http://www.iso.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="a fo html i rng s sch tei teix xi xs xsl" version="2.0">
     <xsl:import href="teiodds.xsl"/>
     <xsl:import href="../common2/i18n.xsl"/>
     <xsl:import href="../common2/tei-param.xsl"/>
@@ -56,8 +56,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:param name="splitLevel">-1</xsl:param>
     <xsl:variable name="oddmode">dtd</xsl:variable>
-    <xsl:variable name="filesuffix"/>
-   <!-- get list of output files -->
+    <xsl:variable name="filesuffix"/><!-- get list of output files -->
     <xsl:variable name="linkColor"/>
     <xsl:template match="tei:moduleSpec[@type='decls']"/>
     <xsl:template match="/">
@@ -110,8 +109,7 @@ Schema generated from ODD source </xsl:text>
                         <xsl:text>. </xsl:text>
                         <xsl:call-template name="makeTEIVersion"/>
                         <xsl:call-template name="makeDescription"/>
-                        <xsl:text>
-</xsl:text>
+                        <xsl:text/>
                     </xsl:comment>
                     <xsl:comment>
                         <xsl:call-template name="copyright"/>
@@ -179,9 +177,7 @@ Schema generated from ODD source </xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </root>
-        </xsl:variable>
-
-      <!-- in 2nd and 3rd  passes, throw away any RNG <define> elements
+        </xsl:variable><!-- in 2nd and 3rd  passes, throw away any RNG <define> elements
     which do not have a <ref>, any <ref> which has no <define>
     to point to, and any empty <choice> -->
         <xsl:variable name="pass2">
@@ -280,16 +276,14 @@ Schema generated from ODD source </xsl:text>
         <xsl:comment>3. macros</xsl:comment>
         <xsl:for-each select="key('MacroModule',@ident)">
             <xsl:choose>
-                <xsl:when test="@predeclare='true'"/>
-            <!--	<xsl:when test="key('PredeclareMacros',@ident)"/>-->
+                <xsl:when test="@predeclare='true'"/><!--	<xsl:when test="key('PredeclareMacros',@ident)"/>-->
                 <xsl:otherwise>
                     <xsl:apply-templates mode="tangle" select="."/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template name="NameList">
-<!-- walk over all the elementSpec elements and make list of 
+    <xsl:template name="NameList"><!-- walk over all the elementSpec elements and make list of 
        elements -->
         <xsl:for-each select="key('ELEMENTDOCS',1)">
             <xsl:sort select="@ident"/>
@@ -362,10 +356,7 @@ Schema generated from ODD source </xsl:text>
     </xsl:template>
     <xsl:template match="sch:*">
         <xsl:call-template name="processSchematron"/>
-    </xsl:template>
-
-
-<!-- pass 2, clean up unused elements -->
+    </xsl:template><!-- pass 2, clean up unused elements -->
     <xsl:template match="rng:anyName[parent::rng:define]" mode="pass2">
         <zeroOrMore xmlns="http://relaxng.org/ns/structure/1.0">
             <choice>
@@ -402,8 +393,7 @@ Schema generated from ODD source </xsl:text>
         </xsl:choose>
     </xsl:template>
     <xsl:template match="rng:ref" mode="pass2">
-        <xsl:choose>
-	<!--
+        <xsl:choose><!--
 	<xsl:when test="(ancestor::rng:element[@name='egXML' or
 			 @name='constraint']         or
 			 ancestor::rng:define[contains(@name,'macro.schemaPattern')])
@@ -432,9 +422,7 @@ Schema generated from ODD source </xsl:text>
                 </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-<!-- and again -->
+    </xsl:template><!-- and again -->
     <xsl:template match="processing-instruction()" mode="pass3">
         <xsl:choose>
             <xsl:when test="name()='NameList'">

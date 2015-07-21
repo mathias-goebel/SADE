@@ -7,7 +7,7 @@
   if desired.  In that case, in the internal subset of the doctype declaration,
   define <!ENTITY % sp "s:" >
 --><!-- Data types -->
-<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" ns="http://www.ascc.net/xml/schematron" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.ascc.net/xml/schematron" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <define name="URI">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -19,8 +19,7 @@
     </define>
     <define name="FPI">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- Element declarations -->
+    </define><!-- Element declarations -->
     <define name="schema">
         <element name="schema">
             <ref name="attlist.schema"/>
@@ -228,8 +227,7 @@
             <ref name="attlist.value-of"/>
             <empty/>
         </element>
-    </define>
-  <!-- Attribute declarations -->
+    </define><!-- Attribute declarations -->
     <define name="attlist.schema" combine="interleave">
         <optional>
             <attribute name="xsi:schemaLocation" a:defaultValue="http://www.ascc.net/xml/schematron   http://www.ascc.net/xml/schematron/schematron.xsd">
@@ -365,8 +363,7 @@
                 <ref name="PATH"/>
             </attribute>
         </optional>
-    </define>
-  <!--
+    </define><!--
     Schematrons should implement '.' 
     as the default value for path in s:name
   -->
@@ -493,8 +490,7 @@
                 <data type="ID"/>
             </attribute>
         </optional>
-    </define>
-  <!--
+    </define><!--
     Schematrons should implement 'false' as the default
     value of abstract
   -->

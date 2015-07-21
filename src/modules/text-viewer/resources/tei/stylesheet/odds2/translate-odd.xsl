@@ -8,7 +8,7 @@ XSL stylesheet to process TEI documents using ODD markup
  
 ##LICENSE
 -->
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" exclude-result-prefixes="tei" version="2.0">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="verbose"/>
     <xsl:param name="lang">es</xsl:param>
@@ -62,8 +62,7 @@ XSL stylesheet to process TEI documents using ODD markup
             </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
-    </xsl:template>
-   <!--
+    </xsl:template><!--
   <xsl:template match="tei:elementSpec/tei:desc">
     <xsl:variable name="me" select="../@ident"/>
     <xsl:variable name="trans">

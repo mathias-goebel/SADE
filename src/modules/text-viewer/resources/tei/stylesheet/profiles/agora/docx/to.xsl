@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" version="2.0" exclude-result-prefixes="ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn tei teidocx">
-    <!-- import conversion style -->
-    <xsl:import href="../../../docx/to/teitodocx.xsl"/>
-    
-    <!-- import functions -->
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn tei teidocx"><!-- import conversion style -->
+    <xsl:import href="../../../docx/to/teitodocx.xsl"/><!-- import functions -->
     <xsl:import href="default-functions.xsl"/>
     <xsl:param name="renderAddDel">true</xsl:param>
     <xsl:param name="addColour">red</xsl:param>
@@ -31,9 +28,7 @@
     <xsl:param name="debug">false</xsl:param>
     <xsl:param name="styleDoc">
         <xsl:value-of select="concat($word-directory, '/word/styles.xml')"/>
-    </xsl:param>
-    
-    <!-- Styles -->
+    </xsl:param><!-- Styles -->
     <xsl:template match="tei:abbr" mode="get-style">abbr</xsl:template>
     <xsl:template match="tei:cit" mode="get-style">Quote</xsl:template>
     <xsl:template match="tei:date" mode="get-style">date</xsl:template>
@@ -91,19 +86,13 @@
         <w:r>
             <w:t>
                 <xsl:attribute name="xml:space">preserve</xsl:attribute>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </w:t>
         </w:r>
-    </xsl:template>
-
-    
-    <!-- 
+    </xsl:template><!-- 
         Block Templates:
         Here we can overwrite how block elements are rendered
-    -->
-  
-    
-    <!-- Dates -->
+    --><!-- Dates -->
     <xsl:template match="tei:date[ancestor::tei:teiHeader]">
         <w:r>
             <w:rPr>
@@ -113,9 +102,7 @@
                 <xsl:value-of select="."/>
             </w:t>
         </w:r>
-    </xsl:template>
-
-    <!-- formulas -->
+    </xsl:template><!-- formulas -->
     <xsl:template match="tei:formula">
         <w:p>
             <w:pPr>
@@ -138,10 +125,7 @@
                 </w:r>
             </xsl:if>
         </w:p>
-    </xsl:template>
-    
-     
-    <!-- 
+    </xsl:template><!-- 
         Special Notes (Footnotes) .. 
         @TODO: Ideally this should go into the general template, but for some
         reason xsl always calls the less specific tei:note template in here. 
@@ -158,11 +142,7 @@
                 <xsl:call-template name="create-comment"/>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
-    
-    
-    
-    <!-- Paragraphs in the front matter -->
+    </xsl:template><!-- Paragraphs in the front matter -->
     <xsl:template match="tei:front/tei:div/tei:p">
         <xsl:call-template name="block-element">
             <xsl:with-param name="pPr">
@@ -175,17 +155,10 @@
                 </w:pPr>
             </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-   
-    
-    
-    <!-- who created this document -->
+    </xsl:template><!-- who created this document -->
     <xsl:template name="created-by">
         <xsl:text>TEI XSL</xsl:text>
-    </xsl:template>
-
-
-    <!-- fake listPerson into an unordered list -->
+    </xsl:template><!-- fake listPerson into an unordered list -->
     <xsl:template match="tei:listPerson">
         <xsl:variable name="mylist">
             <tei:list type="unordered">

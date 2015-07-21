@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sch="http://purl.oclc.org/dsdl/schematron" version="2.0" exclude-result-prefixes="xlink dbk rng tei teix s xhtml sch a html xs xsl">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" version="2.0" exclude-result-prefixes="xlink dbk rng tei teix s xhtml sch a html xs xsl">
     <xsl:import href="teiodds.xsl"/>
     <xsl:import href="../xhtml2/tei.xsl"/>
     <xsl:import href="../xhtml2/oddprocessing.xsl"/>
@@ -78,9 +78,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="useHeaderFrontMatter">true</xsl:param>
     <xsl:param name="verbose">false</xsl:param>
     <xsl:param name="doctypePublic">-//W3C//DTD XHTML 1.1//EN</xsl:param>
-    <xsl:param name="doctypeSystem">http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd</xsl:param>
-
-  <!-- these are ones to override -->
+    <xsl:param name="doctypeSystem">http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd</xsl:param><!-- these are ones to override -->
     <xsl:param name="feedbackURL">#</xsl:param>
     <xsl:param name="homeLabel">Home</xsl:param>
     <xsl:param name="homeWords">Home</xsl:param>
@@ -91,7 +89,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="copyrightStatement"/>
     <xsl:template match="processing-instruction()"/>
     <xsl:template name="headingNumberSuffix">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:divGen[@type='toc']">
         <xsl:call-template name="mainTOC"/>

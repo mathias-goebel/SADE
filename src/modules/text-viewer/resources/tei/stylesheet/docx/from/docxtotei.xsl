@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop        iso m mml mo mv o pic r rel   html    tbx tei teidocx v xs ve w10 w wne wp">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop        iso m mml mo mv o pic r rel   html    tbx tei teidocx v xs ve w10 w wne wp">
     <xsl:import href="../../common2/functions.xsl"/>
     <xsl:import href="../utils/maths/omml2mml.xsl"/>
     <xsl:import href="../utils/functions.xsl"/>
@@ -110,24 +110,19 @@ of this software, even if advised of the possibility of such damage.
             </ul>
         </desc>
     </doc>
-    <xsl:template match="/">
-     <!-- Do an initial normalization and store everything in $pass0 -->
+    <xsl:template match="/"><!-- Do an initial normalization and store everything in $pass0 -->
         <xsl:variable name="pass0">
             <xsl:apply-templates mode="pass0"/>
-        </xsl:variable>
-     
-     <!-- Do the main transformation and store everything in the variable pass1 -->
+        </xsl:variable><!-- Do the main transformation and store everything in the variable pass1 -->
         <xsl:variable name="pass1">
             <xsl:for-each select="$pass0">
                 <xsl:apply-templates/>
             </xsl:for-each>
-        </xsl:variable>		  
-     <!-- debug
+        </xsl:variable><!-- debug
 	 <xsl:result-document href="/tmp/foo.xml">
 	 <xsl:copy-of select="$pass1"/>
 	 </xsl:result-document>
-     -->
-     <!-- Do the final parse and create valid TEI -->
+     --><!-- Do the final parse and create valid TEI -->
         <xsl:apply-templates select="$pass1" mode="pass2"/>
         <xsl:call-template name="fromDocxFinalHook"/>
     </xsl:template>
@@ -138,11 +133,8 @@ of this software, even if advised of the possibility of such damage.
      </desc>
     </doc>
     <xsl:template match="w:document">
-        <TEI>
-	      <!-- create teiHeader -->
-            <xsl:call-template name="create-tei-header"/>
-	      
-	      <!-- convert main and back matter -->
+        <TEI><!-- create teiHeader -->
+            <xsl:call-template name="create-tei-header"/><!-- convert main and back matter -->
             <xsl:apply-templates select="w:body"/>
         </TEI>
     </xsl:template>
@@ -152,11 +144,8 @@ of this software, even if advised of the possibility of such damage.
 	    </desc>
     </doc>
     <xsl:template match="w:body">
-        <text>
-	      <!-- Create forme work -->
-            <xsl:call-template name="extract-forme-work"/>
-	      
-	      <!-- create TEI body -->
+        <text><!-- Create forme work -->
+            <xsl:call-template name="extract-forme-work"/><!-- create TEI body -->
             <body>
                 <xsl:call-template name="mainProcess"/>
             </body>
@@ -167,30 +156,23 @@ of this software, even if advised of the possibility of such damage.
 	      Process the text by high-level divisions
 	    </desc>
     </doc>
-    <xsl:template name="mainProcess">
-	    <!-- 
+    <xsl:template name="mainProcess"><!-- 
 		 group all paragraphs that form a first level section.
 	    -->
         <xsl:for-each-group select="w:sdt|w:p|w:tbl" group-starting-with="w:p[tei:is-firstlevel-heading(.)]">
-            <xsl:choose>
-		
-		<!-- We are dealing with a first level section, we now have
+            <xsl:choose><!-- We are dealing with a first level section, we now have
 		     to further divide the section into subsections that we can then
 		     finally work on -->
                 <xsl:when test="tei:is-heading(.)">
                     <xsl:call-template name="group-by-section"/>
-                </xsl:when>
-		
-		<!-- We have found some loose paragraphs. These are most probably
+                </xsl:when><!-- We have found some loose paragraphs. These are most probably
 		     front matter paragraps. We can simply convert them without further
 		     trying to split them up into sub sections. -->
                 <xsl:otherwise>
                     <xsl:apply-templates select="." mode="inSectionGroup"/>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:for-each-group>
-	    
-	    <!-- I have no idea why I need this, but I apparently do. 
+        </xsl:for-each-group><!-- I have no idea why I need this, but I apparently do. 
 		 //TODO: find out what is going on-->
         <xsl:apply-templates select="w:sectPr" mode="paragraph"/>
     </xsl:template>
@@ -239,9 +221,7 @@ of this software, even if advised of the possibility of such damage.
 		</p>
         </desc>
     </doc>
-    <xsl:template match="w:tbl|w:p" mode="inSectionGroup">
-	    
-	    <!-- 
+    <xsl:template match="w:tbl|w:p" mode="inSectionGroup"><!-- 
 		 We are looking for:
 		 - Lists -> 1
 		 - Table of Contents -> 2
@@ -250,9 +230,7 @@ of this software, even if advised of the possibility of such damage.
 		 Anything else is assigned a number of position()+100. This should be
 		 sufficient even if we find lots more things to group.
 	    -->
-        <xsl:for-each-group select="current-group()" group-adjacent="if       (tei:is-list(.))  then 1     else  if (tei:is-toc(.))   then 2     else  if (tei:is-figure(.)) then 3     else  if (tei:is-line(.)) then 4     else position() + 100">
-	      
-	      <!-- For each defined grouping call a specific template. If there is no
+        <xsl:for-each-group select="current-group()" group-adjacent="if       (tei:is-list(.))  then 1     else  if (tei:is-toc(.))   then 2     else  if (tei:is-figure(.)) then 3     else  if (tei:is-line(.)) then 4     else position() + 100"><!-- For each defined grouping call a specific template. If there is no
 		   grouping defined, apply templates with mode
 		   paragraph -->
             <xsl:choose>
@@ -267,8 +245,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:when>
                 <xsl:when test="current-grouping-key()=4">
                     <xsl:call-template name="lineSection"/>
-                </xsl:when>
-		<!-- it is not a defined grouping .. apply templates -->
+                </xsl:when><!-- it is not a defined grouping .. apply templates -->
                 <xsl:otherwise>
                     <xsl:apply-templates select="." mode="paragraph"/>
                 </xsl:otherwise>
@@ -319,12 +296,10 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="group-by-section">
         <xsl:variable name="Style" select="w:pPr/w:pStyle/@w:val"/>
         <xsl:variable name="NextHeader" select="tei:get-nextlevel-header($Style)"/>
-        <div>
-       <!-- generate the head -->
+        <div><!-- generate the head -->
             <xsl:call-template name="generate-section-heading">
                 <xsl:with-param name="Style" select="$Style"/>
-            </xsl:call-template>
-       <!-- Process sub-sections -->
+            </xsl:call-template><!-- Process sub-sections -->
             <xsl:for-each-group select="current-group() except ." group-starting-with="w:p[w:pPr/w:pStyle/@w:val=$NextHeader]">
                 <xsl:choose>
                     <xsl:when test="tei:is-heading(.)">
@@ -364,9 +339,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:variable name="rid" select="@r:id"/>
                     <xsl:variable name="h-file">
                         <xsl:value-of select="document(concat($wordDirectory,'/word/_rels/document.xml.rels'))//rel:Relationship[@Id=$rid]/@Target"/>
-                    </xsl:variable>
-
-				        <!-- for the moment, just copy content -->
+                    </xsl:variable><!-- for the moment, just copy content -->
                     <xsl:if test="doc-available(concat($wordDirectory,'/word/', $h-file))">
                         <xsl:for-each-group select="document(concat($wordDirectory,'/word/', $h-file))/*[1]/w:*" group-adjacent="1">
                             <xsl:apply-templates select="." mode="inSectionGroup"/>

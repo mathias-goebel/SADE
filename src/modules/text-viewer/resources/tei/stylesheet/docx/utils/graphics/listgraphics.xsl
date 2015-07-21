@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet to make a script to copy graphics files</p>
@@ -50,10 +50,9 @@ of this software, even if advised of the possibility of such damage.
         <xsl:for-each select="key('BINARY',1)">
             <xsl:text>cp </xsl:text>
             <xsl:value-of select="@r:id"/>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:value-of select="$DIR"/>
-            <xsl:text>
-</xsl:text>
+            <xsl:text/>
         </xsl:for-each>
         <xsl:for-each select="key('G',1)">
             <xsl:variable name="F">
@@ -70,7 +69,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:when test="starts-with($F,'http')">
                     <xsl:text>curl -s -o </xsl:text>
                     <xsl:value-of select="$target"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$F"/>
                 </xsl:when>
                 <xsl:when test="starts-with($F,'/')">
@@ -88,8 +87,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:value-of select="$target"/>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:text>
-</xsl:text>
+            <xsl:text/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

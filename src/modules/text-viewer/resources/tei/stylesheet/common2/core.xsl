@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module. </p>
@@ -105,10 +105,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-   <!-- biblStruct -->
+    </xsl:template><!-- biblStruct -->
     <xsl:template match="tei:biblStruct" mode="xref">
         <xsl:choose>
             <xsl:when test="count(key('ANAMES',@xml:id))=1">
@@ -194,9 +191,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:call-template>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
-
-   <!-- authors and editors -->
+    </xsl:template><!-- authors and editors -->
     <xsl:template match="tei:editor|tei:author">
         <xsl:choose>
             <xsl:when test="ancestor::tei:bibl">
@@ -231,7 +226,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:apply-templates select="../tei:forename" mode="use"/>
             <xsl:call-template name="tei:makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -239,7 +234,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:apply-templates select="../tei:nameLink" mode="use"/>
             <xsl:call-template name="tei:makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -251,7 +246,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="preceding-sibling::tei:forename">
             <xsl:call-template name="tei:makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -259,9 +254,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="tei:nameLink" mode="use">
         <xsl:apply-templates/>
-    </xsl:template>
-
-   <!-- title  -->
+    </xsl:template><!-- title  -->
     <xsl:template match="tei:titlePart" mode="simple">
         <xsl:if test="preceding-sibling::tei:titlePart">
             <xsl:call-template name="tei:makeText">
@@ -332,7 +325,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:call-template>
                 <xsl:call-template name="tei:makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -392,7 +385,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="following-sibling::* and (ancestor::tei:biblStruct  or ancestor::tei:biblFull)">
             <xsl:call-template name="tei:makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -400,8 +393,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="tei:series">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:biblStruct//tei:date|tei:biblFull//tei:date">
-     <!--
+    <xsl:template match="tei:biblStruct//tei:date|tei:biblFull//tei:date"><!--
 	 <xsl:choose>
 	 <xsl:when test="starts-with(.,'$Date:')">
 	 <xsl:value-of select="substring-before(substring-after(.,'$Date:'),'$')"/>
@@ -447,9 +439,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:with-param name="letters">. </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-
-   <!-- details and notes -->
+    </xsl:template><!-- details and notes -->
     <xsl:template match="tei:biblScope">
         <xsl:choose>
             <xsl:when test="ancestor::tei:bibl">
@@ -521,21 +511,21 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="@type='vol' and      following-sibling::tei:biblScope[@type='issue']">
                 <xsl:call-template name="tei:makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="@type='vol' and following-sibling::tei:biblScope">
                 <xsl:call-template name="tei:makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="following-sibling::tei:biblScope">
                 <xsl:call-template name="tei:makeText">
                     <xsl:with-param name="letters">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>

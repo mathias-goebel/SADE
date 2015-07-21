@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>This software is dual-licensed:
@@ -52,9 +52,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:apply-templates select="*[1]"/>
     </xsl:template>
     <xsl:template match="speaker"/>
-    <xsl:template match="facsimile"/>
-
-   <!-- for when we need some context -->
+    <xsl:template match="facsimile"/><!-- for when we need some context -->
     <xsl:template match="text()">
         <xsl:choose>
             <xsl:when test="normalize-space()=''"/>
@@ -73,8 +71,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="normalize-space()"/>
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

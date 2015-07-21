@@ -142,8 +142,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:apply-templates select="articleinfo/abstract"/>
                         </front>
                     </xsl:when>
-                    <xsl:otherwise>
-	</xsl:otherwise>
+                    <xsl:otherwise/>
                 </xsl:choose>
                 <body>
                     <xsl:apply-templates/>
@@ -419,9 +418,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="xref">
         <ptr target="#{@linkend}" type="{@role}"/>
-    </xsl:template>
-
-<!-- use general-purpose templates to add standard attributes -->
+    </xsl:template><!-- use general-purpose templates to add standard attributes -->
     <xsl:template name="Role">
         <xsl:if test="@role">
             <xsl:attribute name="rend">

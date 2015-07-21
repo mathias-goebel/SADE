@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:cals="http://www.oasis-open.org/specs/tm9901" exclude-result-prefixes="tei iso cals tbx w" version="2.0">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" exclude-result-prefixes="tei iso cals tbx w" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>This software is dual-licensed:
@@ -38,9 +38,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: isoutils.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-
-  <!-- $Id: isoutils.xsl 9646 2011-11-05 23:39:08Z rahtz $ -->
+    </doc><!-- $Id: isoutils.xsl 9646 2011-11-05 23:39:08Z rahtz $ -->
     <xsl:variable name="processor">
         <xsl:value-of select="system-property('xsl:vendor')"/>
     </xsl:variable>
@@ -54,9 +52,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="getiso_meta">
         <xsl:param name="meta"/>
         <xsl:value-of select="key('ISOMETA',$meta)"/>
-    </xsl:template>
-  
-  <!--
+    </xsl:template><!--
       <xsl:choose>
       <xsl:when test="string-length(.)>0">
       <xsl:text>(</xsl:text>
@@ -161,9 +157,9 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template name="Identify">
         <xsl:for-each select="ancestor::cals:entry">
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:call-template name="Identify"/>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:for-each>
         <xsl:choose>
             <xsl:when test="self::tei:p">
@@ -260,7 +256,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:choose>
             <xsl:when test="not(number($N))">
                 <xsl:value-of select="$What"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="$N"/>
             </xsl:when>
             <xsl:when test="$N=1">
@@ -288,9 +284,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:param name="italic"/>
         <xsl:value-of select="$prefix"/>
         <xsl:value-of select="$text"/>
-    </xsl:template>
-  
-  <!-- all the special bibl components -->
+    </xsl:template><!-- all the special bibl components -->
     <xsl:template match="tei:listBibl/tei:bibl/tei:publisher">
         <xsl:variable name="ref">
             <xsl:call-template name="ISOCITE"/>
@@ -307,7 +301,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:for-each select="tei:idno[@type='documentType']">
                 <xsl:choose>
                     <xsl:when test="contains(../tei:publisher,'/')">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>/</xsl:text>
@@ -315,18 +309,18 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:choose>
                 <xsl:value-of select="normalize-space(.)"/>
             </xsl:for-each>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:for-each select="tei:idno[@type='docNumber']">
                 <xsl:value-of select="normalize-space(.)"/>
             </xsl:for-each>
             <xsl:for-each select="tei:idno[@type='parts']">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="normalize-space(.)"/>
             </xsl:for-each>
             <xsl:for-each select="tei:idno[@type='docPartNumber']">
                 <xsl:choose>
                     <xsl:when test=".='(all parts)'">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>-</xsl:text>
@@ -387,9 +381,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:with-param>
             <xsl:with-param name="italic">true</xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-  
-  <!-- generic TBX -->
+    </xsl:template><!-- generic TBX -->
     <xsl:template match="tbx:termEntry">
         <xsl:call-template name="showTermEntry"/>
     </xsl:template>

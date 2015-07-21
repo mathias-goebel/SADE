@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Format" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fotex="http://www.tug.org/fotex" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" exclude-result-prefixes="fotex a rng tei teix" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fotex="http://www.tug.org/fotex" exclude-result-prefixes="fotex a rng tei teix" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>
@@ -80,8 +80,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="where">
                             <xsl:value-of select="$backMulticolumns"/>
                         </xsl:with-param>
-                    </xsl:call-template>
-               <!-- static areas -->
+                    </xsl:call-template><!-- static areas -->
                     <xsl:choose>
                         <xsl:when test="$twoSided='true'">
                             <xsl:call-template name="headers-footers-twoside-back"/>
@@ -89,8 +88,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:otherwise>
                             <xsl:call-template name="headers-footers-oneside-back"/>
                         </xsl:otherwise>
-                    </xsl:choose>
-               <!-- now start the main flow -->
+                    </xsl:choose><!-- now start the main flow -->
                     <flow flow-name="xsl-region-body" font-family="{$bodyFont}" font-size="{$bodySize}">
                         <xsl:apply-templates/>
                         <xsl:call-template name="afterBodyHook"/>
@@ -113,15 +111,13 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="ancestor::tei:group">
                 <xsl:apply-templates/>
             </xsl:when>
-            <xsl:otherwise>
-<!-- start page sequence -->
+            <xsl:otherwise><!-- start page sequence -->
                 <page-sequence format="{$formatBodypage}" text-align="{$alignment}" hyphenate="{$hyphenate}" language="{$language}" initial-page-number="1">
                     <xsl:call-template name="choosePageMaster">
                         <xsl:with-param name="where">
                             <xsl:value-of select="$bodyMulticolumns"/>
                         </xsl:with-param>
-                    </xsl:call-template>
-               <!-- static areas -->
+                    </xsl:call-template><!-- static areas -->
                     <xsl:choose>
                         <xsl:when test="$twoSided='true'">
                             <xsl:call-template name="headers-footers-twoside"/>
@@ -129,15 +125,13 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:otherwise>
                             <xsl:call-template name="headers-footers-oneside"/>
                         </xsl:otherwise>
-                    </xsl:choose>
-               <!-- now start the main  flow -->
+                    </xsl:choose><!-- now start the main  flow -->
                     <flow flow-name="xsl-region-body" font-family="{$bodyFont}" font-size="{$bodySize}">
                         <xsl:if test="not($flowMarginLeft='')">
                             <xsl:attribute name="margin-left">
                                 <xsl:value-of select="$flowMarginLeft"/>
                             </xsl:attribute>
-                        </xsl:if>
-                  <!--include front matter if there is no separate titlepage -->
+                        </xsl:if><!--include front matter if there is no separate titlepage -->
                         <xsl:if test="not($titlePage='true') and not(preceding-sibling::tei:front)">
                             <xsl:call-template name="Header"/>
                         </xsl:if>
@@ -176,8 +170,7 @@ of this software, even if advised of the possibility of such damage.
         </desc>
     </doc>
     <xsl:template match="tei:div">
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
         <xsl:choose>
             <xsl:when test="@type='bibliog'">
                 <xsl:apply-templates/>
@@ -198,8 +191,7 @@ of this software, even if advised of the possibility of such damage.
                 </block>
                 <xsl:apply-templates/>
             </xsl:when>
-            <xsl:otherwise>
-<!-- behaviour depends on the nesting level of <div> elements -->
+            <xsl:otherwise><!-- behaviour depends on the nesting level of <div> elements -->
                 <xsl:variable name="divlevel" select="count(ancestor::tei:div)"/>
                 <xsl:call-template name="NumberedHeading">
                     <xsl:with-param name="level">
@@ -333,8 +325,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="where">
                             <xsl:value-of select="$frontMulticolumns"/>
                         </xsl:with-param>
-                    </xsl:call-template>
-               <!-- static areas -->
+                    </xsl:call-template><!-- static areas -->
                     <xsl:choose>
                         <xsl:when test="$twoSided='true'">
                             <xsl:call-template name="headers-footers-twoside"/>
@@ -342,8 +333,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:otherwise>
                             <xsl:call-template name="headers-footers-oneside"/>
                         </xsl:otherwise>
-                    </xsl:choose>
-               <!-- now start the main flow -->
+                    </xsl:choose><!-- now start the main flow -->
                     <flow flow-name="xsl-region-body" font-family="{$bodyFont}" font-size="{$bodySize}">
                         <xsl:for-each select="tei:*">
                             <xsl:comment>Start <xsl:value-of select="name(.)"/>
@@ -399,10 +389,8 @@ of this software, even if advised of the possibility of such damage.
             <p xmlns="http://www.w3.org/1999/XSL/Format"> Simple head </p>
         </desc>
     </doc>
-    <xsl:template match="tei:head" mode="section">
-<!-- if we have multiple <head> elements together, 
-  separate by spaces -->
-<!--
+    <xsl:template match="tei:head" mode="section"><!-- if we have multiple <head> elements together, 
+  separate by spaces --><!--
    <xsl:if test="preceding-sibling::tei:head">
 	<xsl:text> </xsl:text>
      </xsl:if>
@@ -624,14 +612,12 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
-            </xsl:variable>
-         <!--
+            </xsl:variable><!--
 <xsl:message>**  Calculated   [<xsl:value-of select="$Number"/>] [<xsl:value-of select="$headingNumberSuffix"/>] for <xsl:value-of select="@xml:id"/></xsl:message>
 -->
             <xsl:value-of select="$Number"/>
             <xsl:apply-templates mode="section" select="tei:head"/>
-            <xsl:if test="$divRunningheads='true'">
-<!-- markers for use in running heads -->
+            <xsl:if test="$divRunningheads='true'"><!-- markers for use in running heads -->
                 <xsl:choose>
                     <xsl:when test="$level=0">
                         <marker marker-class-name="section1"/>
@@ -669,8 +655,7 @@ of this software, even if advised of the possibility of such damage.
                 </marker>
             </xsl:if>
             <xsl:choose>
-                <xsl:when test="$foEngine='passivetex'">
-<!-- Passive TeX extension, to get PDF bookmarks -->
+                <xsl:when test="$foEngine='passivetex'"><!-- Passive TeX extension, to get PDF bookmarks -->
                     <fotex:bookmark fotex-bookmark-level="{$level}" fotex-bookmark-label="{$divid}">
                         <xsl:if test="$numberHeadings='true'">
                             <xsl:value-of select="$Number"/>
@@ -997,86 +982,73 @@ of this software, even if advised of the possibility of such damage.
         <desc>[fo] </desc>
     </doc>
     <xsl:template name="setupPagemasters">
-        <layout-master-set>
-<!-- one sided, single column -->
+        <layout-master-set><!-- one sided, single column -->
             <simple-page-master master-name="simple1" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before extent="{$regionBeforeExtent}"/>
                 <region-after extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- for left-hand/tei:even pages in twosided mode, single column -->
+            </simple-page-master><!-- for left-hand/tei:even pages in twosided mode, single column -->
             <simple-page-master master-name="left1" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before region-name="xsl-region-before-left" extent="{$regionBeforeExtent}"/>
                 <region-after region-name="xsl-region-after-left" extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- for right-hand/tei:odd pages in twosided mode, single column -->
+            </simple-page-master><!-- for right-hand/tei:odd pages in twosided mode, single column -->
             <simple-page-master master-name="right1" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before region-name="xsl-region-before-right" extent="{$regionBeforeExtent}"/>
                 <region-after region-name="xsl-region-after-right" extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- special case of first page in either mode, single column -->
+            </simple-page-master><!-- special case of first page in either mode, single column -->
             <simple-page-master master-name="first1" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before region-name="xsl-region-before-first" extent="{$regionBeforeExtent}"/>
                 <region-after region-name="xsl-region-after-first" extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- for pages in one-side mode, 2 column -->
+            </simple-page-master><!-- for pages in one-side mode, 2 column -->
             <simple-page-master master-name="simple2" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body column-count="{$columnCount}" margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before extent="{$regionBeforeExtent}"/>
                 <region-after extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- for left-hand/tei:even pages in twosided mode, 2 column -->
+            </simple-page-master><!-- for left-hand/tei:even pages in twosided mode, 2 column -->
             <simple-page-master master-name="left2" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body column-count="{$columnCount}" margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before region-name="xsl-region-before-left" extent="{$regionBeforeExtent}"/>
                 <region-after region-name="xsl-region-after-left" extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- for right-hand/tei:odd pages in twosided mode, 2 column -->
+            </simple-page-master><!-- for right-hand/tei:odd pages in twosided mode, 2 column -->
             <simple-page-master master-name="right2" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body column-count="{$columnCount}" margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before region-name="xsl-region-before-right" extent="{$regionBeforeExtent}"/>
                 <region-after region-name="xsl-region-after-right" extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- special case of first page in either mode -->
+            </simple-page-master><!-- special case of first page in either mode -->
             <simple-page-master master-name="first2" page-width="{$pageWidth}" page-height="{$pageHeight}" margin-top="{$pageMarginTop}" margin-bottom="{$pageMarginBottom}" margin-left="{$pageMarginLeft}" margin-right="{$pageMarginRight}">
                 <region-body column-count="{$columnCount}" margin-bottom="{$bodyMarginBottom}" margin-top="{$bodyMarginTop}"/>
                 <region-before region-name="xsl-region-before-first" extent="{$regionBeforeExtent}"/>
                 <region-after region-name="xsl-region-after-first" extent="{$regionAfterExtent}"/>
-            </simple-page-master>
-         <!-- setup for double-sided, 1 column, no first page -->
+            </simple-page-master><!-- setup for double-sided, 1 column, no first page -->
             <page-sequence-master master-name="twoside1nofirst">
                 <repeatable-page-master-alternatives>
                     <conditional-page-master-reference master-reference="right1" odd-or-even="odd"/>
                     <conditional-page-master-reference master-reference="left1" odd-or-even="even"/>
                 </repeatable-page-master-alternatives>
-            </page-sequence-master>
-         <!-- setup for double-sided, 1 column -->
+            </page-sequence-master><!-- setup for double-sided, 1 column -->
             <page-sequence-master master-name="twoside1">
                 <repeatable-page-master-alternatives>
                     <conditional-page-master-reference master-reference="first1" page-position="first"/>
                     <conditional-page-master-reference master-reference="right1" odd-or-even="odd"/>
                     <conditional-page-master-reference master-reference="left1" odd-or-even="even"/>
                 </repeatable-page-master-alternatives>
-            </page-sequence-master>
-         <!-- setup for single-sided, 1 column -->
+            </page-sequence-master><!-- setup for single-sided, 1 column -->
             <page-sequence-master master-name="oneside1">
                 <repeatable-page-master-alternatives>
                     <conditional-page-master-reference master-reference="first1" page-position="first"/>
                     <conditional-page-master-reference master-reference="simple1"/>
                 </repeatable-page-master-alternatives>
-            </page-sequence-master>
-         <!-- setup for double-sided, 2 column -->
+            </page-sequence-master><!-- setup for double-sided, 2 column -->
             <page-sequence-master master-name="twoside2">
                 <repeatable-page-master-alternatives>
                     <conditional-page-master-reference master-reference="first2" page-position="first"/>
                     <conditional-page-master-reference master-reference="right2" odd-or-even="odd"/>
                     <conditional-page-master-reference master-reference="left2" odd-or-even="even"/>
                 </repeatable-page-master-alternatives>
-            </page-sequence-master>
-         <!-- setup for single-sided, 2 column -->
+            </page-sequence-master><!-- setup for single-sided, 2 column -->
             <page-sequence-master master-name="oneside2">
                 <repeatable-page-master-alternatives>
                     <conditional-page-master-reference master-reference="first2" page-position="first"/>
@@ -1085,8 +1057,7 @@ of this software, even if advised of the possibility of such damage.
             </page-sequence-master>
             <xsl:call-template name="pageMasterHook"/>
         </layout-master-set>
-        <xsl:if test="$foEngine='xep'">
-<!-- PDF bookmarks using XEP -->
+        <xsl:if test="$foEngine='xep'"><!-- PDF bookmarks using XEP -->
             <outline xmlns="http://www.renderx.com/XSL/Extensions">
                 <xsl:for-each select="/tei:TEI/tei:text/tei:front/tei:div">
                     <xsl:call-template name="makeBookMark"/>
@@ -1096,8 +1067,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:for-each>
                 <xsl:for-each select="/tei:TEI/tei:text/tei:back/tei:div">
                     <xsl:call-template name="makeBookMark"/>
-                </xsl:for-each>
-            <!-- now try numbered divs -->
+                </xsl:for-each><!-- now try numbered divs -->
                 <xsl:for-each select="/tei:TEI/tei:text/tei:front/tei:div1">
                     <xsl:call-template name="makeBookMarkN"/>
                 </xsl:for-each>
@@ -1134,7 +1104,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:call-template name="headingNumberSuffix"/>
                             </xsl:with-param>
                         </xsl:call-template>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:if>
                     <xsl:value-of select="tei:head"/>
                 </bookmark-label>
@@ -1168,7 +1138,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:call-template name="headingNumberSuffix"/>
                             </xsl:with-param>
                         </xsl:call-template>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:if>
                     <xsl:value-of select="tei:head"/>
                 </bookmark-label>
@@ -1327,7 +1297,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:call-template name="i18n">
                         <xsl:with-param name="word">appendixWords</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:number count="tei:div|tei:div1|tei:div2|tei:div3|tei:div4" format="{$numberBackHeadings}" from="tei:back" level="multiple"/>
                     <xsl:value-of select="$numbersuffix"/>
                 </xsl:if>

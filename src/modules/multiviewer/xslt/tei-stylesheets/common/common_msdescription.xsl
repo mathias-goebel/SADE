@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the msdescription module. </p>
@@ -39,10 +39,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id$</p>
             <p>Copyright: 2013, TEI Consortium</p>
         </desc>
-    </doc>
-
-
-  <!-- headings -->
+    </doc><!-- headings -->
     <xsl:template match="tei:accMat">
         <xsl:call-template name="makeSection">
             <xsl:with-param name="level">2</xsl:with-param>
@@ -250,8 +247,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:text>Text editions</xsl:text>
             </xsl:with-param>
         </xsl:call-template>
-    </xsl:template>
-  <!-- inline -->
+    </xsl:template><!-- inline -->
     <xsl:template match="tei:textLang">
         <xsl:choose>
             <xsl:when test="preceding-sibling::tei:summary"/>
@@ -285,7 +281,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="preceding-sibling::tei:*">
             <xsl:call-template name="makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -295,7 +291,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="preceding-sibling::tei:*">
             <xsl:call-template name="makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -305,7 +301,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="preceding-sibling::tei:*">
             <xsl:call-template name="makeText">
                 <xsl:with-param name="letters">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
@@ -362,8 +358,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:if>
-    </xsl:template>
-  <!--
+    </xsl:template><!--
     <handNote scribe="AM_544_4to_1"
     script="carolingian-insular minuscule"
     medium="ink" scope="sole"> 

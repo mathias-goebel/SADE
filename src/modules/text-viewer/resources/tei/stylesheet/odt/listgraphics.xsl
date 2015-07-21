@@ -61,13 +61,13 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:when test="starts-with($F,'http')">
                     <xsl:text>curl -s -o </xsl:text>
                     <xsl:value-of select="$target"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$F"/>
                 </xsl:when>
                 <xsl:when test="starts-with($F,'/')">
                     <xsl:text>cp </xsl:text>
                     <xsl:value-of select="$F"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$target"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -75,12 +75,11 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:value-of select="$ORIG"/>
                     <xsl:text>/</xsl:text>
                     <xsl:value-of select="$F"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$target"/>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:text>
-</xsl:text>
+            <xsl:text/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

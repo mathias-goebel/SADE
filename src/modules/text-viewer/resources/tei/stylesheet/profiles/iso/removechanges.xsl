@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:custprops="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" exclude-result-prefixes="a pic rel ve o teidocx r m v wp w10 w wne mml vt cals tbx iso custprops" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:custprops="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" exclude-result-prefixes="a pic rel ve o teidocx r m v wp w10 w wne mml vt cals tbx iso custprops" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>This software is dual-licensed:
@@ -41,8 +41,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
-    <xsl:template match="node()|@*">
-    <!-- ignore things which *only* contain a del -->
+    <xsl:template match="node()|@*"><!-- ignore things which *only* contain a del -->
         <xsl:if test="not(count(child::*) = 1 and tei:del)">
             <xsl:copy>
                 <xsl:apply-templates select="@*|node()"/>
@@ -52,9 +51,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="node()|@*" mode="del"/>
     <xsl:template match="tei:del"/>
     <xsl:template match="tei:anchor"/>
-    <xsl:template match="tei:delSpan">
-    <!-- should delete all following siblings up to and including anchor -->
-    <!-- (where anchor xml:id is the same as delSpan 'spanTo' attrib) -->
+    <xsl:template match="tei:delSpan"><!-- should delete all following siblings up to and including anchor --><!-- (where anchor xml:id is the same as delSpan 'spanTo' attrib) -->
         <xsl:variable name="id">
             <xsl:value-of select="@spanTo"/>
         </xsl:variable>

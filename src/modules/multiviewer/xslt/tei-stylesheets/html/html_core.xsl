@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module, making
@@ -639,8 +639,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:apply-templates mode="glosstable" select="tei:item"/>
                 </table>
             </xsl:when>
-            <xsl:when test="tei:isInlineList(.)">
-        <!--<xsl:if test="not(tei:item)">None</xsl:if>-->
+            <xsl:when test="tei:isInlineList(.)"><!--<xsl:if test="not(tei:item)">None</xsl:if>-->
                 <xsl:apply-templates mode="inline" select="tei:item"/>
             </xsl:when>
             <xsl:when test="@type='inline' or @type='runin'">
@@ -982,13 +981,13 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="matches(@n,'[0-9]')">
                     <xsl:text>.</xsl:text>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </span>
             <div class="noteBody">
                 <xsl:apply-templates/>
             </div>
             <xsl:if test="$footnoteBackLink= 'true'">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <a class="link_return" title="Go back to text" href="#{concat($identifier,'_return')}">↵</a>
             </xsl:if>
         </div>
@@ -1050,7 +1049,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:text>[</xsl:text>
                         <xsl:sequence select="if (self::tei:gb) then tei:i18n('gathering') else tei:i18n('page')"/>
                         <xsl:if test="@n">
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:value-of select="@n"/>
                         </xsl:if>
                         <xsl:text>]</xsl:text>
@@ -1230,7 +1229,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tei:resp">
         <xsl:apply-templates/>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Process element respStmt</desc>
@@ -1609,7 +1608,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:apply-templates/>
         <xsl:if test="not(following-sibling::tei:monogr/tei:title[@level='m']) and $refId!=''">
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:if test="following-sibling::tei:monogr/tei:imprint/tei:date">
                 <xsl:value-of select="following-sibling::tei:monogr/tei:imprint/tei:date"/>
                 <xsl:text>. </xsl:text>
@@ -1648,7 +1647,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:if test="ancestor::tei:listBibl/tei:biblStruct[@xml:id=$refId]/tei:monogr/tei:editor[@role='editor'][3]">
                 <xsl:value-of select="substring-before(ancestor::tei:listBibl/tei:biblStruct[@xml:id=$refId]/tei:monogr/tei:editor[@role='editor'][3], ',')"/>
             </xsl:if>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:value-of select="following-sibling::tei:monogr/tei:imprint/tei:biblScope[@type='pp']"/>
             <xsl:text>. </xsl:text>
         </xsl:if>
@@ -1745,8 +1744,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:value-of select="tei:imprint/tei:biblScope[@type='no']"/>
                 </xsl:if>
                 <xsl:if test="tei:imprint/tei:date">
-                    <xsl:text>
-</xsl:text>(<xsl:value-of select="tei:imprint/tei:date"/>)</xsl:if>
+                    <xsl:text/>(<xsl:value-of select="tei:imprint/tei:date"/>)</xsl:if>
                 <xsl:if test="tei:imprint/tei:biblScope/@type='pp'">: <xsl:value-of select="tei:imprint/tei:biblScope[@type='pp']"/>
                 </xsl:if>
                 <xsl:text>. </xsl:text>

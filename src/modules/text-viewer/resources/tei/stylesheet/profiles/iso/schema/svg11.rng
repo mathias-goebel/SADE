@@ -82,99 +82,74 @@
             <value>false</value>
             <value>true</value>
         </choice>
-    </define>
-  <!-- 'clip-rule' or 'fill-rule' property/attribute value -->
+    </define><!-- 'clip-rule' or 'fill-rule' property/attribute value -->
     <define name="ClipFillRule.datatype">
         <choice>
             <value>nonzero</value>
             <value>evenodd</value>
             <value>inherit</value>
         </choice>
-    </define>
-  <!-- media type, as per [RFC2045] -->
+    </define><!-- media type, as per [RFC2045] -->
     <define name="ContentType.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a <coordinate> -->
+    </define><!-- a <coordinate> -->
     <define name="Coordinate.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a list of <coordinate>s -->
+    </define><!-- a list of <coordinate>s -->
     <define name="Coordinates.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a <color> value -->
+    </define><!-- a <color> value -->
     <define name="Color.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a <integer> -->
+    </define><!-- a <integer> -->
     <define name="Integer.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a language code, as per [RFC3066] -->
+    </define><!-- a language code, as per [RFC3066] -->
     <define name="LanguageCode.datatype">
         <data type="NMTOKEN"/>
-    </define>
-  <!-- comma-separated list of language codes, as per [RFC3066] -->
+    </define><!-- comma-separated list of language codes, as per [RFC3066] -->
     <define name="LanguageCodes.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a <length> -->
+    </define><!-- a <length> -->
     <define name="Length.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a list of <length>s -->
+    </define><!-- a list of <length>s -->
     <define name="Lengths.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a <number> -->
+    </define><!-- a <number> -->
     <define name="Number.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a list of <number>s -->
+    </define><!-- a list of <number>s -->
     <define name="Numbers.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- opacity value (e.g., <number>) -->
+    </define><!-- opacity value (e.g., <number>) -->
     <define name="OpacityValue.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a path data specification -->
+    </define><!-- a path data specification -->
     <define name="PathData.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- 'preserveAspectRatio' attribute specification -->
+    </define><!-- 'preserveAspectRatio' attribute specification -->
     <define name="PreserveAspectRatioSpec.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- script expression -->
+    </define><!-- script expression -->
     <define name="Script.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- An SVG color value (RGB plus optional ICC) -->
+    </define><!-- An SVG color value (RGB plus optional ICC) -->
     <define name="SVGColor.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- arbitrary text string -->
+    </define><!-- arbitrary text string -->
     <define name="Text.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- list of transforms -->
+    </define><!-- list of transforms -->
     <define name="TransformList.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- a Uniform Resource Identifier, see [URI] -->
+    </define><!-- a Uniform Resource Identifier, see [URI] -->
     <define name="URI.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- 'viewBox' attribute specification -->
+    </define><!-- 'viewBox' attribute specification -->
     <define name="ViewBoxSpec.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- end of svg-datatypes.mod -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Qualified Name Module ......................................... -->
-  <!--
+    </define><!-- end of svg-datatypes.mod --><!-- ....................................................................... --><!-- SVG 1.1 Qualified Name Module ......................................... --><!--
     file: svg-qname.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -187,8 +162,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-qname.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Qualified Name
     
     This module is contained in two parts, labeled Section 'A' and 'B':
@@ -199,51 +173,42 @@
     
        Section B declares parameter entities used to provide
        namespace-qualified names for all SVG element types:
-  -->
-  <!-- Section A: SVG XML Namespace Framework :::::::::::::::::::::: -->
-  <!--
+  --><!-- Section A: SVG XML Namespace Framework :::::::::::::::::::::: --><!--
     1. Declare a %SVG.prefixed; conditional section keyword, used
     to activate namespace prefixing. The default value should
     inherit '%NS.prefixed;' from the DTD driver, so that unless
     overridden, the default behaviour follows the overall DTD
     prefixing scheme.
-  -->
-  <!--
+  --><!--
     2. Declare a parameter entity (eg., %SVG.xmlns;) containing
     the URI reference used to identify the SVG namespace:
-  -->
-  <!--
+  --><!--
     3. Declare parameter entities (eg., %SVG.prefix;) containing
     the default namespace prefix string(s) to use when prefixing
     is enabled. This may be overridden in the DTD driver or the
     internal subset of an document instance. If no default prefix
     is desired, this may be declared as an empty string.
-  -->
-  <!--
+  --><!--
     4. Declare parameter entities (eg., %SVG.pfx;) containing the
     colonized prefix(es) (eg., '%SVG.prefix;:') used when
     prefixing is active, an empty string when it is not.
-  -->
-  <!--
+  --><!--
     5. The parameter entity %SVG.xmlns.extra.attrib; may be
     redeclared to contain any non-SVG namespace declaration
     attributes for namespaces embedded in SVG. The default
     is an empty string.
-  -->
-  <!--
+  --><!--
     Declare a parameter entity XLINK.xmlns.attrib containing
     the XML Namespace declarations for XLink.
   -->
     <define name="XLINK.xmlns.attrib">
         <empty/>
-    </define>
-  <!--
+    </define><!--
     Declare a parameter entity %NS.decl.attrib; containing
     all XML Namespace declarations used in the DTD, plus the
     xmlns declaration for SVG, its form dependent on whether
     prefixing is active.
-  -->
-  <!--
+  --><!--
     Declare a parameter entity %SVG.xmlns.attrib; containing
     all XML namespace declaration attributes used by SVG,
     including a default xmlns attribute when prefixing is
@@ -251,37 +216,10 @@
   -->
     <define name="SVG.xmlns.attrib">
         <ref name="XLINK.xmlns.attrib"/>
-    </define>
-  <!-- Section B: SVG Qualified Names :::::::::::::::::::::::::::::: -->
-  <!--
+    </define><!-- Section B: SVG Qualified Names :::::::::::::::::::::::::::::: --><!--
     6. This section declares parameter entities used to provide
     namespace-qualified names for all SVG element types.
-  -->
-  <!-- module: svg-structure.mod ......................... -->
-  <!-- module: svg-conditional.mod ....................... -->
-  <!-- module: svg-image.mod ............................. -->
-  <!-- module: svg-style.mod ............................. -->
-  <!-- module: svg-shape.mod ............................. -->
-  <!-- module: svg-text.mod .............................. -->
-  <!-- module: svg-marker.mod ............................ -->
-  <!-- module: svg-profile.mod ........................... -->
-  <!-- module: svg-gradient.mod .......................... -->
-  <!-- module: svg-pattern.mod ........................... -->
-  <!-- module: svg-clip.mod .............................. -->
-  <!-- module: svg-mask.mod .............................. -->
-  <!-- module: svg-filter.mod ............................ -->
-  <!-- module: svg-cursor.mod ............................ -->
-  <!-- module: svg-hyperlink.mod ......................... -->
-  <!-- module: svg-view.mod .............................. -->
-  <!-- module: svg-script.mod ............................ -->
-  <!-- module: svg-animation.mod ......................... -->
-  <!-- module: svg-font.mod .............................. -->
-  <!-- module: svg-extensibility.mod ..................... -->
-  <!-- end of svg-qname.mod -->
-  <!-- instantiate the Document Model declared in the DTD driver -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Document Model Module ......................................... -->
-  <!--
+  --><!-- module: svg-structure.mod ......................... --><!-- module: svg-conditional.mod ....................... --><!-- module: svg-image.mod ............................. --><!-- module: svg-style.mod ............................. --><!-- module: svg-shape.mod ............................. --><!-- module: svg-text.mod .............................. --><!-- module: svg-marker.mod ............................ --><!-- module: svg-profile.mod ........................... --><!-- module: svg-gradient.mod .......................... --><!-- module: svg-pattern.mod ........................... --><!-- module: svg-clip.mod .............................. --><!-- module: svg-mask.mod .............................. --><!-- module: svg-filter.mod ............................ --><!-- module: svg-cursor.mod ............................ --><!-- module: svg-hyperlink.mod ......................... --><!-- module: svg-view.mod .............................. --><!-- module: svg-script.mod ............................ --><!-- module: svg-animation.mod ......................... --><!-- module: svg-font.mod .............................. --><!-- module: svg-extensibility.mod ..................... --><!-- end of svg-qname.mod --><!-- instantiate the Document Model declared in the DTD driver --><!-- ....................................................................... --><!-- SVG 1.1 Document Model Module ......................................... --><!--
     file: svg11-model.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -294,14 +232,12 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-model.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     SVG 1.1 Document Model
     
     This module describes the groupings of elements that make up
     common content models for SVG elements.
-  -->
-  <!-- module: svg-structure.mod ......................... -->
+  --><!-- module: svg-structure.mod ......................... -->
     <define name="SVG.Description.extra.class">
         <notAllowed/>
     </define>
@@ -334,8 +270,7 @@
             <ref name="SVG.Use.class"/>
             <ref name="SVG.Structure.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-conditional.mod ....................... -->
+    </define><!-- module: svg-conditional.mod ....................... -->
     <define name="SVG.Conditional.extra.class">
         <notAllowed/>
     </define>
@@ -344,8 +279,7 @@
             <ref name="switch"/>
             <ref name="SVG.Conditional.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-image.mod ............................. -->
+    </define><!-- module: svg-image.mod ............................. -->
     <define name="SVG.Image.extra.class">
         <notAllowed/>
     </define>
@@ -354,8 +288,7 @@
             <ref name="image"/>
             <ref name="SVG.Image.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-style.mod ............................. -->
+    </define><!-- module: svg-style.mod ............................. -->
     <define name="SVG.Style.extra.class">
         <notAllowed/>
     </define>
@@ -364,8 +297,7 @@
             <ref name="style"/>
             <ref name="SVG.Style.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-shape.mod ............................. -->
+    </define><!-- module: svg-shape.mod ............................. -->
     <define name="SVG.Shape.extra.class">
         <notAllowed/>
     </define>
@@ -380,8 +312,7 @@
             <ref name="polygon"/>
             <ref name="SVG.Shape.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-text.mod .............................. -->
+    </define><!-- module: svg-text.mod .............................. -->
     <define name="SVG.Text.extra.class">
         <notAllowed/>
     </define>
@@ -403,8 +334,7 @@
             <ref name="altGlyph"/>
             <ref name="SVG.TextContent.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-marker.mod ............................ -->
+    </define><!-- module: svg-marker.mod ............................ -->
     <define name="SVG.Marker.extra.class">
         <notAllowed/>
     </define>
@@ -413,8 +343,7 @@
             <ref name="marker"/>
             <ref name="SVG.Marker.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-profile.mod ........................... -->
+    </define><!-- module: svg-profile.mod ........................... -->
     <define name="SVG.ColorProfile.extra.class">
         <notAllowed/>
     </define>
@@ -423,8 +352,7 @@
             <ref name="color-profile"/>
             <ref name="SVG.ColorProfile.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-gradient.mod .......................... -->
+    </define><!-- module: svg-gradient.mod .......................... -->
     <define name="SVG.Gradient.extra.class">
         <notAllowed/>
     </define>
@@ -434,8 +362,7 @@
             <ref name="radialGradient"/>
             <ref name="SVG.Gradient.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-pattern.mod ........................... -->
+    </define><!-- module: svg-pattern.mod ........................... -->
     <define name="SVG.Pattern.extra.class">
         <notAllowed/>
     </define>
@@ -444,8 +371,7 @@
             <ref name="svgpattern"/>
             <ref name="SVG.Pattern.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-clip.mod .............................. -->
+    </define><!-- module: svg-clip.mod .............................. -->
     <define name="SVG.Clip.extra.class">
         <notAllowed/>
     </define>
@@ -454,8 +380,7 @@
             <ref name="clipPath"/>
             <ref name="SVG.Clip.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-mask.mod .............................. -->
+    </define><!-- module: svg-mask.mod .............................. -->
     <define name="SVG.Mask.extra.class">
         <notAllowed/>
     </define>
@@ -464,8 +389,7 @@
             <ref name="mask"/>
             <ref name="SVG.Mask.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-filter.mod ............................ -->
+    </define><!-- module: svg-filter.mod ............................ -->
     <define name="SVG.Filter.extra.class">
         <notAllowed/>
     </define>
@@ -498,8 +422,7 @@
             <ref name="feTurbulence"/>
             <ref name="SVG.FilterPrimitive.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-cursor.mod ............................ -->
+    </define><!-- module: svg-cursor.mod ............................ -->
     <define name="SVG.Cursor.extra.class">
         <notAllowed/>
     </define>
@@ -508,8 +431,7 @@
             <ref name="cursor"/>
             <ref name="SVG.Cursor.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-hyperlink.mod ......................... -->
+    </define><!-- module: svg-hyperlink.mod ......................... -->
     <define name="SVG.Hyperlink.extra.class">
         <notAllowed/>
     </define>
@@ -518,8 +440,7 @@
             <ref name="a"/>
             <ref name="SVG.Hyperlink.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-view.mod .............................. -->
+    </define><!-- module: svg-view.mod .............................. -->
     <define name="SVG.View.extra.class">
         <notAllowed/>
     </define>
@@ -528,8 +449,7 @@
             <ref name="view"/>
             <ref name="SVG.View.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-script.mod ............................ -->
+    </define><!-- module: svg-script.mod ............................ -->
     <define name="SVG.Script.extra.class">
         <notAllowed/>
     </define>
@@ -538,8 +458,7 @@
             <ref name="script"/>
             <ref name="SVG.Script.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-animation.mod ......................... -->
+    </define><!-- module: svg-animation.mod ......................... -->
     <define name="SVG.Animation.extra.class">
         <notAllowed/>
     </define>
@@ -552,8 +471,7 @@
             <ref name="animateTransform"/>
             <ref name="SVG.Animation.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-font.mod .............................. -->
+    </define><!-- module: svg-font.mod .............................. -->
     <define name="SVG.Font.extra.class">
         <notAllowed/>
     </define>
@@ -563,8 +481,7 @@
             <ref name="font-face"/>
             <ref name="SVG.Font.extra.class"/>
         </choice>
-    </define>
-  <!-- module: svg-extensibility.mod ..................... -->
+    </define><!-- module: svg-extensibility.mod ..................... -->
     <define name="SVG.Extensibility.extra.class">
         <notAllowed/>
     </define>
@@ -573,12 +490,7 @@
             <ref name="foreignObject"/>
             <ref name="SVG.Extensibility.extra.class"/>
         </choice>
-    </define>
-  <!-- end of svg11-model.mod -->
-  <!-- instantiate the Attribute Collection declared in the DTD driver -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Attribute Collection Module ................................... -->
-  <!--
+    </define><!-- end of svg11-model.mod --><!-- instantiate the Attribute Collection declared in the DTD driver --><!-- ....................................................................... --><!-- SVG 1.1 Attribute Collection Module ................................... --><!--
     file: svg11-attribs.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -591,14 +503,12 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-attribs.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     SVG 1.1 Attribute Collection
     
     This module defines the set of common attributes that can be present
     on many SVG elements.
-  -->
-  <!-- module: svg-conditional.mod ....................... -->
+  --><!-- module: svg-conditional.mod ....................... -->
     <define name="ExtensionList.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -625,8 +535,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Conditional.extra.attrib"/>
-    </define>
-  <!-- module: svg-style.mod ............................. -->
+    </define><!-- module: svg-style.mod ............................. -->
     <define name="ClassList.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -648,8 +557,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Style.extra.attrib"/>
-    </define>
-  <!-- module: svg-text.mod .............................. -->
+    </define><!-- module: svg-text.mod .............................. -->
     <define name="BaselineShiftValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -881,8 +789,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Font.extra.attrib"/>
-    </define>
-  <!-- module: svg-marker.mod ............................ -->
+    </define><!-- module: svg-marker.mod ............................ -->
     <define name="MarkerValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -906,8 +813,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Marker.extra.attrib"/>
-    </define>
-  <!-- module: svg-profile.mod ........................... -->
+    </define><!-- module: svg-profile.mod ........................... -->
     <define name="SVG.ColorProfile.extra.attrib">
         <empty/>
     </define>
@@ -916,8 +822,7 @@
             <attribute name="color-profile"/>
         </optional>
         <ref name="SVG.ColorProfile.extra.attrib"/>
-    </define>
-  <!-- module: svg-gradient.mod .......................... -->
+    </define><!-- module: svg-gradient.mod .......................... -->
     <define name="NumberOrPercentage.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -936,8 +841,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Gradient.extra.attrib"/>
-    </define>
-  <!-- module: svg-clip.mod .............................. -->
+    </define><!-- module: svg-clip.mod .............................. -->
     <define name="ClipPathValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -956,8 +860,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Clip.extra.attrib"/>
-    </define>
-  <!-- module: svg-mask.mod .............................. -->
+    </define><!-- module: svg-mask.mod .............................. -->
     <define name="MaskValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -971,8 +874,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Mask.extra.attrib"/>
-    </define>
-  <!-- module: svg-filter.mod ............................ -->
+    </define><!-- module: svg-filter.mod ............................ -->
     <define name="FilterValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -1005,8 +907,7 @@
             </attribute>
         </optional>
         <ref name="SVG.FilterColor.extra.attrib"/>
-    </define>
-  <!-- module: svg-cursor.mod ............................ -->
+    </define><!-- module: svg-cursor.mod ............................ -->
     <define name="CursorValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -1020,15 +921,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Cursor.extra.attrib"/>
-    </define>
-  <!-- end of svg11-attribs.mod -->
-  <!-- end of svg-framework.mod -->
-  <!-- Post-Framework Redeclaration Placeholder .................... -->
-  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-  <!-- Core Attribute Module ....................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Core Attribute Module ......................................... -->
-  <!--
+    </define><!-- end of svg11-attribs.mod --><!-- end of svg-framework.mod --><!-- Post-Framework Redeclaration Placeholder .................... --><!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --><!-- Core Attribute Module ....................................... --><!-- ....................................................................... --><!-- SVG 1.1 Core Attribute Module ......................................... --><!--
     file: svg-core-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1041,8 +934,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-core-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Core Attribute
     
        id, xml:base, xml:lang, xml:space
@@ -1090,12 +982,7 @@
         <ref name="SVG.lang.attrib"/>
         <ref name="SVG.space.attrib"/>
         <ref name="SVG.Core.extra.attrib"/>
-    </define>
-  <!-- end of svg-core-attrib.mod -->
-  <!-- Container Attribute Module .................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Container Attribute Module .................................... -->
-  <!--
+    </define><!-- end of svg-core-attrib.mod --><!-- Container Attribute Module .................................. --><!-- ....................................................................... --><!-- SVG 1.1 Container Attribute Module .................................... --><!--
     file: svg-container-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1108,15 +995,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-container-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Container Attribute
     
        enable-background
     
     This module defines the Container attribute set.
-  -->
-  <!-- 'enable-background' property/attribute value (e.g., 'new', 'accumulate') -->
+  --><!-- 'enable-background' property/attribute value (e.g., 'new', 'accumulate') -->
     <define name="EnableBackgroundValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -1133,12 +1018,7 @@
     <define name="SVG.Container.attrib">
         <ref name="SVG.enable-background.attrib"/>
         <ref name="SVG.Container.extra.attrib"/>
-    </define>
-  <!-- end of svg-container-attrib.mod -->
-  <!-- Viewport Attribute Module ................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Viewport Attribute Module ..................................... -->
-  <!--
+    </define><!-- end of svg-container-attrib.mod --><!-- Viewport Attribute Module ................................... --><!-- ....................................................................... --><!-- SVG 1.1 Viewport Attribute Module ..................................... --><!--
     file: svg-viewport-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1151,15 +1031,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-viewport-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Viewport Attribute
     
        clip, overflow
     
     This module defines the Viewport attribute set.
-  -->
-  <!-- 'clip' property/attribute value (e.g., 'auto', rect(...)) -->
+  --><!-- 'clip' property/attribute value (e.g., 'auto', rect(...)) -->
     <define name="ClipValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -1190,12 +1068,7 @@
         <ref name="SVG.clip.attrib"/>
         <ref name="SVG.overflow.attrib"/>
         <ref name="SVG.Viewport.extra.attrib"/>
-    </define>
-  <!-- end of svg-viewport-attrib.mod -->
-  <!-- Paint Attribute Module ...................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Paint Attribute Module ........................................ -->
-  <!--
+    </define><!-- end of svg-viewport-attrib.mod --><!-- Paint Attribute Module ...................................... --><!-- ....................................................................... --><!-- SVG 1.1 Paint Attribute Module ........................................ --><!--
     file: svg-paint-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1208,8 +1081,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-paint-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Paint Attribute
     
        fill, fill-rule, stroke, stroke-dasharray, stroke-dashoffset,
@@ -1217,24 +1089,19 @@
        color-interpolation, color-rendering
     
     This module defines the Paint and Color attribute sets.
-  -->
-  <!-- a 'fill' or 'stroke' property/attribute value: <paint> -->
+  --><!-- a 'fill' or 'stroke' property/attribute value: <paint> -->
     <define name="Paint.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- 'stroke-dasharray' property/attribute value (e.g., 'none', list of <number>s) -->
+    </define><!-- 'stroke-dasharray' property/attribute value (e.g., 'none', list of <number>s) -->
     <define name="StrokeDashArrayValue.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- 'stroke-dashoffset' property/attribute value (e.g., 'none', <legnth>) -->
+    </define><!-- 'stroke-dashoffset' property/attribute value (e.g., 'none', <legnth>) -->
     <define name="StrokeDashOffsetValue.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- 'stroke-miterlimit' property/attribute value (e.g., <number>) -->
+    </define><!-- 'stroke-miterlimit' property/attribute value (e.g., <number>) -->
     <define name="StrokeMiterLimitValue.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- 'stroke-width' property/attribute value (e.g., <length>) -->
+    </define><!-- 'stroke-width' property/attribute value (e.g., <length>) -->
     <define name="StrokeWidthValue.datatype">
         <data type="string" datatypeLibrary=""/>
     </define>
@@ -1365,12 +1232,7 @@
         <ref name="SVG.color-interpolation.attrib"/>
         <ref name="SVG.color-rendering.attrib"/>
         <ref name="SVG.Color.extra.attrib"/>
-    </define>
-  <!-- end of svg-paint-attrib.mod -->
-  <!-- Paint Opacity Attribute Module .............................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Paint Opacity Attribute Module ................................ -->
-  <!--
+    </define><!-- end of svg-paint-attrib.mod --><!-- Paint Opacity Attribute Module .............................. --><!-- ....................................................................... --><!-- SVG 1.1 Paint Opacity Attribute Module ................................ --><!--
     file: svg-opacity-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1383,8 +1245,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-opacity-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Paint Opacity Attribute
     
        opacity, fill-opacity, stroke-opacity
@@ -1420,12 +1281,7 @@
         <ref name="SVG.fill-opacity.attrib"/>
         <ref name="SVG.stroke-opacity.attrib"/>
         <ref name="SVG.Opacity.extra.attrib"/>
-    </define>
-  <!-- end of svg-opacity-attrib.mod -->
-  <!-- Graphics Attribute Module ................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Graphics Attribute Module ..................................... -->
-  <!--
+    </define><!-- end of svg-opacity-attrib.mod --><!-- Graphics Attribute Module ................................... --><!-- ....................................................................... --><!-- SVG 1.1 Graphics Attribute Module ..................................... --><!--
     file: svg-graphics-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1438,8 +1294,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-graphics-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Graphics Attribute
     
        display, image-rendering, pointer-events, shape-rendering,
@@ -1551,12 +1406,7 @@
         <ref name="SVG.text-rendering.attrib"/>
         <ref name="SVG.visibility.attrib"/>
         <ref name="SVG.Graphics.extra.attrib"/>
-    </define>
-  <!-- end of svg-graphics-attrib.mod -->
-  <!-- Document Events Attribute Module ............................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Document Events Attribute Module .............................. -->
-  <!--
+    </define><!-- end of svg-graphics-attrib.mod --><!-- Document Events Attribute Module ............................ --><!-- ....................................................................... --><!-- SVG 1.1 Document Events Attribute Module .............................. --><!--
     file: svg-docevents-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1569,8 +1419,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-docevents-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Document Events Attribute
     
        onunload, onabort, onerror, onresize, onscroll, onzoom
@@ -1630,12 +1479,7 @@
         <ref name="SVG.onscroll.attrib"/>
         <ref name="SVG.onzoom.attrib"/>
         <ref name="SVG.DocumentEvents.extra.attrib"/>
-    </define>
-  <!-- end of svg-docevents-attrib.mod -->
-  <!-- Graphical Element Events Attribute Module ................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Graphical Element Events Attribute Module ..................... -->
-  <!--
+    </define><!-- end of svg-docevents-attrib.mod --><!-- Graphical Element Events Attribute Module ................... --><!-- ....................................................................... --><!-- SVG 1.1 Graphical Element Events Attribute Module ..................... --><!--
     file: svg-graphevents-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1648,8 +1492,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-graphevents-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Graphical Element Events Attribute
     
        onfocusin, onfocusout, onactivate, onclick, onmousedown, onmouseup,
@@ -1742,12 +1585,7 @@
         <ref name="SVG.onmouseout.attrib"/>
         <ref name="SVG.onload.attrib"/>
         <ref name="SVG.GraphicalEvents.extra.attrib"/>
-    </define>
-  <!-- end of svg-graphevents-attrib.mod -->
-  <!-- Animation Events Attribute Module ........................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Animation Events Attribute Module ............................. -->
-  <!--
+    </define><!-- end of svg-graphevents-attrib.mod --><!-- Animation Events Attribute Module ........................... --><!-- ....................................................................... --><!-- SVG 1.1 Animation Events Attribute Module ............................. --><!--
     file: svg-animevents-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1760,8 +1598,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-animevents-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Animation Events Attribute
     
        onbegin, onend, onrepeat, onload
@@ -1798,12 +1635,7 @@
         <ref name="SVG.onrepeat.attrib"/>
         <ref name="SVG.onload.attrib"/>
         <ref name="SVG.AnimationEvents.extra.attrib"/>
-    </define>
-  <!-- end of svg-animevents-attrib.mod -->
-  <!-- XLink Attribute Module ...................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 XLink Attribute Module ........................................ -->
-  <!--
+    </define><!-- end of svg-animevents-attrib.mod --><!-- XLink Attribute Module ...................................... --><!-- ....................................................................... --><!-- SVG 1.1 XLink Attribute Module ........................................ --><!--
     file: svg-xlink-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -1816,8 +1648,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-xlink-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     XLink Attribute
     
       type, href, role, arcrole, title, show, actuate
@@ -1987,12 +1818,7 @@
             </attribute>
         </optional>
         <ref name="SVG.XLinkReplace.extra.attrib"/>
-    </define>
-  <!-- end of svg-xlink-attrib.mod -->
-  <!-- External Resources Attribute Module ......................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 External Resources Attribute Module ........................... -->
-  <!--
+    </define><!-- end of svg-xlink-attrib.mod --><!-- External Resources Attribute Module ......................... --><!-- ....................................................................... --><!-- SVG 1.1 External Resources Attribute Module ........................... --><!--
     file: svg-extresources-attrib.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -2005,8 +1831,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-extresources-attrib.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     External Resources Attribute
     
        externalResourcesRequired
@@ -2026,13 +1851,7 @@
     <define name="SVG.External.attrib">
         <ref name="SVG.externalResourcesRequired.attrib"/>
         <ref name="SVG.External.extra.attrib"/>
-    </define>
-  <!-- end of svg-extresources-attrib.mod -->
-  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-  <!-- Structure Module ............................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Structure Module .............................................. -->
-  <!--
+    </define><!-- end of svg-extresources-attrib.mod --><!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --><!-- Structure Module ............................................ --><!-- ....................................................................... --><!-- SVG 1.1 Structure Module .............................................. --><!--
     file: svg-structure.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -2045,20 +1864,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-structure.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Structure
     
        svg, g, defs, desc, title, metadata, symbol, use
     
     This module declares the major structural elements and their attributes.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Description.class ............................. -->
-  <!-- SVG.Use.class ..................................... -->
-  <!-- SVG.Structure.class ............................... -->
-  <!-- SVG.Presentation.attrib ........................... -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Description.class ............................. --><!-- SVG.Use.class ..................................... --><!-- SVG.Structure.class ............................... --><!-- SVG.Presentation.attrib ........................... -->
     <define name="SVG.Presentation.extra.attrib">
         <empty/>
     </define>
@@ -2096,8 +1908,7 @@
             </attribute>
         </optional>
         <ref name="SVG.Presentation.extra.attrib"/>
-    </define>
-  <!-- svg: SVG Document Element ......................... -->
+    </define><!-- svg: SVG Document Element ......................... -->
     <define name="SVG.svg.extra.content">
         <notAllowed/>
     </define>
@@ -2133,8 +1944,7 @@
             <ref name="attlist.svg"/>
             <ref name="SVG.svg.content"/>
         </element>
-    </define>
-  <!-- end of SVG.svg.element -->
+    </define><!-- end of SVG.svg.element -->
     <define name="attlist.svg" combine="interleave">
         <ref name="SVG.xmlns.attrib"/>
         <ref name="SVG.Core.attrib"/>
@@ -2202,9 +2012,7 @@
                 <ref name="ContentType.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.svg.attlist -->
-  <!-- g: Group Element .................................. -->
+    </define><!-- end of SVG.svg.attlist --><!-- g: Group Element .................................. -->
     <define name="SVG.g.extra.content">
         <notAllowed/>
     </define>
@@ -2240,8 +2048,7 @@
             <ref name="attlist.g"/>
             <ref name="SVG.g.content"/>
         </element>
-    </define>
-  <!-- end of SVG.g.element -->
+    </define><!-- end of SVG.g.element -->
     <define name="attlist.g" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2254,9 +2061,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.g.attlist -->
-  <!-- defs: Definisions Element ......................... -->
+    </define><!-- end of SVG.g.attlist --><!-- defs: Definisions Element ......................... -->
     <define name="SVG.defs.extra.content">
         <notAllowed/>
     </define>
@@ -2292,8 +2097,7 @@
             <ref name="attlist.defs"/>
             <ref name="SVG.defs.content"/>
         </element>
-    </define>
-  <!-- end of SVG.defs.element -->
+    </define><!-- end of SVG.defs.element -->
     <define name="attlist.defs" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2306,9 +2110,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.defs.attlist -->
-  <!-- desc: Description Element ......................... -->
+    </define><!-- end of SVG.defs.attlist --><!-- desc: Description Element ......................... -->
     <define name="SVG.desc.extra.content">
         <notAllowed/>
     </define>
@@ -2325,14 +2127,11 @@
             <ref name="attlist.desc"/>
             <ref name="SVG.desc.content"/>
         </element>
-    </define>
-  <!-- end of SVG.desc.element -->
+    </define><!-- end of SVG.desc.element -->
     <define name="attlist.desc" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
-    </define>
-  <!-- end of SVG.desc.attlist -->
-  <!-- title: Title Element .............................. -->
+    </define><!-- end of SVG.desc.attlist --><!-- title: Title Element .............................. -->
     <define name="SVG.title.extra.content">
         <notAllowed/>
     </define>
@@ -2349,14 +2148,11 @@
             <ref name="attlist.title"/>
             <ref name="SVG.title.content"/>
         </element>
-    </define>
-  <!-- end of SVG.title.element -->
+    </define><!-- end of SVG.title.element -->
     <define name="attlist.title" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
-    </define>
-  <!-- end of SVG.title.attlist -->
-  <!-- metadata: Metadata Element ........................ -->
+    </define><!-- end of SVG.title.attlist --><!-- metadata: Metadata Element ........................ -->
     <define name="SVG.metadata.extra.content">
         <notAllowed/>
     </define>
@@ -2373,13 +2169,10 @@
             <ref name="attlist.metadata"/>
             <ref name="SVG.metadata.content"/>
         </element>
-    </define>
-  <!-- end of SVG.metadata.element -->
+    </define><!-- end of SVG.metadata.element -->
     <define name="attlist.metadata" combine="interleave">
         <ref name="SVG.Core.attrib"/>
-    </define>
-  <!-- end of SVG.metadata.attlist -->
-  <!-- symbol: Symbol Element ............................ -->
+    </define><!-- end of SVG.metadata.attlist --><!-- symbol: Symbol Element ............................ -->
     <define name="SVG.symbol.extra.content">
         <notAllowed/>
     </define>
@@ -2415,8 +2208,7 @@
             <ref name="attlist.symbol"/>
             <ref name="SVG.symbol.content"/>
         </element>
-    </define>
-  <!-- end of SVG.symbol.element -->
+    </define><!-- end of SVG.symbol.element -->
     <define name="attlist.symbol" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -2433,9 +2225,7 @@
                 <ref name="PreserveAspectRatioSpec.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.symbol.attlist -->
-  <!-- use: Use Element .................................. -->
+    </define><!-- end of SVG.symbol.attlist --><!-- use: Use Element .................................. -->
     <define name="SVG.use.extra.content">
         <notAllowed/>
     </define>
@@ -2455,8 +2245,7 @@
             <ref name="attlist.use"/>
             <ref name="SVG.use.content"/>
         </element>
-    </define>
-  <!-- end of SVG.use.element -->
+    </define><!-- end of SVG.use.element -->
     <define name="attlist.use" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2490,13 +2279,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.use.attlist -->
-  <!-- end of svg-structure.mod -->
-  <!-- Conditional Processing Module ............................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Conditional Processing Module ................................. -->
-  <!--
+    </define><!-- end of SVG.use.attlist --><!-- end of svg-structure.mod --><!-- Conditional Processing Module ............................... --><!-- ....................................................................... --><!-- SVG 1.1 Conditional Processing Module ................................. --><!--
     file: svg-conditional.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -2509,22 +2292,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-conditional.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Conditional Processing
     
        switch
     
     This module declares markup to provide support for conditional processing.
-  -->
-  <!-- extension list specification -->
-  <!-- feature list specification -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Conditional.class ............................. -->
-  <!-- SVG.Conditional.attrib ............................ -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- switch: Switch Element ............................ -->
+  --><!-- extension list specification --><!-- feature list specification --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Conditional.class ............................. --><!-- SVG.Conditional.attrib ............................ --><!-- SVG.Presentation.attrib ........................... --><!-- switch: Switch Element ............................ -->
     <define name="SVG.switch.extra.content">
         <notAllowed/>
     </define>
@@ -2553,8 +2327,7 @@
             <ref name="attlist.switch"/>
             <ref name="SVG.switch.content"/>
         </element>
-    </define>
-  <!-- end of SVG.switch.element -->
+    </define><!-- end of SVG.switch.element -->
     <define name="attlist.switch" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2567,13 +2340,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.switch.attlist -->
-  <!-- end of svg-conditional.mod -->
-  <!-- Image Module ................................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Image Module .................................................. -->
-  <!--
+    </define><!-- end of SVG.switch.attlist --><!-- end of svg-conditional.mod --><!-- Image Module ................................................ --><!-- ....................................................................... --><!-- SVG 1.1 Image Module .................................................. --><!--
     file: svg-image.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -2586,18 +2353,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-image.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Image
     
        image
     
     This module declares markup to provide support for image.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Image.class ................................... -->
-  <!-- image: Image Element .............................. -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Image.class ................................... --><!-- image: Image Element .............................. -->
     <define name="SVG.image.extra.content">
         <notAllowed/>
     </define>
@@ -2617,8 +2379,7 @@
             <ref name="attlist.image"/>
             <ref name="SVG.image.content"/>
         </element>
-    </define>
-  <!-- end of SVG.image.element -->
+    </define><!-- end of SVG.image.element -->
     <define name="attlist.image" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2661,13 +2422,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.image.attlist -->
-  <!-- end of svg-image.mod -->
-  <!-- Style Module ................................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Style Module .................................................. -->
-  <!--
+    </define><!-- end of SVG.image.attlist --><!-- end of svg-image.mod --><!-- Style Module ................................................ --><!-- ....................................................................... --><!-- SVG 1.1 Style Module .................................................. --><!--
     file: svg-style.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -2680,25 +2435,16 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-style.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Style
     
        style
     
     This module declares markup to provide support for stylesheet.
-  -->
-  <!-- list of classes -->
-  <!-- comma-separated list of media descriptors. -->
+  --><!-- list of classes --><!-- comma-separated list of media descriptors. -->
     <define name="MediaDesc.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- style sheet data -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Style.class ................................... -->
-  <!-- SVG.Style.attrib .................................. -->
-  <!-- style: Style Element .............................. -->
+    </define><!-- style sheet data --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Style.class ................................... --><!-- SVG.Style.attrib .................................. --><!-- style: Style Element .............................. -->
     <define name="SVG.style.extra.content">
         <notAllowed/>
     </define>
@@ -2715,8 +2461,7 @@
             <ref name="attlist.style"/>
             <ref name="SVG.style.content"/>
         </element>
-    </define>
-  <!-- end of SVG.style.element -->
+    </define><!-- end of SVG.style.element -->
     <define name="attlist.style" combine="interleave">
         <optional>
             <attribute name="xml:space" a:defaultValue="preserve">
@@ -2740,13 +2485,7 @@
                 <ref name="Text.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.style.attlist -->
-  <!-- end of svg-style.mod -->
-  <!-- Shape Module ................................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Shape Module .................................................. -->
-  <!--
+    </define><!-- end of SVG.style.attlist --><!-- end of svg-style.mod --><!-- Shape Module ................................................ --><!-- ....................................................................... --><!-- SVG 1.1 Shape Module .................................................. --><!--
     file: svg-shape.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -2759,22 +2498,16 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-shape.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Shape
     
        path, rect, circle, line, ellipse, polyline, polygon
     
     This module declares markup to provide support for graphical shapes.
-  -->
-  <!-- a list of points -->
+  --><!-- a list of points -->
     <define name="Points.datatype">
         <data type="string" datatypeLibrary=""/>
-    </define>
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Shape.class ................................... -->
-  <!-- path: Path Element ................................ -->
+    </define><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Shape.class ................................... --><!-- path: Path Element ................................ -->
     <define name="SVG.path.extra.content">
         <notAllowed/>
     </define>
@@ -2794,8 +2527,7 @@
             <ref name="attlist.path"/>
             <ref name="SVG.path.content"/>
         </element>
-    </define>
-  <!-- end of SVG.path.element -->
+    </define><!-- end of SVG.path.element -->
     <define name="attlist.path" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2824,9 +2556,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.path.attlist -->
-  <!-- rect: Rectangle Element ........................... -->
+    </define><!-- end of SVG.path.attlist --><!-- rect: Rectangle Element ........................... -->
     <define name="SVG.rect.extra.content">
         <notAllowed/>
     </define>
@@ -2846,8 +2576,7 @@
             <ref name="attlist.rect"/>
             <ref name="SVG.rect.content"/>
         </element>
-    </define>
-  <!-- end of SVG.rect.element -->
+    </define><!-- end of SVG.rect.element -->
     <define name="attlist.rect" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2893,9 +2622,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.rect.attlist -->
-  <!-- circle: Circle Element ............................ -->
+    </define><!-- end of SVG.rect.attlist --><!-- circle: Circle Element ............................ -->
     <define name="SVG.circle.extra.content">
         <notAllowed/>
     </define>
@@ -2915,8 +2642,7 @@
             <ref name="attlist.circle"/>
             <ref name="SVG.circle.content"/>
         </element>
-    </define>
-  <!-- end of SVG.circle.element -->
+    </define><!-- end of SVG.circle.element -->
     <define name="attlist.circle" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -2949,9 +2675,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.circle.attlist -->
-  <!-- line: Line Element ................................ -->
+    </define><!-- end of SVG.circle.attlist --><!-- line: Line Element ................................ -->
     <define name="SVG.line.extra.content">
         <notAllowed/>
     </define>
@@ -2971,8 +2695,7 @@
             <ref name="attlist.line"/>
             <ref name="SVG.line.content"/>
         </element>
-    </define>
-  <!-- end of SVG.line.element -->
+    </define><!-- end of SVG.line.element -->
     <define name="attlist.line" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3013,9 +2736,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.line.attlist -->
-  <!-- ellipse: Ellipse Element .......................... -->
+    </define><!-- end of SVG.line.attlist --><!-- ellipse: Ellipse Element .......................... -->
     <define name="SVG.ellipse.extra.content">
         <notAllowed/>
     </define>
@@ -3035,8 +2756,7 @@
             <ref name="attlist.ellipse"/>
             <ref name="SVG.ellipse.content"/>
         </element>
-    </define>
-  <!-- end of SVG.ellipse.element -->
+    </define><!-- end of SVG.ellipse.element -->
     <define name="attlist.ellipse" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3072,9 +2792,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.ellipse.attlist -->
-  <!-- polyline: Polyline Element ........................ -->
+    </define><!-- end of SVG.ellipse.attlist --><!-- polyline: Polyline Element ........................ -->
     <define name="SVG.polyline.extra.content">
         <notAllowed/>
     </define>
@@ -3094,8 +2812,7 @@
             <ref name="attlist.polyline"/>
             <ref name="SVG.polyline.content"/>
         </element>
-    </define>
-  <!-- end of SVG.polyline.element -->
+    </define><!-- end of SVG.polyline.element -->
     <define name="attlist.polyline" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3119,9 +2836,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.polyline.attlist -->
-  <!-- polygon: Polygon Element .......................... -->
+    </define><!-- end of SVG.polyline.attlist --><!-- polygon: Polygon Element .......................... -->
     <define name="SVG.polygon.extra.content">
         <notAllowed/>
     </define>
@@ -3141,8 +2856,7 @@
             <ref name="attlist.polygon"/>
             <ref name="SVG.polygon.content"/>
         </element>
-    </define>
-  <!-- end of SVG.polygon.element -->
+    </define><!-- end of SVG.polygon.element -->
     <define name="attlist.polygon" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3166,13 +2880,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.polygon.attlist -->
-  <!-- end of svg-shape.mod -->
-  <!-- Text Module ................................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Text Module ................................................... -->
-  <!--
+    </define><!-- end of SVG.polygon.attlist --><!-- end of svg-shape.mod --><!-- Text Module ................................................. --><!-- ....................................................................... --><!-- SVG 1.1 Text Module ................................................... --><!--
     file: svg-text.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -3185,32 +2893,14 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-text.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Text
     
        text, tspan, tref, textPath, altGlyph, altGlyphDef, altGlyphItem,
        glyphRef
     
     This module declares markup to provide support for alternate glyph.
-  -->
-  <!-- 'baseline-shift' property/attribute value (e.g., 'baseline', 'sub', etc.) -->
-  <!-- 'font-family' property/attribute value (i.e., list of fonts) -->
-  <!-- 'font-size' property/attribute value -->
-  <!-- 'font-size-adjust' property/attribute value -->
-  <!-- 'glyph-orientation-horizontal' property/attribute value (e.g., <angle>) -->
-  <!-- 'glyph-orientation-vertical' property/attribute value (e.g., 'auto', <angle>) -->
-  <!-- 'kerning' property/attribute value (e.g., 'auto', <length>) -->
-  <!-- 'letter-spacing' or 'word-spacing' property/attribute value (e.g., 'normal', <length>) -->
-  <!-- 'text-decoration' property/attribute value (e.g., 'none', 'underline') -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Text.class .................................... -->
-  <!-- SVG.TextContent.class ............................. -->
-  <!-- SVG.Text.attrib ................................... -->
-  <!-- SVG.TextContent.attrib ............................ -->
-  <!-- SVG.Font.attrib ................................... -->
-  <!-- text: Text Element ................................ -->
+  --><!-- 'baseline-shift' property/attribute value (e.g., 'baseline', 'sub', etc.) --><!-- 'font-family' property/attribute value (i.e., list of fonts) --><!-- 'font-size' property/attribute value --><!-- 'font-size-adjust' property/attribute value --><!-- 'glyph-orientation-horizontal' property/attribute value (e.g., <angle>) --><!-- 'glyph-orientation-vertical' property/attribute value (e.g., 'auto', <angle>) --><!-- 'kerning' property/attribute value (e.g., 'auto', <length>) --><!-- 'letter-spacing' or 'word-spacing' property/attribute value (e.g., 'normal', <length>) --><!-- 'text-decoration' property/attribute value (e.g., 'none', 'underline') --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Text.class .................................... --><!-- SVG.TextContent.class ............................. --><!-- SVG.Text.attrib ................................... --><!-- SVG.TextContent.attrib ............................ --><!-- SVG.Font.attrib ................................... --><!-- text: Text Element ................................ -->
     <define name="SVG.text.extra.content">
         <notAllowed/>
     </define>
@@ -3231,8 +2921,7 @@
             <ref name="attlist.text"/>
             <ref name="SVG.text.content"/>
         </element>
-    </define>
-  <!-- end of SVG.text.element -->
+    </define><!-- end of SVG.text.element -->
     <define name="attlist.text" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3293,9 +2982,7 @@
                 <ref name="TransformList.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.text.attlist -->
-  <!-- tspan: Text Span Element .......................... -->
+    </define><!-- end of SVG.text.attlist --><!-- tspan: Text Span Element .......................... -->
     <define name="SVG.tspan.extra.content">
         <notAllowed/>
     </define>
@@ -3320,8 +3007,7 @@
             <ref name="attlist.tspan"/>
             <ref name="SVG.tspan.content"/>
         </element>
-    </define>
-  <!-- end of SVG.tspan.element -->
+    </define><!-- end of SVG.tspan.element -->
     <define name="attlist.tspan" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3376,9 +3062,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.tspan.attlist -->
-  <!-- tref: Text Reference Element ...................... -->
+    </define><!-- end of SVG.tspan.attlist --><!-- tref: Text Reference Element ...................... -->
     <define name="SVG.tref.extra.content">
         <notAllowed/>
     </define>
@@ -3398,8 +3082,7 @@
             <ref name="attlist.tref"/>
             <ref name="SVG.tref.content"/>
         </element>
-    </define>
-  <!-- end of SVG.tref.element -->
+    </define><!-- end of SVG.tref.element -->
     <define name="attlist.tref" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3455,9 +3138,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.tref.attlist -->
-  <!-- textPath: Text Path Element ....................... -->
+    </define><!-- end of SVG.tref.attlist --><!-- textPath: Text Path Element ....................... -->
     <define name="SVG.textPath.extra.content">
         <notAllowed/>
     </define>
@@ -3482,8 +3163,7 @@
             <ref name="attlist.textPath"/>
             <ref name="SVG.textPath.content"/>
         </element>
-    </define>
-  <!-- end of SVG.textPath.element -->
+    </define><!-- end of SVG.textPath.element -->
     <define name="attlist.textPath" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3535,9 +3215,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.textPath.attlist -->
-  <!-- altGlyph: Alternate Glyph Element ................. -->
+    </define><!-- end of SVG.textPath.attlist --><!-- altGlyph: Alternate Glyph Element ................. -->
     <define name="SVG.altGlyph.extra.content">
         <notAllowed/>
     </define>
@@ -3554,8 +3232,7 @@
             <ref name="attlist.altGlyph"/>
             <ref name="SVG.altGlyph.content"/>
         </element>
-    </define>
-  <!-- end of SVG.altGlyph.element -->
+    </define><!-- end of SVG.altGlyph.element -->
     <define name="attlist.altGlyph" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -3604,9 +3281,7 @@
                 <ref name="Numbers.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.altGlyph.attlist -->
-  <!-- altGlyphDef: Alternate Glyph Definition Element ... -->
+    </define><!-- end of SVG.altGlyph.attlist --><!-- altGlyphDef: Alternate Glyph Definition Element ... -->
     <define name="SVG.altGlyphDef.extra.content">
         <notAllowed/>
     </define>
@@ -3628,13 +3303,10 @@
             <ref name="attlist.altGlyphDef"/>
             <ref name="SVG.altGlyphDef.content"/>
         </element>
-    </define>
-  <!-- end of SVG.altGlyphDef.element -->
+    </define><!-- end of SVG.altGlyphDef.element -->
     <define name="attlist.altGlyphDef" combine="interleave">
         <ref name="SVG.Core.attrib"/>
-    </define>
-  <!-- end of SVG.altGlyphDef.attlist -->
-  <!-- altGlyphItem: Alternate Glyph Item Element ........ -->
+    </define><!-- end of SVG.altGlyphDef.attlist --><!-- altGlyphItem: Alternate Glyph Item Element ........ -->
     <define name="SVG.altGlyphItem.extra.content">
         <notAllowed/>
     </define>
@@ -3651,13 +3323,10 @@
             <ref name="attlist.altGlyphItem"/>
             <ref name="SVG.altGlyphItem.content"/>
         </element>
-    </define>
-  <!-- end of SVG.altGlyphItem.element -->
+    </define><!-- end of SVG.altGlyphItem.element -->
     <define name="attlist.altGlyphItem" combine="interleave">
         <ref name="SVG.Core.attrib"/>
-    </define>
-  <!-- end of SVG.altGlyphItem.attlist -->
-  <!-- glyphRef: Glyph Reference Element ................. -->
+    </define><!-- end of SVG.altGlyphItem.attlist --><!-- glyphRef: Glyph Reference Element ................. -->
     <define name="SVG.glyphRef.content">
         <empty/>
     </define>
@@ -3666,8 +3335,7 @@
             <ref name="attlist.glyphRef"/>
             <ref name="SVG.glyphRef.content"/>
         </element>
-    </define>
-  <!-- end of SVG.glyphRef.element -->
+    </define><!-- end of SVG.glyphRef.element -->
     <define name="attlist.glyphRef" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -3699,13 +3367,7 @@
         <optional>
             <attribute name="format"/>
         </optional>
-    </define>
-  <!-- end of SVG.glyphRef.attlist -->
-  <!-- end of svg-text.mod -->
-  <!-- Marker Module ............................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Marker Module ................................................. -->
-  <!--
+    </define><!-- end of SVG.glyphRef.attlist --><!-- end of svg-text.mod --><!-- Marker Module ............................................... --><!-- ....................................................................... --><!-- SVG 1.1 Marker Module ................................................. --><!--
     file: svg-marker.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -3718,21 +3380,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-marker.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Marker
     
        marker
     
     This module declares markup to provide support for marker.
-  -->
-  <!-- 'marker' property/attribute value (e.g., 'none', <uri>) -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Marker.class .................................. -->
-  <!-- SVG.Marker.attrib ................................. -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- marker: Marker Element ............................ -->
+  --><!-- 'marker' property/attribute value (e.g., 'none', <uri>) --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Marker.class .................................. --><!-- SVG.Marker.attrib ................................. --><!-- SVG.Presentation.attrib ........................... --><!-- marker: Marker Element ............................ -->
     <define name="SVG.marker.extra.content">
         <notAllowed/>
     </define>
@@ -3768,8 +3422,7 @@
             <ref name="attlist.marker"/>
             <ref name="SVG.marker.content"/>
         </element>
-    </define>
-  <!-- end of SVG.marker.element -->
+    </define><!-- end of SVG.marker.element -->
     <define name="attlist.marker" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -3816,13 +3469,7 @@
                 <ref name="PreserveAspectRatioSpec.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.marker.attlist -->
-  <!-- end of svg-marker.mod -->
-  <!-- Color Profile Module ........................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Color Profile Module .......................................... -->
-  <!--
+    </define><!-- end of SVG.marker.attlist --><!-- end of svg-marker.mod --><!-- Color Profile Module ........................................ --><!-- ....................................................................... --><!-- SVG 1.1 Color Profile Module .......................................... --><!--
     file: svg-profile.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -3835,19 +3482,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-profile.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Color Profile
     
        color-profile
     
     This module declares markup to provide support for color profile.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.ColorProfile.class ............................ -->
-  <!-- SVG.ColorProfile.attrib ........................... -->
-  <!-- color-profile: Color Profile Element .............. -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.ColorProfile.class ............................ --><!-- SVG.ColorProfile.attrib ........................... --><!-- color-profile: Color Profile Element .............. -->
     <define name="SVG.color-profile.extra.content">
         <notAllowed/>
     </define>
@@ -3864,8 +3505,7 @@
             <ref name="attlist.color-profile"/>
             <ref name="SVG.color-profile.content"/>
         </element>
-    </define>
-  <!-- end of SVG.color-profile.element -->
+    </define><!-- end of SVG.color-profile.element -->
     <define name="attlist.color-profile" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.XLink.attrib"/>
@@ -3884,13 +3524,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.color-profile.attlist -->
-  <!-- end of svg-profile.mod -->
-  <!-- Gradient Module ............................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Gradient Module ............................................... -->
-  <!--
+    </define><!-- end of SVG.color-profile.attlist --><!-- end of svg-profile.mod --><!-- Gradient Module ............................................. --><!-- ....................................................................... --><!-- SVG 1.1 Gradient Module ............................................... --><!--
     file: svg-gradient.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -3903,20 +3537,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-gradient.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Gradient
     
        linearGradient, radialGradient, stop
     
     This module declares markup to provide support for gradient fill.
-  -->
-  <!-- a <number> or a <percentage> -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Gradient.class ................................ -->
-  <!-- SVG.Gradient.attrib ............................... -->
-  <!-- linearGradient: Linear Gradient Element ........... -->
+  --><!-- a <number> or a <percentage> --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Gradient.class ................................ --><!-- SVG.Gradient.attrib ............................... --><!-- linearGradient: Linear Gradient Element ........... -->
     <define name="SVG.linearGradient.extra.content">
         <notAllowed/>
     </define>
@@ -3939,8 +3566,7 @@
             <ref name="attlist.linearGradient"/>
             <ref name="SVG.linearGradient.content"/>
         </element>
-    </define>
-  <!-- end of SVG.linearGradient.element -->
+    </define><!-- end of SVG.linearGradient.element -->
     <define name="attlist.linearGradient" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -3990,9 +3616,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.linearGradient.attlist -->
-  <!-- radialGradient: Radial Gradient Element ........... -->
+    </define><!-- end of SVG.linearGradient.attlist --><!-- radialGradient: Radial Gradient Element ........... -->
     <define name="SVG.radialGradient.extra.content">
         <notAllowed/>
     </define>
@@ -4015,8 +3639,7 @@
             <ref name="attlist.radialGradient"/>
             <ref name="SVG.radialGradient.content"/>
         </element>
-    </define>
-  <!-- end of SVG.radialGradient.element -->
+    </define><!-- end of SVG.radialGradient.element -->
     <define name="attlist.radialGradient" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -4071,9 +3694,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.radialGradient.attlist -->
-  <!-- stop: Stop Element ................................ -->
+    </define><!-- end of SVG.radialGradient.attlist --><!-- stop: Stop Element ................................ -->
     <define name="SVG.stop.extra.content">
         <notAllowed/>
     </define>
@@ -4092,8 +3713,7 @@
             <ref name="attlist.stop"/>
             <ref name="SVG.stop.content"/>
         </element>
-    </define>
-  <!-- end of SVG.stop.element -->
+    </define><!-- end of SVG.stop.element -->
     <define name="attlist.stop" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -4102,13 +3722,7 @@
         <attribute name="offset">
             <ref name="NumberOrPercentage.datatype"/>
         </attribute>
-    </define>
-  <!-- end of SVG.stop.attlist -->
-  <!-- end of svg-gradient.mod -->
-  <!-- Pattern Module .............................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Pattern Module ................................................ -->
-  <!--
+    </define><!-- end of SVG.stop.attlist --><!-- end of svg-gradient.mod --><!-- Pattern Module .............................................. --><!-- ....................................................................... --><!-- SVG 1.1 Pattern Module ................................................ --><!--
     file: svg-pattern.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -4121,19 +3735,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-pattern.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Pattern
     
        pattern
     
     This module declares markup to provide support for pattern fill.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Pattern.class ................................. -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- pattern: Pattern Element .......................... -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Pattern.class ................................. --><!-- SVG.Presentation.attrib ........................... --><!-- pattern: Pattern Element .......................... -->
     <define name="SVG.pattern.extra.content">
         <notAllowed/>
     </define>
@@ -4169,8 +3777,7 @@
             <ref name="attlist.pattern"/>
             <ref name="SVG.pattern.content"/>
         </element>
-    </define>
-  <!-- end of SVG.pattern.element -->
+    </define><!-- end of SVG.pattern.element -->
     <define name="attlist.pattern" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -4229,13 +3836,7 @@
                 <ref name="PreserveAspectRatioSpec.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.pattern.attlist -->
-  <!-- end of svg-pattern.mod -->
-  <!-- Clip Module ................................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Clip Module ................................................... -->
-  <!--
+    </define><!-- end of SVG.pattern.attlist --><!-- end of svg-pattern.mod --><!-- Clip Module ................................................. --><!-- ....................................................................... --><!-- SVG 1.1 Clip Module ................................................... --><!--
     file: svg-clip.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -4248,20 +3849,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-clip.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Clip
     
        clipPath
     
     This module declares markup to provide support for clipping.
-  -->
-  <!-- 'clip-path' property/attribute value (e.g., 'none', <uri>) -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Clip.class .................................... -->
-  <!-- SVG.Clip.attrib ................................... -->
-  <!-- clipPath: Clip Path Element ....................... -->
+  --><!-- 'clip-path' property/attribute value (e.g., 'none', <uri>) --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Clip.class .................................... --><!-- SVG.Clip.attrib ................................... --><!-- clipPath: Clip Path Element ....................... -->
     <define name="SVG.clipPath.extra.content">
         <notAllowed/>
     </define>
@@ -4284,8 +3878,7 @@
             <ref name="attlist.clipPath"/>
             <ref name="SVG.clipPath.content"/>
         </element>
-    </define>
-  <!-- end of SVG.clipPath.element -->
+    </define><!-- end of SVG.clipPath.element -->
     <define name="attlist.clipPath" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -4315,13 +3908,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.clipPath.attlist -->
-  <!-- end of svg-clip.mod -->
-  <!-- Mask Module ................................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Mask Module ................................................... -->
-  <!--
+    </define><!-- end of SVG.clipPath.attlist --><!-- end of svg-clip.mod --><!-- Mask Module ................................................. --><!-- ....................................................................... --><!-- SVG 1.1 Mask Module ................................................... --><!--
     file: svg-mask.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -4334,21 +3921,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-mask.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Mask
     
        mask
     
     This module declares markup to provide support for masking.
-  -->
-  <!-- 'mask' property/attribute value (e.g., 'none', <uri>) -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Mask.class .................................... -->
-  <!-- SVG.Mask.attrib ................................... -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- mask: Mask Element ................................ -->
+  --><!-- 'mask' property/attribute value (e.g., 'none', <uri>) --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Mask.class .................................... --><!-- SVG.Mask.attrib ................................... --><!-- SVG.Presentation.attrib ........................... --><!-- mask: Mask Element ................................ -->
     <define name="SVG.mask.extra.content">
         <notAllowed/>
     </define>
@@ -4384,8 +3963,7 @@
             <ref name="attlist.mask"/>
             <ref name="SVG.mask.content"/>
         </element>
-    </define>
-  <!-- end of SVG.mask.element -->
+    </define><!-- end of SVG.mask.element -->
     <define name="attlist.mask" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -4428,13 +4006,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.mask.attlist -->
-  <!-- end of svg-mask.mod -->
-  <!-- Filter Module ............................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Filter Module ................................................. -->
-  <!--
+    </define><!-- end of SVG.mask.attlist --><!-- end of svg-mask.mod --><!-- Filter Module ............................................... --><!-- ....................................................................... --><!-- SVG 1.1 Filter Module ................................................. --><!--
     file: svg-filter.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -4447,8 +4019,7 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-filter.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Filter
     
        filter, feBlend, feColorMatrix, feComponentTransfer, feComposite,
@@ -4458,16 +4029,7 @@
        feSpotLight, feFuncR, feFuncG, feFuncB, feFuncA
     
     This module declares markup to provide support for filter effect.
-  -->
-  <!-- 'filter' property/attribute value (e.g., 'none', <uri>) -->
-  <!-- list of <number>s, but at least one and at most two -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Filter.class .................................. -->
-  <!-- SVG.FilterPrimitive.class ......................... -->
-  <!-- SVG.Filter.attrib ................................. -->
-  <!-- SVG.FilterColor.attrib ............................ -->
-  <!-- SVG.FilterPrimitive.attrib ........................ -->
+  --><!-- 'filter' property/attribute value (e.g., 'none', <uri>) --><!-- list of <number>s, but at least one and at most two --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Filter.class .................................. --><!-- SVG.FilterPrimitive.class ......................... --><!-- SVG.Filter.attrib ................................. --><!-- SVG.FilterColor.attrib ............................ --><!-- SVG.FilterPrimitive.attrib ........................ -->
     <define name="SVG.FilterPrimitive.extra.attrib">
         <empty/>
     </define>
@@ -4496,8 +4058,7 @@
             <attribute name="result"/>
         </optional>
         <ref name="SVG.FilterPrimitive.extra.attrib"/>
-    </define>
-  <!-- SVG.FilterPrimitiveWithIn.attrib .................. -->
+    </define><!-- SVG.FilterPrimitiveWithIn.attrib .................. -->
     <define name="SVG.FilterPrimitiveWithIn.extra.attrib">
         <empty/>
     </define>
@@ -4507,9 +4068,7 @@
             <attribute name="in"/>
         </optional>
         <ref name="SVG.FilterPrimitiveWithIn.extra.attrib"/>
-    </define>
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- filter: Filter Element ............................ -->
+    </define><!-- SVG.Presentation.attrib ........................... --><!-- filter: Filter Element ............................ -->
     <define name="SVG.filter.extra.content">
         <notAllowed/>
     </define>
@@ -4531,8 +4090,7 @@
             <ref name="attlist.filter"/>
             <ref name="SVG.filter.content"/>
         </element>
-    </define>
-  <!-- end of SVG.filter.element -->
+    </define><!-- end of SVG.filter.element -->
     <define name="attlist.filter" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -4580,9 +4138,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.filter.attlist -->
-  <!-- feBlend: Filter Effect Blend Element .............. -->
+    </define><!-- end of SVG.filter.attlist --><!-- feBlend: Filter Effect Blend Element .............. -->
     <define name="SVG.feBlend.extra.content">
         <notAllowed/>
     </define>
@@ -4600,8 +4156,7 @@
             <ref name="attlist.feBlend"/>
             <ref name="SVG.feBlend.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feBlend.element -->
+    </define><!-- end of SVG.feBlend.element -->
     <define name="attlist.feBlend" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -4618,9 +4173,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feBlend.attlist -->
-  <!-- feColorMatrix: Filter Effect Color Matrix Element . -->
+    </define><!-- end of SVG.feBlend.attlist --><!-- feColorMatrix: Filter Effect Color Matrix Element . -->
     <define name="SVG.feColorMatrix.extra.content">
         <notAllowed/>
     </define>
@@ -4638,8 +4191,7 @@
             <ref name="attlist.feColorMatrix"/>
             <ref name="SVG.feColorMatrix.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feColorMatrix.element -->
+    </define><!-- end of SVG.feColorMatrix.element -->
     <define name="attlist.feColorMatrix" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -4657,9 +4209,7 @@
         <optional>
             <attribute name="values"/>
         </optional>
-    </define>
-  <!-- end of SVG.feColorMatrix.attlist -->
-  <!-- feComponentTransfer: Filter Effect Component Transfer Element -->
+    </define><!-- end of SVG.feColorMatrix.attlist --><!-- feComponentTransfer: Filter Effect Component Transfer Element -->
     <define name="SVG.feComponentTransfer.extra.content">
         <empty/>
     </define>
@@ -4683,15 +4233,12 @@
             <ref name="attlist.feComponentTransfer"/>
             <ref name="SVG.feComponentTransfer.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feComponentTransfer.element -->
+    </define><!-- end of SVG.feComponentTransfer.element -->
     <define name="attlist.feComponentTransfer" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
         <ref name="SVG.FilterPrimitiveWithIn.attrib"/>
-    </define>
-  <!-- end of SVG.feComponentTransfer.attlist -->
-  <!-- feComposite: Filter Effect Composite Element ...... -->
+    </define><!-- end of SVG.feComponentTransfer.attlist --><!-- feComposite: Filter Effect Composite Element ...... -->
     <define name="SVG.feComposite.extra.content">
         <notAllowed/>
     </define>
@@ -4709,8 +4256,7 @@
             <ref name="attlist.feComposite"/>
             <ref name="SVG.feComposite.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feComposite.element -->
+    </define><!-- end of SVG.feComposite.element -->
     <define name="attlist.feComposite" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -4748,9 +4294,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feComposite.attlist -->
-  <!-- feConvolveMatrix: Filter Effect Convolve Matrix Element -->
+    </define><!-- end of SVG.feComposite.attlist --><!-- feConvolveMatrix: Filter Effect Convolve Matrix Element -->
     <define name="SVG.feConvolveMatrix.extra.content">
         <notAllowed/>
     </define>
@@ -4768,8 +4312,7 @@
             <ref name="attlist.feConvolveMatrix"/>
             <ref name="SVG.feConvolveMatrix.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feConvolveMatrix.element -->
+    </define><!-- end of SVG.feConvolveMatrix.element -->
     <define name="attlist.feConvolveMatrix" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -4817,9 +4360,7 @@
                 <ref name="Boolean.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feConvolveMatrix.attlist -->
-  <!-- feDiffuseLighting: Filter Effect Diffuse Lighting Element -->
+    </define><!-- end of SVG.feConvolveMatrix.attlist --><!-- feDiffuseLighting: Filter Effect Diffuse Lighting Element -->
     <define name="SVG.feDiffuseLighting.extra.content">
         <notAllowed/>
     </define>
@@ -4843,8 +4384,7 @@
             <ref name="attlist.feDiffuseLighting"/>
             <ref name="SVG.feDiffuseLighting.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feDiffuseLighting.element -->
+    </define><!-- end of SVG.feDiffuseLighting.element -->
     <define name="attlist.feDiffuseLighting" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -4871,9 +4411,7 @@
                 <ref name="NumberOptionalNumber.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feDiffuseLighting.attlist -->
-  <!-- feDisplacementMap: Filter Effect Displacement Map Element -->
+    </define><!-- end of SVG.feDiffuseLighting.attlist --><!-- feDisplacementMap: Filter Effect Displacement Map Element -->
     <define name="SVG.feDisplacementMap.extra.content">
         <notAllowed/>
     </define>
@@ -4891,8 +4429,7 @@
             <ref name="attlist.feDisplacementMap"/>
             <ref name="SVG.feDisplacementMap.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feDisplacementMap.element -->
+    </define><!-- end of SVG.feDisplacementMap.element -->
     <define name="attlist.feDisplacementMap" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -4923,9 +4460,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feDisplacementMap.attlist -->
-  <!-- feFlood: Filter Effect Flood Element .............. -->
+    </define><!-- end of SVG.feDisplacementMap.attlist --><!-- feFlood: Filter Effect Flood Element .............. -->
     <define name="SVG.feFlood.extra.content">
         <notAllowed/>
     </define>
@@ -4944,8 +4479,7 @@
             <ref name="attlist.feFlood"/>
             <ref name="SVG.feFlood.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feFlood.element -->
+    </define><!-- end of SVG.feFlood.element -->
     <define name="attlist.feFlood" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -4962,9 +4496,7 @@
                 <ref name="OpacityValue.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feFlood.attlist -->
-  <!-- feGaussianBlur: Filter Effect Gaussian Blur Element -->
+    </define><!-- end of SVG.feFlood.attlist --><!-- feGaussianBlur: Filter Effect Gaussian Blur Element -->
     <define name="SVG.feGaussianBlur.extra.content">
         <notAllowed/>
     </define>
@@ -4982,8 +4514,7 @@
             <ref name="attlist.feGaussianBlur"/>
             <ref name="SVG.feGaussianBlur.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feGaussianBlur.element -->
+    </define><!-- end of SVG.feGaussianBlur.element -->
     <define name="attlist.feGaussianBlur" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -4993,9 +4524,7 @@
                 <ref name="NumberOptionalNumber.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feGaussianBlur.attlist -->
-  <!-- feImage: Filter Effect Image Element .............. -->
+    </define><!-- end of SVG.feGaussianBlur.attlist --><!-- feImage: Filter Effect Image Element .............. -->
     <define name="SVG.feImage.extra.content">
         <notAllowed/>
     </define>
@@ -5014,8 +4543,7 @@
             <ref name="attlist.feImage"/>
             <ref name="SVG.feImage.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feImage.element -->
+    </define><!-- end of SVG.feImage.element -->
     <define name="attlist.feImage" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -5028,9 +4556,7 @@
                 <ref name="PreserveAspectRatioSpec.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feImage.attlist -->
-  <!-- feMerge: Filter Effect Merge Element .............. -->
+    </define><!-- end of SVG.feImage.attlist --><!-- feMerge: Filter Effect Merge Element .............. -->
     <define name="SVG.feMerge.extra.content">
         <notAllowed/>
     </define>
@@ -5047,15 +4573,12 @@
             <ref name="attlist.feMerge"/>
             <ref name="SVG.feMerge.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feMerge.element -->
+    </define><!-- end of SVG.feMerge.element -->
     <define name="attlist.feMerge" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
         <ref name="SVG.FilterPrimitive.attrib"/>
-    </define>
-  <!-- end of SVG.feMerge.attlist -->
-  <!-- feMergeNode: Filter Effect Merge Node Element ..... -->
+    </define><!-- end of SVG.feMerge.attlist --><!-- feMergeNode: Filter Effect Merge Node Element ..... -->
     <define name="SVG.feMergeNode.extra.content">
         <notAllowed/>
     </define>
@@ -5073,16 +4596,13 @@
             <ref name="attlist.feMergeNode"/>
             <ref name="SVG.feMergeNode.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feMergeNode.element -->
+    </define><!-- end of SVG.feMergeNode.element -->
     <define name="attlist.feMergeNode" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
             <attribute name="in"/>
         </optional>
-    </define>
-  <!-- end of SVG.feMergeNode.attlist -->
-  <!-- feMorphology: Filter Effect Morphology Element .... -->
+    </define><!-- end of SVG.feMergeNode.attlist --><!-- feMorphology: Filter Effect Morphology Element .... -->
     <define name="SVG.feMorphology.extra.content">
         <notAllowed/>
     </define>
@@ -5100,8 +4620,7 @@
             <ref name="attlist.feMorphology"/>
             <ref name="SVG.feMorphology.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feMorphology.element -->
+    </define><!-- end of SVG.feMorphology.element -->
     <define name="attlist.feMorphology" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -5119,9 +4638,7 @@
                 <ref name="NumberOptionalNumber.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feMorphology.attlist -->
-  <!-- feOffset: Filter Effect Offset Element ............ -->
+    </define><!-- end of SVG.feMorphology.attlist --><!-- feOffset: Filter Effect Offset Element ............ -->
     <define name="SVG.feOffset.extra.content">
         <notAllowed/>
     </define>
@@ -5139,8 +4656,7 @@
             <ref name="attlist.feOffset"/>
             <ref name="SVG.feOffset.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feOffset.element -->
+    </define><!-- end of SVG.feOffset.element -->
     <define name="attlist.feOffset" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -5155,9 +4671,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feOffset.attlist -->
-  <!-- feSpecularLighting: Filter Effect Specular Lighting Element -->
+    </define><!-- end of SVG.feOffset.attlist --><!-- feSpecularLighting: Filter Effect Specular Lighting Element -->
     <define name="SVG.feSpecularLighting.extra.content">
         <notAllowed/>
     </define>
@@ -5181,8 +4695,7 @@
             <ref name="attlist.feSpecularLighting"/>
             <ref name="SVG.feSpecularLighting.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feSpecularLighting.element -->
+    </define><!-- end of SVG.feSpecularLighting.element -->
     <define name="attlist.feSpecularLighting" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -5214,9 +4727,7 @@
                 <ref name="NumberOptionalNumber.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feSpecularLighting.attlist -->
-  <!-- feTile: Filter Effect Tile Element ................ -->
+    </define><!-- end of SVG.feSpecularLighting.attlist --><!-- feTile: Filter Effect Tile Element ................ -->
     <define name="SVG.feTile.extra.content">
         <notAllowed/>
     </define>
@@ -5234,15 +4745,12 @@
             <ref name="attlist.feTile"/>
             <ref name="SVG.feTile.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feTile.element -->
+    </define><!-- end of SVG.feTile.element -->
     <define name="attlist.feTile" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
         <ref name="SVG.FilterPrimitiveWithIn.attrib"/>
-    </define>
-  <!-- end of SVG.feTile.attlist -->
-  <!-- feTurbulence: Filter Effect Turbulence Element .... -->
+    </define><!-- end of SVG.feTile.attlist --><!-- feTurbulence: Filter Effect Turbulence Element .... -->
     <define name="SVG.feTurbulence.extra.content">
         <notAllowed/>
     </define>
@@ -5260,8 +4768,7 @@
             <ref name="attlist.feTurbulence"/>
             <ref name="SVG.feTurbulence.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feTurbulence.element -->
+    </define><!-- end of SVG.feTurbulence.element -->
     <define name="attlist.feTurbulence" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.FilterColor.attrib"/>
@@ -5297,9 +4804,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feTurbulence.attlist -->
-  <!-- feDistantLight: Filter Effect Distant Light Element -->
+    </define><!-- end of SVG.feTurbulence.attlist --><!-- feDistantLight: Filter Effect Distant Light Element -->
     <define name="SVG.feDistantLight.extra.content">
         <notAllowed/>
     </define>
@@ -5317,8 +4822,7 @@
             <ref name="attlist.feDistantLight"/>
             <ref name="SVG.feDistantLight.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feDistantLight.element -->
+    </define><!-- end of SVG.feDistantLight.element -->
     <define name="attlist.feDistantLight" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
@@ -5331,9 +4835,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feDistantLight.attlist -->
-  <!-- fePointLight: Filter Effect Point Light Element ... -->
+    </define><!-- end of SVG.feDistantLight.attlist --><!-- fePointLight: Filter Effect Point Light Element ... -->
     <define name="SVG.fePointLight.extra.content">
         <notAllowed/>
     </define>
@@ -5351,8 +4853,7 @@
             <ref name="attlist.fePointLight"/>
             <ref name="SVG.fePointLight.content"/>
         </element>
-    </define>
-  <!-- end of SVG.fePointLight.element -->
+    </define><!-- end of SVG.fePointLight.element -->
     <define name="attlist.fePointLight" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
@@ -5370,9 +4871,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.fePointLight.attlist -->
-  <!-- feSpotLight: Filter Effect Spot Light Element ..... -->
+    </define><!-- end of SVG.fePointLight.attlist --><!-- feSpotLight: Filter Effect Spot Light Element ..... -->
     <define name="SVG.feSpotLight.extra.content">
         <notAllowed/>
     </define>
@@ -5390,8 +4889,7 @@
             <ref name="attlist.feSpotLight"/>
             <ref name="SVG.feSpotLight.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feSpotLight.element -->
+    </define><!-- end of SVG.feSpotLight.element -->
     <define name="attlist.feSpotLight" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
@@ -5434,9 +4932,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feSpotLight.attlist -->
-  <!-- feFuncR: Filter Effect Function Red Element ....... -->
+    </define><!-- end of SVG.feSpotLight.attlist --><!-- feFuncR: Filter Effect Function Red Element ....... -->
     <define name="SVG.feFuncR.extra.content">
         <notAllowed/>
     </define>
@@ -5454,8 +4950,7 @@
             <ref name="attlist.feFuncR"/>
             <ref name="SVG.feFuncR.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feFuncR.element -->
+    </define><!-- end of SVG.feFuncR.element -->
     <define name="attlist.feFuncR" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <attribute name="type">
@@ -5495,9 +4990,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feFuncR.attlist -->
-  <!-- feFuncG: Filter Effect Function Green Element ..... -->
+    </define><!-- end of SVG.feFuncR.attlist --><!-- feFuncG: Filter Effect Function Green Element ..... -->
     <define name="SVG.feFuncG.extra.content">
         <notAllowed/>
     </define>
@@ -5515,8 +5008,7 @@
             <ref name="attlist.feFuncG"/>
             <ref name="SVG.feFuncG.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feFuncG.element -->
+    </define><!-- end of SVG.feFuncG.element -->
     <define name="attlist.feFuncG" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <attribute name="type">
@@ -5556,9 +5048,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feFuncG.attlist -->
-  <!-- feFuncB: Filter Effect Function Blue Element ...... -->
+    </define><!-- end of SVG.feFuncG.attlist --><!-- feFuncB: Filter Effect Function Blue Element ...... -->
     <define name="SVG.feFuncB.extra.content">
         <notAllowed/>
     </define>
@@ -5576,8 +5066,7 @@
             <ref name="attlist.feFuncB"/>
             <ref name="SVG.feFuncB.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feFuncB.element -->
+    </define><!-- end of SVG.feFuncB.element -->
     <define name="attlist.feFuncB" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <attribute name="type">
@@ -5617,9 +5106,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feFuncB.attlist -->
-  <!-- feFuncA: Filter Effect Function Alpha Element ..... -->
+    </define><!-- end of SVG.feFuncB.attlist --><!-- feFuncA: Filter Effect Function Alpha Element ..... -->
     <define name="SVG.feFuncA.extra.content">
         <notAllowed/>
     </define>
@@ -5637,8 +5124,7 @@
             <ref name="attlist.feFuncA"/>
             <ref name="SVG.feFuncA.content"/>
         </element>
-    </define>
-  <!-- end of SVG.feFuncA.element -->
+    </define><!-- end of SVG.feFuncA.element -->
     <define name="attlist.feFuncA" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <attribute name="type">
@@ -5678,13 +5164,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.feFuncA.attlist -->
-  <!-- end of svg-filter.mod -->
-  <!-- Cursor Module ............................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Cursor Module ................................................. -->
-  <!--
+    </define><!-- end of SVG.feFuncA.attlist --><!-- end of svg-filter.mod --><!-- Cursor Module ............................................... --><!-- ....................................................................... --><!-- SVG 1.1 Cursor Module ................................................. --><!--
     file: svg-cursor.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -5697,20 +5177,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-cursor.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Cursor
     
        cursor
     
     This module declares markup to provide support for cursor.
-  -->
-  <!-- 'cursor' property/attribute value (e.g., 'crosshair', <uri>) -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Cursor.class .................................. -->
-  <!-- SVG.Cursor.attrib ................................. -->
-  <!-- cursor: Cursor Element ............................ -->
+  --><!-- 'cursor' property/attribute value (e.g., 'crosshair', <uri>) --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Cursor.class .................................. --><!-- SVG.Cursor.attrib ................................. --><!-- cursor: Cursor Element ............................ -->
     <define name="SVG.cursor.extra.content">
         <notAllowed/>
     </define>
@@ -5727,8 +5200,7 @@
             <ref name="attlist.cursor"/>
             <ref name="SVG.cursor.content"/>
         </element>
-    </define>
-  <!-- end of SVG.cursor.element -->
+    </define><!-- end of SVG.cursor.element -->
     <define name="attlist.cursor" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -5744,13 +5216,7 @@
                 <ref name="Coordinate.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.cursor.attlist -->
-  <!-- end of svg-cursor.mod -->
-  <!-- Hyperlinking Module ......................................... -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Hyperlinking Module ........................................... -->
-  <!--
+    </define><!-- end of SVG.cursor.attlist --><!-- end of svg-cursor.mod --><!-- Hyperlinking Module ......................................... --><!-- ....................................................................... --><!-- SVG 1.1 Hyperlinking Module ........................................... --><!--
     file: svg-hyperlink.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -5763,23 +5229,16 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-hyperlink.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Hyperlinking
     
        a
     
     This module declares markup to provide support for hyper linking.
-  -->
-  <!-- link to this target -->
+  --><!-- link to this target -->
     <define name="LinkTarget.datatype">
         <data type="NMTOKEN"/>
-    </define>
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Hyperlink.class ............................... -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- a: Anchor Element ................................. -->
+    </define><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Hyperlink.class ............................... --><!-- SVG.Presentation.attrib ........................... --><!-- a: Anchor Element ................................. -->
     <define name="SVG.a.extra.content">
         <notAllowed/>
     </define>
@@ -5816,8 +5275,7 @@
             <ref name="attlist.a"/>
             <ref name="SVG.a.content"/>
         </element>
-    </define>
-  <!-- end of SVG.a.element -->
+    </define><!-- end of SVG.a.element -->
     <define name="attlist.a" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -5836,13 +5294,7 @@
                 <ref name="LinkTarget.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.a.attlist -->
-  <!-- end of svg-hyperlink.mod -->
-  <!-- View Module ................................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 View Module ................................................... -->
-  <!--
+    </define><!-- end of SVG.a.attlist --><!-- end of svg-hyperlink.mod --><!-- View Module ................................................. --><!-- ....................................................................... --><!-- SVG 1.1 View Module ................................................... --><!--
     file: svg-view.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -5855,18 +5307,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-view.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     View
     
        view
     
     This module declares markup to provide support for view.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.View.class .................................... -->
-  <!-- view: View Element ................................ -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.View.class .................................... --><!-- view: View Element ................................ -->
     <define name="SVG.view.extra.content">
         <notAllowed/>
     </define>
@@ -5883,8 +5330,7 @@
             <ref name="attlist.view"/>
             <ref name="SVG.view.content"/>
         </element>
-    </define>
-  <!-- end of SVG.view.element -->
+    </define><!-- end of SVG.view.element -->
     <define name="attlist.view" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.External.attrib"/>
@@ -5909,13 +5355,7 @@
         <optional>
             <attribute name="viewTarget"/>
         </optional>
-    </define>
-  <!-- end of SVG.view.attlist -->
-  <!-- end of svg-view.mod -->
-  <!-- Scripting Module ............................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Scripting Module .............................................. -->
-  <!--
+    </define><!-- end of SVG.view.attlist --><!-- end of svg-view.mod --><!-- Scripting Module ............................................ --><!-- ....................................................................... --><!-- SVG 1.1 Scripting Module .............................................. --><!--
     file: svg-script.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -5928,18 +5368,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-script.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Scripting
     
        script
     
     This module declares markup to provide support for scripting.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Script.class .................................. -->
-  <!-- script: Script Element ............................ -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Script.class .................................. --><!-- script: Script Element ............................ -->
     <define name="SVG.script.extra.content">
         <notAllowed/>
     </define>
@@ -5956,8 +5391,7 @@
             <ref name="attlist.script"/>
             <ref name="SVG.script.content"/>
         </element>
-    </define>
-  <!-- end of SVG.script.element -->
+    </define><!-- end of SVG.script.element -->
     <define name="attlist.script" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.XLink.attrib"/>
@@ -5965,13 +5399,7 @@
         <attribute name="type">
             <ref name="ContentType.datatype"/>
         </attribute>
-    </define>
-  <!-- end of SVG.script.attlist -->
-  <!-- end of svg-script.mod -->
-  <!-- Animation Module ............................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Animation Module .............................................. -->
-  <!--
+    </define><!-- end of SVG.script.attlist --><!-- end of svg-script.mod --><!-- Animation Module ............................................ --><!-- ....................................................................... --><!-- SVG 1.1 Animation Module .............................................. --><!--
     file: svg-animation.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -5984,26 +5412,20 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-animation.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Animation
     
        animate, set, animateMotion, animateColor, animateTransform, mpath
     
     This module declares markup to provide support for animation.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Animation.class ............................... -->
-  <!-- SVG.Animation.attrib .............................. -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Animation.class ............................... --><!-- SVG.Animation.attrib .............................. -->
     <define name="SVG.Animation.extra.attrib">
         <empty/>
     </define>
     <define name="SVG.Animation.attrib">
         <ref name="SVG.XLink.attrib"/>
         <ref name="SVG.Animation.extra.attrib"/>
-    </define>
-  <!-- SVG.AnimationAttribute.attrib ..................... -->
+    </define><!-- SVG.AnimationAttribute.attrib ..................... -->
     <define name="SVG.AnimationAttribute.extra.attrib">
         <empty/>
     </define>
@@ -6013,8 +5435,7 @@
             <attribute name="attributeType"/>
         </optional>
         <ref name="SVG.AnimationAttribute.extra.attrib"/>
-    </define>
-  <!-- SVG.AnimationTiming.attrib ........................ -->
+    </define><!-- SVG.AnimationTiming.attrib ........................ -->
     <define name="SVG.AnimationTiming.extra.attrib">
         <empty/>
     </define>
@@ -6058,8 +5479,7 @@
             </attribute>
         </optional>
         <ref name="SVG.AnimationTiming.extra.attrib"/>
-    </define>
-  <!-- SVG.AnimationValue.attrib ......................... -->
+    </define><!-- SVG.AnimationValue.attrib ......................... -->
     <define name="SVG.AnimationValue.extra.attrib">
         <empty/>
     </define>
@@ -6093,8 +5513,7 @@
             <attribute name="by"/>
         </optional>
         <ref name="SVG.AnimationValue.extra.attrib"/>
-    </define>
-  <!-- SVG.AnimationAddtion.attrib ....................... -->
+    </define><!-- SVG.AnimationAddtion.attrib ....................... -->
     <define name="SVG.AnimationAddtion.extra.attrib">
         <empty/>
     </define>
@@ -6116,8 +5535,7 @@
             </attribute>
         </optional>
         <ref name="SVG.AnimationAddtion.extra.attrib"/>
-    </define>
-  <!-- animate: Animate Element .......................... -->
+    </define><!-- animate: Animate Element .......................... -->
     <define name="SVG.animate.extra.content">
         <notAllowed/>
     </define>
@@ -6134,8 +5552,7 @@
             <ref name="attlist.animate"/>
             <ref name="SVG.animate.content"/>
         </element>
-    </define>
-  <!-- end of SVG.animate.element -->
+    </define><!-- end of SVG.animate.element -->
     <define name="attlist.animate" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -6146,9 +5563,7 @@
         <ref name="SVG.AnimationTiming.attrib"/>
         <ref name="SVG.AnimationValue.attrib"/>
         <ref name="SVG.AnimationAddtion.attrib"/>
-    </define>
-  <!-- end of SVG.animate.attlist -->
-  <!-- set: Set Element .................................. -->
+    </define><!-- end of SVG.animate.attlist --><!-- set: Set Element .................................. -->
     <define name="SVG.set.extra.content">
         <notAllowed/>
     </define>
@@ -6165,8 +5580,7 @@
             <ref name="attlist.set"/>
             <ref name="SVG.set.content"/>
         </element>
-    </define>
-  <!-- end of SVG.set.element -->
+    </define><!-- end of SVG.set.element -->
     <define name="attlist.set" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -6178,9 +5592,7 @@
         <optional>
             <attribute name="to"/>
         </optional>
-    </define>
-  <!-- end of SVG.set.attlist -->
-  <!-- animateMotion: Animate Motion Element ............. -->
+    </define><!-- end of SVG.set.attlist --><!-- animateMotion: Animate Motion Element ............. -->
     <define name="SVG.animateMotion.extra.content">
         <empty/>
     </define>
@@ -6198,8 +5610,7 @@
             <ref name="attlist.animateMotion"/>
             <ref name="SVG.animateMotion.content"/>
         </element>
-    </define>
-  <!-- end of SVG.animateMotion.element -->
+    </define><!-- end of SVG.animateMotion.element -->
     <define name="attlist.animateMotion" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -6248,9 +5659,7 @@
         <optional>
             <attribute name="origin"/>
         </optional>
-    </define>
-  <!-- end of SVG.animateMotion.attlist -->
-  <!-- animateColor: Animate Color Element ............... -->
+    </define><!-- end of SVG.animateMotion.attlist --><!-- animateColor: Animate Color Element ............... -->
     <define name="SVG.animateColor.extra.content">
         <notAllowed/>
     </define>
@@ -6267,8 +5676,7 @@
             <ref name="attlist.animateColor"/>
             <ref name="SVG.animateColor.content"/>
         </element>
-    </define>
-  <!-- end of SVG.animateColor.element -->
+    </define><!-- end of SVG.animateColor.element -->
     <define name="attlist.animateColor" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -6279,9 +5687,7 @@
         <ref name="SVG.AnimationTiming.attrib"/>
         <ref name="SVG.AnimationValue.attrib"/>
         <ref name="SVG.AnimationAddtion.attrib"/>
-    </define>
-  <!-- end of SVG.animateColor.attlist -->
-  <!-- animateTransform: Animate Transform Element ....... -->
+    </define><!-- end of SVG.animateColor.attlist --><!-- animateTransform: Animate Transform Element ....... -->
     <define name="SVG.animateTransform.extra.content">
         <notAllowed/>
     </define>
@@ -6298,8 +5704,7 @@
             <ref name="attlist.animateTransform"/>
             <ref name="SVG.animateTransform.content"/>
         </element>
-    </define>
-  <!-- end of SVG.animateTransform.element -->
+    </define><!-- end of SVG.animateTransform.element -->
     <define name="attlist.animateTransform" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>
@@ -6321,9 +5726,7 @@
                 </choice>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.animateTransform.attlist -->
-  <!-- mpath: Motion Path Element ........................ -->
+    </define><!-- end of SVG.animateTransform.attlist --><!-- mpath: Motion Path Element ........................ -->
     <define name="SVG.mpath.extra.content">
         <notAllowed/>
     </define>
@@ -6340,19 +5743,12 @@
             <ref name="attlist.mpath"/>
             <ref name="SVG.mpath.content"/>
         </element>
-    </define>
-  <!-- end of SVG.mpath.element -->
+    </define><!-- end of SVG.mpath.element -->
     <define name="attlist.mpath" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.XLinkRequired.attrib"/>
         <ref name="SVG.External.attrib"/>
-    </define>
-  <!-- end of SVG.mpath.attlist -->
-  <!-- end of svg-animation.mod -->
-  <!-- Font Module ................................................. -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Font Module ................................................... -->
-  <!--
+    </define><!-- end of SVG.mpath.attlist --><!-- end of svg-animation.mod --><!-- Font Module ................................................. --><!-- ....................................................................... --><!-- SVG 1.1 Font Module ................................................... --><!--
     file: svg-font.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -6365,20 +5761,14 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-font.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Font
     
        font, font-face, glyph, missing-glyph, hkern, vkern, font-face-src,
        font-face-uri, font-face-format, font-face-name, definition-src
     
     This module declares markup to provide support for template.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Font.class .................................... -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- font: Font Element ................................ -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Font.class .................................... --><!-- SVG.Presentation.attrib ........................... --><!-- font: Font Element ................................ -->
     <define name="SVG.font.extra.content">
         <notAllowed/>
     </define>
@@ -6402,8 +5792,7 @@
             <ref name="attlist.font"/>
             <ref name="SVG.font.content"/>
         </element>
-    </define>
-  <!-- end of SVG.font.element -->
+    </define><!-- end of SVG.font.element -->
     <define name="attlist.font" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -6437,9 +5826,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.font.attlist -->
-  <!-- font-face: Font Face Element ...................... -->
+    </define><!-- end of SVG.font.attlist --><!-- font-face: Font Face Element ...................... -->
     <define name="SVG.font-face.extra.content">
         <empty/>
     </define>
@@ -6460,8 +5847,7 @@
             <ref name="attlist.font-face"/>
             <ref name="SVG.font-face.content"/>
         </element>
-    </define>
-  <!-- end of SVG.font-face.element -->
+    </define><!-- end of SVG.font-face.element -->
     <define name="attlist.font-face" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
@@ -6609,9 +5995,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.font-face.attlist -->
-  <!-- glyph: Glyph Element .............................. -->
+    </define><!-- end of SVG.font-face.attlist --><!-- glyph: Glyph Element .............................. -->
     <define name="SVG.glyph.extra.content">
         <notAllowed/>
     </define>
@@ -6647,8 +6031,7 @@
             <ref name="attlist.glyph"/>
             <ref name="SVG.glyph.content"/>
         </element>
-    </define>
-  <!-- end of SVG.glyph.element -->
+    </define><!-- end of SVG.glyph.element -->
     <define name="attlist.glyph" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -6695,9 +6078,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.glyph.attlist -->
-  <!-- missing-glyph: Missing Glyph Element .............. -->
+    </define><!-- end of SVG.glyph.attlist --><!-- missing-glyph: Missing Glyph Element .............. -->
     <define name="SVG.missing-glyph.extra.content">
         <notAllowed/>
     </define>
@@ -6733,8 +6114,7 @@
             <ref name="attlist.missing-glyph"/>
             <ref name="SVG.missing-glyph.content"/>
         </element>
-    </define>
-  <!-- end of SVG.missing-glyph.element -->
+    </define><!-- end of SVG.missing-glyph.element -->
     <define name="attlist.missing-glyph" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Style.attrib"/>
@@ -6764,9 +6144,7 @@
                 <ref name="Number.datatype"/>
             </attribute>
         </optional>
-    </define>
-  <!-- end of SVG.missing-glyph.attlist -->
-  <!-- hkern: Horizontal Kerning Element ................. -->
+    </define><!-- end of SVG.missing-glyph.attlist --><!-- hkern: Horizontal Kerning Element ................. -->
     <define name="SVG.hkern.content">
         <empty/>
     </define>
@@ -6775,8 +6153,7 @@
             <ref name="attlist.hkern"/>
             <ref name="SVG.hkern.content"/>
         </element>
-    </define>
-  <!-- end of SVG.hkern.element -->
+    </define><!-- end of SVG.hkern.element -->
     <define name="attlist.hkern" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
@@ -6794,9 +6171,7 @@
         <attribute name="k">
             <ref name="Number.datatype"/>
         </attribute>
-    </define>
-  <!-- end of SVG.hkern.attlist -->
-  <!-- vkern: Vertical Kerning Element ................... -->
+    </define><!-- end of SVG.hkern.attlist --><!-- vkern: Vertical Kerning Element ................... -->
     <define name="SVG.vkern.content">
         <empty/>
     </define>
@@ -6805,8 +6180,7 @@
             <ref name="attlist.vkern"/>
             <ref name="SVG.vkern.content"/>
         </element>
-    </define>
-  <!-- end of SVG.vkern.element -->
+    </define><!-- end of SVG.vkern.element -->
     <define name="attlist.vkern" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
@@ -6824,9 +6198,7 @@
         <attribute name="k">
             <ref name="Number.datatype"/>
         </attribute>
-    </define>
-  <!-- end of SVG.vkern.attlist -->
-  <!-- font-face-src: Font Face Source Element ........... -->
+    </define><!-- end of SVG.vkern.attlist --><!-- font-face-src: Font Face Source Element ........... -->
     <define name="SVG.font-face-src.extra.content">
         <notAllowed/>
     </define>
@@ -6844,13 +6216,10 @@
             <ref name="attlist.font-face-src"/>
             <ref name="SVG.font-face-src.content"/>
         </element>
-    </define>
-  <!-- end of SVG.font-face-src.element -->
+    </define><!-- end of SVG.font-face-src.element -->
     <define name="attlist.font-face-src" combine="interleave">
         <ref name="SVG.Core.attrib"/>
-    </define>
-  <!-- end of SVG.font-face-src.attlist -->
-  <!-- font-face-uri: Font Face URI Element .............. -->
+    </define><!-- end of SVG.font-face-src.attlist --><!-- font-face-uri: Font Face URI Element .............. -->
     <define name="SVG.font-face-uri.extra.content">
         <notAllowed/>
     </define>
@@ -6867,14 +6236,11 @@
             <ref name="attlist.font-face-uri"/>
             <ref name="SVG.font-face-uri.content"/>
         </element>
-    </define>
-  <!-- end of SVG.font-face-uri.element -->
+    </define><!-- end of SVG.font-face-uri.element -->
     <define name="attlist.font-face-uri" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.XLinkRequired.attrib"/>
-    </define>
-  <!-- end of SVG.font-face-uri.attlist -->
-  <!-- font-face-format: Font Face Format Element ........ -->
+    </define><!-- end of SVG.font-face-uri.attlist --><!-- font-face-format: Font Face Format Element ........ -->
     <define name="SVG.font-face-format.content">
         <empty/>
     </define>
@@ -6883,16 +6249,13 @@
             <ref name="attlist.font-face-format"/>
             <ref name="SVG.font-face-format.content"/>
         </element>
-    </define>
-  <!-- end of SVG.font-face-format.element -->
+    </define><!-- end of SVG.font-face-format.element -->
     <define name="attlist.font-face-format" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
             <attribute name="string"/>
         </optional>
-    </define>
-  <!-- end of SVG.font-face-format.attlist -->
-  <!-- font-face-name: Font Face Name Element ............ -->
+    </define><!-- end of SVG.font-face-format.attlist --><!-- font-face-name: Font Face Name Element ............ -->
     <define name="SVG.font-face-name.content">
         <empty/>
     </define>
@@ -6901,16 +6264,13 @@
             <ref name="attlist.font-face-name"/>
             <ref name="SVG.font-face-name.content"/>
         </element>
-    </define>
-  <!-- end of SVG.font-face-name.element -->
+    </define><!-- end of SVG.font-face-name.element -->
     <define name="attlist.font-face-name" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <optional>
             <attribute name="name"/>
         </optional>
-    </define>
-  <!-- end of SVG.font-face-name.attlist -->
-  <!-- definition-src: Definition Source Element ......... -->
+    </define><!-- end of SVG.font-face-name.attlist --><!-- definition-src: Definition Source Element ......... -->
     <define name="SVG.definition-src.content">
         <empty/>
     </define>
@@ -6919,18 +6279,11 @@
             <ref name="attlist.definition-src"/>
             <ref name="SVG.definition-src.content"/>
         </element>
-    </define>
-  <!-- end of SVG.definition-src.element -->
+    </define><!-- end of SVG.definition-src.element -->
     <define name="attlist.definition-src" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.XLinkRequired.attrib"/>
-    </define>
-  <!-- end of SVG.definition-src.attlist -->
-  <!-- end of svg-font.mod -->
-  <!-- Extensibility Module ........................................ -->
-  <!-- ....................................................................... -->
-  <!-- SVG 1.1 Extensibility Module .......................................... -->
-  <!--
+    </define><!-- end of SVG.definition-src.attlist --><!-- end of svg-font.mod --><!-- Extensibility Module ........................................ --><!-- ....................................................................... --><!-- SVG 1.1 Extensibility Module .......................................... --><!--
     file: svg-extensibility.mod
     
     This is SVG, a language for describing two-dimensional graphics in XML.
@@ -6943,19 +6296,13 @@
        SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-extensibility.mod"
     
     .......................................................................
-  -->
-  <!--
+  --><!--
     Extensibility
     
        foreignObject
     
     This module declares markup to provide support for extensibility.
-  -->
-  <!-- Qualified Names (Default) ......................... -->
-  <!-- Attribute Collections (Default) ................... -->
-  <!-- SVG.Extensibility.class ........................... -->
-  <!-- SVG.Presentation.attrib ........................... -->
-  <!-- foreignObject: Foreign Object Element ............. -->
+  --><!-- Qualified Names (Default) ......................... --><!-- Attribute Collections (Default) ................... --><!-- SVG.Extensibility.class ........................... --><!-- SVG.Presentation.attrib ........................... --><!-- foreignObject: Foreign Object Element ............. -->
     <define name="SVG.foreignObject.extra.content">
         <notAllowed/>
     </define>
@@ -6972,8 +6319,7 @@
             <ref name="attlist.foreignObject"/>
             <ref name="SVG.foreignObject.content"/>
         </element>
-    </define>
-  <!-- end of SVG.foreignObject.element -->
+    </define><!-- end of SVG.foreignObject.element -->
     <define name="attlist.foreignObject" combine="interleave">
         <ref name="SVG.Core.attrib"/>
         <ref name="SVG.Conditional.attrib"/>

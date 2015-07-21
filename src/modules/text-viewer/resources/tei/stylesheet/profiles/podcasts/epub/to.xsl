@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei" version="2.0">
-  
-    <!-- import base conversion style -->
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0"><!-- import base conversion style -->
     <xsl:import href="../../../epub/tei-to-epub.xsl"/>
     <xsl:param name="cssFile">../profiles/podcasts/epub/podcast.css</xsl:param>
     <xsl:param name="subject">Oxford Podcast</xsl:param>
@@ -30,9 +28,7 @@
                     <xsl:value-of select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:p"/>
                 </i>
             </p>
-        </div>
-<!--      <tr><td class="label"><strong>Description</strong></td><td> <xsl:value-of select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:notesStmt/tei:note"/></td></tr> -->
-<!--      <tr><td class="label"><strong>Keywords</strong></td><td> <xsl:for-each  
+        </div><!--      <tr><td class="label"><strong>Description</strong></td><td> <xsl:value-of select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:notesStmt/tei:note"/></td></tr> --><!--      <tr><td class="label"><strong>Keywords</strong></td><td> <xsl:for-each  
       select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item"> 
       <xsl:value-of select="."/>
       <xsl:if test="following-sibling::tei:item">, </xsl:if>

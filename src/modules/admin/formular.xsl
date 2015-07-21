@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:sade="http://bbaw.de/sade" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:sade="http://bbaw.de/sade" version="2.0">
     <xsl:param name="lang"/>
     <xsl:param name="id"/>
     <xsl:variable name="language">
@@ -57,8 +57,7 @@
             <xf:output value="/sade:SADE_project/sade:design/sade:footer/sade:img/replace(., '%5C', '/')">
                 <xf:label>URL:</xf:label>
             </xf:output>
-            <xf:output class="image" value="/sade:SADE_project/sade:design/sade:footer/sade:img/replace(., '%5C', '/')" mediatype="image/*">
-                    <!-- base64 Encoding scheint für die URL dann den Effekt zu haben Slashes als Backshlashes zu dekodieren, daher der replace -->
+            <xf:output class="image" value="/sade:SADE_project/sade:design/sade:footer/sade:img/replace(., '%5C', '/')" mediatype="image/*"><!-- base64 Encoding scheint für die URL dann den Effekt zu haben Slashes als Backshlashes zu dekodieren, daher der replace -->
                 <xf:label>Aktuelles Logo</xf:label>
             </xf:output>
             <xf:input ref="/sade:SADE_project/sade:design/sade:footer/sade:url">
@@ -92,8 +91,7 @@
                 </xf:input>
                 <xf:input ref="sade:xpath">
                     <xf:label>XPath des Elements:</xf:label>
-                </xf:input>
-                    <!--<xf:select ref="column">
+                </xf:input><!--<xf:select ref="column">
                     <xf:label>Spalte</xf:label>
                     
                 </xf:select>-->

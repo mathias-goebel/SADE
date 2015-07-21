@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:ooow="http://openoffice.org/2004/writer" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:estr="http://exslt.org/strings" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ooo="http://openoffice.org/2004/office" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" office:version="1.0">
+<xsl:stylesheet xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:estr="http://exslt.org/strings" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" version="2.0" office:version="1.0">
     <xsl:import href="../common2/core.xsl"/>
     <xsl:param name="useFixedDate">false</xsl:param>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
@@ -172,9 +172,7 @@ of this software, even if advised of the possibility of such damage.
                 <meta:document-statistic meta:table-count="1" meta:image-count="0" meta:object-count="0" meta:page-count="1" meta:paragraph-count="42" meta:word-count="144" meta:character-count="820"/>
             </office:meta>
         </xsl:for-each>
-    </xsl:template>
-
-  <!-- base structure -->
+    </xsl:template><!-- base structure -->
     <xsl:template match="tei:TEI">
         <xsl:apply-templates select="tei:text"/>
     </xsl:template>
@@ -239,11 +237,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:apply-templates select="tei:head" mode="show"/>
         </text:h>
         <xsl:apply-templates/>
-    </xsl:template>
-
-
-
-<!-- paragraphs -->
+    </xsl:template><!-- paragraphs -->
     <xsl:template match="tei:pb">
         <text:soft-page-break/>
     </xsl:template>
@@ -258,8 +252,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:choose>
-<!--      
+        <xsl:choose><!--      
      <xsl:when test="tei:pb">
 	<xsl:for-each-group select="node()" group-adjacent="boolean(self::tei:pb)">
 	  <xsl:choose>
@@ -298,11 +291,7 @@ of this software, even if advised of the possibility of such damage.
                 </text:p>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-
-<!-- figures -->
+    </xsl:template><!-- figures -->
     <xsl:template match="tei:figure">
         <xsl:call-template name="startHook"/>
         <text:p text:style-name="Standard">
@@ -318,7 +307,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:text>.</xsl:text>
                     </text:sequence>
                 </text:span>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:apply-templates select="tei:head" mode="show"/>
             </text:p>
         </xsl:if>
@@ -369,9 +358,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="$filename and  ( ($origwidth and $origheight) or (@width and @height))">
-	
-	<!-- work out page width / height and subtract 1inch on all sides -->
+            <xsl:when test="$filename and  ( ($origwidth and $origheight) or (@width and @height))"><!-- work out page width / height and subtract 1inch on all sides -->
                 <xsl:variable name="pageWidth">
                     <xsl:for-each select="document(concat($outputDir,'/styles.xml'))/office:document-styles/office:automatic-styles/style:page-layout/style:page-layout-properties">
                         <xsl:value-of select="number(tei:convert-dim-pt(@fo:page-width) - 144)"/>
@@ -435,9 +422,7 @@ of this software, even if advised of the possibility of such damage.
                             </xsl:message>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
-	
-	<!-- check for sense -->
+                </xsl:variable><!-- check for sense -->
                 <xsl:variable name="imageHeight">
                     <xsl:choose>
                         <xsl:when test="$Height &lt; 0">
@@ -463,8 +448,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:value-of select="$Width"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
-<!--
+                </xsl:variable><!--
 <xsl:message>
   <xsl:for-each select="@*">
     - @<xsl:value-of select="name(.)"/>: <xsl:value-of select="."/>
@@ -503,10 +487,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:message terminate="yes">ERROR. no image size info for  <xsl:value-of select="$filename"/>, cannot proceed</xsl:message>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-<!-- lists -->
+    </xsl:template><!-- lists -->
     <xsl:template match="tei:list|tei:listBibl">
         <xsl:if test="tei:head">
             <text:p>
@@ -566,9 +547,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:otherwise>
             </xsl:choose>
         </text:list-item>
-    </xsl:template>
-
-<!-- inline stuff -->
+    </xsl:template><!-- inline stuff -->
     <xsl:template match="tei:emph">
         <text:span text:style-name="Emphasis">
             <xsl:apply-templates/>
@@ -731,9 +710,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:with-param>
         </xsl:call-template>
         <xsl:call-template name="endHook"/>
-    </xsl:template>
-
-  <!-- safest to drop comments entirely, I think -->
+    </xsl:template><!-- safest to drop comments entirely, I think -->
     <xsl:template match="comment()"/>
     <xsl:template match="tei:head" mode="show">
         <xsl:apply-templates/>
@@ -793,8 +770,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:value-of select="translate($Text,' ','&#160;')"/>
                 </text:p>
             </xsl:otherwise>
-        </xsl:choose>
-    <!-- text:s c="6" to ident 6 spaces -->
+        </xsl:choose><!-- text:s c="6" to ident 6 spaces -->
     </xsl:template>
     <xsl:template match="tei:sp">
         <xsl:apply-templates/>
@@ -817,9 +793,7 @@ of this software, even if advised of the possibility of such damage.
         <text:p text:style-name="Speaker">
             <xsl:apply-templates/>
         </text:p>
-    </xsl:template>
-
-  <!-- tables-->
+    </xsl:template><!-- tables-->
     <xsl:template match="tei:table">
         <xsl:call-template name="startHook"/>
         <xsl:variable name="tablenum">
@@ -932,8 +906,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="newLine"/>
     <xsl:template name="lineBreak">
         <xsl:param name="id"/>
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="comment()" mode="verbatim">
         <xsl:choose>
@@ -958,8 +931,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:with-param name="words">
                         <xsl:value-of select="."/>
                     </xsl:with-param>
-                </xsl:call-template>
-<!--	
+                </xsl:call-template><!--	
         <xsl:if test="substring(.,string-length(.))=' '">
 	  <xsl:text> </xsl:text>
 	</xsl:if>
@@ -973,8 +945,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:call-template name="makeIndent"/>
                 </xsl:for-each>
             </xsl:when>
-            <xsl:otherwise>
-<!--
+            <xsl:otherwise><!--
 	<xsl:if test="starts-with(.,' ')">
 	  <xsl:text> </xsl:text>
 	</xsl:if>
@@ -1004,8 +975,7 @@ of this software, even if advised of the possibility of such damage.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:with-param>
-                </xsl:call-template>
-	<!--
+                </xsl:call-template><!--
 	<xsl:if test="substring(.,string-length(.))=' '">
 	  <xsl:text> </xsl:text>
 	</xsl:if>
@@ -1022,14 +992,13 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="contains($text,'&#xA;')">
                 <xsl:if test="$count &gt; 0">
                     <xsl:value-of select="$indent"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:call-template name="Text">
                     <xsl:with-param name="words">
                         <xsl:value-of select="substring-before($text,'&#xA;')"/>
                     </xsl:with-param>
-                </xsl:call-template>
-<!--	<xsl:if test="not(substring-after($text,'
+                </xsl:call-template><!--	<xsl:if test="not(substring-after($text,'
 ')='')">-->
                 <xsl:call-template name="lineBreak">
                     <xsl:with-param name="id">6</xsl:with-param>
@@ -1050,7 +1019,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:otherwise>
                 <xsl:if test="$count &gt; 0 and parent::*">
                     <xsl:value-of select="$indent"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:call-template name="Text">
                     <xsl:with-param name="words">
@@ -1079,8 +1048,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="*" mode="verbatim">
         <xsl:choose>
-            <xsl:when test="parent::xhtml:Wrapper"/>
-<!--      <xsl:when test="child::node()[last()]/self::text()[not(.='')] and child::node()[1]/self::text()[not(.='')]"/>-->
+            <xsl:when test="parent::xhtml:Wrapper"/><!--      <xsl:when test="child::node()[last()]/self::text()[not(.='')] and child::node()[1]/self::text()[not(.='')]"/>-->
             <xsl:when test="not(parent::*)  or parent::teix:egXML">
                 <xsl:choose>
                     <xsl:when test="preceding-sibling::node()[1][self::text()]      and following-sibling::node()[1][self::text()]"/>
@@ -1090,8 +1058,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:call-template name="newLine"/>
-        <!-- <xsl:call-template name="makeIndent"/>-->
+                        <xsl:call-template name="newLine"/><!-- <xsl:call-template name="makeIndent"/>-->
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -1359,8 +1326,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
             <xsl:when test="namespace-uri()='http://relaxng.org/ns/compatibility/annotations/1.0'">
                 <xsl:text>a:</xsl:text>
-            </xsl:when>
-<!--    <xsl:otherwise>
+            </xsl:when><!--    <xsl:otherwise>
     <xsl:for-each select="namespace::*">
       <xsl:if test="not(name(.)='')">
 	  <xsl:value-of select="name(.)"/>
@@ -1398,7 +1364,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:value-of select="."/>
                             </xsl:with-param>
                             <xsl:with-param name="sep">
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:with-param>
                         </xsl:call-template>
                     </xsl:otherwise>
@@ -1418,8 +1384,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="substring-before($text,$sep)"/>
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="$sep"/>
                 <xsl:call-template name="breakMe">
                     <xsl:with-param name="text">
@@ -1554,16 +1519,14 @@ of this software, even if advised of the possibility of such damage.
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="starts-with($when,'$Date')">
-        <!-- it's RCS -->
+            <xsl:when test="starts-with($when,'$Date')"><!-- it's RCS -->
                 <xsl:value-of select="substring($when,16,2)"/>
                 <xsl:text>/</xsl:text>
                 <xsl:value-of select="substring($when,13,2)"/>
                 <xsl:text>/</xsl:text>
                 <xsl:value-of select="substring($when,8,4)"/>
             </xsl:when>
-            <xsl:when test="starts-with($when,'$LastChangedDate')">
-        <!-- it's Subversion-->
+            <xsl:when test="starts-with($when,'$LastChangedDate')"><!-- it's Subversion-->
                 <xsl:value-of select="substring-before(substring-after($when,'('),')')"/>
             </xsl:when>
             <xsl:otherwise>

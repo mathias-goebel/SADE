@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html" version="2.0">
-    <!-- import base conversion style -->
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html" version="2.0"><!-- import base conversion style -->
     <xsl:import href="../../../xhtml2/tei.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -19,9 +18,7 @@
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
     </doc>
-    <xsl:output method="xhtml" omit-xml-declaration="yes"/>
-
-<!-- set stylesheet parameters -->
+    <xsl:output method="xhtml" omit-xml-declaration="yes"/><!-- set stylesheet parameters -->
     <xsl:param name="numberHeadings">false</xsl:param>
     <xsl:param name="numberFigures">false</xsl:param>
     <xsl:param name="numberTables">false</xsl:param>
@@ -36,19 +33,13 @@
     <xsl:param name="footnoteBackLink">true</xsl:param>
     <xsl:param name="homeURL"/>
     <xsl:param name="feedbackURL"/>
-    <xsl:param name="homeWords">AGORA</xsl:param>
- 
-<!-- number paragraphs -->
+    <xsl:param name="homeWords">AGORA</xsl:param><!-- number paragraphs -->
     <xsl:template name="numberParagraph">
         <xsl:if test="ancestor::tei:body">
             <xsl:number level="any" from="tei:body"/>
         </xsl:if>
-    </xsl:template>
-
-<!-- suppress pb -->
-    <xsl:template match="tei:pb"/>
-    
-<!-- deal with weird @rend values -->
+    </xsl:template><!-- suppress pb -->
+    <xsl:template match="tei:pb"/><!-- deal with weird @rend values -->
     <xsl:template match="tei:hi[@rend='del']">
         <s>
             <xsl:apply-templates/>
@@ -63,9 +54,7 @@
         <u style="border-bottom: 1px dotted #000">
             <xsl:apply-templates/>
         </u>
-    </xsl:template>
-
-<!-- also weird list types -->
+    </xsl:template><!-- also weird list types -->
     <xsl:template match="tei:list[@type='number']">
         <ol>
             <xsl:apply-templates select="tei:item"/>
@@ -83,9 +72,7 @@
         <span class="contextaRef">
             <xsl:value-of select="@cRef"/>
         </span>
-    </xsl:template>
-
-<!-- these seem to be inherited -->
+    </xsl:template><!-- these seem to be inherited -->
     <xsl:template match="html:*">
         <xsl:element name="{local-name()}">
             <xsl:copy-of select="@*"/>

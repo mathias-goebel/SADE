@@ -40,9 +40,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
     </doc>
-    <xsl:output encoding="UTF-8" standalone="yes" method="xml"/>
-
-  <!-- identity transform -->
+    <xsl:output encoding="UTF-8" standalone="yes" method="xml"/><!-- identity transform -->
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -50,8 +48,6 @@ of this software, even if advised of the possibility of such damage.
         <xsl:copy>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
         </xsl:copy>
-    </xsl:template>
-
-  <!-- do not copy custom xml rel -->
+    </xsl:template><!-- do not copy custom xml rel -->
     <xsl:template match="*[@Target='docProps/custom.xml']"/>
 </xsl:stylesheet>

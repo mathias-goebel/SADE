@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" version="2.0" exclude-result-prefixes="iso tei teix dc html ncx">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="iso tei teix dc html ncx">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>
@@ -157,8 +157,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:choose>
             <xsl:when test="contains(.,'line-height:')"/>
             <xsl:when test="contains(.,'max-width:')"/>
-            <xsl:when test="contains(.,'height:')"/>
-      <!--
+            <xsl:when test="contains(.,'height:')"/><!--
       <xsl:when test="contains(.,'clear:')"/>
       <xsl:when test="contains(.,'padding')"/>
       <xsl:when test="contains(.,'float:')"/>
@@ -169,17 +168,16 @@ of this software, even if advised of the possibility of such damage.
 -->
             <xsl:otherwise>
                 <xsl:value-of select="."/>
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xsl:template name="addLangAtt"/>
     <xsl:template match="tei:lb[@rend='space']">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:milestone[@unit='line']">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:titleStmt" mode="metadata">
         <h3>Title statement</h3>
@@ -349,8 +347,7 @@ of this software, even if advised of the possibility of such damage.
         <ul>
             <xsl:apply-templates/>
         </ul>
-    </xsl:template>
-  <!-- fallbacks -->
+    </xsl:template><!-- fallbacks -->
     <xsl:template match="tei:sourceDesc/tei:bibl/*" mode="metadata">
         <xsl:value-of select="."/>
     </xsl:template>
@@ -439,7 +436,6 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="format-dateTime(current-dateTime(),'[Y]-[M02]-[D02]')"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  <!-- its inserted explicitly -->
+    </xsl:template><!-- its inserted explicitly -->
     <xsl:template match="tei:front/tei:titlePage"/>
 </xsl:stylesheet>

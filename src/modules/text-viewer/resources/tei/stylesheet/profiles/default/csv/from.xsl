@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:jc="http://james.blushingbunny.net/ns.html" version="2.0" exclude-result-prefixes="xs tei jc">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:jc="http://james.blushingbunny.net/ns.html" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="xs tei jc">
     <xsl:param name="input-encoding" select="'UTF-8'" as="xs:string"/>
     <xsl:output indent="yes" encoding="UTF-8"/>
     <xsl:param name="input-uri" select="'filename.csv'"/>

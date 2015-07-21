@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:test="http://www.jenitennison.com/xslt/unit-test" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:o="http://www.w3.org/1999/XSL/TransformAliasAlias" xmlns:s="http://www.jenitennison.com/xslt/xspec" xmlns:x="http://www.jenitennison.com/xslt/xspec" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:test="http://www.jenitennison.com/xslt/unit-test" xmlns:o="http://www.w3.org/1999/XSL/TransformAliasAlias" xmlns:s="http://www.jenitennison.com/xslt/xspec" xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:import href="file:/usr/local/bin/xspec-v0.1/generate-tests-utils.xsl"/>
     <xsl:import href="file:/Users/amittelbach/EDV%20Dienstleistungen/Kunden/OUCS/TEIISO/workspace/Stylesheets/docx/from/dynamic/toc.xsl"/>
     <xsl:namespace-alias stylesheet-prefix="o" result-prefix="xsl"/>
@@ -9,7 +9,7 @@
         <xsl:message>
             <xsl:text>Testing with </xsl:text>
             <xsl:value-of select="system-property('xsl:product-name')"/>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:value-of select="system-property('xsl:product-version')"/>
         </xsl:message>
         <xsl:processing-instruction name="xml-stylesheet">type="text/xsl" href="file:/usr/local/bin/xspec-v0.1/format-xspec-report.xsl"</xsl:processing-instruction>

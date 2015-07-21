@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Beta Version 070708 -->
-<xsl:stylesheet xmlns="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" version="2.0" exclude-result-prefixes="m w">
-	<!-- %% Global Definitions -->
-
-	<!-- Every single unicode character that is recognized by OMML as an operator -->
-    <xsl:variable name="sOperators" select="concat(      '!&#34;#&amp;()+,-./:',           ';&lt;=&gt;?@[\]^_{',           '|}~¡¦¬¯°±²³·¹¿',           '×÷̀́̂̃̄̅̆̇̈̉',           '̊̋̌̍̎̏̐̑̒̓̔̕',           '̡̛̖̗̘̙̜̝̞̟̠̚',           '̢̧̨̣̤̥̦̩̪̫̬̭',           '̴̵̶̷̸̮̯̰̱̲̳̿',           '         ‐‒–',           '—‖†‡•․‥…′″‴‼',           '⁀⁄⁎⁏⁐⁗⁡⁢⁣⁰⁴⁵',           '⁶⁷⁸⁹⁺⁻⁼⁽⁾₀₁₂',           '₃₄₅₆₇₈₉₊₋₌₍₎',           '⃒⃓⃘⃙⃚⃐⃑⃔⃕⃖⃗⃛',           '⃜⃝⃞⃟⃠⃡⃤⃥⃦⃨⃧⃩',           '⃪⅀ࡢ←↑→↓↔↕↖↗↘↙',           '↚↛↜↝↞↟↠↡↢↣↤↥',           '↦↧↨↩↪↫↬↭↮↯↰↱',           '↲↳↶↷↺↻↼↽↾↿⇀⇁',           '⇂⇃⇄⇅⇆⇇⇈⇉⇊⇋⇌⇍',           '⇎⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙',           '⇚⇛⇜⇝⇞⇟⇠⇡⇢⇣⇤⇥',           '⇦⇧⇨⇩⇳⇴⇵⇶⇷⇸⇹⇺',           '⇻⇼⇽⇾⇿∀∁∂∃∄∆∇',           '∈∉∊∋∌∍∏∐∑−∓∔',           '∕∖∗∘∙√∛∜∝∣∤∥',           '∦∧∨∩∪∫∬∭∮∯∰∱',           '∲∳∴∵∶∷∸∹∺∻∼∽',           '∾≀≁≂≃≄≅≆≇≈≉≊',           '≋≌≍≎≏≐≑≒≓≔≕≖',           '≗≘≙≚≛≜≝≞≟≠≡≢',           '≣≤≥≦≧≨≩≪≫≬≭≮',           '≯≰≱≲≳≴≵≶≷≸≹≺',           '≻≼≽≾≿⊀⊁⊂⊃⊄⊅⊆',           '⊇⊈⊉⊊⊋⊌⊍⊎⊏⊐⊑⊒',           '⊓⊔⊕⊖⊗⊘⊙⊚⊛⊜⊝⊞',           '⊟⊠⊡⊢⊣⊥⊦⊧⊨⊩⊪⊫',           '⊬⊭⊮⊯⊰⊱⊲⊳⊴⊵⊶⊷',           '⊸⊹⊺⊻⊼⊽⋀⋁⋂⋃⋄⋅',           '⋆⋇⋈⋉⋊⋋⋌⋍⋎⋏⋐⋑',           '⋒⋓⋔⋕⋖⋗⋘⋙⋚⋛⋜⋝',           '⋞⋟⋠⋡⋢⋣⋤⋥⋦⋧⋨⋩',           '⋪⋫⋬⋭⋮⋯⋰⋱⋲⋳⋴⋵',           '⋶⋷⋸⋹⋺⋻⋼⋽⋾⋿⌅⌆',           '⌈⌉⌊⌋⌜⌝⌞⌟⌢⌣〈〉',           '⌽⌿⎰⎱⏜⏝⏞⏟⏠│├┤',           '┬┴▁█▒■□▭▲△▴▵',           '▶▷▸▹▼▽▾▿◀◁◂◃',           '◄◅◊○◦◫◬◸◹◺◻◼',           '◽◾◿★☆❲❳⟑⟒⟓⟔⟕',           '⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟⟠⟡',           '⟢⟣⟤⟥⟦⟧⟨⟩⟪⟫⟰⟱',           '⟲⟳⟴⟵⟶⟷⟸⟹⟺⟻⟼⟽',           '⟾⟿⤀⤁⤂⤃⤄⤅⤆⤇⤈⤉',           '⤊⤋⤌⤍⤎⤏⤐⤑⤒⤓⤔⤕',           '⤖⤗⤘⤙⤚⤛⤜⤝⤞⤟⤠⤡',           '⤢⤣⤤⤥⤦⤧⤨⤩⤪⤫⤬⤭',           '⤮⤯⤰⤱⤲⤳⤴⤵⤶⤷⤸⤹',           '⤺⤻⤼⤽⤾⤿⥀⥁⥂⥃⥄⥅',           '⥆⥇⥈⥉⥊⥋⥌⥍⥎⥏⥐⥑',           '⥒⥓⥔⥕⥖⥗⥘⥙⥚⥛⥜⥝',           '⥞⥟⥠⥡⥢⥣⥤⥥⥦⥧⥨⥩',           '⥪⥫⥬⥭⥮⥯⥰⥱⥲⥳⥴⥵',           '⥶⥷⥸⥹⥺⥻⥼⥽⥾⥿⦀⦂',           '⦃⦄⦅⦆⦇⦈⦉⦊⦋⦌⦍⦎',           '⦏⦐⦑⦒⦓⦔⦕⦖⦗⦘⦙⦚',           '⦶⦷⦸⦹⧀⧁⧄⧅⧆⧇⧈⧎',           '⧏⧐⧑⧒⧓⧔⧕⧖⧗⧘⧙⧚',           '⧛⧟⧡⧢⧣⧤⧥⧦⧫⧴⧵⧶',           '⧷⧸⧹⧺⧻⧼⧽⧾⧿⨀⨁⨂',           '⨃⨄⨅⨆⨇⨈⨉⨊⨋⨌⨍⨎',           '⨏⨐⨑⨒⨓⨔⨕⨖⨗⨘⨙⨚',           '⨛⨜⨝⨞⨟⨠⨡⨢⨣⨤⨥⨦',           '⨧⨨⨩⨪⨫⨬⨭⨮⨯⨰⨱⨲',           '⨳⨴⨵⨶⨷⨸⨹⨺⨻⨼⨽⨾',           '⨿⩀⩁⩂⩃⩄⩅⩆⩇⩈⩉⩊',           '⩋⩌⩍⩎⩏⩐⩑⩒⩓⩔⩕⩖',           '⩗⩘⩙⩚⩛⩜⩝⩞⩟⩠⩡⩢',           '⩣⩤⩥⩦⩧⩨⩩⩪⩫⩬⩭⩮',           '⩯⩰⩱⩲⩳⩴⩵⩶⩷⩸⩹⩺',           '⩻⩼⩽⩾⩿⪀⪁⪂⪃⪄⪅⪆',           '⪇⪈⪉⪊⪋⪌⪍⪎⪏⪐⪑⪒',           '⪓⪔⪕⪖⪗⪘⪙⪚⪛⪜⪝⪞',           '⪟⪠⪡⪢⪣⪤⪥⪦⪧⪨⪩⪪',           '⪫⪬⪭⪮⪯⪰⪱⪲⪳⪴⪵⪶',           '⪷⪸⪹⪺⪻⪼⪽⪾⪿⫀⫁⫂',           '⫃⫄⫅⫆⫇⫈⫉⫊⫋⫌⫍⫎',           '⫏⫐⫑⫒⫓⫔⫕⫖⫗⫘⫙⫚',           '⫛⫝̸⫝⫞⫟⫠⫢⫣⫤⫥⫦⫧',           '⫨⫩⫪⫫⫬⫭⫮⫯⫰⫲⫳⫴',           '⫵⫶⫷⫸⫹⫺⫻⫼⫽⫾⫿⬄',           '⬆⬇⬌⬍〔〕〖〗〘〙！＆',           '（）＋，－．／：；＜＝＞',           '？＠［＼］＾＿｛｜｝')"/>
-
-	  <!-- A string of '-'s repeated exactly as many times as the operators above -->
+<xsl:stylesheet xmlns="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" version="2.0" exclude-result-prefixes="m w"><!-- %% Global Definitions --><!-- Every single unicode character that is recognized by OMML as an operator -->
+    <xsl:variable name="sOperators" select="concat(      '!&#34;#&amp;()+,-./:',           ';&lt;=&gt;?@[\]^_{',           '|}~¡¦¬¯°±²³·¹¿',           '×÷̀́̂̃̄̅̆̇̈̉',           '̊̋̌̍̎̏̐̑̒̓̔̕',           '̡̛̖̗̘̙̜̝̞̟̠̚',           '̢̧̨̣̤̥̦̩̪̫̬̭',           '̴̵̶̷̸̮̯̰̱̲̳̿',           '         ‐‒–',           '—‖†‡•․‥…′″‴‼',           '⁀⁄⁎⁏⁐⁗⁡⁢⁣⁰⁴⁵',           '⁶⁷⁸⁹⁺⁻⁼⁽⁾₀₁₂',           '₃₄₅₆₇₈₉₊₋₌₍₎',           '⃒⃓⃘⃙⃚⃐⃑⃔⃕⃖⃗⃛',           '⃜⃝⃞⃟⃠⃡⃤⃥⃦⃨⃧⃩',           '⃪⅀ࡢ←↑→↓↔↕↖↗↘↙',           '↚↛↜↝↞↟↠↡↢↣↤↥',           '↦↧↨↩↪↫↬↭↮↯↰↱',           '↲↳↶↷↺↻↼↽↾↿⇀⇁',           '⇂⇃⇄⇅⇆⇇⇈⇉⇊⇋⇌⇍',           '⇎⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙',           '⇚⇛⇜⇝⇞⇟⇠⇡⇢⇣⇤⇥',           '⇦⇧⇨⇩⇳⇴⇵⇶⇷⇸⇹⇺',           '⇻⇼⇽⇾⇿∀∁∂∃∄∆∇',           '∈∉∊∋∌∍∏∐∑−∓∔',           '∕∖∗∘∙√∛∜∝∣∤∥',           '∦∧∨∩∪∫∬∭∮∯∰∱',           '∲∳∴∵∶∷∸∹∺∻∼∽',           '∾≀≁≂≃≄≅≆≇≈≉≊',           '≋≌≍≎≏≐≑≒≓≔≕≖',           '≗≘≙≚≛≜≝≞≟≠≡≢',           '≣≤≥≦≧≨≩≪≫≬≭≮',           '≯≰≱≲≳≴≵≶≷≸≹≺',           '≻≼≽≾≿⊀⊁⊂⊃⊄⊅⊆',           '⊇⊈⊉⊊⊋⊌⊍⊎⊏⊐⊑⊒',           '⊓⊔⊕⊖⊗⊘⊙⊚⊛⊜⊝⊞',           '⊟⊠⊡⊢⊣⊥⊦⊧⊨⊩⊪⊫',           '⊬⊭⊮⊯⊰⊱⊲⊳⊴⊵⊶⊷',           '⊸⊹⊺⊻⊼⊽⋀⋁⋂⋃⋄⋅',           '⋆⋇⋈⋉⋊⋋⋌⋍⋎⋏⋐⋑',           '⋒⋓⋔⋕⋖⋗⋘⋙⋚⋛⋜⋝',           '⋞⋟⋠⋡⋢⋣⋤⋥⋦⋧⋨⋩',           '⋪⋫⋬⋭⋮⋯⋰⋱⋲⋳⋴⋵',           '⋶⋷⋸⋹⋺⋻⋼⋽⋾⋿⌅⌆',           '⌈⌉⌊⌋⌜⌝⌞⌟⌢⌣〈〉',           '⌽⌿⎰⎱⏜⏝⏞⏟⏠│├┤',           '┬┴▁█▒■□▭▲△▴▵',           '▶▷▸▹▼▽▾▿◀◁◂◃',           '◄◅◊○◦◫◬◸◹◺◻◼',           '◽◾◿★☆❲❳⟑⟒⟓⟔⟕',           '⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟⟠⟡',           '⟢⟣⟤⟥⟦⟧⟨⟩⟪⟫⟰⟱',           '⟲⟳⟴⟵⟶⟷⟸⟹⟺⟻⟼⟽',           '⟾⟿⤀⤁⤂⤃⤄⤅⤆⤇⤈⤉',           '⤊⤋⤌⤍⤎⤏⤐⤑⤒⤓⤔⤕',           '⤖⤗⤘⤙⤚⤛⤜⤝⤞⤟⤠⤡',           '⤢⤣⤤⤥⤦⤧⤨⤩⤪⤫⤬⤭',           '⤮⤯⤰⤱⤲⤳⤴⤵⤶⤷⤸⤹',           '⤺⤻⤼⤽⤾⤿⥀⥁⥂⥃⥄⥅',           '⥆⥇⥈⥉⥊⥋⥌⥍⥎⥏⥐⥑',           '⥒⥓⥔⥕⥖⥗⥘⥙⥚⥛⥜⥝',           '⥞⥟⥠⥡⥢⥣⥤⥥⥦⥧⥨⥩',           '⥪⥫⥬⥭⥮⥯⥰⥱⥲⥳⥴⥵',           '⥶⥷⥸⥹⥺⥻⥼⥽⥾⥿⦀⦂',           '⦃⦄⦅⦆⦇⦈⦉⦊⦋⦌⦍⦎',           '⦏⦐⦑⦒⦓⦔⦕⦖⦗⦘⦙⦚',           '⦶⦷⦸⦹⧀⧁⧄⧅⧆⧇⧈⧎',           '⧏⧐⧑⧒⧓⧔⧕⧖⧗⧘⧙⧚',           '⧛⧟⧡⧢⧣⧤⧥⧦⧫⧴⧵⧶',           '⧷⧸⧹⧺⧻⧼⧽⧾⧿⨀⨁⨂',           '⨃⨄⨅⨆⨇⨈⨉⨊⨋⨌⨍⨎',           '⨏⨐⨑⨒⨓⨔⨕⨖⨗⨘⨙⨚',           '⨛⨜⨝⨞⨟⨠⨡⨢⨣⨤⨥⨦',           '⨧⨨⨩⨪⨫⨬⨭⨮⨯⨰⨱⨲',           '⨳⨴⨵⨶⨷⨸⨹⨺⨻⨼⨽⨾',           '⨿⩀⩁⩂⩃⩄⩅⩆⩇⩈⩉⩊',           '⩋⩌⩍⩎⩏⩐⩑⩒⩓⩔⩕⩖',           '⩗⩘⩙⩚⩛⩜⩝⩞⩟⩠⩡⩢',           '⩣⩤⩥⩦⩧⩨⩩⩪⩫⩬⩭⩮',           '⩯⩰⩱⩲⩳⩴⩵⩶⩷⩸⩹⩺',           '⩻⩼⩽⩾⩿⪀⪁⪂⪃⪄⪅⪆',           '⪇⪈⪉⪊⪋⪌⪍⪎⪏⪐⪑⪒',           '⪓⪔⪕⪖⪗⪘⪙⪚⪛⪜⪝⪞',           '⪟⪠⪡⪢⪣⪤⪥⪦⪧⪨⪩⪪',           '⪫⪬⪭⪮⪯⪰⪱⪲⪳⪴⪵⪶',           '⪷⪸⪹⪺⪻⪼⪽⪾⪿⫀⫁⫂',           '⫃⫄⫅⫆⫇⫈⫉⫊⫋⫌⫍⫎',           '⫏⫐⫑⫒⫓⫔⫕⫖⫗⫘⫙⫚',           '⫛⫝̸⫝⫞⫟⫠⫢⫣⫤⫥⫦⫧',           '⫨⫩⫪⫫⫬⫭⫮⫯⫰⫲⫳⫴',           '⫵⫶⫷⫸⫹⫺⫻⫼⫽⫾⫿⬄',           '⬆⬇⬌⬍〔〕〖〗〘〙！＆',           '（）＋，－．／：；＜＝＞',           '？＠［＼］＾＿｛｜｝')"/><!-- A string of '-'s repeated exactly as many times as the operators above -->
     <xsl:variable name="sMinuses">
         <xsl:call-template name="SRepeatChar">
             <xsl:with-param name="cchRequired" select="string-length($sOperators)"/>
             <xsl:with-param name="ch" select="'-'"/>
         </xsl:call-template>
-    </xsl:variable>
-
-	  <!-- Every single unicode character that is recognized by OMML as a number -->
-    <xsl:variable name="sNumbers" select="'0123456789'"/>
-
-	  <!-- A string of '0's repeated exactly as many times as the list of numbers above -->
+    </xsl:variable><!-- Every single unicode character that is recognized by OMML as a number -->
+    <xsl:variable name="sNumbers" select="'0123456789'"/><!-- A string of '0's repeated exactly as many times as the list of numbers above -->
     <xsl:variable name="sZeros">
         <xsl:call-template name="SRepeatChar">
             <xsl:with-param name="cchRequired" select="string-length($sNumbers)"/>
             <xsl:with-param name="ch" select="'0'"/>
         </xsl:call-template>
-    </xsl:variable>
-
-	  <!-- %%Template: SReplace
+    </xsl:variable><!-- %%Template: SReplace
 
 		Replace all occurences of sOrig in sInput with sReplacement
 		and return the resulting string. -->
@@ -50,19 +39,14 @@
                 <xsl:value-of select="concat($sBefore, concat($sReplacement, $sAfterProcessed))"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-	  <!-- Templates -->
-	<!--
+    </xsl:template><!-- Templates --><!--
 	    <xsl:template match="/">
 	    <math>
 	    <xsl:apply-templates select="*" />
 	    </math>
 	</xsl:template>
 	-->
-    <xsl:template match="m:borderBox">
-
-		<!-- Get Lowercase versions of properties -->
+    <xsl:template match="m:borderBox"><!-- Get Lowercase versions of properties -->
         <xsl:variable name="sLowerCaseHideTop" select="translate(m:borderBoxPr[last()]/m:hideTop[last()]/@m:val, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                                 'abcdefghijklmnopqrstuvwxyz')"/>
         <xsl:variable name="sLowerCaseHideBot" select="translate(m:borderBoxPr[last()]/m:hideBot[last()]/@m:val, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                                 'abcdefghijklmnopqrstuvwxyz')"/>
         <xsl:variable name="sLowerCaseHideLeft" select="translate(m:borderBoxPr[last()]/m:hideLeft[last()]/@m:val, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                                 'abcdefghijklmnopqrstuvwxyz')"/>
@@ -238,10 +222,7 @@
         <xsl:variable name="sLowerCaseZeroWidVal" select="translate(m:phantPr[last()]/m:zeroWid[last()]/@m:val,                                                           'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                           'abcdefghijklmnopqrstuvwxyz')"/>
         <xsl:variable name="sLowerCaseZeroAscVal" select="translate(m:phantPr[last()]/m:zeroAsc[last()]/@m:val,                                                         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                         'abcdefghijklmnopqrstuvwxyz')"/>
         <xsl:variable name="sLowerCaseZeroDescVal" select="translate(m:phantPr[last()]/m:zeroDesc[last()]/@m:val,                                                         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                         'abcdefghijklmnopqrstuvwxyz')"/>
-        <xsl:variable name="sLowerCaseShowVal" select="translate(m:phantPr[last()]/m:show[last()]/@m:val,                                                         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                         'abcdefghijklmnopqrstuvwxyz')"/>
-
-
-		    <!-- The following properties default to 'yes' unless the last value equals 'no' or there isn't any node for 
+        <xsl:variable name="sLowerCaseShowVal" select="translate(m:phantPr[last()]/m:show[last()]/@m:val,                                                         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',                                                         'abcdefghijklmnopqrstuvwxyz')"/><!-- The following properties default to 'yes' unless the last value equals 'no' or there isn't any node for 
          the property -->
         <xsl:variable name="fZeroWid">
             <xsl:choose>
@@ -263,17 +244,14 @@
                 <xsl:when test="$sLowerCaseZeroDescVal = 'off'">0</xsl:when>
                 <xsl:otherwise>1</xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>
-
-		    <!-- The show property defaults to 'on' unless there exists a show property and its value is 'off' -->
+        </xsl:variable><!-- The show property defaults to 'on' unless there exists a show property and its value is 'off' -->
         <xsl:variable name="fShow">
             <xsl:choose>
                 <xsl:when test="$sLowerCaseShowVal = 'off'">0</xsl:when>
                 <xsl:otherwise>1</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:choose>
-			<!-- Show the phantom contents, therefore, just use mpadded. -->
+        <xsl:choose><!-- Show the phantom contents, therefore, just use mpadded. -->
             <xsl:when test="$fShow = 1">
                 <xsl:element name="mpadded">
                     <xsl:call-template name="CreateMpaddedAttributes">
@@ -285,8 +263,7 @@
                         <xsl:apply-templates select="m:e"/>
                     </mrow>
                 </xsl:element>
-            </xsl:when>
-			      <!-- Don't show phantom contents, but don't smash anything, therefore, just 
+            </xsl:when><!-- Don't show phantom contents, but don't smash anything, therefore, just 
            use mphantom -->
             <xsl:when test="$fZeroWid=0 and $fZeroAsc=0 and $fZeroDesc=0">
                 <xsl:element name="mphantom">
@@ -294,8 +271,7 @@
                         <xsl:apply-templates select="m:e"/>
                     </mrow>
                 </xsl:element>
-            </xsl:when>
-			      <!-- Combination -->
+            </xsl:when><!-- Combination -->
             <xsl:otherwise>
                 <xsl:element name="mphantom">
                     <xsl:element name="mpadded">
@@ -345,9 +321,7 @@
                 </mroot>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-	  <!-- %%Template match m:nary 
+    </xsl:template><!-- %%Template match m:nary 
 		Process an n-ary. 
 		
 		Decides, based on which arguments are supplied, between
@@ -656,9 +630,7 @@
                 <xsl:apply-templates select="m:e"/>
             </mrow>
         </mrow>
-    </xsl:template>
-
-	  <!-- %%Template: match m:f 
+    </xsl:template><!-- %%Template: match m:f 
 		
 		m:f maps directly to mfrac. 
 	-->
@@ -690,10 +662,7 @@
                 </mfrac>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-	  <!-- %%Template: CreateMathMLFracProp 
+    </xsl:template><!-- %%Template: CreateMathMLFracProp 
 		
 			Make fraction properties based on supplied parameters.
 			OMML differentiates between a linear fraction and a skewed
@@ -724,20 +693,14 @@
                 <xsl:attribute name="numalign">left</xsl:attribute>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
-
-	  <!-- %%Template: match m:e | m:den | m:num | m:lim | m:sup | m:sub 
+    </xsl:template><!-- %%Template: match m:e | m:den | m:num | m:lim | m:sup | m:sub 
 		
 		These element delinate parts of an expression (like the numerator).  -->
     <xsl:template match="m:e | m:den | m:num | m:lim | m:sup | m:sub">
-        <xsl:choose>
-
-			<!-- If there is no scriptLevel specified, just call through -->
+        <xsl:choose><!-- If there is no scriptLevel specified, just call through -->
             <xsl:when test="not(m:argPr[last()]/m:scrLvl/@m:val)">
                 <xsl:apply-templates select="*"/>
-            </xsl:when>
-
-			      <!-- Otherwise, create an mstyle and set the script level -->
+            </xsl:when><!-- Otherwise, create an mstyle and set the script level -->
             <xsl:otherwise>
                 <mstyle>
                     <xsl:attribute name="scriptlevel">
@@ -778,34 +741,24 @@
                 </munder>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-	  <!-- %%Template match m:d
+    </xsl:template><!-- %%Template match m:d
 
 		Process a delimiter. 
 	-->
     <xsl:template match="m:d">
-        <mfenced>
-			<!-- open: default is '(' for both OMML and MathML -->
+        <mfenced><!-- open: default is '(' for both OMML and MathML -->
             <xsl:if test="m:dPr[1]/m:begChr/@m:val and not(m:dPr[1]/m:begChr/@m:val ='(')">
                 <xsl:attribute name="open">
                     <xsl:value-of select="m:dPr[1]/m:begChr/@m:val"/>
                 </xsl:attribute>
-            </xsl:if>
-
-			      <!-- close: default is ')' for both OMML and MathML -->
+            </xsl:if><!-- close: default is ')' for both OMML and MathML -->
             <xsl:if test="m:dPr[1]/m:endChr/@m:val and not(m:dPr[1]/m:endChr/@m:val =')')">
                 <xsl:attribute name="close">
                     <xsl:value-of select="m:dPr[1]/m:endChr/@m:val"/>
                 </xsl:attribute>
-            </xsl:if>
-
-			      <!-- separator: the default is ',' for MathML, and '|' for OMML -->
-            <xsl:choose>
-				<!-- Matches MathML default. Write nothing -->
-                <xsl:when test="m:dPr[1]/m:sepChr/@m:val = ','"/>
-
-				        <!-- OMML default: | -->
+            </xsl:if><!-- separator: the default is ',' for MathML, and '|' for OMML -->
+            <xsl:choose><!-- Matches MathML default. Write nothing -->
+                <xsl:when test="m:dPr[1]/m:sepChr/@m:val = ','"/><!-- OMML default: | -->
                 <xsl:when test="not(m:dPr[1]/m:sepChr/@m:val)">
                     <xsl:attribute name="separators">
                         <xsl:value-of select="'|'"/>
@@ -816,9 +769,7 @@
                         <xsl:value-of select="m:dPr[1]/m:sepChr/@m:val"/>
                     </xsl:attribute>
                 </xsl:otherwise>
-            </xsl:choose>
-
-			      <!-- now write all the children. Put each one into an mrow
+            </xsl:choose><!-- now write all the children. Put each one into an mrow
 			just in case it produces multiple runs, etc -->
             <xsl:for-each select="m:e">
                 <mrow>
@@ -902,8 +853,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:variable name="mathvariant">
-                    <xsl:choose>
-						<!-- numbers don't care -->
+                    <xsl:choose><!-- numbers don't care -->
                         <xsl:when test="$sTokenType='mn'"/>
                         <xsl:when test="$scr='monospace'">monospace</xsl:when>
                         <xsl:when test="$scr='sans-serif' and $sty='i'">sans-serif-italic</xsl:when>
@@ -933,14 +883,9 @@
                         <xsl:when test="$sty='p' or $sty='b'">normal</xsl:when>
                         <xsl:otherwise>italic</xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
-
-				        <!-- Writing of attributes begins here -->
-                <xsl:choose>
-					<!-- Don't write mathvariant for operators unless they want to be normal -->
-                    <xsl:when test="$sTokenType='mo' and $mathvariant!='normal'"/>
-
-					          <!-- A single character within an mi is already italics, don't write -->
+                </xsl:variable><!-- Writing of attributes begins here -->
+                <xsl:choose><!-- Don't write mathvariant for operators unless they want to be normal -->
+                    <xsl:when test="$sTokenType='mo' and $mathvariant!='normal'"/><!-- A single character within an mi is already italics, don't write -->
                     <xsl:when test="$sTokenType='mi' and $nCharToPrint=1 and ($mathvariant='' or $mathvariant='italic')"/>
                     <xsl:when test="$sTokenType='mi' and $nCharToPrint &gt; 1 and ($mathvariant='' or $mathvariant='italic')">
                         <xsl:attribute name="mathvariant">
@@ -1046,9 +991,7 @@
                 <xsl:value-of select="$cAmp"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-	  <!-- %%Template: ParseEqArrMr
+    </xsl:template><!-- %%Template: ParseEqArrMr
 			
 			Similar to ParseMt, but this one has to do more for an equation array. 
       In equation arrays & is a special character which denotes alignment.
@@ -1120,9 +1063,7 @@
                             <xsl:otherwise>0</xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
-                    <xsl:choose>
-
-						<!-- Case I: The string begins with neither a number, nor an operator -->
+                    <xsl:choose><!-- Case I: The string begins with neither a number, nor an operator -->
                         <xsl:when test="$fNumAtPos1='0' and $fOperAtPos1='0'">
                             <mi>
                                 <xsl:call-template name="CreateTokenAttributes">
@@ -1141,9 +1082,7 @@
                                 <xsl:with-param name="nor" select="$nor"/>
                                 <xsl:with-param name="align" select="$align"/>
                             </xsl:call-template>
-                        </xsl:when>
-
-						            <!-- Case II: There is an operator at position 1 -->
+                        </xsl:when><!-- Case II: There is an operator at position 1 -->
                         <xsl:when test="$fOperAtPos1='1'">
                             <mo>
                                 <xsl:call-template name="CreateTokenAttributes">
@@ -1161,9 +1100,7 @@
                                 <xsl:with-param name="nor" select="$nor"/>
                                 <xsl:with-param name="align" select="$align"/>
                             </xsl:call-template>
-                        </xsl:when>
-
-						            <!-- Case III: There is a number at position 1 -->
+                        </xsl:when><!-- Case III: There is a number at position 1 -->
                         <xsl:otherwise>
                             <xsl:variable name="sConsecNum">
                                 <xsl:call-template name="SNumStart">
@@ -1192,9 +1129,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
-    </xsl:template>
-
-	  <!-- %%Template: ParseMt
+    </xsl:template><!-- %%Template: ParseMt
 
 			Produce a run of text. Technically, OMML makes no distinction 
 			between numbers, operators, and other characters in a run. For 
@@ -1232,9 +1167,7 @@
                     <xsl:otherwise>0</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:choose>
-
-				<!-- Case I: The string begins with neither a number, nor an operator -->
+            <xsl:choose><!-- Case I: The string begins with neither a number, nor an operator -->
                 <xsl:when test="$fOperAtPos1='0' and $fNumAtPos1='0'">
                     <xsl:variable name="nCharToPrint">
                         <xsl:choose>
@@ -1270,9 +1203,7 @@
                         <xsl:with-param name="sty" select="$sty"/>
                         <xsl:with-param name="nor" select="$nor"/>
                     </xsl:call-template>
-                </xsl:when>
-
-				        <!-- Case II: There is an operator at position 1 -->
+                </xsl:when><!-- Case II: There is an operator at position 1 -->
                 <xsl:when test="$fOperAtPos1='1'">
                     <mo>
                         <xsl:call-template name="CreateTokenAttributes">
@@ -1289,9 +1220,7 @@
                         <xsl:with-param name="sty" select="$sty"/>
                         <xsl:with-param name="nor" select="$nor"/>
                     </xsl:call-template>
-                </xsl:when>
-
-				        <!-- Case III: There is a number at position 1 -->
+                </xsl:when><!-- Case III: There is a number at position 1 -->
                 <xsl:otherwise>
                     <xsl:variable name="sConsecNum">
                         <xsl:call-template name="SNumStart">
@@ -1317,9 +1246,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
-    </xsl:template>
-
-	  <!-- %%Template: SNumStart 
+    </xsl:template><!-- %%Template: SNumStart 
 	
 		Return the longest substring of sToParse starting from the 
 		start of sToParse that is a number. In addition, it takes the
@@ -1328,27 +1255,21 @@
 		as sToParse		
 	-->
     <xsl:template name="SNumStart">
-        <xsl:param name="sToParse" select="''"/>
-		    <!-- if we don't get anything, take the string itself -->
+        <xsl:param name="sToParse" select="''"/><!-- if we don't get anything, take the string itself -->
         <xsl:param name="sPattern" select="'$sToParse'"/>
-        <xsl:choose>
-			<!-- the pattern says this is a number, recurse with the rest -->
+        <xsl:choose><!-- the pattern says this is a number, recurse with the rest -->
             <xsl:when test="substring($sPattern, 1, 1) = '0'">
                 <xsl:call-template name="SNumStart">
                     <xsl:with-param name="sToParse" select="$sToParse"/>
                     <xsl:with-param name="sPattern" select="substring($sPattern, 2)"/>
                 </xsl:call-template>
-            </xsl:when>
-
-			      <!-- the pattern says we've run out of numbers. Take as many
+            </xsl:when><!-- the pattern says we've run out of numbers. Take as many
 				characters from sToParse as we shaved off sPattern -->
             <xsl:otherwise>
                 <xsl:value-of select="substring($sToParse, 1, string-length($sToParse) - string-length($sPattern))"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-	  <!-- %%Template SRepeatCharAcc
+    </xsl:template><!-- %%Template SRepeatCharAcc
 	
 			The core of SRepeatChar with an accumulator. The current
 			string is in param $acc, and we will double and recurse,
@@ -1373,10 +1294,7 @@
                 <xsl:value-of select="concat($acc, substring($acc, 1, $cchRequired - $cchAcc))"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-
-	  <!-- %%Template SRepeatChar
+    </xsl:template><!-- %%Template SRepeatChar
 	
 			Generates a string nchRequired long by repeating the given character ch
 	-->
@@ -1388,9 +1306,7 @@
             <xsl:with-param name="ch" select="$ch"/>
             <xsl:with-param name="acc" select="$ch"/>
         </xsl:call-template>
-    </xsl:template>
-
-	  <!-- %%Template SReplaceOperWithMinus
+    </xsl:template><!-- %%Template SReplaceOperWithMinus
 	
 		Go through the given string and replace every instance
 		of an operator with a minus '-'. This helps quickly identify
@@ -1399,9 +1315,7 @@
     <xsl:template name="SReplaceOperWithMinus">
         <xsl:param name="sToParse" select="''"/>
         <xsl:value-of select="translate($sToParse, $sOperators, $sMinuses)"/>
-    </xsl:template>
-
-	  <!-- %%Template SReplaceNumWithZero
+    </xsl:template><!-- %%Template SReplaceNumWithZero
 	
 		Go through the given string and replace every instance
 		of an number with a zero '0'. This helps quickly identify
@@ -1413,14 +1327,10 @@
 		should be called before SReplaceOperWithMinus.
 	-->
     <xsl:template name="SReplaceNumWithZero">
-        <xsl:param name="sToParse" select="''"/>
-
-		    <!-- First do a simple replace. Numbers will all be come 0's.
+        <xsl:param name="sToParse" select="''"/><!-- First do a simple replace. Numbers will all be come 0's.
 			After this point, the pattern involving the . or , that 
 			we are looking for will become 0.0 or 0,0 -->
-        <xsl:variable name="sSimpleReplace" select="translate($sToParse, $sNumbers, $sZeros)"/>
-
-		    <!-- And then, replace 0.0 with just 000. This means that the . will 
+        <xsl:variable name="sSimpleReplace" select="translate($sToParse, $sNumbers, $sZeros)"/><!-- And then, replace 0.0 with just 000. This means that the . will 
 			become part of the number -->
         <xsl:variable name="sReplacePeriod">
             <xsl:call-template name="SReplace">
@@ -1428,18 +1338,14 @@
                 <xsl:with-param name="sOrig" select="'0.0'"/>
                 <xsl:with-param name="sReplacement" select="'000'"/>
             </xsl:call-template>
-        </xsl:variable>
-
-		    <!-- And then, replace 0,0 with just 000. This means that the , will 
+        </xsl:variable><!-- And then, replace 0,0 with just 000. This means that the , will 
 			become part of the number -->
         <xsl:call-template name="SReplace">
             <xsl:with-param name="sInput" select="$sReplacePeriod"/>
             <xsl:with-param name="sOrig" select="'0,0'"/>
             <xsl:with-param name="sReplacement" select="'000'"/>
         </xsl:call-template>
-    </xsl:template>
-
-	  <!-- Template to translate Word's borderBox properties into the menclose notation attribute
+    </xsl:template><!-- Template to translate Word's borderBox properties into the menclose notation attribute
        The initial call to this SHOULD NOT pass an sAttribute.  Subsequent calls to 
        CreateMencloseNotationAttrFromBorderBoxAttr by CreateMencloseNotationAttrFromBorderBoxAttr will
        update the sAttribute as appropriate.
@@ -1465,8 +1371,7 @@
                 <xsl:choose>
                     <xsl:when test="string-length($fHideTop) &gt; 0                       and string-length($fHideBot) &gt; 0                        and string-length($fHideLeft) &gt; 0                       and string-length($fHideRight) &gt; 0">
                         <xsl:choose>
-                            <xsl:when test="$fHideTop = 0                                and $fHideBot = 0                               and $fHideLeft = 0                                and $fHideRight = 0">
-								<!-- We can use 'box' instead of top, bot, left, and right.  Therefore,
+                            <xsl:when test="$fHideTop = 0                                and $fHideBot = 0                               and $fHideLeft = 0                                and $fHideRight = 0"><!-- We can use 'box' instead of top, bot, left, and right.  Therefore,
                   replace sAttribute with 'box' and begin analyzing params fStrikeH
                   and below. -->
                                 <xsl:call-template name="CreateMencloseNotationAttrFromBorderBoxAttr">
@@ -1479,8 +1384,7 @@
                                     </xsl:with-param>
                                 </xsl:call-template>
                             </xsl:when>
-                            <xsl:otherwise>
-								<!-- Can't use 'box', theremore, must analyze all attributes -->
+                            <xsl:otherwise><!-- Can't use 'box', theremore, must analyze all attributes -->
                                 <xsl:call-template name="CreateMencloseNotationAttrFromBorderBoxAttr">
                                     <xsl:with-param name="fHideTop" select="$fHideTop"/>
                                     <xsl:with-param name="fHideBot" select="$fHideBot"/>
@@ -1490,8 +1394,7 @@
                                     <xsl:with-param name="fStrikeV" select="$fStrikeV"/>
                                     <xsl:with-param name="fStrikeBLTR" select="$fStrikeBLTR"/>
                                     <xsl:with-param name="fStrikeTLBR" select="$fStrikeTLBR"/>
-                                    <xsl:with-param name="sAttribute">
-										<!-- Assume using all four (left right top bottom).  Subsequent calls
+                                    <xsl:with-param name="sAttribute"><!-- Assume using all four (left right top bottom).  Subsequent calls
                          will remove the sides which aren't to be includes. -->
                                         <xsl:text>left right top bottom</xsl:text>
                                     </xsl:with-param>

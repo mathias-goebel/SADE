@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://purl.org/NET/crm-owl#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:crm="http://purl.org/NET/crm-owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" version="2.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei rdf rdfs owl xsd crm xsl xs">
+<xsl:stylesheet xmlns="http://purl.org/NET/crm-owl#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:crm="http://purl.org/NET/crm-owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei rdf rdfs owl xsd crm xsl xs">
     <xsl:output encoding="utf-8" method="xml" indent="yes"/>
     <xsl:key name="persons" match="persName" use="@ref"/>
     <xsl:key name="Places" match="place[placeName]" use="placeName"/>
@@ -26,9 +26,7 @@
             </rdf:RDF>
         </xsl:variable>
         <xsl:apply-templates select="$rdf1" mode="rdf2"/>
-    </xsl:template>
-
-  <!-- clean up pass -->
+    </xsl:template><!-- clean up pass -->
     <xsl:template match="crm:*[crm:E53_Place]" mode="rdf2">
         <xsl:copy>
             <xsl:attribute name="rdf:resource" select="crm:E53_Place/@rdf:about"/>
@@ -53,9 +51,7 @@
     </xsl:template>
     <xsl:template match="text()|comment()|@*|processing-instruction()" mode="rdf2">
         <xsl:copy-of select="."/>
-    </xsl:template>
-
-   <!-- normal pass -->
+    </xsl:template><!-- normal pass -->
     <xsl:template name="E31">
         <E31_Document rdf:about="{tei:makeID(.,'id')}">
             <xsl:apply-templates select="fileDesc"/>
@@ -440,9 +436,7 @@
                 </E65_Creation>
             </P94i_was_created_by>
         </xsl:if>
-    </xsl:template>
-  
-  <!-- general templates -->
+    </xsl:template><!-- general templates -->
     <xsl:template name="calc-date-value">
         <rdf:value>
             <xsl:choose>

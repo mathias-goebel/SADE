@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei xs" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the linking module. </p>
@@ -198,7 +198,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tei:ptr|tei:ref">
         <xsl:if test="parent::tei:analytic or parent::tei:monogr">
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:if>
         <xsl:choose>
             <xsl:when test="@type='transclude' and self::tei:ptr">
@@ -223,8 +223,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:for-each select="tokenize(normalize-space(@target),' ')">
                             <xsl:variable name="a" select="."/>
                             <xsl:for-each select="$here">
-                                <xsl:choose>
-		  <!-- If there is a target attribute starting with #, it is always a local reference -->
+                                <xsl:choose><!-- If there is a target attribute starting with #, it is always a local reference -->
                                     <xsl:when test="starts-with($a,'#')">
                                         <xsl:call-template name="makeInternalLink">
                                             <xsl:with-param name="target" select="substring($a,2)"/>
@@ -237,8 +236,7 @@ of this software, even if advised of the possibility of such damage.
                                                 </xsl:call-template>
                                             </xsl:with-param>
                                         </xsl:call-template>
-                                    </xsl:when>
-		  <!-- if we are doing TEI P4, all targets are local -->
+                                    </xsl:when><!-- if we are doing TEI P4, all targets are local -->
                                     <xsl:when test="$teiP4Compat='true'">
                                         <xsl:call-template name="makeInternalLink">
                                             <xsl:with-param name="target" select="$a"/>
@@ -251,8 +249,7 @@ of this software, even if advised of the possibility of such damage.
                                                 </xsl:call-template>
                                             </xsl:with-param>
                                         </xsl:call-template>
-                                    </xsl:when>
-		  <!-- other uses of target means it is external -->
+                                    </xsl:when><!-- other uses of target means it is external -->
                                     <xsl:otherwise>
                                         <xsl:call-template name="makeExternalLink">
                                             <xsl:with-param name="ptr" select="$ptr"/>
@@ -272,7 +269,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:otherwise>
         </xsl:choose>
         <xsl:if test="parent::tei:analytic or parent::tei:monogr">
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:if>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
@@ -310,7 +307,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:when test="ancestor::tei:back">
                             <xsl:if test="not($numberBackHeadings='')">
                                 <xsl:sequence select="tei:i18n('appendixWords')"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:call-template name="numberBackDiv"/>
                                 <xsl:if test="$minimal='false'">
                                     <xsl:value-of select="$numberSpacer"/>
@@ -356,7 +353,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:with-param>
                         <xsl:with-param name="class">
                             <xsl:value-of select="$class_toc"/>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:value-of select="($class_toc,$depth)" separator="_"/>
                         </xsl:with-param>
                         <xsl:with-param name="body">
@@ -456,13 +453,11 @@ of this software, even if advised of the possibility of such damage.
             </xsl:call-template>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="$Text=''">
-	   <!--
+            <xsl:when test="$Text=''"><!--
 	       <xsl:text><</xsl:text>
 	       <xsl:value-of select="local-name(.)"/>
 	       <xsl:text>></xsl:text>
-	   -->
-            </xsl:when>
+	   --></xsl:when>
             <xsl:otherwise>
                 <xsl:copy-of select="$Text"/>
             </xsl:otherwise>
@@ -486,9 +481,9 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="position()&gt;1">
                     <xsl:text>,</xsl:text>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:sequence select="tei:i18n('and')"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>, </xsl:text>

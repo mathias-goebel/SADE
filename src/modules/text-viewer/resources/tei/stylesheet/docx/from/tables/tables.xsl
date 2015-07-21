@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop     iso m mml mo mv o pic r rel     tbx tei teidocx v xs ve w10 w wne wp">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop     iso m mml mo mv o pic r rel     tbx tei teidocx v xs ve w10 w wne wp">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for converting Word docx files to TEI </p>
@@ -83,8 +83,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:apply-templates/>
                 </xsl:copy>
             </xsl:when>
-            <xsl:when test="$tableMethod='cals'">
-	      <!-- preprocess the table to expand colspans, add row numbers, and
+            <xsl:when test="$tableMethod='cals'"><!-- preprocess the table to expand colspans, add row numbers, and
 		   simplify vertical merge info -->
                 <xsl:variable name="TABLE">
                     <xsl:variable name="tableBorders">
@@ -133,14 +132,12 @@ of this software, even if advised of the possibility of such damage.
                             </xsl:attribute>
                         </xsl:if>
                         <xsl:attribute name="frame">
-                            <xsl:choose>
-		      <!-- lets face it, most tables do have
+                            <xsl:choose><!-- lets face it, most tables do have
 			   borders, especially in ISO; but not in footers! -->
                                 <xsl:when test="not(w:tblPr/w:tblBorders) and           parent::w:ftr">
                                     <xsl:text>none</xsl:text>
                                 </xsl:when>
-                                <xsl:when test="not($tableBorders)">
-					<!-- if really no info on borders, default 
+                                <xsl:when test="not($tableBorders)"><!-- if really no info on borders, default 
 					     to all (? is this really what we want?) -->
                                     <xsl:text>all</xsl:text>
                                 </xsl:when>
@@ -152,8 +149,7 @@ of this software, even if advised of the possibility of such damage.
                                             <xsl:when test="    w:top/@w:val='single'             and not(w:bottom/@w:val='single')             and not(w:right/@w:val='single')             and not(w:left/@w:val='single')">top</xsl:when>
                                             <xsl:when test="    not(w:top/@w:val='single')             and w:bottom/@w:val='single'             and not(w:right/@w:val='single')             and not(w:left/@w:val='single')">bottom</xsl:when>
                                             <xsl:when test="    not(w:top/@w:val='single')             and not(w:bottom/@w:val='single')             and w:right/@w:val='single'             and w:left/@w:val='single'">sides</xsl:when>
-                                            <xsl:otherwise>
-					      <!-- start guessing -->
+                                            <xsl:otherwise><!-- start guessing -->
                                                 <xsl:variable name="sideBorders">
                                                     <xsl:choose>
                                                         <xsl:when test="w:left/@w:val='single'            or w:right/@w:val='single'           or ../../w:tr[1]/w:tc[1]/w:tcPr/w:tcBorders/w:left[@w:val='single']           or ../../w:tr[last()]/w:tc[last()]/w:tcPr/w:tcBorders/w:right[@w:val='single']">true</xsl:when>
@@ -300,8 +296,7 @@ of this software, even if advised of the possibility of such damage.
                                 </xsl:for-each>
                             </tbody>
                         </tgroup>
-                    </table>
-		             <!--
+                    </table><!--
 		    <xsl:comment>START</xsl:comment>
 		    <TABLE>
 		    <xsl:copy-of select="$TABLE"/>
@@ -446,8 +441,7 @@ of this software, even if advised of the possibility of such damage.
                                             <xsl:value-of select="parent::w:tr/following-sibling::w:tr[last()]/w:tc/@ROWPOS"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
-                                </xsl:variable>
-		                      <!--
+                                </xsl:variable><!--
 			  <xsl:message>start a merged cell at <xsl:value-of
 			  select="$ROWPOS"/>/<xsl:value-of select="$COLPOS"/>
 			  <xsl:text>: </xsl:text>

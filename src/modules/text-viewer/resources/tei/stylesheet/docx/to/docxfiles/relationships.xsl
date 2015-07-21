@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:contypes="http://schemas.openxmlformats.org/package/2006/content-types" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" exclude-result-prefixes="cp ve o r m v wp w10 w wne mml tbx iso      tei a xs pic fn xsi dc dcterms dcmitype     contypes teidocx teix html cals">
-    
-    
-  <!-- <xsl:key name="TARGETS" use="1" match="tei:ref[@target]|tei:ptr[@target]"/>-->
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:contypes="http://schemas.openxmlformats.org/package/2006/content-types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="cp ve o r m v wp w10 w wne mml tbx iso      tei a xs pic fn xsi dc dcterms dcmitype     contypes teidocx teix html cals"><!-- <xsl:key name="TARGETS" use="1" match="tei:ref[@target]|tei:ptr[@target]"/>-->
     <xsl:key name="GRAPHICS" use="1" match="tei:graphic[@url]"/>
     <xsl:key name="OLEOBJECTS" use="1" match="o:OLEObject"/>
     <xsl:key name="IMAGEDATA" use="1" match="v:imagedata"/>
@@ -76,19 +73,14 @@ of this software, even if advised of the possibility of such damage.
             </xsl:message>
         </xsl:if>
         <xsl:result-document href="{concat($wordDirectory,'/word/_rels/document.xml.rels')}" standalone="yes">
-            <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-                
-                <!-- Mandatory Relationships -->
+            <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><!-- Mandatory Relationships -->
                 <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/>
                 <Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
                 <Relationship Id="rId5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>
                 <Relationship Id="rId7" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footnotes" Target="footnotes.xml"/>
                 <Relationship Id="rId8" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/endnotes" Target="endnotes.xml"/>
-                <Relationship Id="rId9" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments" Target="comments.xml"/>
-                <!-- odd stuff -->
-                <Relationship Id="rId18" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/>
-                
-                <!-- Any raw blips left in? -->
+                <Relationship Id="rId9" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments" Target="comments.xml"/><!-- odd stuff -->
+                <Relationship Id="rId18" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/><!-- Any raw blips left in? -->
                 <xsl:for-each select="key('BLIP',1)">
                     <xsl:choose>
                         <xsl:when test="@r:embed">
@@ -98,13 +90,10 @@ of this software, even if advised of the possibility of such damage.
                             <Relationship Id="rId{position() + 200}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="{@r:link}" TargetMode="External"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:for-each>
-
-		<!-- TEI images -->
+                </xsl:for-each><!-- TEI images -->
                 <xsl:for-each select="key('GRAPHICS',1)">
                     <xsl:variable name="n">
-                        <xsl:number level="any"/>
-		  <!--
+                        <xsl:number level="any"/><!--
 		    <xsl:choose>
 		      <xsl:when test="@n">
 			<xsl:number level="any"/>
@@ -116,11 +105,7 @@ of this software, even if advised of the possibility of such damage.
 		    -->
                     </xsl:variable>
                     <Relationship Id="rId{$n + 300}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/resource{$n}.{tokenize(@url,'\.')[last()]}"/>
-                </xsl:for-each>
-                
-                <!-- hyperlinks -->
-
-		<!-- 
+                </xsl:for-each><!-- hyperlinks --><!-- 
 		<xsl:for-each select="key('TARGETS',1)">
 		  <xsl:if test="not(starts-with(@target,'#'))">
                     <Relationship 
@@ -137,19 +122,13 @@ of this software, even if advised of the possibility of such damage.
 		    </Relationship>
 		  </xsl:if>
 		</xsl:for-each>
-		-->
-
-                <!-- Formulas -->
+		--><!-- Formulas -->
                 <xsl:for-each select="key('IMAGEDATA',1)">
                     <Relationship Id="rId{position() + 1000}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="{@r:id}"/>
                 </xsl:for-each>
                 <xsl:for-each select="key('OLEOBJECTS',1)">
                     <Relationship Id="rId{position() + 2000}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/oleObject" Target="{@r:id}"/>
-                </xsl:for-each>
-                
-                
-                
-                <!-- our headers and footers -->
+                </xsl:for-each><!-- our headers and footers -->
                 <xsl:choose>
                     <xsl:when test="count(key('ALLHEADERS',1))=0 and count(key('ALLFOOTERS',1))=0">
                         <xsl:for-each select="document($defaultHeaderFooterFile)">
@@ -169,9 +148,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:number/>
             </xsl:variable>
             <Relationship xmlns="http://schemas.openxmlformats.org/package/2006/relationships" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer" Target="{concat('footer',position(),'.xml')}" Id="{concat('rId',100+$num)}"/>
-        </xsl:for-each>
-        
-        <!-- count all footers -->
+        </xsl:for-each><!-- count all footers -->
         <xsl:for-each select="key('ALLHEADERS',1)">
             <xsl:variable name="num">
                 <xsl:number/>

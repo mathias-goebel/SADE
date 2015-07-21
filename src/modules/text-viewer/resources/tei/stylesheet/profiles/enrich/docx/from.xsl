@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="ve o r m v wp w10 w wne mml tbx pic rel a         tei teidocx xs iso">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="ve o r m v wp w10 w wne mml tbx pic rel a         tei teidocx xs iso">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for simplifying TEI ODD markup </p>
@@ -39,8 +39,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: from.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-    <!-- import base conversion style -->
+    </doc><!-- import base conversion style -->
     <xsl:import href="../../default/docx/from.xsl"/>
     <xsl:template name="create-tei-header">
         <teiHeader>
@@ -61,8 +60,7 @@ of this software, even if advised of the possibility of such damage.
                     </edition>
                 </editionStmt>
                 <publicationStmt>
-                    <p>
-</p>
+                    <p/>
                 </publicationStmt>
                 <sourceDesc>
                     <p>Converted from a Word document </p>
@@ -97,8 +95,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:attribute name="xml:id">
                                 <xsl:text>m1</xsl:text>
                             </xsl:attribute>
-                            <msIdentifier>
-		</msIdentifier>
+                            <msIdentifier/>
                             <xsl:copy-of select="tei:msContents"/>
                             <physDesc>
                                 <xsl:copy-of select="tei:physDesc/tei:p"/>
@@ -112,8 +109,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:copy-of select="tei:decoDesc"/>
                                 <xsl:copy-of select="tei:bindingDesc"/>
                             </physDesc>
-                            <history>
-		</history>
+                            <history/>
                         </msDesc>
                         <xsl:copy-of select="tei:title|tei:p|tei:div|tei:head"/>
                     </xsl:for-each>
@@ -166,7 +162,7 @@ of this software, even if advised of the possibility of such damage.
         </publicationStmt>
     </xsl:template>
     <xsl:template match="tei:c[@rend='tab']" mode="pass2">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:c[@iso:font='Symbol']" mode="pass2">
         <xsl:choose>

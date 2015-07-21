@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Format" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fotex="http://www.tug.org/fotex" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" exclude-result-prefixes="a fotex rng tei teix" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fotex="http://www.tug.org/fotex" exclude-result-prefixes="a fotex rng tei teix" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>
@@ -101,8 +101,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="$foEngine='passivetex'"> </xsl:when>
             <xsl:otherwise>
                 <inline linefeed-treatment="preserve">
-                    <xsl:text>
-</xsl:text>
+                    <xsl:text/>
                 </inline>
             </xsl:otherwise>
         </xsl:choose>
@@ -175,8 +174,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:attribute>
             </xsl:if>
             <xsl:if test="parent::tei:exemplum">
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
             </xsl:if>
             <xsl:value-of select="translate(.,' ','&#160;')"/>
         </block>
@@ -416,8 +414,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="tei:lb">
         <xsl:choose>
             <xsl:when test="$activeLinebreaks='true'">
-                <xsl:choose>
-	    <!-- this is a *visible* linebreak character 
+                <xsl:choose><!-- this is a *visible* linebreak character 
 		 PassiveTeX implements it as a real line break
 	    -->
                     <xsl:when test="$foEngine='passivetex'"> </xsl:when>
@@ -554,7 +551,7 @@ of this software, even if advised of the possibility of such damage.
         <block>
             <xsl:text>******************</xsl:text>
             <xsl:value-of select="@unit"/>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:value-of select="@n"/>
             <xsl:text>******************</xsl:text>
         </block>
@@ -678,7 +675,7 @@ of this software, even if advised of the possibility of such damage.
                         <inline font-size="{$footnotenumSize}" vertical-align="super">
                             <xsl:value-of select="$FootID"/>
                         </inline>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:if>
                     <xsl:apply-templates/>
                 </block>
@@ -1018,8 +1015,7 @@ of this software, even if advised of the possibility of such damage.
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>[fo] </desc>
     </doc>
-    <xsl:template name="makeItem">
-<!-- item behaviour depends on the type attribute of our parent:
+    <xsl:template name="makeItem"><!-- item behaviour depends on the type attribute of our parent:
 simple, bullets, ordered, gloss, unordered, or bibliography
 -->
         <xsl:variable name="listdepth" select="count(ancestor::tei:list)"/>
@@ -1035,8 +1031,7 @@ simple, bullets, ordered, gloss, unordered, or bibliography
                         <xsl:value-of select="@xml:id"/>
                     </xsl:attribute>
                 </xsl:if>
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
                 <block>
                     <xsl:choose>
                         <xsl:when test="@n">
@@ -1064,14 +1059,12 @@ simple, bullets, ordered, gloss, unordered, or bibliography
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:when>
-                        <xsl:when test="../@type='numbered' or       self::tei:biblStruct or self::tei:bibl">
-		    <!-- numbered support added rbl 26.3.2005 -->
+                        <xsl:when test="../@type='numbered' or       self::tei:biblStruct or self::tei:bibl"><!-- numbered support added rbl 26.3.2005 -->
                             <xsl:attribute name="text-align">end</xsl:attribute>
                             <xsl:number/>
                             <xsl:text>.</xsl:text>
                         </xsl:when>
-                        <xsl:when test="../@type='ordered'">
-		    <!-- numbered support added rbl 26.3.2005 -->
+                        <xsl:when test="../@type='ordered'"><!-- numbered support added rbl 26.3.2005 -->
                             <xsl:attribute name="text-align">end</xsl:attribute>
                             <xsl:number/>
                             <xsl:text>.</xsl:text>

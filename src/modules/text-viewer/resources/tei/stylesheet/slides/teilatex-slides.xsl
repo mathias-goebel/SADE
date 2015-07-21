@@ -39,7 +39,7 @@ XSL LaTeX stylesheet to make slides
 
    
 -->
-<xsl:stylesheet xmlns:atom="http://www.w3.org/2005/Atom" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:map="http://apache.org/cocoon/sitemap/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://www.ascc.net/xml/schematron" exclude-result-prefixes="a s map atom xhtml teix tei xsl rng" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:map="http://apache.org/cocoon/sitemap/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:atom="http://www.w3.org/2005/Atom" exclude-result-prefixes="a s map atom xhtml teix tei xsl rng" version="2.0">
     <xsl:import href="../latex2/tei.xsl"/>
     <xsl:strip-space elements="teix:* rng:* xsl:* xhtml:* atom:*"/>
     <xsl:output method="text" encoding="utf-8"/>
@@ -350,7 +350,7 @@ XSL LaTeX stylesheet to make slides
                 <xsl:call-template name="verbatim-reformatText">
                     <xsl:with-param name="sofar">0</xsl:with-param>
                     <xsl:with-param name="indent">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                     <xsl:with-param name="text">
                         <xsl:value-of select="normalize-space(tei:escapeChars(.))"/>

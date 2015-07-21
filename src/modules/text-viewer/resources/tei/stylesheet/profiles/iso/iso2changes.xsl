@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:cals="http://www.oasis-open.org/specs/tm9901" exclude-result-prefixes="tei cals tbx" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei cals tbx" version="2.0">
     <xsl:import href="isoutils.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -114,11 +114,11 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:choose>
                         <xsl:when test="preceding-sibling::tei:*[1][self::tei:addSpan]">
                             <span class="add">ADD</span>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                         </xsl:when>
                         <xsl:when test="preceding-sibling::tei:*[1][self::tei:delSpan]">
                             <span class="del">DELETE</span>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                         </xsl:when>
                     </xsl:choose>
                     <xsl:call-template name="Identify"/>
@@ -170,7 +170,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:value-of select="@resp"/>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="@n"/>
                 <xsl:text>]</xsl:text>
             </span>
@@ -188,7 +188,7 @@ of this software, even if advised of the possibility of such damage.
 	   Annex <xsl:number count="tei:div" from="tei:back" format="A.1.1" level="multiple"/>
             </xsl:when>
         </xsl:choose>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:apply-templates select="tei:head" mode="ok"/>
     </xsl:template>
     <xsl:template match="tei:del" mode="ok"/>

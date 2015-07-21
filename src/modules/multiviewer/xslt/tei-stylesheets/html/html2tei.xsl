@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei xs" version="2.0" xpath-default-namespace="http://www.w3.org/1999/xhtml">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei xs" version="2.0" xpath-default-namespace="http://www.w3.org/1999/xhtml">
     <xsl:output method="xml" indent="yes"/>
     <xsl:template match="html">
         <TEI>
@@ -124,8 +124,7 @@
         <xsl:if test="preceding-sibling::tei:HEAD">
             <xsl:variable name="prev" select="xs:integer(number(preceding-sibling::tei:HEAD[1]/@level))"/>
             <xsl:variable name="current" select="xs:integer(number(@level))"/>
-            <xsl:if test="($current - $prev) &gt;1 ">
-	  <!--<xsl:message>Walk from <xsl:value-of select="$prev"/> to <xsl:value-of select="$current"/></xsl:message>-->
+            <xsl:if test="($current - $prev) &gt;1 "><!--<xsl:message>Walk from <xsl:value-of select="$prev"/> to <xsl:value-of select="$current"/></xsl:message>-->
                 <xsl:for-each select="$prev + 1   to $current - 1 ">
                     <HEAD interpolated="true" level="{.}"/>
                 </xsl:for-each>

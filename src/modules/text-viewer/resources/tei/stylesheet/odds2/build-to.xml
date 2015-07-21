@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="dist" name="antodd">
-<!--
+<project basedir="." default="dist" name="antodd"><!--
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
 	License as published by the Free Software Foundation; either
@@ -17,11 +16,9 @@
 	
         Id: $Id: build-to.xml 9755 2011-11-15 09:07:52Z rahtz $
         Copyright: 2011, TEI Consortium<
--->
-  <!--
+--><!--
     performs ODD processing.
- -->
-  <!-- whether to make summary odd doc  -->
+ --><!-- whether to make summary odd doc  -->
     <property name="summaryDoc" value="false"/>
     <property name="odd2oddxsl" value="../odds2/odd2odd.xsl"/>
     <property name="odd2litexsl" value="../odds2/odd2lite.xsl"/>

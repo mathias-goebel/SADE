@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:its="http://www.w3.org/2005/11/its" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:t="http://www.thaiopensource.com/ns/annotations" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html t a rng s iso tbx       cals teix w" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:its="http://www.w3.org/2005/11/its" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:t="http://www.thaiopensource.com/ns/annotations" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" exclude-result-prefixes="tei html t a rng s iso tbx       cals teix w" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>This software is dual-licensed:
@@ -106,7 +106,7 @@ of this software, even if advised of the possibility of such damage.
         </span>
     </xsl:template>
     <xsl:template match="tei:g[@ref='x:tab']">
-        <xsl:text>	</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:c[@iso:font]">
         <xsl:value-of select="@n"/>

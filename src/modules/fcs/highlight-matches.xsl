@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fcs="http://clarin.eu/fcs/1.0" version="1.0">
-    
-    <!-- input takes the form:
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fcs="http://clarin.eu/fcs/1.0" xmlns:exist="http://exist.sourceforge.net/NS/exist" version="1.0"><!-- input takes the form:
         <fcs:query-result>
             <fcs:matches>
                 <w xml:id="w1234"><exist:match>matching term</exist:match></w>
@@ -17,8 +15,7 @@
     -->
     <xsl:key name="match-by-id" match="/fcs:query-result/fcs:matches/*" use="@xml:id"/>
     <xsl:variable name="match-ids" select="/fcs:query-result/fcs:matches/*/@xml:id"/>
-    <xsl:template match="/fcs:query-result">
-<!--        <xsl:message><xsl:value-of select="$match-ids"/></xsl:message>-->
+    <xsl:template match="/fcs:query-result"><!--        <xsl:message><xsl:value-of select="$match-ids"/></xsl:message>-->
         <xsl:apply-templates select="fcs:page-content"/>
     </xsl:template>
     <xsl:template match="/fcs:query-result/fcs:matches"/>

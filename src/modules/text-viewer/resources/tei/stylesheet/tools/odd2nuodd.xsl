@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
-
-  <!--
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0"><!--
       
       $Id: odd2nuodd.xsl 9297 2011-09-07 21:37:09Z rahtz $
       Sebastian Rahtz 2011/03/26
@@ -9,19 +7,14 @@
       Read an ODD with <elementSpec mode="delete"> statements and rewrite it
       as <moduleRef include="* * *" or except="* * *">
       
-  -->
-  <!-- where is a copy of P5? -->
-    <xsl:param name="P5">http://www.tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml</xsl:param>
-  
-  <!-- do you want moduleRef generated with @include or @except? -->
+  --><!-- where is a copy of P5? -->
+    <xsl:param name="P5">http://www.tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml</xsl:param><!-- do you want moduleRef generated with @include or @except? -->
     <xsl:param name="method">include</xsl:param>
     <xsl:key name="EbyM" match="elementSpec" use="@module"/>
     <xsl:key name="deletedE" match="elementSpec[@mode='delete']" use="@ident"/>
     <xsl:key name="changedE" match="elementSpec[@mode='change']" use="@ident"/>
     <xsl:key name="changedE" match="elementSpec[@mode='replace']" use="@ident"/>
-    <xsl:variable name="orig" select="/"/>
-
-  <!-- identifty transforms -->
+    <xsl:variable name="orig" select="/"/><!-- identifty transforms -->
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -37,10 +30,7 @@
         <xsl:copy>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="stage2"/>
         </xsl:copy>
-    </xsl:template>
-  
-  
-  <!-- work in two phases, so we can zap empty specGrp on pass 2-->
+    </xsl:template><!-- work in two phases, so we can zap empty specGrp on pass 2-->
     <xsl:template match="/">
         <xsl:variable name="stage1">
             <xsl:apply-templates/>
@@ -48,14 +38,10 @@
         <xsl:for-each select="$stage1">
             <xsl:apply-templates mode="stage2"/>
         </xsl:for-each>
-    </xsl:template>
-  
-  <!-- ignore elementSpec @mode='delete' -->
+    </xsl:template><!-- ignore elementSpec @mode='delete' -->
     <xsl:template match="elementSpec[@mode='delete']"/>
     <xsl:template match="moduleRef/@include"/>
-    <xsl:template match="moduleRef/@except"/>
-
-  <!-- for any moduleRef, look up all the members of it in P5;
+    <xsl:template match="moduleRef/@except"/><!-- for any moduleRef, look up all the members of it in P5;
        if they are not deleted by this odd, add them to a list to be
        included -->
     <xsl:template match="moduleRef[@key]">
@@ -83,7 +69,7 @@
                                 <xsl:variable name="e" select="@ident"/>
                                 <xsl:if test="not($not/not[@ident=$e])">
                                     <xsl:value-of select="$e"/>
-                                    <xsl:text> </xsl:text>
+                                    <xsl:text/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:for-each>
@@ -103,7 +89,7 @@
                                         <xsl:when test="key('deletedE',$e)"/>
                                         <xsl:otherwise>
                                             <xsl:value-of select="$e"/>
-                                            <xsl:text> </xsl:text>
+                                            <xsl:text/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:for-each>
@@ -128,7 +114,7 @@
                                 <xsl:for-each select="$orig">
                                     <xsl:if test="not($yes/yes[@ident=$e])">
                                         <xsl:value-of select="$e"/>
-                                        <xsl:text> </xsl:text>
+                                        <xsl:text/>
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:for-each>
@@ -147,7 +133,7 @@
                                 <xsl:for-each select="$orig">
                                     <xsl:if test="key('deletedE',$e)">
                                         <xsl:value-of select="$e"/>
-                                        <xsl:text> </xsl:text>
+                                        <xsl:text/>
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:for-each>

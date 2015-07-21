@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:doc="http://www.xqdoc.org/1.0" exclude-result-prefixes="xs doc fn" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:doc="http://www.xqdoc.org/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs doc fn" version="2.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="source" as="xs:string"/>
-
-  <!-- generate module html //-->
+    <xsl:param name="source" as="xs:string"/><!-- generate module html //-->
     <xsl:template match="//doc:xqdoc">
         <html>
             <head>
@@ -81,8 +79,7 @@
             </head>
             <body class="home">
                 <div id="main">
-                    <xsl:apply-templates/>
-<!--
+                    <xsl:apply-templates/><!--
           <div>
           <h3>Original Source Code</h3>
           <pre class="prettyprint lang-xq"><xsl:value-of select="$source"/></pre>
@@ -255,9 +252,7 @@
         </xsl:for-each>
     </xsl:template>
     <xsl:template match="doc:param" mode="custom"/>
-    <xsl:template match="doc:return" mode="custom"/>
-
-  <!--xsl:template match="doc:custom" mode="custom">
+    <xsl:template match="doc:return" mode="custom"/><!--xsl:template match="doc:custom" mode="custom">
     <xsl:apply-templates select="."/>
   </xsl:template>
 

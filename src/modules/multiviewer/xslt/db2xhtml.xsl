@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tgs="http://www.textgrid.info/namespaces/middleware/tgsearch" exclude-result-prefixes="xs tei tgs xi" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:tgs="http://www.textgrid.info/namespaces/middleware/tgsearch" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs tei tgs xi" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
     <xsl:import href="./tei-stylesheets/html/html.xsl"/>
-    <xsl:include href="tghtml-common.xsl"/>
-
-    <!-- graphicsURLPattern == URL to use for graphics inclusion, i.e. get raw data. 
+    <xsl:include href="tghtml-common.xsl"/><!-- graphicsURLPattern == URL to use for graphics inclusion, i.e. get raw data. 
          The stylesheet will replace @URI@ with the actual URI reference and then 
          
     -->
     <xsl:param name="graphicsURLPattern"/>
-    <xsl:param name="linkURLPattern"/>
-
-    <!-- FIXME TODO document params to stylesheet -->
+    <xsl:param name="linkURLPattern"/><!-- FIXME TODO document params to stylesheet -->
     <xsl:param name="verbose">true</xsl:param>
     <xsl:param name="graphicsPrefix"/>
     <xsl:param name="graphicsSuffix"/>
@@ -27,15 +23,18 @@
     <xsl:param name="autoToc">false</xsl:param>
     <xsl:param name="autoHead">false</xsl:param>
     <xsl:param name="showTitleAuthor">false</xsl:param>
-    <xsl:param name="cssFile"/>        
-        
-    <!-- Copied from textstucture.xsl to remove the extra heading from the titleStmt -->
+    <xsl:param name="cssFile"/><!-- Copied from textstucture.xsl to remove the extra heading from the titleStmt -->
     <xsl:template name="stdheader">
         <xsl:param name="title">(no title)</xsl:param>
     </xsl:template>
-            
-    
-    <!-- Aus textstructure.xsl (tei-xsl 6.17). 
+    <xsl:template match="anchor[ends-with(@xml:id, '_start') or ends-with(@xml:id, '_end')]">
+        <span id="{@xml:id}"/>
+    </xsl:template>
+    <xsl:template match="text()">
+        <span class="hover-text">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template><!-- Aus textstructure.xsl (tei-xsl 6.17). 
     Das Originaltemplate erzeugt für jedes div eine überschrift und ruft dann das Header-Template auf,
     das auch aus unseren <desc>-Only-Divs dann überschriften macht (zu allem Überfluss noch auf max. 10 Zeichen 
     beschnitten und mit … versehen).
@@ -84,9 +83,9 @@
                 <xsl:apply-templates/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:if test="not($Depth = '') and tei:head"> <!-- <- mod. hier -tv -->
+                <xsl:if test="not($Depth = '') and tei:head"><!-- <- mod. hier -tv -->
                     <xsl:variable name="Heading">
-                        <xsl:element name="{if (number($Depth)+$divOffset &gt;6) then 'div' else concat('h',number($Depth) + $divOffset)}">
+                        <xsl:element name="{if (number($Depth)+$divOffset &gt;6) then 'div'                                                        else concat('h',number($Depth) +                                                        $divOffset)}">
                             <xsl:choose>
                                 <xsl:when test="@rend">
                                     <xsl:call-template name="makeRendition"/>
@@ -190,9 +189,7 @@
                 </div>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
-
-    <!-- copied and simplyfied from TEI's xhtml2/textstructure.xsl  to adapt for our needs -->
+    </xsl:template><!-- copied and simplyfied from TEI's xhtml2/textstructure.xsl  to adapt for our needs -->
     <xsl:template name="stdfooter">
         <xsl:param name="style" select="'plain'"/>
         <xsl:param name="file"/>
@@ -239,9 +236,7 @@
                 </xsl:comment>
             </address>
         </div>
-    </xsl:template>
-        
-        <!-- This has been taken from xhtml2/figures.xsl to allow handling textgrid: and hdl: URIs in graphics references. I have only adapted the definition of $File at the beginning of the template, the rest has been copypasted verbatim. -->
+    </xsl:template><!-- This has been taken from xhtml2/figures.xsl to allow handling textgrid: and hdl: URIs in graphics references. I have only adapted the definition of $File at the beginning of the template, the rest has been copypasted verbatim. -->
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>[html] display graphic file</desc>
     </doc>
@@ -368,11 +363,11 @@
                     <xsl:call-template name="i18n">
                         <xsl:with-param name="word">figureWord</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:for-each select="self::tei:figure|parent::tei:figure">
                         <xsl:number count="tei:figure[tei:head]" level="any"/>
                     </xsl:for-each>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$File"/>
                     <xsl:text> [</xsl:text>
                     <xsl:value-of select="$Alt"/>
@@ -380,12 +375,7 @@
                 </div>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-        
-        
-
-
-    <!-- Spezialbehandlung für die Zeno-Variante der Fußnoten -->
+    </xsl:template><!-- Spezialbehandlung für die Zeno-Variante der Fußnoten -->
     <xsl:template match="div[@type = 'footnotes']//note">
         <div class="note">
             <xsl:apply-templates/>
@@ -428,5 +418,4 @@
     <xsl:template name="corpusBody">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="*/@style"/>
 </xsl:stylesheet>

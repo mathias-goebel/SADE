@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sch="http://purl.oclc.org/dsdl/schematron" exclude-result-prefixes="fo s a tei html rng teix xs sch" version="2.0">
+<xsl:stylesheet xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="fo s a tei html rng teix xs sch" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for weaving TEI ODD documents</p>
@@ -179,7 +179,7 @@ of this software, even if advised of the possibility of such damage.
                                     <xsl:with-param name="word">Status</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:element>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                         </xsl:element>
                         <xsl:element namespace="{$outputNS}" name="{$cellName}">
                             <xsl:attribute name="{$rendName}">
@@ -254,7 +254,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="word">Datatype</xsl:with-param>
                     </xsl:call-template>
                 </xsl:element>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:element>
             <xsl:element namespace="{$outputNS}" name="{$cellName}">
                 <xsl:attribute name="{$rendName}">
@@ -280,11 +280,11 @@ of this software, even if advised of the possibility of such damage.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:if test="$minOccurs != '1'  or  $maxOccurs != '1'">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$minOccurs"/>
                     <xsl:text>–</xsl:text>
                     <xsl:value-of select="$maxOccurs"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:element namespace="{$outputNS}" name="{$segName}">
                         <xsl:attribute name="xml:lang">
                             <xsl:value-of select="$documentationLanguage"/>
@@ -680,8 +680,7 @@ of this software, even if advised of the possibility of such damage.
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:otherwise>
-                            </xsl:choose>
-              <!--
+                            </xsl:choose><!--
 	      <xsl:for-each select="$myatts/a">
 		<xsl:copy-of select="*|text()"/>
 	      </xsl:for-each>
@@ -1046,8 +1045,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="@xml:lang='und'">
                 <xsl:call-template name="showExample"/>
             </xsl:when>
-            <xsl:when test="@xml:lang='mul' and not($documentationLanguage='zh-tw')">
-        <!-- will need to generalize this if other langs come along like
+            <xsl:when test="@xml:lang='mul' and not($documentationLanguage='zh-tw')"><!-- will need to generalize this if other langs come along like
 		chinese -->
                 <xsl:call-template name="showExample"/>
             </xsl:when>
@@ -1511,7 +1509,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:with-param name="word">Values</xsl:with-param>
                             </xsl:call-template>
                         </xsl:element>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:element>
                     <xsl:element namespace="{$outputNS}" name="{$cellName}">
                         <xsl:attribute name="{$rendName}">
@@ -1782,8 +1780,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:variable name="here" select="."/>
             <xsl:variable name="name" select="@ident"/>
             <xsl:variable name="Parents">
-                <xsl:call-template name="ProcessDirectRefs"/>
-        <!-- now look at class membership -->
+                <xsl:call-template name="ProcessDirectRefs"/><!-- now look at class membership -->
                 <xsl:for-each select="tei:classes/tei:memberOf">
                     <xsl:for-each select="key('CLASSES',@key)">
                         <xsl:if test="@type='model'">
@@ -1801,8 +1798,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:call-template>
         </xsl:element>
     </xsl:template>
-    <xsl:template name="ProcessDirectRefs">
-    <!-- direct parents -->
+    <xsl:template name="ProcessDirectRefs"><!-- direct parents -->
         <xsl:for-each select="key('REFS',@ident)/ancestor::tei:content/parent::tei:*">
             <xsl:choose>
                 <xsl:when test="self::tei:elementSpec">
@@ -2081,7 +2077,7 @@ of this software, even if advised of the possibility of such damage.
                                         </xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:for-each>
                             <xsl:for-each select="key('ATTRIBUTES-ELEMENT',$this)">
                                 <xsl:sort select="ancestor::tei:elementSpec/@ident"/>
@@ -2106,7 +2102,7 @@ of this software, even if advised of the possibility of such damage.
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <xsl:value-of select="$spaceCharacter"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:for-each>
                         </xsl:element>
                     </xsl:element>
@@ -2171,8 +2167,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tei:desc">
         <xsl:apply-templates/>
-    </xsl:template>
-  <!-- pretty printing of RNC -->
+    </xsl:template><!-- pretty printing of RNC -->
     <xsl:template match="nc" mode="keep">
         <xsl:call-template name="showRNC">
             <xsl:with-param name="style">

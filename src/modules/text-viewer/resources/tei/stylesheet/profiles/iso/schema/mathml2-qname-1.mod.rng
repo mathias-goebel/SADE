@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <!-- ....................................................................... -->
-  <!-- MathML Qualified Names Module  ........................................ -->
-  <!--
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- ....................................................................... --><!-- MathML Qualified Names Module  ........................................ --><!--
     file: mathml2-qname-1.mod
     
     This is the Mathematical Markup Language (MathML) 2.0, an XML 
@@ -20,8 +17,7 @@
     Revisions:
     (none)
     .......................................................................
-  -->
-  <!--
+  --><!--
     MathML Qualified Names
     
     This module is contained in two parts, labeled Section 'A' and 'B':
@@ -34,13 +30,10 @@
       namespace-qualified names for all MathML element types.
     
     This module is derived from the XHTML Qualified Names Template module.
-  -->
-  <!-- Section A: XHTML XML Namespace Framework :::::::::::::::::::: -->
-  <!-- XLink ............... -->
+  --><!-- Section A: XHTML XML Namespace Framework :::::::::::::::::::: --><!-- XLink ............... -->
     <define name="math_XLINK.xmlns.attrib">
         <empty/>
-    </define>
-  <!-- MathML .............. -->
+    </define><!-- MathML .............. -->
     <define name="MATHML.xmlns.extra.attrib">
         <ref name="math_XLINK.xmlns.attrib"/>
     </define>

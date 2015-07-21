@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" version="2.0" exclude-result-prefixes="cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI Utility stylesheet defining templates for use in
@@ -53,12 +53,10 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:variable name="firstLang">
             <xsl:value-of select="substring-before($langs,' ')"/>
-        </xsl:variable>
-    <!-- first the gloss -->
+        </xsl:variable><!-- first the gloss -->
         <xsl:call-template name="makeGloss">
             <xsl:with-param name="langs" select="$langs"/>
-        </xsl:call-template>
-    <!-- now the description -->
+        </xsl:call-template><!-- now the description -->
         <xsl:choose>
             <xsl:when test="not(tei:desc)"/>
             <xsl:when test="count(tei:desc)=1">
@@ -100,8 +98,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:choose>
             <xsl:when test="$includeValList='false'"/>
             <xsl:when test="tei:valList[@type='open']">
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">
                         <xsl:text>Sample values include</xsl:text>
@@ -140,8 +137,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="tei:valList[@type='semi']">
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">
                         <xsl:text>Suggested values include</xsl:text>
@@ -182,7 +178,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:choose>
         <xsl:if test="tei:listRef">
             <xsl:for-each select="tei:listRef/tei:*">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:apply-templates select="." mode="weave"/>
             </xsl:for-each>
         </xsl:if>

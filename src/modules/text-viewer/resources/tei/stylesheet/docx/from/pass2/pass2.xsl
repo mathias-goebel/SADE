@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop  html   iso m mml mo mv o pic r rel cals     tbx tei teidocx v xs ve w10 w wne wp">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop  html   iso m mml mo mv o pic r rel cals     tbx tei teidocx v xs ve w10 w wne wp">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for converting Word docx files to TEI </p>
@@ -71,8 +71,7 @@ of this software, even if advised of the possibility of such damage.
                 <item>
                     <xsl:copy-of select="@*"/>
                     <xsl:variable name="me" select="generate-id()"/>
-                    <xsl:apply-templates mode="pass2"/>
-	    <!-- find following sibling lists and notes -->
+                    <xsl:apply-templates mode="pass2"/><!-- find following sibling lists and notes -->
                     <xsl:for-each select="following-sibling::tei:list[preceding-sibling::tei:item[1][generate-id()=$me]]">
                         <list>
                             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass2"/>
@@ -161,8 +160,7 @@ of this software, even if advised of the possibility of such damage.
         <desc>
             <p>  Gloss list from tei to docx</p>
         </desc>
-    </doc>
-    <!-- <GLOSSITEM>
+    </doc><!-- <GLOSSITEM>
 	 <hi rend="bold">100</hi>
 	 <lb/>first item </GLOSSITEM>
     -->
@@ -202,10 +200,7 @@ of this software, even if advised of the possibility of such damage.
             <p>     A tab in a &lt;gloss&gt;? no. </p>
         </desc>
     </doc>
-    <xsl:template match="tei:gloss//tei:g[@ref='x:tab']" mode="pass2"/>
-    
-    
-    <!-- removed 2010-03-15, seems to screw up formulae
+    <xsl:template match="tei:gloss//tei:g[@ref='x:tab']" mode="pass2"/><!-- removed 2010-03-15, seems to screw up formulae
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
       <desc>
          <p>     A tab in a <formula>? no. </p>
@@ -267,10 +262,10 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="preceding-sibling::node()[1][self::tei:hi[@rend=$r]]"/>
             <xsl:when test="preceding-sibling::node()[1][self::tei:seg and .=' ']   and   preceding-sibling::node()[2][self::tei:hi[@rend=$r]]"/>
             <xsl:when test="@rend='bold' and .=' '">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:when test="@rend='italic' and .=' '">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:variable name="ename">

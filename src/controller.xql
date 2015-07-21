@@ -43,16 +43,18 @@ return
  <a>{($module, ($params[3] = $modules))}</a>
 else:)
 if ($exist:path eq "/" or $rel-path eq "/") then
-    (: forward root (project) path to index.html :)
+    (: forward root (project) path to index.html 
+    for textgrid we avoid the old SADE main page and go directly to the textgrid projects index.html
+    :)
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="index.html"/>
     </dispatch>
-else      
+else    
 (: else
 if (false()) then
  <d>{$protected}</d>
 :)
-if (ends-with($exist:resource, ('.xml',".html"))) then
+if (ends-with($exist:resource, ('.xml', '.html'))) then
  (: this is a sequence of two steps, delivering result XOR (either one or the other)
     the first one only delivers result if login is necessary
     the second one, only if login is not necessary (i.e. project not protected or user already logged-in)

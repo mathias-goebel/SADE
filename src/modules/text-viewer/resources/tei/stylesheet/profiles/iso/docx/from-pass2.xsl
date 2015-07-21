@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:custprops="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a pic rel ve o teidocx r m v wp w10 w wne mml vt cals tbx iso custprops">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:custprops="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" version="2.0" exclude-result-prefixes="a pic rel ve o teidocx r m v wp w10 w wne mml vt cals tbx iso custprops">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for simplifying TEI ODD markup </p>
@@ -39,10 +39,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: from-pass2.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-
-    <!-- ******************************************************************************************* -->
-    <!-- second stage processing -->
+    </doc><!-- ******************************************************************************************* --><!-- second stage processing -->
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc> Analyze numbers, marking them up to allow for decimal
 	character changing </desc>
@@ -54,8 +51,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
             <xsl:when test="parent::tei:seg[@rend='nonumber']">
                 <xsl:value-of select="."/>
-            </xsl:when>
-            <!-- do not search for numbers inside math -->
+            </xsl:when><!-- do not search for numbers inside math -->
             <xsl:when test="ancestor-or-self::m:t">
                 <xsl:value-of select="."/>
             </xsl:when>
@@ -138,9 +134,7 @@ of this software, even if advised of the possibility of such damage.
                 </body>
                 <back>
                     <xsl:apply-templates select="tei:body/tei:div[@type='bibliography' or @type='annex']" mode="pass2"/>
-                </back>
-	      
-	      <!-- copy last milestone -->
+                </back><!-- copy last milestone -->
                 <xsl:apply-templates select="tei:body/tei:milestone[count(//tei:body/tei:milestone)]" mode="pass2"/>
             </text>
         </xsl:variable>
@@ -155,8 +149,7 @@ of this software, even if advised of the possibility of such damage.
         <item>
             <xsl:copy-of select="@*"/>
             <xsl:variable name="me" select="generate-id()"/>
-            <xsl:apply-templates mode="pass2"/>
-            <!-- find following sibling lists and notes -->
+            <xsl:apply-templates mode="pass2"/><!-- find following sibling lists and notes -->
             <xsl:for-each select="following-sibling::tei:list[preceding-sibling::tei:item[1][generate-id()=$me]]">
                 <list>
                     <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass2"/>
@@ -168,9 +161,7 @@ of this software, even if advised of the possibility of such damage.
                 </note>
             </xsl:for-each>
         </item>
-    </xsl:template>
-
-    <!-- overrides for part 2 -->
+    </xsl:template><!-- overrides for part 2 -->
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Zap &lt;div&gt; with empty head only </desc>
     </doc>
@@ -266,8 +257,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tbx:admin[@type='entrySource']/text()" mode="pass2">
         <xsl:analyze-string select="replace(.,'\[SOURCE: ','')" regex="\]$">
-            <xsl:matching-substring>
-      </xsl:matching-substring>
+            <xsl:matching-substring/>
             <xsl:non-matching-substring>
                 <xsl:value-of select="."/>
             </xsl:non-matching-substring>
@@ -279,8 +269,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates mode="pass2"/>
             </xsl:copy>
         </xsl:if>
-    </xsl:template>
-  <!--
+    </xsl:template><!--
       <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl"  >
       <desc>Strip label from note on definition</desc></doc>
       <xsl:template match="tbx:descrip/tbx:note/text()" mode="pass2">
@@ -397,9 +386,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="$s"/>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
-    </xsl:template>
-
-   <!--
+    </xsl:template><!--
   <xsl:template match="tbx:descripGrp" mode="pass2">
     <xsl:copy>
       <xsl:apply-templates select="tbx:descrip"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://purl.org/NET/crm-owl#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oo="http://purl.org/openorg/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:service="http://purl.org/service/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:crm="http://purl.org/NET/crm-owl#" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ox-service="http://vocab.ox.ac.uk/service/" version="1.0" exclude-result-prefixes="tei rdf rdfs owl xsd crm xsl xs oo foaf     service ox-service">
+<xsl:stylesheet xmlns="http://purl.org/NET/crm-owl#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ox-service="http://vocab.ox.ac.uk/service/" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:crm="http://purl.org/NET/crm-owl#" xmlns:oo="http://purl.org/openorg/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:service="http://purl.org/service/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" exclude-result-prefixes="tei rdf rdfs owl xsd crm xsl xs oo foaf     service ox-service">
     <xsl:param name="REQUEST">/</xsl:param>
     <xsl:param name="SERVER">http://www.oucs.ox.ac.uk</xsl:param>
     <xsl:output encoding="utf-8" method="xml" indent="yes"/>
@@ -40,8 +40,7 @@
                 </xsl:attribute>
             </xsl:element>
         </service:Service>
-    </xsl:template>
-<!--  
+    </xsl:template><!--  
   <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -152,8 +151,7 @@
     </xsl:template>
     <xsl:template name="E5">
         <P11i_participated_in>
-            <E5_Event>
-      </E5_Event>
+            <E5_Event/>
         </P11i_participated_in>
     </xsl:template>
     <xsl:template name="E47">

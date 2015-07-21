@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" exclude-result-prefixes="tei">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0" exclude-result-prefixes="tei">
     <xsl:import href="../../../docx/from/docxtotei.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>set up a pass3 </desc>
@@ -11,8 +11,7 @@
             </xsl:copy>
         </xsl:variable>
         <xsl:apply-templates select="$Doctext" mode="pass3"/>
-    </xsl:template>
-  <!-- fix up the default header -->
+    </xsl:template><!-- fix up the default header -->
     <xsl:template match="tei:encodingDesc" mode="pass3"/>
     <xsl:template match="tei:titleStmt/tei:author" mode="pass3">
         <xsl:choose>
@@ -30,8 +29,7 @@
                 </author>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  <!-- jiggle around the paragraphs which should be in front -->
+    </xsl:template><!-- jiggle around the paragraphs which should be in front -->
     <xsl:template match="tei:body" mode="pass3">
         <front>
             <titlePage>
@@ -62,8 +60,7 @@
     <xsl:template match="tei:p[@rend='Title']" mode="pass3"/>
     <xsl:template match="tei:p[@rend='author']" mode="pass3"/>
     <xsl:template match="tei:p[@rend='Subtitle']" mode="pass3"/>
-    <xsl:template match="tei:p[@rend='abstract']" mode="pass3"/>
-  <!-- fix paragraph styles which should be TEI elements -->
+    <xsl:template match="tei:p[@rend='abstract']" mode="pass3"/><!-- fix paragraph styles which should be TEI elements -->
     <xsl:template match="tei:p[@rend='epigraph']" mode="pass3">
         <epigraph>
             <p>
@@ -85,19 +82,16 @@
         <foreign>
             <xsl:apply-templates mode="pass3"/>
         </foreign>
-    </xsl:template>
-  <!-- now some word artefacts we want to suppress -->
+    </xsl:template><!-- now some word artefacts we want to suppress -->
     <xsl:template match="tei:hi[@rend='footnote_reference']" mode="pass3">
         <xsl:apply-templates mode="pass3"/>
     </xsl:template>
-    <xsl:template match="tei:seg" mode="pass3">
-    <!-- <xsl:if test="matches(.,'[a-zA-Z0-9]')">
+    <xsl:template match="tei:seg" mode="pass3"><!-- <xsl:if test="matches(.,'[a-zA-Z0-9]')">
 <xsl:apply-templates mode="pass3"/>
 </xsl:if-->
         <xsl:value-of select="."/>
     </xsl:template>
-    <xsl:template match="tei:hi[matches(@rend,'color')]" mode="pass3"/>
-  <!-- contexta magic references -->
+    <xsl:template match="tei:hi[matches(@rend,'color')]" mode="pass3"/><!-- contexta magic references -->
     <xsl:template match="tei:hi[@rend='reference']" mode="pass3">
         <xsl:variable name="magicString">
             <xsl:value-of select="substring-before(substring-after(., '&lt;'),'&gt;')"/>
@@ -108,15 +102,12 @@
             </xsl:attribute>
             <xsl:value-of select="substring-before(.,'&lt;')"/>
         </xsl:element>
-    </xsl:template>
-  <!-- now some attribute values we want to kill -->
+    </xsl:template><!-- now some attribute values we want to kill -->
     <xsl:template match="@rend[.='Body Text First Indent']" mode="pass3"/>
     <xsl:template match="@rend[.='Body Text']" mode="pass3"/>
     <xsl:template match="tei:p[@rend='FootnoteText']" mode="pass3">
         <xsl:apply-templates mode="pass3"/>
-    </xsl:template>
-
-  <!-- and copy everything else -->
+    </xsl:template><!-- and copy everything else -->
     <xsl:template match="@*|comment()|processing-instruction()|text()" mode="pass3">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -124,8 +115,7 @@
         <xsl:copy>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass3"/>
         </xsl:copy>
-    </xsl:template>
-  <!-- <xsl:template match="/">
+    </xsl:template><!-- <xsl:template match="/">
 
      <xsl:variable name="pass0">
        <xsl:apply-templates mode="pass0"/>

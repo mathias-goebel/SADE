@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop    html iso m mml mo mv o pic r rel     tbx tei teidocx v xs ve w10 w wne wp">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop    html iso m mml mo mv o pic r rel     tbx tei teidocx v xs ve w10 w wne wp">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for converting Word docx files to TEI </p>
@@ -124,9 +124,7 @@ of this software, even if advised of the possibility of such damage.
                         <s n="font-family">
                             <xsl:value-of select="w:rPr/w:rFonts/@w:ascii"/>
                         </s>
-                    </xsl:if>
-	    <!-- w:ascii="Courier New" w:hAnsi="Courier New" w:cs="Courier New" -->
-	    <!-- what do we want to do about cs (Complex Scripts), hAnsi (high ANSI), eastAsia etc? -->
+                    </xsl:if><!-- w:ascii="Courier New" w:hAnsi="Courier New" w:cs="Courier New" --><!-- what do we want to do about cs (Complex Scripts), hAnsi (high ANSI), eastAsia etc? -->
                 </xsl:if>
             </xsl:if>
             <xsl:if test="w:rPr/w:sz">
@@ -141,8 +139,7 @@ of this software, even if advised of the possibility of such damage.
                 </s>
             </xsl:if>
         </xsl:variable>
-        <xsl:variable name="dir">
-	<!-- right-to-left text -->
+        <xsl:variable name="dir"><!-- right-to-left text -->
             <xsl:if test="w:rPr/w:rtl or parent::w:p/w:pPr/w:rPr/w:rtl">
                 <xsl:text>rtl</xsl:text>
             </xsl:if>
@@ -218,7 +215,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:for-each select="$effects/*">
                                     <xsl:value-of select="."/>
                                     <xsl:if test="following-sibling::*">
-                                        <xsl:text> </xsl:text>
+                                        <xsl:text/>
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:attribute>
@@ -257,7 +254,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:choose>
                 <xsl:when test="@xml:space='preserve' and string-length(normalize-space(.))=0">
                     <seg>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </seg>
                 </xsl:when>
                 <xsl:when test="@xml:space='preserve'">
@@ -496,7 +493,7 @@ of this software, even if advised of the possibility of such damage.
     </desc>
     </doc>
     <xsl:template match="w:r/w:tab">
-        <xsl:text>	</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>
@@ -505,7 +502,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="w:r/w:ptab">
         <c rend="ptab" type="{@w:alignment}">
-            <xsl:text>	</xsl:text>
+            <xsl:text/>
         </c>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">

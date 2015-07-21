@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/2005/Atom" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="xhtml tei" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/2005/Atom" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xhtml tei" version="2.0">
     <xsl:import href="isoutils.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -50,7 +50,7 @@ of this software, even if advised of the possibility of such damage.
             <link href="http://tei.oucs.ox.ac.uk/TEIISO"/>
             <link rel="self" href="http://tei.oucs.ox.ac.uk/TEIISO/iso2atom.rss"/>
             <title>ISO Standards</title>
-            <subtitle>  </subtitle>
+            <subtitle/>
             <updated>
                 <xsl:value-of select="$today"/>
             </updated>
@@ -89,13 +89,13 @@ of this software, even if advised of the possibility of such damage.
             </content>
             <id>
                 <xsl:value-of select="$isoauthority"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="$isonumber"/>
                 <xsl:if test="not($isopart='')">
                     <xsl:text>-</xsl:text>
                     <xsl:value-of select="$isopart"/>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="$isoyear"/>
             </id>
             <link>
@@ -119,7 +119,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:text>-</xsl:text>
                     <xsl:value-of select="$isopart"/>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="$isoyear"/>
             </title>
             <updated>

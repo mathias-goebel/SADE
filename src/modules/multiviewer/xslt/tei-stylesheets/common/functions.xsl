@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:sch="http://purl.oclc.org/dsdl/schematron" version="2.0" exclude-result-prefixes="sch cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="sch cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI Utility stylesheet defining functions for use in all
@@ -415,23 +415,19 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="ancestor::*[@xml:space][1]/@xml:space='preserve'">
                 <xsl:value-of select="tei:escapeChars(.,parent::*)"/>
             </xsl:when>
-            <xsl:otherwise>
-        <!-- Retain one leading space if node isn't first, has
+            <xsl:otherwise><!-- Retain one leading space if node isn't first, has
 	     non-space content, and has leading space.-->
                 <xsl:if test="position()!=1 and          matches(.,'^\s') and          normalize-space()!=''">
                     <xsl:call-template name="space"/>
                 </xsl:if>
                 <xsl:value-of select="tei:escapeChars(normalize-space(.),parent::*)"/>
-                <xsl:choose>
-          <!-- node is an only child, and has content but it's all space -->
+                <xsl:choose><!-- node is an only child, and has content but it's all space -->
                     <xsl:when test="last()=1 and string-length()!=0 and      normalize-space()=''">
                         <xsl:call-template name="space"/>
-                    </xsl:when>
-          <!-- node isn't last, isn't first, and has trailing space -->
+                    </xsl:when><!-- node isn't last, isn't first, and has trailing space -->
                     <xsl:when test="position()!=1 and position()!=last() and matches(.,'\s$')">
                         <xsl:call-template name="space"/>
-                    </xsl:when>
-          <!-- node isn't last, is first, has trailing space, and has non-space content   -->
+                    </xsl:when><!-- node isn't last, is first, has trailing space, and has non-space content   -->
                     <xsl:when test="position()=1 and matches(.,'\s$') and normalize-space()!=''">
                         <xsl:call-template name="space"/>
                     </xsl:when>
@@ -440,7 +436,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:choose>
     </xsl:template>
     <xsl:template name="space">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>[common] allow for further handling of text. By default,
@@ -519,8 +515,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:when test="key('KEYS',$Word)/text[@lang3=$documentationLanguage]">
                             <xsl:value-of select="key('KEYS',$Word)/text[lang3=$documentationLanguage]"/>
                         </xsl:when>
-                        <xsl:otherwise>
-              <!--
+                        <xsl:otherwise><!--
 		    <xsl:if test="$verbose='true'">
 		    <xsl:message>NO TRANSLATION for <xsl:value-of 
 		    select="$word"/> in <xsl:value-of select="$documentationLanguage"/></xsl:message>
@@ -704,12 +699,10 @@ of this software, even if advised of the possibility of such damage.
             </xsl:variable>
             <xsl:choose>
                 <xsl:when test="normalize-space($who)=concat('$Author', '$')"/>
-                <xsl:when test="starts-with($who,'$Author')">
-          <!-- it's RCS -->
+                <xsl:when test="starts-with($who,'$Author')"><!-- it's RCS -->
                     <xsl:value-of select="normalize-space(substring-before(substring-after($who,'Author'),'$'))"/>
                 </xsl:when>
-                <xsl:when test="starts-with($who,'$LastChangedBy')">
-          <!-- it's Subversion -->
+                <xsl:when test="starts-with($who,'$LastChangedBy')"><!-- it's Subversion -->
                     <xsl:value-of select="normalize-space(substring-before(substring-after($who,'LastChangedBy:'),'$'))"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -738,16 +731,14 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:choose>
             </xsl:variable>
             <xsl:choose>
-                <xsl:when test="starts-with($when,'$Date')">
-          <!-- it's RCS -->
+                <xsl:when test="starts-with($when,'$Date')"><!-- it's RCS -->
                     <xsl:value-of select="substring($when,16,2)"/>
                     <xsl:text>/</xsl:text>
                     <xsl:value-of select="substring($when,13,2)"/>
                     <xsl:text>/</xsl:text>
                     <xsl:value-of select="substring($when,8,4)"/>
                 </xsl:when>
-                <xsl:when test="starts-with($when,'$LastChangedDate')">
-          <!-- it's Subversion-->
+                <xsl:when test="starts-with($when,'$LastChangedDate')"><!-- it's Subversion-->
                     <xsl:value-of select="substring-before(substring-after($when,'('),')')"/>
                 </xsl:when>
                 <xsl:when test="not($when='')">
@@ -993,10 +984,8 @@ of this software, even if advised of the possibility of such damage.
         <xsl:variable name="D">
             <xsl:for-each select="$context">
                 <xsl:variable name="langs" select="tei:generateDocumentationLang(.)"/>
-                <xsl:variable name="firstLang" select="($langs)[1]"/>
-      <!-- first the gloss -->
-                <xsl:sequence select="tei:makeGloss(.,$langs)"/>
-      <!-- now the description -->
+                <xsl:variable name="firstLang" select="($langs)[1]"/><!-- first the gloss -->
+                <xsl:sequence select="tei:makeGloss(.,$langs)"/><!-- now the description -->
                 <xsl:choose>
                     <xsl:when test="not(tei:desc)"/>
                     <xsl:when test="count(tei:desc)=1">
@@ -1038,8 +1027,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:choose>
                     <xsl:when test="$oddmode='tei'"/>
                     <xsl:when test="tei:valList[@type='open']">
-                        <xsl:text>
-</xsl:text>
+                        <xsl:text/>
                         <xsl:sequence select="tei:i18n('Sample values include')"/>
                         <xsl:text>: </xsl:text>
                         <xsl:for-each select="tei:valList/tei:valItem">
@@ -1067,8 +1055,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:for-each>
                     </xsl:when>
                     <xsl:when test="tei:valList[@type='semi']">
-                        <xsl:text>
-</xsl:text>
+                        <xsl:text/>
                         <xsl:sequence select="tei:i18n('Suggested values include')"/>
                         <xsl:text>: </xsl:text>
                         <xsl:for-each select="tei:valList/tei:valItem">
@@ -1101,7 +1088,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:for-each select="tei:listRef/tei:*">
                         <xsl:apply-templates select="." mode="weave"/>
                         <xsl:if test="following-sibling::tei:*">
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:text>]</xsl:text>
@@ -1242,9 +1229,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:for-each select="$context">
             <xsl:value-of select="if (tei:altIdent) then          normalize-space(tei:altIdent) else @ident"/>
         </xsl:for-each>
-    </xsl:function>
-
-    <!-- work out a name prefix for ODD objects -->
+    </xsl:function><!-- work out a name prefix for ODD objects -->
     <xsl:function name="tei:createSpecPrefix" as="xs:string">
         <xsl:param name="context"/>
         <xsl:variable name="result">

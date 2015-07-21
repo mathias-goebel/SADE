@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="fo a tei html s rng sch xsi teix xs" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="fo a tei html s rng sch xsi teix xs" version="2.0">
     <xsl:import href="../common2/verbatim.xsl"/>
     <xsl:import href="teiodds.xsl"/>
     <xsl:import href="../common2/tei.xsl"/>
@@ -89,8 +89,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template name="verbatim-lineBreak">
         <xsl:param name="id"/>
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:key match="tei:moduleSpec[@ident]" name="FILES" use="@ident"/>
     <xsl:variable name="top" select="/"/>
@@ -314,8 +313,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:text>&gt;</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-   <!-- debugging
+    </xsl:template><!-- debugging
 <xsl:template name="SHOW">
  <<xsl:value-of select="name()"/>
 <xsl:for-each select="@*">

@@ -60,25 +60,15 @@
      transformation, see RngToRncXml.xsl.
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<xsl:transform xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" version="2.0" exclude-result-prefixes="rng sch a">
-    <xsl:param name="top"/>
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- Parameters -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- collapse-lines:
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" version="2.0" exclude-result-prefixes="rng sch a">
+    <xsl:param name="top"/><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- Parameters --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- collapse-lines:
      If true, output constructs spanning multiple lines will be
      groupd into a single line unless it exceeds $line-width chars. -->
-    <xsl:param name="collapse-lines" select="true ()"/>
-   <!-- indent-width:
+    <xsl:param name="collapse-lines" select="true ()"/><!-- indent-width:
      The number of characters to indent at each indentation level -->
-    <xsl:param name="indent-width" select="3"/>
-   <!-- line-width:
+    <xsl:param name="indent-width" select="3"/><!-- line-width:
      see the group-lines parameter. -->
-    <xsl:param name="line-width" select="80"/>
-   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- $Id: RngToRnc.xsl 9513 2011-10-17 08:55:51Z rahtz $ -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    <xsl:param name="line-width" select="80"/><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- $Id: RngToRnc.xsl 9513 2011-10-17 08:55:51Z rahtz $ --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
      Copyright (c) 2002, Pantor Engineering AB
      All rights reserved.
@@ -113,11 +103,9 @@
      OUT OF  THE  USE OF   THIS  SOFTWARE,  EVEN IF ADVISED   OF   THE
      POSSIBILITY OF SUCH DAMAGE.
 
-     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      Created by David.Rosenborg@pantor.com
-     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
      RngToRncXml.xsl converts a RELAX NG schema in XML syntax to an
      XML representation of the compact syntax.
@@ -143,23 +131,16 @@
        must be declared to the same namespace URI for both
        occurrences.
 
-     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- Parameters -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- rewrite-suffix:
+     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- Parameters --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- rewrite-suffix:
      If true and the value of an href attribute ends with '.rng', the
      suffix will be replace by the string '.rnc'. -->
-    <xsl:param name="rewrite-suffix" select="true ()"/>
-   <!-- retain-prefixes:
+    <xsl:param name="rewrite-suffix" select="true ()"/><!-- retain-prefixes:
      If true, namespace declarations will use prefixes from the source
      document if possible. (Doesn't work with MSXML 4.0 or Xalan-J 2.4.0) -->
-    <xsl:param name="retain-prefixes" select="system-property ('xsl:vendor') != 'Microsoft' and     not (starts-with (system-property ('xsl:vendor'), 'Apache'))"/>
-   <!-- default-ns:
+    <xsl:param name="retain-prefixes" select="system-property ('xsl:vendor') != 'Microsoft' and     not (starts-with (system-property ('xsl:vendor'), 'Apache'))"/><!-- default-ns:
      The uri of the default namespace. There must be at least one
      ns attribute in the schema containing this uri. -->
-    <xsl:param name="default-ns" select="string (/descendant::rng:*[@ns][1]/@ns)"/>
-   <!-- prefixes:
+    <xsl:param name="default-ns" select="string (/descendant::rng:*[@ns][1]/@ns)"/><!-- prefixes:
     A space separated list of prefix mappings: prefix '=' namespace-uri.
     Note: Since space is used as a delimiter, no space is allowed 
     immediately before or after the equal sign. Example: 
@@ -171,8 +152,7 @@
     parameter has higher precedence than the prefixes declared
     in the prefix-map parameter and those found in the schema.
   -->
-    <xsl:param name="prefixes"/>
-   <!-- prefix-map:
+    <xsl:param name="prefixes"/><!-- prefix-map:
      A node set containing element nodes like:
 
      <ns prefix="x">http://example.org/x</ns>
@@ -182,8 +162,7 @@
      source schema. A prefix must not be the empty string. Also, it
      must not conflict with any other prefixes in the map or in the
      schema. -->
-    <xsl:param name="prefix-map" select="/.."/>
-   <!-- recursive:
+    <xsl:param name="prefix-map" select="/.."/><!-- recursive:
      If true, recursively process includes and external
      references. Note: no include logic is applied. The external
      schemas are simply structurally included, wrapped in an <external>
@@ -207,8 +186,7 @@
             <xsl:value-of select="string-length ($text)"/>
         </xsl:attribute>
         <xsl:value-of select="$text"/>
-    </xsl:template>
-   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    </xsl:template><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <xsl:key name="prefix" match="rng:element/@name [contains (., ':')] | rng:attribute/@name [contains (., ':')]" use="substring-before (., ':')"/>
     <xsl:key name="ns" match="*" use="namespace::*"/>
     <xsl:key name="annot-ns" match="*[not (self::rng:*)]" use="namespace-uri (.)"/>
@@ -227,8 +205,7 @@
     <xsl:variable name="has-default-ns" select="boolean ($default-ns-nd)"/>
     <xsl:variable name="has-local" select="not (key ('prefix', 'local'))"/>
     <xsl:template name="make-compact-schema">
-        <compact-schema>
-<!-- Declarations -->
+        <compact-schema><!-- Declarations -->
             <xsl:if test="$has-default-ns">
                 <xsl:call-template name="make-ns-declaration">
                     <xsl:with-param name="is-default" select="true ()"/>
@@ -242,8 +219,7 @@
                     <xsl:with-param name="uri" select="''"/>
                 </xsl:call-template>
             </xsl:if>
-            <xsl:call-template name="inhnamespace"/>
-         <!--
+            <xsl:call-template name="inhnamespace"/><!--
       <xsl:choose>
 	<xsl:when test="$retain-prefixes">
 	  <xsl:for-each select="//*">
@@ -359,8 +335,7 @@
 	</xsl:if>
       </xsl:for-each>
 -->
-            <nl size="1"/>
-         <!-- Pattern -->
+            <nl size="1"/><!-- Pattern -->
             <xsl:apply-templates mode="RNC"/>
         </compact-schema>
     </xsl:template>
@@ -935,10 +910,7 @@
             <xsl:with-param name="patterns" select="$patterns"/>
             <xsl:with-param name="operator" select="','"/>
         </xsl:call-template>
-    </xsl:template>
-   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- Name class -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    </xsl:template><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- Name class --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <xsl:template name="name-class">
         <xsl:param name="is-attr" select="false ()"/>
         <nc>
@@ -1065,18 +1037,14 @@
                     <xsl:with-param name="nd" select="$ns"/>
                 </xsl:call-template>
                 <xsl:text>:</xsl:text>
-            </xsl:when>
-         <!--
+            </xsl:when><!--
       <xsl:when test="$is-attr or $has-default-ns">
         <xsl:text>inh:</xsl:text>
       </xsl:when>
 -->
         </xsl:choose>
         <xsl:value-of select="$name"/>
-    </xsl:template>
-   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- Util -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    </xsl:template><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- Util --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <xsl:template name="last-token">
         <xsl:param name="str"/>
         <xsl:param name="pos" select="string-length ($str)"/>
@@ -1178,13 +1146,9 @@
         <xsl:param name="name"/>
         <xsl:if test="$name = $keywords">\</xsl:if>
         <xsl:value-of select="$name"/>
-    </xsl:template>
-   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- Annotations -->
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    </xsl:template><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><!-- Annotations --><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <xsl:template name="leading-documentation">
-        <xsl:param name="nd"/>
-      <!--
+        <xsl:param name="nd"/><!--
     <xsl:choose>
       <xsl:when test="not ($nd) or $nd/self::rng:*"/>
 
@@ -1227,8 +1191,7 @@
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
-    <xsl:template name="annotations">
-<!--
+    <xsl:template name="annotations"><!--
     <xsl:choose>
       <xsl:when test="(self::rng:value or self::rng:param) and
 	following-sibling::*[1][not (self::rng:*)]">
@@ -1253,11 +1216,9 @@
 	<nl size="1"/>
       </xsl:when>
     </xsl:choose>
--->
-    </xsl:template>
+--></xsl:template>
     <xsl:template name="doc-comment">
-        <xsl:param name="comment"/>
-      <!--
+        <xsl:param name="comment"/><!--
     <xsl:if test="$comment">
       <xsl:variable name="head" select="substring-before ($comment, '
 ')"/>
@@ -1416,12 +1377,11 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="sp" mode="keep">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:variable name="spaces" select="concat (     '                                        ',     '                                        '     )"/>
     <xsl:template match="nl" mode="keep">
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
         <xsl:variable name="level" select="count (ancestor::indent)"/>
         <xsl:variable name="following-op" select="following-sibling::*[1][self::op]"/>
         <xsl:choose>
@@ -1434,7 +1394,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="sp | nl" mode="flatten">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="ref" mode="flatten">
         <xsl:variable name="me">
@@ -1452,8 +1412,7 @@
                     <xsl:value-of select="@name"/>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>
-      <!--
+        </xsl:variable><!--
 <xsl:message>FROM <xsl:value-of select="@name"/> to <xsl:value-of
     select="$me"/>, <xsl:for-each select="$top"><xsl:value-of 
 select="count(key('IDENTS',$me))"/></xsl:for-each></xsl:message>

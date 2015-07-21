@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.ascc.net/xml/schematron">
-	<!-- queryBinding="xslt2" -->
+<schema xmlns="http://www.ascc.net/xml/schematron"><!-- queryBinding="xslt2" -->
     <title>Extension rules for ISO standards</title>
     <ns prefix="i" uri="http://www.iso.org/ns/1.0"/>
     <ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>

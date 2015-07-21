@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>This software is dual-licensed:
@@ -38,9 +38,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: from.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-
-  <!-- 
+    </doc><!-- 
        
        P4 to P5 converter 
        
@@ -77,10 +75,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="text()">
         <xsl:value-of select="."/>
-    </xsl:template>
-  
-  
-  <!-- change of name, or replaced by another element -->
+    </xsl:template><!-- change of name, or replaced by another element -->
     <xsl:template match="teiCorpus.2">
         <teiCorpus>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
@@ -161,10 +156,7 @@ of this software, even if advised of the possibility of such damage.
         <refState>
             <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
         </refState>
-    </xsl:template>
-  
-  
-  <!-- lost elements -->
+    </xsl:template><!-- lost elements -->
     <xsl:template match="dateRange">
         <date>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
@@ -185,17 +177,10 @@ of this software, even if advised of the possibility of such damage.
             </xsl:if>
             <xsl:apply-templates select="*|processing-instruction()|comment()|text()"/>
         </xsl:element>
-    </xsl:template>
-  
-  <!-- attributes lost -->
-  <!-- dropped from TEI. Added as new change records later -->
+    </xsl:template><!-- attributes lost --><!-- dropped from TEI. Added as new change records later -->
     <xsl:template match="@date.created"/>
-    <xsl:template match="@date.updated"/>
-  
-  <!-- dropped from TEI. No replacement -->
-    <xsl:template match="refsDecl/@doctype"/>
-  
-  <!-- attributes changed name -->
+    <xsl:template match="@date.updated"/><!-- dropped from TEI. No replacement -->
+    <xsl:template match="refsDecl/@doctype"/><!-- attributes changed name -->
     <xsl:template match="date/@value">
         <xsl:attribute name="when">
             <xsl:value-of select="."/>
@@ -240,9 +225,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:attribute name="cert">
             <xsl:value-of select="."/>
         </xsl:attribute>
-    </xsl:template>
-  
-  <!-- all pointing attributes preceded by # -->
+    </xsl:template><!-- all pointing attributes preceded by # -->
     <xsl:template match="variantEncoding/@location">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -261,7 +244,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="contains($val,' ')">
                 <xsl:text>#</xsl:text>
                 <xsl:value-of select="substring-before($val,' ')"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:call-template name="splitter">
                     <xsl:with-param name="val">
                         <xsl:value-of select="substring-after($val,' ')"/>
@@ -273,13 +256,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="$val"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  
-  
-  <!-- fool around with selected elements -->
-  
-
- <!-- imprint is no longer allowed inside bibl -->
+    </xsl:template><!-- fool around with selected elements --><!-- imprint is no longer allowed inside bibl -->
     <xsl:template match="bibl/imprint">
         <xsl:apply-templates/>
     </xsl:template>
@@ -292,9 +269,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates/>
             </name>
         </respStmt>
-    </xsl:template>
-  
-  <!-- header -->
+    </xsl:template><!-- header -->
     <xsl:template match="teiHeader">
         <teiHeader>
             <xsl:apply-templates select="@*|*|comment()|processing-instruction()"/>
@@ -319,8 +294,7 @@ of this software, even if advised of the possibility of such damage.
                         </change>
                     </xsl:if>
                 </revisionDesc>
-            </xsl:if>
-      <!--
+            </xsl:if><!--
 	  <change when="{$today}">Converted to TEI P5 XML by p4top5.xsl
 	  written by Sebastian
 	  Rahtz at Oxford University Computing Services.</change>
@@ -336,23 +310,18 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="publicationStmt">
         <publicationStmt>
-            <xsl:apply-templates select="@*|*|comment()|processing-instruction()"/>
-      <!--
+            <xsl:apply-templates select="@*|*|comment()|processing-instruction()"/><!--
 	  <availability>
 	  <p>Licensed under <ptr target="http://creativecommons.org/licenses/by-sa/2.0/uk/"/></p>
 	  </availability>
       -->
         </publicationStmt>
-    </xsl:template>
-  
- <!-- space does not have @extent any more -->
+    </xsl:template><!-- space does not have @extent any more -->
     <xsl:template match="space/@extent">
         <xsl:attribute name="quantity">
             <xsl:value-of select="."/>
         </xsl:attribute>
-    </xsl:template>
-
-  <!-- tagsDecl has a compulsory namespace child now -->
+    </xsl:template><!-- tagsDecl has a compulsory namespace child now -->
     <xsl:template match="tagsDecl">
         <xsl:if test="*">
             <tagsDecl>
@@ -361,17 +330,11 @@ of this software, even if advised of the possibility of such damage.
                 </namespace>
             </tagsDecl>
         </xsl:if>
-    </xsl:template>
-  
-  <!-- orgTitle inside orgName? redundant -->
+    </xsl:template><!-- orgTitle inside orgName? redundant -->
     <xsl:template match="orgName/orgTitle">
         <xsl:apply-templates/>
-    </xsl:template>
-
- <!-- no need for empty <p> in sourceDesc -->
-    <xsl:template match="sourceDesc/p[string-length(.)=0]"/>
-  
-  <!-- start creating the new choice element -->
+    </xsl:template><!-- no need for empty <p> in sourceDesc -->
+    <xsl:template match="sourceDesc/p[string-length(.)=0]"/><!-- start creating the new choice element -->
     <xsl:template match="corr[@sic]">
         <choice>
             <corr>
@@ -416,9 +379,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="@abbr"/>
             </abbr>
         </choice>
-    </xsl:template>
-  
-  <!-- special consideration for <change> element -->
+    </xsl:template><!-- special consideration for <change> element -->
     <xsl:template match="change">
         <change>
             <xsl:apply-templates select="item/@*"/>
@@ -453,8 +414,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates/>
-                    <name>
-	  </name>
+                    <name/>
                 </xsl:otherwise>
             </xsl:choose>
         </respStmt>
@@ -464,10 +424,7 @@ of this software, even if advised of the possibility of such damage.
         <q>
             <xsl:apply-templates select="@*|*|comment()|processing-instruction()|text()"/>
         </q>
-    </xsl:template>
-
-  
-<!-- if we are reading the P4 with a DTD,
+    </xsl:template><!-- if we are reading the P4 with a DTD,
        we need to avoid copying the default values
        of attributes -->
     <xsl:template match="@targOrder">
@@ -565,9 +522,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="."/>
             </xsl:attribute>
         </xsl:if>
-    </xsl:template>
-  
-  <!-- yes|no to boolean -->
+    </xsl:template><!-- yes|no to boolean -->
     <xsl:template match="@anchored">
         <xsl:attribute name="anchored">
             <xsl:choose>
@@ -591,18 +546,14 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test=".='yes'">
             <xsl:attribute name="scheme">TEI</xsl:attribute>
         </xsl:if>
-    </xsl:template>
-
-<!-- assorted atts -->
+    </xsl:template><!-- assorted atts -->
     <xsl:template match="@old"/>
     <xsl:template match="xref/@from"/>
     <xsl:template match="@mergedin">
         <xsl:attribute name="mergedIn">
             <xsl:value-of select="."/>
         </xsl:attribute>
-    </xsl:template>
-
-<!-- deal with the loss of div0 -->
+    </xsl:template><!-- deal with the loss of div0 -->
     <xsl:template match="div1|div2|div3|div4|div5|div6">
         <xsl:variable name="divName">
             <xsl:choose>
@@ -623,9 +574,7 @@ of this software, even if advised of the possibility of such damage.
         <div1>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
         </div1>
-    </xsl:template>
-
-<!-- from Conal Tuohy -->
+    </xsl:template><!-- from Conal Tuohy -->
     <xsl:template match="orig[@reg]">
         <choice>
             <orig>
@@ -646,22 +595,16 @@ of this software, even if advised of the possibility of such damage.
             </orig>
         </choice>
     </xsl:template>
-    <xsl:template match="@orig|@reg"/>
-
-<!-- remove default values for attributes -->
+    <xsl:template match="@orig|@reg"/><!-- remove default values for attributes -->
     <xsl:template match="cell/@role[.='data']"/>
     <xsl:template match="cell/@rows[.='1']"/>
     <xsl:template match="cell/@cols[.='1']"/>
-    <xsl:template match="q/@broken[.='no']"/>
-
-<!-- from CES -->
+    <xsl:template match="q/@broken[.='no']"/><!-- from CES -->
     <xsl:template match="cesdoc">
         <cesDoc>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
         </cesDoc>
-    </xsl:template>
-
-<!-- from OTA DTD -->
+    </xsl:template><!-- from OTA DTD -->
     <xsl:template match="spkr">
         <speaker>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
@@ -671,9 +614,7 @@ of this software, even if advised of the possibility of such damage.
         <floatingText type="letter">
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>
         </floatingText>
-    </xsl:template>
-
-<!-- from OUCS -->
+    </xsl:template><!-- from OUCS -->
     <xsl:template match="Code">
         <code>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tite="http://www.tei-c.org/ns/tite/1.0" exclude-result-prefixes="xsl tei" version="1.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tite="http://www.tei-c.org/ns/tite/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xsl tei" version="1.0">
     <xsl:template name="b">
         <hi rend="bold">
             <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:ooo="http://openoffice.org/2004/office" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="office style text table draw fo xlink dc       meta number tei svg chart dr3d math form       script ooo ooow oooc dom xforms xs xsd xsi" office:version="1.0" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="office style text table draw fo xlink dc       meta number tei svg chart dr3d math form       script ooo ooow oooc dom xforms xs xsd xsi" office:version="1.0" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for making TEI files from
@@ -48,9 +48,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:key match="text:h" name="Headings" use="text:outline-level"/>
     <xsl:param name="debug">false</xsl:param>
     <xsl:param name="dir">.</xsl:param>
-    <xsl:output encoding="utf-8" indent="no"/>
-
-  <!--  <xsl:strip-space elements="text:span"/>-->
+    <xsl:output encoding="utf-8" indent="no"/><!--  <xsl:strip-space elements="text:span"/>-->
     <xsl:variable name="META">
         <xsl:choose>
             <xsl:when test="doc-available(concat($dir,'/meta.xml'))">
@@ -78,8 +76,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:choose>
     </xsl:variable>
     <xsl:template match="*" mode="summary">
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
         <xsl:for-each select="ancestor::*">
             <xsl:text>.</xsl:text>
         </xsl:for-each>
@@ -207,9 +204,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="/office:document-content/office:body">
         <xsl:apply-templates/>
-    </xsl:template>
-
-  <!-- sections -->
+    </xsl:template><!-- sections -->
     <xsl:template match="text:h">
         <xsl:choose>
             <xsl:when test="ancestor::text:note-body">
@@ -262,9 +257,7 @@ of this software, even if advised of the possibility of such damage.
                 </HEAD>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  
-  <!-- special case paragraphs -->
+    </xsl:template><!-- special case paragraphs -->
     <xsl:template match="text:p[@text:style-name='XMLComment']">
         <xsl:comment>
             <xsl:value-of select="."/>
@@ -347,10 +340,7 @@ of this software, even if advised of the possibility of such damage.
         <note>
             <xsl:apply-templates/>
         </note>
-    </xsl:template>
-
-
-  <!-- normal paragraphs -->
+    </xsl:template><!-- normal paragraphs -->
     <xsl:template match="text:p">
         <xsl:choose>
             <xsl:when test="parent::text:list-item">
@@ -377,9 +367,7 @@ of this software, even if advised of the possibility of such damage.
                 </p>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-  <!-- lists -->
+    </xsl:template><!-- lists -->
     <xsl:template match="text:list">
         <xsl:variable name="style">
             <xsl:for-each select="key('LISTS',@text:style-name)[1]">
@@ -439,9 +427,7 @@ of this software, even if advised of the possibility of such damage.
         <GLOSS n="label">
             <xsl:apply-templates/>
         </GLOSS>
-    </xsl:template>
-
-  <!-- inline -->
+    </xsl:template><!-- inline -->
     <xsl:template match="text:span">
         <xsl:variable name="Style">
             <xsl:value-of select="@text:style-name"/>
@@ -553,9 +539,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:variable name="contents">
                     <xsl:apply-templates/>
                 </xsl:variable>
-                <xsl:for-each select="key('STYLES',$name)">
-
-    <!--! <xsl:for-each select="style:text-properties/@*">
+                <xsl:for-each select="key('STYLES',$name)"><!--! <xsl:for-each select="style:text-properties/@*">
     <xsl:value-of select="name(.)"/>:        <xsl:value-of select="."/>
 
     </xsl:for-each>
@@ -596,9 +580,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-  <!-- tables -->
+    </xsl:template><!-- tables -->
     <xsl:template match="table:table">
         <table rend="frame">
             <xsl:if test="@table:name and not(@table:name = 'local-table')">
@@ -682,10 +664,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:if>
             <xsl:apply-templates/>
         </cell>
-    </xsl:template>
-
-
-  <!-- notes -->
+    </xsl:template><!-- notes -->
     <xsl:template match="text:note-citation"/>
     <xsl:template match="text:note-body">
         <xsl:apply-templates/>
@@ -717,9 +696,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:if>
             <xsl:apply-templates/>
         </note>
-    </xsl:template>
-
-  <!-- drawing -->
+    </xsl:template><!-- drawing -->
     <xsl:template match="draw:plugin">
         <ptr target="{@xlink:href}"/>
     </xsl:template>
@@ -779,10 +756,7 @@ of this software, even if advised of the possibility of such damage.
         <binaryObject mimeType="image/jpg">
             <xsl:value-of select="."/>
         </binaryObject>
-    </xsl:template>
-
-
-  <!-- linking -->
+    </xsl:template><!-- linking -->
     <xsl:template match="text:a">
         <xsl:choose>
             <xsl:when test="starts-with(@xlink:href,'mailto:')">
@@ -839,7 +813,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:choose>
     </xsl:template>
     <xsl:template match="text:tab">
-        <xsl:text>	</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="text:reference-ref">
         <ptr target="#id_{@text:ref-name}"/>
@@ -949,8 +923,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="@text:name"/>
             </xsl:attribute>
         </anchor>
-    </xsl:template>
-  <!--
+    </xsl:template><!--
 These seem to have no obvious translation
 -->
     <xsl:template match="text:endnotes-configuration"/>
@@ -963,10 +936,7 @@ These seem to have no obvious translation
     <xsl:template match="text:outline-level-style"/>
     <xsl:template match="text:outline-style"/>
     <xsl:template match="text:s"/>
-    <xsl:template match="text:*"> [[[UNTRANSLATED <xsl:value-of select="name(.)"/>:     <xsl:apply-templates/>]]] </xsl:template>
-
-
-  <!-- sections of the OO format we don't need at present -->
+    <xsl:template match="text:*"> [[[UNTRANSLATED <xsl:value-of select="name(.)"/>:     <xsl:apply-templates/>]]] </xsl:template><!-- sections of the OO format we don't need at present -->
     <xsl:template match="office:automatic-styles"/>
     <xsl:template match="office:font-decls"/>
     <xsl:template match="office:meta"/>
@@ -983,9 +953,7 @@ These seem to have no obvious translation
     <xsl:template match="meta:editing-cycles"/>
     <xsl:template match="meta:editing-duration"/>
     <xsl:template match="meta:generator"/>
-    <xsl:template match="meta:user-defined"/>
-
-  <!--
+    <xsl:template match="meta:user-defined"/><!--
 <xsl:template match="text()">
   <xsl:apply-templates select="normalize-space(.)"/>
 </xsl:template>
@@ -1031,8 +999,7 @@ These seem to have no obvious translation
             <xsl:variable name="Body">
                 <HEAD level="1" magic="true">Start</HEAD>
                 <xsl:apply-templates/>
-            </xsl:variable>
-      <!-- debug
+            </xsl:variable><!-- debug
       <xsl:result-document href="/tmp/temp.xml">
 	<xsl:copy-of select="$Body"/>
       </xsl:result-document>
@@ -1127,8 +1094,7 @@ These seem to have no obvious translation
         <xsl:if test="preceding-sibling::tei:HEAD">
             <xsl:variable name="prev" select="xs:integer(number(preceding-sibling::tei:HEAD[1]/@level))"/>
             <xsl:variable name="current" select="xs:integer(number(@level))"/>
-            <xsl:if test="($current - $prev) &gt;1 ">
-	  <!--<xsl:message>Walk from <xsl:value-of select="$prev"/> to <xsl:value-of select="$current"/></xsl:message>-->
+            <xsl:if test="($current - $prev) &gt;1 "><!--<xsl:message>Walk from <xsl:value-of select="$prev"/> to <xsl:value-of select="$current"/></xsl:message>-->
                 <xsl:for-each select="$prev + 1   to $current - 1 ">
                     <HEAD interpolated="true" level="{.}"/>
                 </xsl:for-each>
@@ -1142,10 +1108,7 @@ These seem to have no obvious translation
         <xsl:copy>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass1"/>
         </xsl:copy>
-    </xsl:template>
-
-
-  <!-- second pass -->
+    </xsl:template><!-- second pass -->
     <xsl:template match="tei:p[not(*) and normalize-space(.)='']" mode="pass2"/>
     <xsl:template match="@*|comment()|processing-instruction()" mode="pass2">
         <xsl:copy-of select="."/>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all">
-
-  <!--
+<xsl:stylesheet xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exist="http://exist.sourceforge.net/NS/exist" xmlns:xlink="http://www.w3.org/1999/xlink" version="2.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all"><!--
         Written by Martin Holmes, University of Victoria Humanities Computing and 
     Media Centre, beginning in 2008.
     
@@ -27,8 +25,7 @@
         <article dtd-version="3.0">
             <xsl:if test="TEI/@xml:lang">
                 <xsl:copy-of select="TEI/@xml:lang"/>
-            </xsl:if>
-<!-- We have an ontology of TEI contribution types; this does not match 
+            </xsl:if><!-- We have an ontology of TEI contribution types; this does not match 
      NLM at all. In NLM 3.0, the list of article-type values is suggested but 
      not fixed, so we can use those which are appropriate, and use our own 
      where there's no match. In 2.3, the list is fixed, so we'd have to convert 
@@ -91,13 +88,8 @@
                 <xsl:otherwise>
                     <xsl:attribute name="article-type">other</xsl:attribute>
                 </xsl:otherwise>
-            </xsl:choose>
-        
-      
-      <!--      This is the metadata block, essentially. -->
-            <xsl:element name="front">
-
-        <!-- Here we dig through the teiHeader to extract what we need to create journal metadata
+            </xsl:choose><!--      This is the metadata block, essentially. -->
+            <xsl:element name="front"><!-- Here we dig through the teiHeader to extract what we need to create journal metadata
      and article metadata. First, journal metadata: -->
                 <xsl:element name="journal-meta">
                     <journal-id journal-id-type="publisher">
@@ -128,9 +120,7 @@
                             </xsl:choose>
                         </publisher-name>
                     </publisher>
-                </xsl:element>
-
-        <!--        Next, article metadata. -->
+                </xsl:element><!--        Next, article metadata. -->
                 <xsl:element name="article-meta">
                     <article-id pub-id-type="other">
                         <xsl:value-of select="TEI/@xml:id"/>
@@ -188,29 +178,20 @@
                     </issue>
                     <elocation-id>
                         <xsl:value-of select="TEI/teiHeader[1]/fileDesc[1]/publicationStmt[1]/idno[@type='itemNo']/@n"/>
-                    </elocation-id>
-
-<!-- If there is an abstract, copy it in here for the sake of completeness. -->
+                    </elocation-id><!-- If there is an abstract, copy it in here for the sake of completeness. -->
                     <xsl:if test="TEI/text/body/div[@type='abstract']">
                         <abstract>
                             <xsl:apply-templates select="TEI/text/body/div[@type='abstract']/*"/>
                         </abstract>
-                    </xsl:if>
-
-<!--        Right now, profilDesc only contains keywords, but other templates 
+                    </xsl:if><!--        Right now, profilDesc only contains keywords, but other templates 
             might be added later. -->
                     <xsl:apply-templates select="TEI/teiHeader/profileDesc"/>
                 </xsl:element>
-            </xsl:element>
-
-      <!--Here's the meat of the document. -->
+            </xsl:element><!--Here's the meat of the document. -->
             <xsl:element name="body">
                 <xsl:apply-templates select="TEI/text/body"/>
-            </xsl:element>
-
-      <!--      This will contain the appendices, reference list, etc. -->
-            <xsl:element name="back">
-<!-- Appendices first. -->
+            </xsl:element><!--      This will contain the appendices, reference list, etc. -->
+            <xsl:element name="back"><!-- Appendices first. -->
                 <xsl:if test="TEI/text/back/div[@type='appendix']">
                     <xsl:element name="app-group">
                         <xsl:for-each select="TEI/text/back/div[@type='appendix']">
@@ -222,17 +203,13 @@
                             </xsl:element>
                         </xsl:for-each>
                     </xsl:element>
-                </xsl:if>
-        
-<!-- Reference list        -->
+                </xsl:if><!-- Reference list        -->
                 <xsl:if test="TEI/text/back/div[@type='bibliogr']">
                     <xsl:variable name="bibl" select="TEI/text/back/div[@type='bibliogr']"/>
-                    <xsl:element name="ref-list">
-<!-- If there's no title tag, we have to add an empty one. -->
+                    <xsl:element name="ref-list"><!-- If there's no title tag, we have to add an empty one. -->
                         <title>
                             <xsl:value-of select="$bibl/head"/>
-                        </title>
-<!-- Now process each of the reference items. -->
+                        </title><!-- Now process each of the reference items. -->
                         <xsl:for-each select="$bibl/listBibl/biblStruct">
                             <xsl:apply-templates select="."/>
                         </xsl:for-each>
@@ -240,9 +217,7 @@
                 </xsl:if>
             </xsl:element>
         </article>
-    </xsl:template>
-  
-<!-- Handling of items in profileDesc. -->
+    </xsl:template><!-- Handling of items in profileDesc. -->
     <xsl:template match="profileDesc">
         <xsl:apply-templates/>
     </xsl:template>
@@ -282,13 +257,9 @@
                 </year>
             </xsl:if>
         </xsl:element>
-    </xsl:template>
-  
-<!-- Block-level templates. -->
-<!--  Document divisions/sections. -->
+    </xsl:template><!-- Block-level templates. --><!--  Document divisions/sections. -->
     <xsl:template match="div">
-        <xsl:element name="sec">
-<!-- If there's no title tag, we have to add an empty one. -->
+        <xsl:element name="sec"><!-- If there's no title tag, we have to add an empty one. -->
             <xsl:if test="not(child::head)">
                 <title/>
             </xsl:if>
@@ -319,9 +290,7 @@
                 <xsl:apply-templates/>
             </p>
         </xsl:element>
-    </xsl:template>
-  
-    <!-- Tables are simple for the moment, but they'll get complicated. -->
+    </xsl:template><!-- Tables are simple for the moment, but they'll get complicated. -->
     <xsl:template match="table">
         <xsl:element name="table-wrap">
             <xsl:if test="@rend">
@@ -360,34 +329,23 @@
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  
-<!-- Suppress handling of the table caption (head), because the NLM model moves it 
+    </xsl:template><!-- Suppress handling of the table caption (head), because the NLM model moves it 
      into the parent table-wrap element, so we have to handle it at that point
      (above). -->
-    <xsl:template match="table/head"/>
-  
-<!--  Low-level element templates. -->
-  
-<!-- Copy xml:id to id attribute in output. -->
+    <xsl:template match="table/head"/><!--  Low-level element templates. --><!-- Copy xml:id to id attribute in output. -->
     <xsl:template match="@xml:id">
         <xsl:attribute name="id" select="."/>
-    </xsl:template>
-  
-<!-- Copy xml:lang to output. -->
+    </xsl:template><!-- Copy xml:lang to output. -->
     <xsl:template match="@xml:lang">
         <xsl:copy-of select="."/>
-    </xsl:template>
-  
-<!-- Quotations. Our TEI model is more sophisticated that NLM here; we need 
+    </xsl:template><!-- Quotations. Our TEI model is more sophisticated that NLM here; we need 
 to simplify a bit. -->
     <xsl:template match="cit">
         <xsl:if test="quote">
             <xsl:element name="disp-quote">
                 <xsl:if test="@rend">
                     <xsl:attribute name="specific-use" select="@rend"/>
-                </xsl:if>
-<!-- If the quote is already divided into paragraphs, we can simply process
+                </xsl:if><!-- If the quote is already divided into paragraphs, we can simply process
      it; if not, we must supply a p tag, because NLM requires a block tag 
      inside disp-quote. -->
                 <xsl:choose>
@@ -411,39 +369,30 @@ to simplify a bit. -->
             <xsl:apply-templates select="ref"/>
         </xsl:if>
     </xsl:template>
-    <xsl:template match="ref">
-<!-- For ref elements, we need to distinguish between internal and external 
+    <xsl:template match="ref"><!-- For ref elements, we need to distinguish between internal and external 
 because NLM handles them differently. -->
-        <xsl:choose>
-<!-- Internal reference. -->
+        <xsl:choose><!-- Internal reference. -->
             <xsl:when test="starts-with(@target, '#')">
                 <xsl:element name="xref">
                     <xsl:variable name="targId" select="substring-after(@target, '#')"/>
-                    <xsl:attribute name="rid" select="$targId"/>
-<!-- If it's a reference to a biblStruct element in the back matter, then it should 
+                    <xsl:attribute name="rid" select="$targId"/><!-- If it's a reference to a biblStruct element in the back matter, then it should 
 be given the recommended @ref-type. -->
                     <xsl:if test="//back//biblStruct[@xml:id = $targId]">
                         <xsl:attribute name="ref-type">bibr</xsl:attribute>
-                    </xsl:if>
-          
-<!-- We have to be careful of embedded tags, because xref has a very 
+                    </xsl:if><!-- We have to be careful of embedded tags, because xref has a very 
      impoverished content model. -->
                     <xsl:apply-templates/>
                 </xsl:element>
-            </xsl:when>
-<!-- External reference. -->
+            </xsl:when><!-- External reference. -->
             <xsl:otherwise>
                 <xsl:element name="ext-link">
-                    <xsl:attribute name="xlink:href" select="@target"/>
-<!-- We have to be careful of embedded tags, because ext-link has a very 
+                    <xsl:attribute name="xlink:href" select="@target"/><!-- We have to be careful of embedded tags, because ext-link has a very 
      impoverished content model. -->
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  
-<!-- Abbreviations.  -->
+    </xsl:template><!-- Abbreviations.  -->
     <xsl:template match="choice[abbr]">
         <xsl:apply-templates select="abbr"/>
     </xsl:template>
@@ -472,10 +421,7 @@ be given the recommended @ref-type. -->
                 <xsl:value-of select="."/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  
-  
-<!-- Name elements are complicated, because we distinguish them by type, 
+    </xsl:template><!-- Name elements are complicated, because we distinguish them by type, 
      but NLM makes a distinction between the names of people and other 
      types of name. The only appropriate NLM element I can find for the latter
      is named-content. 
@@ -508,9 +454,7 @@ be given the recommended @ref-type. -->
             <xsl:attribute name="content-type" select="@type"/>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-  
-<!-- Notes (footnotes/endnotes). -->
+    </xsl:template><!-- Notes (footnotes/endnotes). -->
     <xsl:template match="note">
         <xsl:element name="fn">
             <xsl:choose>
@@ -524,9 +468,7 @@ be given the recommended @ref-type. -->
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
-    </xsl:template>
-  
-<!-- Figures and graphics. -->
+    </xsl:template><!-- Figures and graphics. -->
     <xsl:template match="figure">
         <xsl:element name="fig">
             <xsl:if test="@xml:id">
@@ -546,9 +488,7 @@ be given the recommended @ref-type. -->
         <xsl:element name="graphic">
             <xsl:attribute name="xlink:href" select="@url"/>
         </xsl:element>
-    </xsl:template>
-  
-<!-- Verse lines and groups. -->
+    </xsl:template><!-- Verse lines and groups. -->
     <xsl:template match="lg">
         <xsl:element name="verse-group">
             <xsl:apply-templates/>
@@ -558,25 +498,16 @@ be given the recommended @ref-type. -->
         <xsl:element name="verse-line">
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-  
-  
-<!-- Bibliographical items. -->
+    </xsl:template><!-- Bibliographical items. -->
     <xsl:template match="listBibl/biblStruct">
-        <ref id="{@xml:id}">
-<!-- Now the hard bit. NLM's model is radically different from TEI's. -->
-            <element-citation publication-type="{@type}">
-        
-<!-- We're going to take the approach of picking out the information we 
+        <ref id="{@xml:id}"><!-- Now the hard bit. NLM's model is radically different from TEI's. -->
+            <element-citation publication-type="{@type}"><!-- We're going to take the approach of picking out the information we 
      need from where we expect to find it, rather than trying to apply 
      templates in some generic way, because the structured nature of 
      TEI biblStructs is so different from the rather looser structure 
-     of NLM. -->
-        
-<!-- First we look for authors. These might be in the analytic or in the 
+     of NLM. --><!-- First we look for authors. These might be in the analytic or in the 
 monogr; try analytic first. -->
-                <xsl:if test="analytic">
-<!-- In this case, we should be able to get both title and authors from here. -->
+                <xsl:if test="analytic"><!-- In this case, we should be able to get both title and authors from here. -->
                     <person-group person-group-type="author">
                         <xsl:for-each select="analytic/author/name">
                             <name>
@@ -588,8 +519,7 @@ monogr; try analytic first. -->
                                 </given-names>
                             </name>
                         </xsl:for-each>
-                    </person-group>
-<!-- Now we can get the title from here. NLM has an article-title element, which 
+                    </person-group><!-- Now we can get the title from here. NLM has an article-title element, which 
      will do for journal articles; it uses chapter-title for book chapters. -->
                     <xsl:choose>
                         <xsl:when test="@type='book'">
@@ -603,23 +533,19 @@ monogr; try analytic first. -->
                             </article-title>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:if>
-<!-- Now we look for additional information in the monogr element. -->
-                <xsl:if test="monogr">
-<!-- If there's a monogr title element, it could be the level m or j (books and 
+                </xsl:if><!-- Now we look for additional information in the monogr element. -->
+                <xsl:if test="monogr"><!-- If there's a monogr title element, it could be the level m or j (books and 
 journals), or it could be s (series title). We need to handle each separately.-->
                     <xsl:for-each select="monogr/title[@level='m' or @level='u' or @level='j']">
                         <source>
                             <xsl:value-of select="."/>
                         </source>
-                    </xsl:for-each>
-<!-- Series titles. -->
+                    </xsl:for-each><!-- Series titles. -->
                     <xsl:for-each select="monogr/title[@level='s']">
                         <series>
                             <xsl:value-of select="."/>
                         </series>
-                    </xsl:for-each>
-<!-- Now we should look for authors and editors at the monogr level. -->
+                    </xsl:for-each><!-- Now we should look for authors and editors at the monogr level. -->
                     <xsl:if test="monogr/author">
                         <person-group person-group-type="author">
                             <xsl:for-each select="monogr/author/name">
@@ -652,9 +578,7 @@ journals), or it could be s (series title). We need to handle each separately.--
                                 <xsl:value-of select="edition"/>
                             </edition>
                         </xsl:if>
-                    </xsl:if>
-          
-<!-- In TEI, idno elements are used for a variety of tasks. -->
+                    </xsl:if><!-- In TEI, idno elements are used for a variety of tasks. -->
                     <xsl:for-each select="monogr/idno">
                         <xsl:choose>
                             <xsl:when test="@type='ISSN'">
@@ -668,19 +592,14 @@ journals), or it could be s (series title). We need to handle each separately.--
                                 </isbn>
                             </xsl:when>
                         </xsl:choose>
-                    </xsl:for-each>
-          
-<!-- Now we get the publication information from the imprint element. This can 
+                    </xsl:for-each><!-- Now we get the publication information from the imprint element. This can 
      be handled with more conventional one-to-one mapping, so templates will do.-->
                     <xsl:apply-templates select="monogr/imprint"/>
-                </xsl:if>
-<!-- We should process any respStmt elements in analytic or monogr. -->
+                </xsl:if><!-- We should process any respStmt elements in analytic or monogr. -->
                 <xsl:apply-templates select="descendant::respStmt"/>
             </element-citation>
         </ref>
-    </xsl:template>
-  
-<!-- These are mini-templates for the content of the imprint element in a 
+    </xsl:template><!-- These are mini-templates for the content of the imprint element in a 
 biblStruct. -->
     <xsl:template match="biblStruct/monogr/imprint">
         <xsl:apply-templates/>
@@ -729,9 +648,7 @@ biblStruct. -->
                 <lpage>
                     <xsl:value-of select="substring-after(., '-')"/>
                 </lpage>
-            </xsl:when>
-<!--       ANY MORE??? -->
-      <!--<xsl:when test="@type=''"></xsl:when>
+            </xsl:when><!--       ANY MORE??? --><!--<xsl:when test="@type=''"></xsl:when>
       <xsl:when test="@type=''"></xsl:when>
       <xsl:when test="@type=''"></xsl:when>-->
             <xsl:otherwise>
@@ -759,18 +676,14 @@ biblStruct. -->
                 </name>
             </xsl:for-each>
         </person-group>
-    </xsl:template>
-  
-<!-- The soCalled element has no analogue in NLM; the best we can do 
+    </xsl:template><!-- The soCalled element has no analogue in NLM; the best we can do 
 is probably to use style-content, enabling us to include the quotes and
 at the same time explain them. -->
     <xsl:template match="soCalled">
         <styled-content style-type="scare quotes" style="::before: content(open-quote); ::after: content(close-quote);">
             <xsl:apply-templates/>
         </styled-content>
-    </xsl:template>
-  
-<!-- The mentioned tag is similarly difficult, as is the tag element, and term. -->
+    </xsl:template><!-- The mentioned tag is similarly difficult, as is the tag element, and term. -->
     <xsl:template match="mentioned">
         <styled-content style-type="mentioned" style="font-style: italic;">
             <xsl:apply-templates/>
@@ -785,19 +698,13 @@ at the same time explain them. -->
         <styled-content style-type="term" style="font-style: italic;">
             <xsl:apply-templates/>
         </styled-content>
-    </xsl:template>
-  
-<!-- Line breaks are equivalent to <break/>, but cannot appear in paragraphs 
+    </xsl:template><!-- Line breaks are equivalent to <break/>, but cannot appear in paragraphs 
      What nonsense. -->
     <xsl:template match="lb">
         <xsl:comment>There should be a line-break here.</xsl:comment>
-    </xsl:template>
-  
-<!-- Inline elements. -->
-<!-- There's no standard way to do document titles in the body text in NLM. -->
+    </xsl:template><!-- Inline elements. --><!-- There's no standard way to do document titles in the body text in NLM. -->
     <xsl:template match="title[not(ancestor::biblStruct) and not(ancestor::teiHeader)]">
-        <named-content content-type="title_level_{@level}">
-<!-- That takes care of identifying the title type. Now we might as well 
+        <named-content content-type="title_level_{@level}"><!-- That takes care of identifying the title type. Now we might as well 
 have a shot at styling it. -->
             <xsl:choose>
                 <xsl:when test="@level='m' or @level='j'">
@@ -810,28 +717,22 @@ have a shot at styling it. -->
         </xsl:when>
             </xsl:choose>
         </named-content>
-    </xsl:template>
-  
-<!--  Text style markup. -->
-<!--  Bold. -->
+    </xsl:template><!--  Text style markup. --><!--  Bold. -->
     <xsl:template match="hi[@rend='bold']">
         <xsl:element name="bold">
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-<!--  Italics. -->
+    </xsl:template><!--  Italics. -->
     <xsl:template match="hi[@rend='italic']">
         <xsl:element name="italic">
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template> 
-<!--  Underline. -->
+    </xsl:template><!--  Underline. -->
     <xsl:template match="hi[@rend='underline']">
         <xsl:element name="underline">
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-<!--  Overline. -->
+    </xsl:template><!--  Overline. -->
     <xsl:template match="hi[@rend='overline']">
         <xsl:element name="overline">
             <xsl:apply-templates/>

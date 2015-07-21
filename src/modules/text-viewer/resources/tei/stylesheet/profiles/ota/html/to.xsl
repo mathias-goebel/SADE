@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html" version="2.0">
-    <!-- import base conversion style -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html" version="2.0"><!-- import base conversion style -->
     <xsl:import href="../../../xhtml2/tei.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -86,8 +85,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template name="mainPage">
         <xsl:param name="currentID"/>
-        <div class="show-all" id="main">
-      <!-- header -->
+        <div class="show-all" id="main"><!-- header -->
             <div id="hdr">
                 <xsl:call-template name="hdr"/>
             </div>

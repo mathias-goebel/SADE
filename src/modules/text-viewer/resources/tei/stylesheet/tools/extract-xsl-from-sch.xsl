@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:XSL="http://www.w3.org/1999/XSL/TransformAlias" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:i="http://www.iso.org/ns/1.0" xmlns:s="http://www.ascc.net/xml/schematron" exclude-result-prefixes="xsl s" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:i="http://www.iso.org/ns/1.0" xmlns:XSL="http://www.w3.org/1999/XSL/TransformAlias" xmlns:s="http://www.ascc.net/xml/schematron" exclude-result-prefixes="xsl s" version="2.0">
     <xsl:namespace-alias stylesheet-prefix="XSL" result-prefix="xsl"/>
     <xsl:key name="CONTEXTS" use="." match="@context"/>
     <xsl:key name="ALLCONTEXTS" use="1" match="@context"/>

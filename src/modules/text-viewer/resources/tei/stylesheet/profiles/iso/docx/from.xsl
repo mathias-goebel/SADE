@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:custprops="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a pic rel ve o teidocx r m v wp w10 w wne mml vt cals tbx iso custprops">
-
-    <!-- import conversion style -->
-    <xsl:import href="../../../docx/from/docxtotei.xsl"/>
-
-    <!-- import special iso functions -->
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:custprops="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" version="2.0" exclude-result-prefixes="a pic rel ve o teidocx r m v wp w10 w wne mml vt cals tbx iso custprops"><!-- import conversion style -->
+    <xsl:import href="../../../docx/from/docxtotei.xsl"/><!-- import special iso functions -->
     <xsl:include href="iso-functions.xsl"/>
     <xsl:include href="../isoutils.xsl"/>
     <xsl:include href="from-pass2.xsl"/>
@@ -371,12 +367,10 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="group-by-section">
         <xsl:variable name="Style" select="w:pPr/w:pStyle/@w:val"/>
         <xsl:variable name="NextLevel" select="number(@LEVEL) + 1"/>
-        <div>
-	<!-- generate the head -->
+        <div><!-- generate the head -->
             <xsl:call-template name="generate-section-heading">
                 <xsl:with-param name="Style" select="$Style"/>
-            </xsl:call-template>
-	<!-- Process sub-sections -->
+            </xsl:call-template><!-- Process sub-sections -->
             <xsl:for-each-group select="current-group() except ." group-starting-with="w:p[@LEVEL=$NextLevel]">
                 <xsl:choose>
                     <xsl:when test="tei:is-heading(.)">
@@ -403,8 +397,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:if>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:choose>
-            <!-- if we are dealing with a normal header (Style='heading [123456..]')-->
+        <xsl:choose><!-- if we are dealing with a normal header (Style='heading [123456..]')-->
             <xsl:when test="starts-with($Style,'heading')">
                 <xsl:variable name="type">
                     <xsl:choose>
@@ -534,9 +527,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:when>
                 <xsl:when test="current-grouping-key()=7">
                     <xsl:call-template name="doSpecialStyle"/>
-                </xsl:when>
-
-                <!-- it is not a defined grouping .. apply templates -->
+                </xsl:when><!-- it is not a defined grouping .. apply templates -->
                 <xsl:otherwise>
                     <xsl:apply-templates select="." mode="paragraph"/>
                 </xsl:otherwise>
@@ -551,54 +542,41 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="doSpecialStyle">
         <xsl:for-each-group select="current-group()" group-starting-with="w:p">
             <xsl:variable name="css">
-                <xsl:if test="w:pPr/w:ind">
-                <!-- this is a block indent, ie (in CSS terms) a margin -->
-                    <xsl:if test="w:pPr/w:ind/@w:left">
-                    <!-- margin-left: w:pPr/w:ind/@w:left -->
-                    <!-- units: px? -->
+                <xsl:if test="w:pPr/w:ind"><!-- this is a block indent, ie (in CSS terms) a margin -->
+                    <xsl:if test="w:pPr/w:ind/@w:left"><!-- margin-left: w:pPr/w:ind/@w:left --><!-- units: px? -->
                         <xsl:text>margin-left: </xsl:text>
                         <xsl:value-of select="w:pPr/w:ind/@w:left"/>
                         <xsl:text>; </xsl:text>
                     </xsl:if>
-                    <xsl:if test="w:pPr/w:ind/@w:right">
-                    <!-- margin-right: w:pPr/w:ind/@w:right -->
-                    <!-- units: px? -->
+                    <xsl:if test="w:pPr/w:ind/@w:right"><!-- margin-right: w:pPr/w:ind/@w:right --><!-- units: px? -->
                         <xsl:text>margin-right: </xsl:text>
                         <xsl:value-of select="w:pPr/w:ind/@w:right"/>
                         <xsl:text>; </xsl:text>
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="w:pPr/w:spacing">
-                    <xsl:if test="w:pPr/w:spacing/@w:before">
-                    <!-- margin-top: w:pPr/w:spacing/@w:before -->
-                    <!-- units: px? -->
+                    <xsl:if test="w:pPr/w:spacing/@w:before"><!-- margin-top: w:pPr/w:spacing/@w:before --><!-- units: px? -->
                         <xsl:text>margin-top: </xsl:text>
                         <xsl:value-of select="w:pPr/w:spacing/@w:before"/>
                         <xsl:text>; </xsl:text>
                     </xsl:if>
-                    <xsl:if test="w:pPr/w:spacing/@w:after">
-                    <!-- margin-bottom: w:pPr/w:spacing/@w:after -->
-                    <!-- units: px? -->
+                    <xsl:if test="w:pPr/w:spacing/@w:after"><!-- margin-bottom: w:pPr/w:spacing/@w:after --><!-- units: px? -->
                         <xsl:text>margin-bottom: </xsl:text>
                         <xsl:value-of select="w:pPr/w:spacing/@w:after"/>
                         <xsl:text>; </xsl:text>
                     </xsl:if>
                 </xsl:if>
-                <xsl:if test="w:pPr/w:jc">
-                <!-- text-align: w:pPr/w:jc/@w:val -->
+                <xsl:if test="w:pPr/w:jc"><!-- text-align: w:pPr/w:jc/@w:val -->
                     <xsl:text>text-align: </xsl:text>
                     <xsl:value-of select="w:pPr/w:jc/@w:val"/>
                     <xsl:text>; </xsl:text>
                 </xsl:if>
-                <xsl:if test="w:pPr/w:rPr/w:rFonts">
-                <!-- font-family: w:pPr/w:rPr/w:rFonts/@w:ascii -->
+                <xsl:if test="w:pPr/w:rPr/w:rFonts"><!-- font-family: w:pPr/w:rPr/w:rFonts/@w:ascii -->
                     <xsl:text>font-family: </xsl:text>
                     <xsl:value-of select="w:pPr/w:rPr/w:rFonts/@w:ascii"/>
                     <xsl:text>; </xsl:text>
                 </xsl:if>
-                <xsl:if test="w:pPr/w:rPr/w:sz">
-                <!-- font-size: w:pPr/w:rPr/w:sz/@w:val -->
-                <!-- units: pt? -->
+                <xsl:if test="w:pPr/w:rPr/w:sz"><!-- font-size: w:pPr/w:rPr/w:sz/@w:val --><!-- units: pt? -->
                     <xsl:text>font-size: </xsl:text>
                     <xsl:value-of select="w:pPr/w:rPr/w:sz/@w:val"/>
                     <xsl:text>; </xsl:text>
@@ -627,18 +605,14 @@ of this software, even if advised of the possibility of such damage.
         <xsl:variable name="pstyle">
             <xsl:value-of select="parent::w:p/w:pPr/w:pStyle/@w:val"/>
         </xsl:variable>
-        <xsl:choose>
-            <!-- 
+        <xsl:choose><!-- 
 	     ignore some headingnotechars
-	-->
-            <!--
+	--><!--
 	    <xsl:when test="$style=$ExampleHeadingChar"/>
 	    <xsl:when test="$style=$NoteHeadingChar"/>
 	    <xsl:when
 	    test="$style=$TableNoteHeadingChar"/>
-	-->
-
-	    <!-- stored elsewhere in TBX -->
+	--><!-- stored elsewhere in TBX -->
             <xsl:when test="$style='gender'"/>
             <xsl:when test="$style='number'"/>
             <xsl:when test="$style='pronunciation'"/>
@@ -740,11 +714,9 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:apply-templates/>
                 </seg>
             </xsl:when>
-            <xsl:when test="$style=$FormulaReference">
-                <!--<seg rend="FormulaReference">
+            <xsl:when test="$style=$FormulaReference"><!--<seg rend="FormulaReference">
 	      <xsl:apply-templates/>
-	      </seg>-->
-            </xsl:when>
+	      </seg>--></xsl:when>
             <xsl:when test="$style=$ExtXref">
                 <ref>
                     <xsl:apply-templates/>
@@ -905,8 +877,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="w:p[w:pPr/w:pStyle/@w:val=$Tabletitle]/w:r/w:t/text()">
         <xsl:analyze-string select="." regex="^\s?[\-—]+\s?">
-            <xsl:matching-substring>
-	</xsl:matching-substring>
+            <xsl:matching-substring/>
             <xsl:non-matching-substring>
                 <xsl:value-of select="."/>
             </xsl:non-matching-substring>
@@ -976,8 +947,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:value-of select="w:pPr/w:pStyle/@w:val"/>
                         </xsl:variable>
                         <p rend="{$Style}">
-                            <xsl:call-template name="process-checking-for-crossrefs"/>
-<!--		<xsl:apply-templates/> -->
+                            <xsl:call-template name="process-checking-for-crossrefs"/><!--		<xsl:apply-templates/> -->
                         </p>
                     </xsl:for-each>
                 </xsl:when>
@@ -998,8 +968,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:value-of select="w:pPr/w:pStyle/@w:val"/>
                         </xsl:variable>
                         <p rend="{$Style}">
-                            <xsl:call-template name="process-checking-for-crossrefs"/>
-<!--		<xsl:apply-templates/>-->
+                            <xsl:call-template name="process-checking-for-crossrefs"/><!--		<xsl:apply-templates/>-->
                         </p>
                     </xsl:for-each>
                 </xsl:when>
@@ -1019,8 +988,7 @@ of this software, even if advised of the possibility of such damage.
                                 <xsl:number level="any"/>
                             </xsl:when>
                         </xsl:choose>
-                    </xsl:variable>
-<!-- oucs0037: are there some types of tbx that we don't allow refs
+                    </xsl:variable><!-- oucs0037: are there some types of tbx that we don't allow refs
      in? or should all of these actually be calling process-checking-for-crossrefs? -->
                     <termEntry xmlns="http://www.lisa.org/TBX-Specification.33.0.html" id="{$ID}">
                         <xsl:if test="w:bookmarkStart">
@@ -1043,8 +1011,7 @@ of this software, even if advised of the possibility of such damage.
                                 </note>
                             </xsl:for-each>
                             <xsl:for-each select="current-group()[w:pPr/w:pStyle/@w:val='entrySource'] except .">
-                                <admin type="entrySource">
-<!--		    <xsl:apply-templates/> -->
+                                <admin type="entrySource"><!--		    <xsl:apply-templates/> -->
                                     <xsl:call-template name="process-checking-for-crossrefs"/>
                                 </admin>
                             </xsl:for-each>
@@ -1209,8 +1176,7 @@ of this software, even if advised of the possibility of such damage.
                                 </xsl:choose>
                             </xsl:for-each>
                         </langSet>
-                    </termEntry>
-<!--
+                    </termEntry><!--
 	    <xsl:for-each
 		select="current-group()[w:pPr/w:pStyle/@w:val='Example']
 			except .">
@@ -1309,14 +1275,12 @@ of this software, even if advised of the possibility of such damage.
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>  See if paragraph is the main title of the document </desc>
     </doc>
-    <xsl:template match="w:p[w:pPr/w:pStyle/@w:val='zzSTDTitle']" mode="paragraph">
-        <!-- throw it away ; alternative is
+    <xsl:template match="w:p[w:pPr/w:pStyle/@w:val='zzSTDTitle']" mode="paragraph"><!-- throw it away ; alternative is
             
             <head>
             <xsl:apply-templates select="descendant::w:t"/>
             </head>
-        -->
-    </xsl:template>
+        --></xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>  
         Table of contents
@@ -1335,8 +1299,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:for-each>
             </divGen>
         </div>
-    </xsl:template>
-    <!-- 
+    </xsl:template><!-- 
     <xsl:template match="w:p[w:pPr/w:pStyle/@w:val='toc 9']"
         mode="paragraph"/>
     <xsl:template match="w:p[w:pPr/w:pStyle/@w:val='toc 1']"
@@ -1452,15 +1415,12 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template name="paragraph-wp">
         <xsl:param name="style"/>
-        <p>
-            <!-- put style in rend, if there is a style -->
+        <p><!-- put style in rend, if there is a style -->
             <xsl:if test="w:pPr/w:pStyle/@w:val and tei:is-supported-style(w:pPr/w:pStyle/@w:val)">
                 <xsl:attribute name="rend">
                     <xsl:value-of select="w:pPr/w:pStyle/@w:val"/>
                 </xsl:attribute>
-            </xsl:if>
-
-            <!-- Store information about spacing  -->
+            </xsl:if><!-- Store information about spacing  -->
             <xsl:for-each select="w:pPr/w:spacing">
                 <xsl:attribute name="iso:style">
                     <xsl:if test="@w:before">
@@ -1477,9 +1437,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:for-each>
             <xsl:call-template name="process-checking-for-crossrefs"/>
         </p>
-    </xsl:template>
-
-    <!--  UTILITIES -->
+    </xsl:template><!--  UTILITIES -->
     <xsl:template name="getSdt">
         <xsl:param name="tag"/>
         <xsl:param name="oldtag"/>
@@ -1502,8 +1460,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="$result='Click here to enter text.'"/>
-            <xsl:when test="$result='Choose an item.'"/>
-            <!--
+            <xsl:when test="$result='Choose an item.'"/><!--
 	    <xsl:when test="$tag='documentstage'">
 	    <xsl:value-of select="substring-before(substring-after($result,'('),')')"/>
 	    </xsl:when>
@@ -1522,8 +1479,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:choose>
                     <xsl:when test="current-grouping-key()=1">
                         <xsl:call-template name="listSection"/>
-                    </xsl:when>
-	              <!-- it is not a defined grouping .. apply templates -->
+                    </xsl:when><!-- it is not a defined grouping .. apply templates -->
                     <xsl:otherwise>
                         <xsl:apply-templates select="." mode="paragraph"/>
                     </xsl:otherwise>
@@ -1660,9 +1616,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template name="parseReference">
-      <!-- see Test2010-13 for examples of references -->
-      <!--<xsl:comment>PARSE <xsl:value-of select="."/></xsl:comment>-->
+    <xsl:template name="parseReference"><!-- see Test2010-13 for examples of references --><!--<xsl:comment>PARSE <xsl:value-of select="."/></xsl:comment>-->
         <xsl:variable name="cheese">
             <xsl:apply-templates/>
         </xsl:variable>
@@ -1674,7 +1628,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:copy-of select="."/>
     </xsl:template>
     <xsl:template match="tei:seg[.=' ']" mode="parseRef">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="text()" mode="parseRef">
         <idno type="orgref">
@@ -1700,26 +1654,25 @@ of this software, even if advised of the possibility of such damage.
             <xsl:text>([0-9]+)</xsl:text><!-- document number -->
             <xsl:text>[-]?([0-9A-Z]+|[0-9]-[0-9]+| \(all parts\))?</xsl:text><!-- part(s) -->
             <xsl:text>((:)([0-9]{4}|[\-—]+))?</xsl:text><!-- year -->
-            <xsl:text>(</xsl:text> <!-- start suppl -->
+            <xsl:text>(</xsl:text><!-- start suppl -->
             <xsl:text>/</xsl:text>
-            <xsl:text>(Cor|Amd|Add|Suppl)</xsl:text> <!-- suppl type -->
+            <xsl:text>(Cor|Amd|Add|Suppl)</xsl:text><!-- suppl type -->
             <xsl:text>\.</xsl:text>
-            <xsl:text>([0-9]+)?</xsl:text> <!-- suppl number -->
+            <xsl:text>([0-9]+)?</xsl:text><!-- suppl number -->
             <xsl:text>((:)([0-9]{4}))?</xsl:text>
-            <xsl:text>)?</xsl:text> <!-- end suppl -->
-            <xsl:text>(</xsl:text> <!-- start corr -->
+            <xsl:text>)?</xsl:text><!-- end suppl -->
+            <xsl:text>(</xsl:text><!-- start corr -->
             <xsl:text>/</xsl:text>
             <xsl:text>(Cor)</xsl:text>
             <xsl:text>\.</xsl:text>
             <xsl:text>([0-9]+)</xsl:text>
             <xsl:text>((:)([0-9]{4}))?</xsl:text>
-            <xsl:text>)?</xsl:text> <!-- end corr -->
+            <xsl:text>)?</xsl:text><!-- end corr -->
             <xsl:text>(,(\s)*(.*))?</xsl:text>
             <xsl:text>$</xsl:text>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="starts-with(.,'ISO') or starts-with(.,'IEC')    or starts-with(.,'CIE')">
-	      <!--docoriginator [[punctuation] doctype] "#" docnumber ["-"
+            <xsl:when test="starts-with(.,'ISO') or starts-with(.,'IEC')    or starts-with(.,'CIE')"><!--docoriginator [[punctuation] doctype] "#" docnumber ["-"
 		  partnumber] ":" pubyear ["/"suppltype "." supplnumber ":" pubyear]
 		  ["/"suppltype "." supplnumber ":" pubyear] "," title ["/" suppltitle]
 		  ["/" suppltitle] -->
@@ -1727,8 +1680,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:matching-substring>
                         <xsl:variable name="Part" select="regex-group(4)"/>
                         <xsl:variable name="Suppltype" select="regex-group(9)"/>
-                        <xsl:variable name="Corrtype" select="regex-group(15)"/>
-<!-- 
+                        <xsl:variable name="Corrtype" select="regex-group(15)"/><!-- 
 		      <xsl:message>
 		      1 publisher :<xsl:value-of select="regex-group(1)"/>
 		      2 documenttype :<xsl:value-of select="regex-group(2)"/>
@@ -1817,19 +1769,13 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
             <xsl:when test=".='),'"/>
             <xsl:when test=".='), '"/>
-            <xsl:when test=".=') '"/>
-	<!--<xsl:when test=".=')'"/>-->
+            <xsl:when test=".=') '"/><!--<xsl:when test=".=')'"/>-->
             <xsl:when test=".=','"/>
             <xsl:when test="starts-with(.,'), ')">
                 <title>
                     <xsl:value-of select="substring(.,4)"/>
                 </title>
-            </xsl:when>
-<!--	<xsl:when test="preceding-sibling::node()">-->
-<!--	  <title>-->
-<!--	    <xsl:value-of select="."/>-->
-<!--	  </title>-->
-<!--	</xsl:when>-->
+            </xsl:when><!--	<xsl:when test="preceding-sibling::node()">--><!--	  <title>--><!--	    <xsl:value-of select="."/>--><!--	  </title>--><!--	</xsl:when>-->
             <xsl:otherwise>
                 <xsl:value-of select="."/>
             </xsl:otherwise>

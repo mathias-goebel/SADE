@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xlink dbk rng tei teix xhtml a html  xs xsl" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="xlink dbk rng tei teix xhtml a html  xs xsl" version="2.0">
     <xsl:import href="../../../latex2/tei.xsl"/>
     <xsl:import href="../isoutils.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
@@ -251,7 +251,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates mode="ok" select="tei:head"/>
                 <xsl:text>}\\ </xsl:text>
             </xsl:when>
-            <xsl:otherwise> </xsl:otherwise>
+            <xsl:otherwise/>
         </xsl:choose>
         <xsl:if test="$r='rules'">\hline </xsl:if>
         <xsl:apply-templates/>
@@ -366,7 +366,7 @@ STANDARD &amp;\bfseries <xsl:call-template name="getiso_documentNumber"/>-<xsl:c
 </xsl:template>
     <xsl:template match="tei:titleStmt/tei:title[@type='main']">
         <xsl:value-of select="normalize-space(.)"/>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template name="latexLayout">
 \paperwidth211mm
@@ -482,7 +482,7 @@ STANDARD &amp;\bfseries <xsl:call-template name="getiso_documentNumber"/>-<xsl:c
     </xsl:template>
     <xsl:template name="termNum">
         <xsl:value-of select="substring-after(../@id,'_')"/>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template name="block-element">
         <xsl:param name="pPr"/>

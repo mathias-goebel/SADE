@@ -42,17 +42,11 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:output encoding="UTF-8" standalone="yes" method="xml"/>
     <xsl:template match="/w:styles">
-        <w:styles xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-      
-      <!-- copy all existing elements -->
-            <xsl:apply-templates/>
-      
-      <!-- create some new styles -->
+        <w:styles xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><!-- copy all existing elements -->
+            <xsl:apply-templates/><!-- create some new styles -->
             <xsl:call-template name="create-egXML"/>
         </w:styles>
-    </xsl:template>
-
-  <!-- identity transform -->
+    </xsl:template><!-- identity transform -->
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -182,9 +176,7 @@ of this software, even if advised of the possibility of such damage.
                 </w:numPr>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-  
-  <!-- new styles -->
+    </xsl:template><!-- new styles -->
     <xsl:template name="create-egXML">
         <w:style w:type="paragraph" w:customStyle="1" w:styleId="egXML">
             <w:name w:val="egXML"/>

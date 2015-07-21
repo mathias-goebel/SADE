@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html xs" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei html xs" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>
@@ -141,13 +141,11 @@ HTML width and height (in pixels) from supplied dimensions.</desc>
             <p>This would be used to insert &lt;meta&gt; tags.</p>
         </desc>
     </doc>
-    <xsl:template name="headHook">
-    <!--
+    <xsl:template name="headHook"><!--
     <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
     <link href="/favicon.ico" rel="shortcut icon"
 	  type="image/x-icon"/>
-    -->
-    </xsl:template>
+    --></xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="hook">
         <desc>[html] Hook where HTML can be inserted when creating an &lt;img&gt;</desc>
     </doc>

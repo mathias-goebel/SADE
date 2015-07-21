@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://exist.sourceforge.net/NS/exist" name="/db/apps/SADE/modules/admin/kickstrap/Kickstrap/extras/root%20goodies" version="1" owner="monex" group="monex" mode="775" created="2015-06-16T14:47:04.903+02:00">
+    <acl entries="0" version="1"/>
+    <resource type="BinaryResource" name="whatisthis.txt" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.915+02:00" modified="2015-06-16T14:47:04.915+02:00" filename="whatisthis.txt" mimetype="text/plain">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="apple-touch-icon-114x114-precomposed.png" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.916+02:00" modified="2015-06-16T14:47:04.916+02:00" filename="apple-touch-icon-114x114-precomposed.png" mimetype="image/png">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="apple-touch-icon-57x57-precomposed.png" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.918+02:00" modified="2015-06-16T14:47:04.918+02:00" filename="apple-touch-icon-57x57-precomposed.png" mimetype="image/png">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="XMLResource" name="crossdomain.xml" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.919+02:00" modified="2015-06-16T14:47:04.919+02:00" filename="crossdomain.xml" mimetype="application/xml">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="apple-touch-icon-72x72-precomposed.png" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.922+02:00" modified="2015-06-16T14:47:04.922+02:00" filename="apple-touch-icon-72x72-precomposed.png" mimetype="image/png">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="apple-touch-icon.png" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.924+02:00" modified="2015-06-16T14:47:04.924+02:00" filename="apple-touch-icon.png" mimetype="image/png">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="favicon.ico" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.904+02:00" modified="2015-06-16T14:47:04.904+02:00" filename="favicon.ico" mimetype="image/vnd.microsoft.icon">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="robots.txt" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.913+02:00" modified="2015-06-16T14:47:04.913+02:00" filename="robots.txt" mimetype="text/plain">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="apple-touch-icon-precomposed.png" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.914+02:00" modified="2015-06-16T14:47:04.914+02:00" filename="apple-touch-icon-precomposed.png" mimetype="image/png">
+        <acl entries="0" version="1"/>
+    </resource>
+</collection>

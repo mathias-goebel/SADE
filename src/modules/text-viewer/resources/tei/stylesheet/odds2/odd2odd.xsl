@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" exclude-result-prefixes="teix a s tei xs rng sch xsi">
+<xsl:stylesheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0" exclude-result-prefixes="teix a s tei xs rng sch xsi">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for simplifying TEI ODD markup </p>
@@ -81,9 +81,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:key name="odd2odd-SCHEMASPECS" match="tei:schemaSpec" use="@ident"/>
     <xsl:key name="odd2odd-IDENTS" match="tei:macroSpec" use="@ident"/>
     <xsl:key name="odd2odd-IDENTS" match="tei:classSpec" use="@ident"/>
-    <xsl:key name="odd2odd-IDENTS" match="tei:elementSpec" use="@ident"/>
-
-   <!-- all of these use a combination of @ident _and_ @ns (where
+    <xsl:key name="odd2odd-IDENTS" match="tei:elementSpec" use="@ident"/><!-- all of these use a combination of @ident _and_ @ns (where
    present), in case of duplication of names across schemes -->
     <xsl:key name="odd2odd-CHANGE" match="tei:classSpec[@mode='change']" use="concat(@ns,@ident)"/>
     <xsl:key name="odd2odd-CHANGE" match="tei:elementSpec[@mode='change']" use="concat(@ns,@ident)"/>
@@ -128,8 +126,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="/">
         <xsl:if test="$autoGlobal='true'">
             <xsl:message>NOTE: all TEI elements will have global attributes added automatically</xsl:message>
-        </xsl:if>
-    <!--
+        </xsl:if><!--
     <xsl:result-document href="/tmp/foo.xml">
       <xsl:copy-of select="$ODD"/>
     </xsl:result-document>
@@ -137,9 +134,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:for-each select="$ODD">
             <xsl:apply-templates mode="odd2odd-pass1"/>
         </xsl:for-each>
-    </xsl:template>
-
-  <!-- ******************* Pass 0, follow and expand specGrp ********************************* -->
+    </xsl:template><!-- ******************* Pass 0, follow and expand specGrp ********************************* -->
     <xsl:template match="tei:specGrp" mode="odd2odd-pass0">
         <xsl:if test="$verbose='true'">
             <xsl:message>Phase 0: summarize specGrp <xsl:value-of select="@xml:id"/>
@@ -260,10 +255,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:copy-of select="@*"/>
             <xsl:apply-templates select="*|text()|processing-instruction()" mode="odd2odd-pass0"/>
         </xsl:copy>
-    </xsl:template>
-
-
-  <!-- ******************* Pass 1, follow schemaSpec ********************************* -->
+    </xsl:template><!-- ******************* Pass 1, follow schemaSpec ********************************* -->
     <xsl:template match="@*|processing-instruction()|text()" mode="odd2odd-pass1">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -280,8 +272,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="$verbose='true'">
                     <xsl:message>Schema <xsl:value-of select="@ident"/>
                     </xsl:message>
-                </xsl:if>
-        <!-- 
+                </xsl:if><!-- 
 	     it is important to process "tei" and "core" first 
 	     because of the order of declarations
 	-->
@@ -325,8 +316,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:for-each select="$oddsource">
             <xsl:apply-templates mode="odd2odd-pass2"/>
-        </xsl:for-each>
-    <!-- constraints -->
+        </xsl:for-each><!-- constraints -->
         <xsl:apply-templates mode="odd2odd-copy" select="tei:constraintSpec"/>
     </xsl:template>
     <xsl:template name="odd2odd-expandModule">
@@ -349,8 +339,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="@include">
                 <xsl:if test="$verbose='true'">
                     <xsl:message>Process module reference to [<xsl:value-of select="@key"/>] with inclusion of [<xsl:value-of select="@include"/>]</xsl:message>
-                </xsl:if>
-	  <!-- get model and attribute classes regardless -->
+                </xsl:if><!-- get model and attribute classes regardless -->
                 <xsl:for-each select="document($sourceDoc,$top)">
                     <xsl:for-each select="key('odd2odd-MODULE_MEMBERS_MODEL',$name)">
                         <xsl:call-template name="odd2odd-checkObject">
@@ -415,9 +404,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
-    </xsl:template>
-
-<!-- pass2 -->
+    </xsl:template><!-- pass2 -->
     <xsl:template match="rng:ref" mode="odd2odd-pass2">
         <xsl:variable name="N">
             <xsl:value-of select="@name"/>
@@ -455,7 +442,7 @@ of this software, even if advised of the possibility of such damage.
                         <ref xmlns="http://www.tei-c.org/ns/1.0" target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/{substring($target,1,2)}.html#{$target}">
                             <xsl:for-each select="document($DEFAULTSOURCE)/id($target)">
                                 <xsl:number count="tei:div" format="1.1.1." level="multiple"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:value-of select="tei:head"/>
                             </xsl:for-each>
                         </ref>
@@ -511,8 +498,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template name="odd2odd-amINeeded">
-    <!--
+    <xsl:template name="odd2odd-amINeeded"><!--
 How can a class be ok?
   a) if an element is a member of it
   b) if its referred to in a content model
@@ -554,8 +540,7 @@ How can a class be ok?
     </xsl:template>
     <xsl:template name="odd2odd-checkObject">
         <xsl:param name="why"/>
-        <xsl:param name="Source" tunnel="yes"/>
-    <!--
+        <xsl:param name="Source" tunnel="yes"/><!--
         for every object
          - if its in DELETE list, ignore
          - if its in REPLACE list, use that
@@ -721,8 +706,7 @@ How can a class be ok?
         <xsl:variable name="ORIGINAL" select="."/>
         <xsl:copy>
             <xsl:attribute name="rend">change</xsl:attribute>
-            <xsl:apply-templates mode="odd2odd-change" select="@*"/>
-      <!-- 
+            <xsl:apply-templates mode="odd2odd-change" select="@*"/><!-- 
 For each element, go through most of the sections one by one
 and see if they are present in the change mode version.
 If so, use them as is. The constraints and attributes are identifiable
@@ -734,10 +718,8 @@ for change individually.
                         <xsl:message>Change <xsl:value-of select="$elementName"/>
                         </xsl:message>
                     </xsl:if>
-                    <xsl:copy-of select="@ns"/>
-          <!-- if there is an altIdent, use it -->
-                    <xsl:apply-templates mode="odd2odd-justcopy" select="tei:altIdent"/>
-          <!-- equiv, gloss, desc trio -->
+                    <xsl:copy-of select="@ns"/><!-- if there is an altIdent, use it -->
+                    <xsl:apply-templates mode="odd2odd-justcopy" select="tei:altIdent"/><!-- equiv, gloss, desc trio -->
                     <xsl:choose>
                         <xsl:when test="tei:equiv">
                             <xsl:apply-templates mode="odd2odd-copy" select="tei:equiv"/>
@@ -768,8 +750,7 @@ for change individually.
                                 <xsl:apply-templates mode="odd2odd-justcopy" select="tei:desc"/>
                             </xsl:for-each>
                         </xsl:otherwise>
-                    </xsl:choose>
-          <!-- classes -->
+                    </xsl:choose><!-- classes -->
                     <classes xmlns="http://www.tei-c.org/ns/1.0">
                         <xsl:choose>
                             <xsl:when test="tei:classes[@mode='change']">
@@ -824,8 +805,7 @@ for change individually.
                                 </xsl:for-each>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </classes>
-          <!-- valList -->
+                    </classes><!-- valList -->
                     <xsl:choose>
                         <xsl:when test="tei:valList[@mode='delete']"/>
                         <xsl:when test="tei:valList">
@@ -836,8 +816,7 @@ for change individually.
                                 <xsl:apply-templates mode="odd2odd-copy" select="tei:valList"/>
                             </xsl:for-each>
                         </xsl:otherwise>
-                    </xsl:choose>
-          <!-- element content -->
+                    </xsl:choose><!-- element content -->
                     <content xmlns="http://www.tei-c.org/ns/1.0">
                         <xsl:choose>
                             <xsl:when test="tei:content/rng:*">
@@ -852,21 +831,18 @@ for change individually.
                                 </xsl:for-each>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </content>
-          <!-- element constraints -->
+                    </content><!-- element constraints -->
                     <xsl:call-template name="odd2odd-processConstraints">
                         <xsl:with-param name="ORIGINAL" select="$ORIGINAL"/>
                         <xsl:with-param name="elementName" select="$elementName"/>
-                    </xsl:call-template>
-          <!-- attList -->
+                    </xsl:call-template><!-- attList -->
                     <attList xmlns="http://www.tei-c.org/ns/1.0">
                         <xsl:apply-templates mode="odd2odd-justcopy" select="tei:attList/@org"/>
                         <xsl:call-template name="odd2odd-processAttributes">
                             <xsl:with-param name="ORIGINAL" select="$ORIGINAL"/>
                             <xsl:with-param name="elementName" select="$elementName"/>
                         </xsl:call-template>
-                    </attList>
-          <!-- exemplum, remarks and listRef are either replacements or not -->
+                    </attList><!-- exemplum, remarks and listRef are either replacements or not -->
                     <xsl:choose>
                         <xsl:when test="$stripped='true'"/>
                         <xsl:when test="tei:exemplum">
@@ -910,17 +886,14 @@ for change individually.
         <xsl:variable name="ORIGINAL" select="."/>
         <xsl:copy>
             <xsl:attribute name="rend">change</xsl:attribute>
-            <xsl:apply-templates mode="odd2odd-change" select="@*"/>
-      <!-- 
+            <xsl:apply-templates mode="odd2odd-change" select="@*"/><!-- 
 	   For each macro, go through most of the sections one by one
 	   and see if they are present in the change mode version.
 	   If so, use them as is. 
       -->
             <xsl:for-each select="$ODD">
-                <xsl:for-each select="key('odd2odd-CHANGE',$elementName)">
-          <!-- if there is an altIdent, use it -->
-                    <xsl:apply-templates mode="odd2odd-justcopy" select="tei:altIdent"/>
-          <!-- equiv, gloss, desc trio -->
+                <xsl:for-each select="key('odd2odd-CHANGE',$elementName)"><!-- if there is an altIdent, use it -->
+                    <xsl:apply-templates mode="odd2odd-justcopy" select="tei:altIdent"/><!-- equiv, gloss, desc trio -->
                     <xsl:choose>
                         <xsl:when test="$stripped='true'"/>
                         <xsl:when test="tei:equiv">
@@ -952,8 +925,7 @@ for change individually.
                                 <xsl:apply-templates mode="odd2odd-justcopy" select="tei:desc"/>
                             </xsl:for-each>
                         </xsl:otherwise>
-                    </xsl:choose>
-          <!-- content -->
+                    </xsl:choose><!-- content -->
                     <xsl:choose>
                         <xsl:when test="tei:content">
                             <xsl:apply-templates mode="odd2odd-justcopy" select="tei:content"/>
@@ -976,8 +948,7 @@ for change individually.
                                 <xsl:apply-templates mode="odd2odd-copy" select="tei:stringVal"/>
                             </xsl:for-each>
                         </xsl:otherwise>
-                    </xsl:choose>
-          <!-- exemplum, remarks and listRef are either replacements or not -->
+                    </xsl:choose><!-- exemplum, remarks and listRef are either replacements or not -->
                     <xsl:choose>
                         <xsl:when test="$stripped='true'"/>
                         <xsl:when test="tei:exemplum">
@@ -1021,14 +992,11 @@ for change individually.
         <xsl:variable name="ORIGINAL" select="."/>
         <xsl:copy>
             <xsl:attribute name="rend">change</xsl:attribute>
-            <xsl:apply-templates mode="odd2odd-change" select="@*"/>
-      <!-- for each section of the class spec, 
+            <xsl:apply-templates mode="odd2odd-change" select="@*"/><!-- for each section of the class spec, 
      go through the sections one by one
      and see if they are present in the change mode version -->
             <xsl:for-each select="$ODD">
-                <xsl:for-each select="key('odd2odd-CHANGE',$className)">
-          <!-- context is now a classSpec in change mode in the ODD spec -->
-          <!-- description -->
+                <xsl:for-each select="key('odd2odd-CHANGE',$className)"><!-- context is now a classSpec in change mode in the ODD spec --><!-- description -->
                     <xsl:choose>
                         <xsl:when test="$stripped='true'"/>
                         <xsl:when test="tei:desc">
@@ -1039,8 +1007,7 @@ for change individually.
                                 <xsl:apply-templates mode="odd2odd-justcopy" select="tei:desc"/>
                             </xsl:for-each>
                         </xsl:otherwise>
-                    </xsl:choose>
-          <!-- classes -->
+                    </xsl:choose><!-- classes -->
                     <classes xmlns="http://www.tei-c.org/ns/1.0">
                         <xsl:choose>
                             <xsl:when test="tei:classes[@mode='change']">
@@ -1093,8 +1060,7 @@ for change individually.
                                 </xsl:for-each>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </classes>
-          <!-- attList -->
+                    </classes><!-- attList -->
                     <attList xmlns="http://www.tei-c.org/ns/1.0">
                         <xsl:call-template name="odd2odd-processAttributes">
                             <xsl:with-param name="ORIGINAL" select="$ORIGINAL"/>
@@ -1112,8 +1078,7 @@ for change individually.
     <xsl:template name="odd2odd-simplifyRelax">
         <xsl:variable name="element">
             <xsl:value-of select="local-name(.)"/>
-        </xsl:variable>
-    <!-- 
+        </xsl:variable><!-- 
 for each RELAX NG content model,
 remove reference to any elements which have been
 deleted, or to classes which are empty.
@@ -1217,9 +1182,7 @@ so that is only put back in if there is some content
         <xsl:param name="elementName"/>
         <xsl:param name="className"/>
         <xsl:param name="whence"/>
-        <xsl:param name="Source" tunnel="yes"/>
-
-    <!-- 
+        <xsl:param name="Source" tunnel="yes"/><!-- 
     On entry, we are sitting on an <elementSpec> or <classSpec> 
     and seeing if we can pick up some attributes for 
     $elementName. We travel to the ODD first
@@ -1227,8 +1190,7 @@ so that is only put back in if there is some content
     -->
         <xsl:for-each select="$ODD">
             <xsl:choose>
-                <xsl:when test="key('odd2odd-MEMBEROFDELETE',concat($elementName,$className))"/>
-        <!-- the class is referenced in the ODD and has redefined <classes>-->
+                <xsl:when test="key('odd2odd-MEMBEROFDELETE',concat($elementName,$className))"/><!-- the class is referenced in the ODD and has redefined <classes>-->
                 <xsl:when test="key('odd2odd-ATTCLASSES',$className)/tei:classes">
                     <xsl:for-each select="key('odd2odd-ATTCLASSES',$className)">
                         <xsl:call-template name="odd2odd-processClassAttributes">
@@ -1238,8 +1200,7 @@ so that is only put back in if there is some content
                             <xsl:with-param name="fromODD">true</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                </xsl:when>
-        <!-- the class is referenced in the ODD and has redefined <attList>-->
+                </xsl:when><!-- the class is referenced in the ODD and has redefined <attList>-->
                 <xsl:when test="key('odd2odd-ATTCLASSES',$className)/tei:attList">
                     <xsl:for-each select="key('odd2odd-ATTCLASSES',$className)">
                         <xsl:call-template name="odd2odd-processClassAttributes">
@@ -1249,8 +1210,7 @@ so that is only put back in if there is some content
                             <xsl:with-param name="fromODD">true</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                </xsl:when>
-        <!-- otherwise, we'll revert to source
+                </xsl:when><!-- otherwise, we'll revert to source
 	     (assuming the class is of type 'atts')
 	-->
                 <xsl:otherwise>
@@ -1273,12 +1233,9 @@ so that is only put back in if there is some content
         <xsl:param name="className"/>
         <xsl:param name="fromODD">false</xsl:param>
         <xsl:param name="whence"/>
-        <xsl:param name="Source" tunnel="yes"/>
-
-    <!-- we are sitting on a attribute classSpec, could be in the ODD
+        <xsl:param name="Source" tunnel="yes"/><!-- we are sitting on a attribute classSpec, could be in the ODD
 	 or could be in the source -->
-        <xsl:variable name="M" select="@module"/>
-    <!-- decide whether to proceed with this class at all. if we don't
+        <xsl:variable name="M" select="@module"/><!-- decide whether to proceed with this class at all. if we don't
     include this class specifically, don't have this module, or we
     have deleted the class, 
     we can bypass it now.-->
@@ -1303,15 +1260,12 @@ so that is only put back in if there is some content
                     </xsl:for-each>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>
-    <!-- DEBUG-->
-    <!--
+        </xsl:variable><!-- DEBUG--><!--
     <xsl:message>START <xsl:value-of select="$whence"/>: <xsl:value-of select="$elementName"/> + <xsl:value-of
     select="$className"/> [<xsl:value-of select="$M"/>] + <xsl:value-of
     select="$fromODD"/>, so use=<xsl:value-of select="$use"/></xsl:message>
     -->
-        <xsl:if test="$use='true'">
-      <!-- 
+        <xsl:if test="$use='true'"><!-- 
 	   We need to put in the class attributes. We'll 
 	   use the value of $fromODD to see whether this is in the
 	   current ODD or the source.
@@ -1346,20 +1300,16 @@ so that is only put back in if there is some content
                         </xsl:for-each>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:variable>
-      <!--
+            </xsl:variable><!--
 	  <xsl:message>Class <xsl:value-of select="$className"/>, element
 	  <xsl:value-of select="$elementName"/>: has changes: <xsl:value-of
 	  select="$anyChanged"/></xsl:message>
       -->
-            <xsl:choose>
-        <!-- a) new class in ODD -->
+            <xsl:choose><!-- a) new class in ODD -->
                 <xsl:when test="$fromODD='true' and (not(@mode) or @mode='add')">
                     <attRef xmlns="http://www.tei-c.org/ns/1.0" n="1" name="{$className}.attributes"/>
-                </xsl:when>
-        <!-- b) its deleted -->
-                <xsl:when test="@mode='delete'"/>
-        <!-- c) its a replacement -->
+                </xsl:when><!-- b) its deleted -->
+                <xsl:when test="@mode='delete'"/><!-- c) its a replacement -->
                 <xsl:when test="@mode='replace'">
                     <xsl:for-each select="tei:attList/tei:attDef">
                         <xsl:call-template name="odd2odd-mergeClassAttribute">
@@ -1386,22 +1336,18 @@ so that is only put back in if there is some content
                             </xsl:for-each>
                         </attList>
                     </xsl:for-each>
-                </xsl:when>
-        <!-- d) there are changes to attributes in the class spec itself,
+                </xsl:when><!-- d) there are changes to attributes in the class spec itself,
 	but the element makes no override -->
                 <xsl:when test="@mode='change' and tei:attList and not (contains($anyChanged,':element-'))">
                     <xsl:if test="$verbose='true'">
                         <xsl:message>Phase 1 check d) Class <xsl:value-of select="$className"/> for <xsl:value-of select="$elementName"/> has no changes in element, refer by name</xsl:message>
                     </xsl:if>
                     <attRef xmlns="http://www.tei-c.org/ns/1.0" n="5" name="{$className}.attributes"/>
-                </xsl:when>
-        <!-- e) there are changes to attributes in the class spec itself -->
-                <xsl:when test="@mode='change' and tei:attList">
-          <!-- always references attributes in add mode -->
+                </xsl:when><!-- e) there are changes to attributes in the class spec itself -->
+                <xsl:when test="@mode='change' and tei:attList"><!-- always references attributes in add mode -->
                     <xsl:for-each select="tei:attList/tei:attDef[@mode='add']">
                         <attRef xmlns="http://www.tei-c.org/ns/1.0" n="2" name="{$className}.attribute.{translate(@ident,':','')}"/>
-                    </xsl:for-each>
-          <!-- go back to original and proceed from there -->
+                    </xsl:for-each><!-- go back to original and proceed from there -->
                     <xsl:for-each select="document($Source)/tei:TEI">
                         <xsl:for-each select="key('odd2odd-ATTCLASSES',$className)">
                             <xsl:call-template name="odd2odd-tryAttributes">
@@ -1416,8 +1362,7 @@ so that is only put back in if there is some content
                     <xsl:for-each select="tei:attList/tei:attRef">
                         <xsl:copy-of select="."/>
                     </xsl:for-each>
-                </xsl:when>
-        <!-- there are no changes to the attributes in the odd-->
+                </xsl:when><!-- there are no changes to the attributes in the odd-->
                 <xsl:when test="$anyChanged=''">
                     <xsl:if test="$verbose='true'">
                         <xsl:message>Phase 1 check f) Class <xsl:value-of select="$className"/> for <xsl:value-of select="$elementName"/> has no changes, refer by name</xsl:message>
@@ -1427,8 +1372,7 @@ so that is only put back in if there is some content
                 <xsl:otherwise>
                     <xsl:if test="$verbose='true'">
                         <xsl:message>Phase 1 check g) Class <xsl:value-of select="$className"/> for <xsl:value-of select="$elementName"/> has changes in odd, refer by values</xsl:message>
-                    </xsl:if>
-          <!-- attributes here -->
+                    </xsl:if><!-- attributes here -->
                     <xsl:for-each select="tei:attList/tei:attDef">
                         <xsl:call-template name="odd2odd-mergeClassAttribute">
                             <xsl:with-param name="source">7</xsl:with-param>
@@ -1438,8 +1382,7 @@ so that is only put back in if there is some content
                                 <xsl:value-of select="$fromODD"/>
                             </xsl:with-param>
                         </xsl:call-template>
-                    </xsl:for-each>
-          <!-- embedded attribute lists  -->
+                    </xsl:for-each><!-- embedded attribute lists  -->
                     <xsl:for-each select="tei:attList/tei:attList">
                         <attList xmlns="http://www.tei-c.org/ns/1.0">
                             <xsl:copy-of select="@org"/>
@@ -1456,13 +1399,11 @@ so that is only put back in if there is some content
                         </attList>
                     </xsl:for-each>
                 </xsl:otherwise>
-            </xsl:choose>
-      <!-- Now attributes referenced from classes we are a member
+            </xsl:choose><!-- Now attributes referenced from classes we are a member
      of. Again, check whether we are in ODD or not. If
      we have not tinkered with the superclass, this is not
      needed, obviously.
-      -->
-      <!-- DEBUG
+      --><!-- DEBUG
       <xsl:message>Now time to look at subclasses of <xsl:value-of
       select="@ident"/> whose changes status was <xsl:value-of
       select="$anyChanged"/>; we are in fromOdd <xsl:value-of
@@ -1536,8 +1477,7 @@ so that is only put back in if there is some content
             </attList>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template name="odd2odd-mergeClassAttribute">
-    <!-- 
+    <xsl:template name="odd2odd-mergeClassAttribute"><!-- 
 	 sitting on a source class. look at the 
 	 attribute and see whether it has changed
 	 in the customization
@@ -1555,14 +1495,10 @@ so that is only put back in if there is some content
             <xsl:value-of select="concat($element,'_',@ident)"/>
         </xsl:variable>
         <xsl:for-each select="$ODD">
-            <xsl:choose>
-        <!-- deleted in the customization at the class level -->
-                <xsl:when test="key('odd2odd-DELETEATT',concat($class,'_',$att))"/>
-        <!-- deleted in the customization at the element level -->
-                <xsl:when test="key('odd2odd-DELETEATT',$lookingAt)"/>
-        <!-- replaced in the customization at the element level -->
-                <xsl:when test="key('odd2odd-REPLACEATT',$lookingAt)"/>
-        <!-- changed in the customization by the element -->
+            <xsl:choose><!-- deleted in the customization at the class level -->
+                <xsl:when test="key('odd2odd-DELETEATT',concat($class,'_',$att))"/><!-- deleted in the customization at the element level -->
+                <xsl:when test="key('odd2odd-DELETEATT',$lookingAt)"/><!-- replaced in the customization at the element level -->
+                <xsl:when test="key('odd2odd-REPLACEATT',$lookingAt)"/><!-- changed in the customization by the element -->
                 <xsl:when test="key('odd2odd-CHANGEATT',$lookingAt)">
                     <xsl:call-template name="odd2odd-mergeAttribute">
                         <xsl:with-param name="New" select="key('odd2odd-CHANGEATT',$lookingAt)"/>
@@ -1625,8 +1561,7 @@ so that is only put back in if there is some content
         <xsl:param name="orig"/>
         <xsl:param name="attRef"/>
         <xsl:param name="debug"/>
-        <xsl:choose>
-      <!-- don't make another reference to a class attribute 
+        <xsl:choose><!-- don't make another reference to a class attribute 
 	 if we already have an attRef -->
             <xsl:when test="key('odd2odd-ATTREFS',$attRef)"/>
             <xsl:otherwise>
@@ -1635,31 +1570,26 @@ so that is only put back in if there is some content
         </xsl:choose>
     </xsl:template>
     <xsl:template name="odd2odd-checkClassAttribute">
-        <xsl:param name="element"/>
-    <!-- look at each attribute in turn, and then repeat for any
+        <xsl:param name="element"/><!-- look at each attribute in turn, and then repeat for any
 	 inherited classes -->
         <xsl:variable name="class" select="@ident"/>
         <xsl:variable name="mode" select="@mode"/>
         <xsl:for-each select="tei:attList//tei:attDef">
             <xsl:variable name="att" select="@ident"/>
             <xsl:for-each select="$ODD">
-                <xsl:choose>
-          <!-- deleted in the customization at the class level -->
+                <xsl:choose><!-- deleted in the customization at the class level -->
                     <xsl:when test="key('odd2odd-DELETEATT',concat($class,'_',$att))">
                         <xsl:text>:class-del-</xsl:text>
                         <xsl:value-of select="$att"/>
-                    </xsl:when>
-          <!-- deleted in the customization at the element level -->
+                    </xsl:when><!-- deleted in the customization at the element level -->
                     <xsl:when test="key('odd2odd-DELETEATT',concat($element,'_',$att))">
                         <xsl:text>:element-del-</xsl:text>
                         <xsl:value-of select="$att"/>
-                    </xsl:when>
-          <!-- replaced in the customization at the element level -->
+                    </xsl:when><!-- replaced in the customization at the element level -->
                     <xsl:when test="key('odd2odd-REPLACEATT',concat($element,'_',$att))">
                         <xsl:text>:element-replace-</xsl:text>
                         <xsl:value-of select="$att"/>
-                    </xsl:when>
-          <!-- changed in the customization by the element -->
+                    </xsl:when><!-- changed in the customization by the element -->
                     <xsl:when test="key('odd2odd-CHANGEATT',concat($element,'_',$att))">
                         <xsl:text>:element-change-</xsl:text>
                         <xsl:value-of select="$att"/>
@@ -1677,12 +1607,10 @@ so that is only put back in if there is some content
     </xsl:template>
     <xsl:template name="odd2odd-processAttributes">
         <xsl:param name="ORIGINAL"/>
-        <xsl:param name="elementName"/>
-    <!-- first put in the ones we know take precedence -->
+        <xsl:param name="elementName"/><!-- first put in the ones we know take precedence -->
         <xsl:apply-templates mode="odd2odd-justcopy" select="tei:attList/tei:attDef[@mode='add' or not(@mode)]"/>
         <xsl:apply-templates mode="odd2odd-justcopy" select="tei:attList/tei:attDef[@mode='replace']"/>
-        <xsl:for-each select="$ORIGINAL/tei:attList">
-      <!-- original source  context -->
+        <xsl:for-each select="$ORIGINAL/tei:attList"><!-- original source  context -->
             <xsl:for-each select="tei:attList">
                 <attList xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:copy-of select="@org"/>
@@ -1743,8 +1671,7 @@ so that is only put back in if there is some content
                     <xsl:copy-of select="$atts"/>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:for-each>
-    <!-- now we need to go back to the classes of which this 
+        </xsl:for-each><!-- now we need to go back to the classes of which this 
        element is a member and reference their untouched attributes -->
         <xsl:choose>
             <xsl:when test="$elementName=''"/>
@@ -1813,8 +1740,7 @@ so that is only put back in if there is some content
                 </xsl:attribute>
                 <xsl:if test="tei:altIdent">
                     <xsl:apply-templates mode="odd2odd-justcopy" select="tei:altIdent"/>
-                </xsl:if>
-        <!-- equiv, gloss, desc trio -->
+                </xsl:if><!-- equiv, gloss, desc trio -->
                 <xsl:choose>
                     <xsl:when test="$stripped='true'"/>
                     <xsl:when test="tei:equiv">
@@ -2132,13 +2058,11 @@ so that is only put back in if there is some content
     </xsl:template>
     <xsl:template name="odd2odd-processConstraints">
         <xsl:param name="ORIGINAL"/>
-        <xsl:param name="elementName"/>
-    <!-- first put in the ones we know take precedence -->
+        <xsl:param name="elementName"/><!-- first put in the ones we know take precedence -->
         <xsl:apply-templates mode="odd2odd-justcopy" select="tei:constraintSpec[@mode='add' or not(@mode)]"/>
         <xsl:apply-templates mode="odd2odd-justcopy" select="tei:constraintSpec[@mode='replace']"/>
         <xsl:apply-templates mode="odd2odd-justcopy" select="tei:constraintSpec[@mode='change']"/>
-        <xsl:for-each select="$ORIGINAL">
-      <!-- original source  context -->
+        <xsl:for-each select="$ORIGINAL"><!-- original source  context -->
             <xsl:for-each select="tei:constraintSpec">
                 <xsl:variable name="CONSTRAINT" select="."/>
                 <xsl:variable name="lookingAt">

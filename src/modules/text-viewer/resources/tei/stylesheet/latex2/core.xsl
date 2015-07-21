@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" exclude-result-prefixes="a rng tei teix" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" exclude-result-prefixes="a rng tei teix" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module, making
@@ -191,8 +191,7 @@ of this software, even if advised of the possibility of such damage.
 
 </xsl:text>
             </xsl:otherwise>
-        </xsl:choose>
-      <!--
+        </xsl:choose><!--
     <xsl:choose>
       <xsl:when test="@n">
 	<xsl:text>
@@ -377,7 +376,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:text>
 \item</xsl:text>
         <xsl:if test="@n">[<xsl:value-of select="@n"/>]</xsl:if>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:apply-templates/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
@@ -547,8 +546,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Process element mentioned</desc>
@@ -645,8 +643,7 @@ of this software, even if advised of the possibility of such damage.
     ID.</p>
         </desc>
     </doc>
-    <xsl:template match="tei:pb">
-   <!-- string " Page " is now managed through the i18n file -->
+    <xsl:template match="tei:pb"><!-- string " Page " is now managed through the i18n file -->
         <xsl:choose>
             <xsl:when test="$pagebreakStyle='active'">
                 <xsl:text>\clearpage </xsl:text>
@@ -654,26 +651,26 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="$pagebreakStyle='visible'">
                 <xsl:text>✁[</xsl:text>
                 <xsl:value-of select="@unit"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">page</xsl:with-param>
                 </xsl:call-template>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="@n"/>
                 <xsl:text>]✁</xsl:text>
             </xsl:when>
-            <xsl:when test="$pagebreakStyle='bracketsonly'"> <!-- To avoid trouble with the scisssors character "✁" -->
+            <xsl:when test="$pagebreakStyle='bracketsonly'"><!-- To avoid trouble with the scisssors character "✁" -->
                 <xsl:text>[</xsl:text>
                 <xsl:value-of select="@unit"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">page</xsl:with-param>
                 </xsl:call-template>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="@n"/>
                 <xsl:text>]</xsl:text>
             </xsl:when>
-            <xsl:otherwise> </xsl:otherwise>
+            <xsl:otherwise/>
         </xsl:choose>
         <xsl:if test="@xml:id">
             <xsl:text>\hypertarget{</xsl:text>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:import href="../common/common.xsl"/>
     <xsl:import href="../common/verbatim.xsl"/>
     <xsl:import href="html_param.xsl"/>
@@ -199,7 +199,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:attribute name="class">
             <xsl:if test="not($auto='')">
                 <xsl:value-of select="$auto"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:if>
             <xsl:variable name="values">
                 <xsl:for-each select="tokenize(normalize-space($value),' ')">
@@ -399,7 +399,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:attribute name="class">
             <xsl:if test="not($auto='')">
                 <xsl:value-of select="$auto"/>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:if>
             <xsl:value-of select="$value"/>
         </xsl:attribute>
@@ -603,9 +603,7 @@ of this software, even if advised of the possibility of such damage.
                     </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>
-
-      <!--
+        </xsl:variable><!--
       <xsl:message>GENERATELINK <xsl:value-of
       select="(name(),$ident,$depth,string($keep),$LINK)"
 	  separator="|"/></xsl:message>
@@ -806,16 +804,11 @@ of this software, even if advised of the possibility of such damage.
     <xsl:function name="tei:keepDivOnPage" as="xs:boolean">
         <xsl:param name="context"/>
         <xsl:for-each select="$context">
-            <xsl:choose>
-	<!-- 4. we are part of an inner text -->
-                <xsl:when test="ancestor::tei:floatingText">true</xsl:when>
-	<!-- 3. we have special rendering on the document -->
-                <xsl:when test="ancestor::tei:TEI/@rend='all'     or ancestor::tei:TEI/@rend='frontpage'     or ancestor::tei:TEI/@rend='nosplit'">true</xsl:when>
-	<!-- 2. we are a singleton -->
-                <xsl:when test="parent::tei:body[count(*)=1] and not(tei:div or    tei:div2)">true</xsl:when>
-	<!-- 1. we have no proceding sections at top level -->
-                <xsl:when test="not(ancestor::tei:group) and parent::tei:body and    not(parent::tei:body/preceding-sibling::tei:front)    and not (preceding-sibling::*)">true</xsl:when>
-	<!-- 0. we are down the hierarchy -->
+            <xsl:choose><!-- 4. we are part of an inner text -->
+                <xsl:when test="ancestor::tei:floatingText">true</xsl:when><!-- 3. we have special rendering on the document -->
+                <xsl:when test="ancestor::tei:TEI/@rend='all'     or ancestor::tei:TEI/@rend='frontpage'     or ancestor::tei:TEI/@rend='nosplit'">true</xsl:when><!-- 2. we are a singleton -->
+                <xsl:when test="parent::tei:body[count(*)=1] and not(tei:div or    tei:div2)">true</xsl:when><!-- 1. we have no proceding sections at top level -->
+                <xsl:when test="not(ancestor::tei:group) and parent::tei:body and    not(parent::tei:body/preceding-sibling::tei:front)    and not (preceding-sibling::*)">true</xsl:when><!-- 0. we are down the hierarchy -->
                 <xsl:when test="@rend='nosplit'">true</xsl:when>
                 <xsl:otherwise>false</xsl:otherwise>
             </xsl:choose>

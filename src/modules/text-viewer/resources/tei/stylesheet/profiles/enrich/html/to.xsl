@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:m="http://www.w3.org/1998/Math/MathML" exclude-result-prefixes="tei m" version="2.0">
-    <!-- import base conversion style -->
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" exclude-result-prefixes="tei m" version="2.0"><!-- import base conversion style -->
     <xsl:import href="../../../xhtml2/tei.xsl"/>
     <xsl:import href="../../../common2/msdescription.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
@@ -42,8 +41,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
     </doc>
-    <xsl:output indent="no"/>
-    <!--  -->
+    <xsl:output indent="no"/><!--  -->
     <xsl:template name="msSection">
         <xsl:param name="level"/>
         <xsl:param name="heading"/>
@@ -114,8 +112,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="bodyHook">
         <xsl:apply-templates select="//tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc"/>
     </xsl:template>
-    <xsl:param name="cssSecondaryFile">http://tei.oucs.ox.ac.uk/ENRICH/msdescription.css</xsl:param>
-    <!-- <xsl:param name="cssFile">tei.css</xsl:param>-->
+    <xsl:param name="cssSecondaryFile">http://tei.oucs.ox.ac.uk/ENRICH/msdescription.css</xsl:param><!-- <xsl:param name="cssFile">tei.css</xsl:param>-->
     <xsl:template match="tei:choice">
         <xsl:apply-templates/>
     </xsl:template>

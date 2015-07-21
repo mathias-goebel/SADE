@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:svg="http://www.w3.org/2000/svg" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="svg a fo html rng tei teidocx teix m" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" exclude-result-prefixes="svg a fo html rng tei teidocx teix m" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the figures module,
@@ -189,7 +189,7 @@ of this software, even if advised of the possibility of such damage.
                                     <xsl:call-template name="i18n">
                                         <xsl:with-param name="word">figureWord</xsl:with-param>
                                     </xsl:call-template>
-                                    <xsl:text> </xsl:text>
+                                    <xsl:text/>
                                     <xsl:number count="tei:figure[tei:head]" from="tei:front" level="any"/>
                                     <xsl:text>. </xsl:text>
                                 </xsl:when>
@@ -197,7 +197,7 @@ of this software, even if advised of the possibility of such damage.
                                     <xsl:call-template name="i18n">
                                         <xsl:with-param name="word">figureWord</xsl:with-param>
                                     </xsl:call-template>
-                                    <xsl:text> </xsl:text>
+                                    <xsl:text/>
                                     <xsl:number count="tei:figure[tei:head]" from="tei:back" level="any"/>
                                     <xsl:text>. </xsl:text>
                                 </xsl:when>
@@ -205,7 +205,7 @@ of this software, even if advised of the possibility of such damage.
                                     <xsl:call-template name="i18n">
                                         <xsl:with-param name="word">figureWord</xsl:with-param>
                                     </xsl:call-template>
-                                    <xsl:text> </xsl:text>
+                                    <xsl:text/>
                                     <xsl:number count="tei:figure[tei:head]" from="tei:body" level="any"/>
                                     <xsl:text>. </xsl:text>
                                 </xsl:when>
@@ -272,7 +272,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:attribute name="class">
                 <xsl:text>table</xsl:text>
                 <xsl:if test="@align">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="@align"/>
                 </xsl:if>
             </xsl:attribute>
@@ -464,11 +464,11 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:call-template name="i18n">
                         <xsl:with-param name="word">figureWord</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:for-each select="self::tei:figure|parent::tei:figure">
                         <xsl:number count="tei:figure[tei:head]" level="any"/>
                     </xsl:for-each>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$File"/>
                     <xsl:text> [</xsl:text>
                     <xsl:value-of select="$Alt"/>
@@ -501,9 +501,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:with-param name="name">height</xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
-        </img>
-      <!-- also alt -->
-    <!-- this is what we'll need for IE:
+        </img><!-- also alt --><!-- this is what we'll need for IE:
 <style type="text/css">
    img {behavior: expression(fixBase64(this));}
   </style>

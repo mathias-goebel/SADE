@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:t="http://www.thaiopensource.com/ns/annotations" exclude-result-prefixes="a t tei fo rng xs" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:t="http://www.thaiopensource.com/ns/annotations" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="a t tei fo rng xs" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module. </p>
@@ -74,15 +74,14 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template match="tei:table[@rend='attList'        or @rend='valList'        or @rend='specDesc'        or @rend='attDef']/tei:row/tei:cell[2]">
         <c rend="tab">
-            <xsl:text>	</xsl:text>
+            <xsl:text/>
         </c>
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:index"/>
     <xsl:template match="processing-instruction()[name()='tex' and .='\ ']">
         <c xml:space="preserve"> </c>
-    </xsl:template>
-   <!-- identity transform -->
+    </xsl:template><!-- identity transform -->
     <xsl:output method="xml" indent="yes"/>
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy-of select="."/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="tei xlink xhtml m" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="tei xlink xhtml m" version="2.0">
     <xsl:import href="../xhtml2/tei.xsl"/>
     <xsl:strip-space elements="teix:* rng:* xsl:* xhtml:* atom:* m:*"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
@@ -58,8 +58,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template name="lineBreak">
         <xsl:param name="id"/>
         <xhtml:br/>
-    </xsl:template>
-   <!--
+    </xsl:template><!--
 <xsl:text>(</xsl:text>
 <xsl:value-of select="$id"/>
 <xsl:text>)</xsl:text>
@@ -148,7 +147,7 @@ of this software, even if advised of the possibility of such damage.
                 <span class="button">«</span>
             </a>
         </xsl:if>
-        <xsl:text>  </xsl:text>
+        <xsl:text/>
         <a class="xreflink" accesskey="f" href="{concat($first,$outputSuffix)}">
             <span class="button">^</span>
         </a>
@@ -173,7 +172,7 @@ of this software, even if advised of the possibility of such damage.
                 <span class="button">»</span>
             </a>
         </xsl:if>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:apply-templates select="." mode="number"/>
     </xsl:template>
     <xsl:template name="mainslide">

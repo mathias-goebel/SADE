@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xlink rng tei teix xhtml a html xs xsl" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="xlink rng tei teix xhtml a html xs xsl" version="2.0">
     <xsl:param name="outputDir">
         <xsl:value-of select="$directory"/>/OEBPS</xsl:param>
     <xsl:key name="EXAMPLES" match="teix:*[ancestor::teix:egXML]" use="concat(ancestor::tei:div[last()]/@xml:id,local-name())"/>
@@ -136,8 +136,7 @@ glyphes non standard</head>
         <head xml:lang="pt" corresp="REF-CLASSES-ATTS">Classes dos atributos</head>
         <head xml:lang="pt" corresp="REF-CLASSES-MODEL">Classes do modelo</head>
         <head xml:lang="pt" corresp="REF-ELEMENTS">Elementos</head>
-        <head xml:lang="pt" corresp="REF-MACROS">Tipos de dados e outras macros</head>
-    <!-- keywords on the interface for Module -->
+        <head xml:lang="pt" corresp="REF-MACROS">Tipos de dados e outras macros</head><!-- keywords on the interface for Module -->
         <head xml:lang="ja" corresp="AI">分析モジュール</head>
         <head xml:lang="ja" corresp="CE">確信度モジュール</head>
         <head xml:lang="ja" corresp="CO">コアモジュール</head>
@@ -157,16 +156,14 @@ glyphes non standard</head>
         <head xml:lang="ja" corresp="TC">校勘モジュール</head>
         <head xml:lang="ja" corresp="DS">テキスト構造モジュール</head>
         <head xml:lang="ja" corresp="PH">転記モジュール</head>
-        <head xml:lang="ja" corresp="VE">韻文モジュール</head>
-    <!-- keywords on the interface for toc -->
+        <head xml:lang="ja" corresp="VE">韻文モジュール</head><!-- keywords on the interface for toc -->
         <head xml:lang="ja" corresp="COL">コロフォン</head>
         <head xml:lang="ja" corresp="dedication">献辞</head>
         <head xml:lang="ja" corresp="PREF">序文と謝辞</head>
         <head xml:lang="ja" corresp="PREFS">序文集</head>
         <head xml:lang="ja" corresp="REF-CLASSES-ATTS">属性クラス</head>
         <head xml:lang="ja" corresp="REF-CLASSES-MODEL">モデルクラス</head>
-        <head xml:lang="ja" corresp="REF-ELEMENTS">要素</head>
-    <!-- keywords on the interface for app.D -->
+        <head xml:lang="ja" corresp="REF-ELEMENTS">要素</head><!-- keywords on the interface for app.D -->
         <head xml:lang="ja" corresp="REF-MACROS">データ型とマクロ</head>
         <head xml:lang="ja" corresp="ST">TEIの基礎構造</head>
         <head xml:lang="ja" corresp="AB">本ガイドラインについて</head>
@@ -198,8 +195,7 @@ glyphes non standard</head>
         <head xml:lang="es" corresp="REF-CLASSES-MODEL">Clases de modelos</head>
         <head xml:lang="es" corresp="REF-ELEMENTS">Elementos</head>
         <head xml:lang="es" corresp="SG">Una introducción suave a XML</head>
-        <head xml:lang="es" corresp="USE">Cómo usar TEI</head>
-    <!-- Catalan -->
+        <head xml:lang="es" corresp="USE">Cómo usar TEI</head><!-- Catalan -->
         <head xml:lang="ca" corresp="AI">Mecanismes analítics simples</head>
         <head xml:lang="ca" corresp="CE">Certitud i incertitud</head>
         <head xml:lang="ca" corresp="CO">Elements comuns a tots els documents TEI</head>
@@ -226,8 +222,7 @@ glyphes non standard</head>
         <head xml:lang="ca" corresp="REF-CLASSES-MODEL">Classes de models</head>
         <head xml:lang="ca" corresp="REF-ELEMENTS">Elements</head>
         <head xml:lang="ca" corresp="SG">Una introducció suau a XML</head>
-        <head xml:lang="ca" corresp="USE">Com usar TEI</head>
-    <!-- German -->
+        <head xml:lang="ca" corresp="USE">Com usar TEI</head><!-- German -->
         <head xml:lang="de" corresp="AI">Einfache Analyse-Mechanismen</head>
         <head xml:lang="de" corresp="CE">Zuverlässigkeit und Unsicherheit</head>
         <head xml:lang="de" corresp="CO">Elemente, verfügbar in allen TEI-Dokumenten</head>
@@ -312,7 +307,7 @@ glyphes non standard</head>
                                 </xsl:call-template>
                                 <xsl:text>: </xsl:text>
                                 <xsl:value-of select="$me"/>
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                                 <xsl:call-template name="makeGloss">
                                     <xsl:with-param name="langs" select="$langs"/>
                                 </xsl:call-template>
@@ -735,7 +730,7 @@ glyphes non standard</head>
                     <xsl:number/>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:for-each>
         <xsl:for-each select="document('')">
             <xsl:choose>
@@ -784,8 +779,7 @@ glyphes non standard</head>
         <xsl:param name="title" select="'(no title)'"/>
         <xsl:call-template name="pageHeader"/>
     </xsl:template>
-    <xsl:template match="tei:titlePage">
-    <!--
+    <xsl:template match="tei:titlePage"><!--
 	<div class="titlePage">
 	<h1>
 	<xsl:apply-templates
@@ -795,8 +789,7 @@ glyphes non standard</head>
 	<xsl:value-of select="tei:docAuthor"/>
 	</h2>
 	</div>
-    -->
-    </xsl:template>
+    --></xsl:template>
     <xsl:template name="continuedToc">
         <xsl:if test="tei:div">
             <ul class="continuedtoc">
@@ -861,8 +854,7 @@ glyphes non standard</head>
                 </xsl:if>
             </li>
         </xsl:if>
-    </xsl:template>
-  <!--
+    </xsl:template><!--
   <xsl:template name="mainTOC">
     <xsl:param name="force"/>
 
@@ -931,8 +923,7 @@ glyphes non standard</head>
     <xsl:template name="javascriptHook">
         <script type="text/javascript" src="jquery-1.2.6.min.js">
             <xsl:comment>JQuery</xsl:comment>
-        </script>
-    <!--
+        </script><!--
     <script type="text/javascript" src="jquery.treeview.js">	
        <xsl:comment>JQuery treeview</xsl:comment>
     </script>
@@ -1006,17 +997,13 @@ glyphes non standard</head>
                 </span>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
-
-  <!-- only use listBibl if its in right language-->
-    <xsl:template match="tei:listBibl[@xml:lang and not($documentationLanguage=@xml:lang)]"/>
-
-  <!-- link from bibl back to egXML -->
+    </xsl:template><!-- only use listBibl if its in right language-->
+    <xsl:template match="tei:listBibl[@xml:lang and not($documentationLanguage=@xml:lang)]"/><!-- link from bibl back to egXML -->
     <xsl:template match="tei:listBibl/tei:biblStruct|tei:listBibl/tei:bibl">
         <xsl:apply-templates/>
         <xsl:for-each select="key('BACKLINKS',@xml:id)">
             <xsl:if test="self::teix:egXML">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <a class="link_return" title="Go back to text">
                     <xsl:attribute name="href">
                         <xsl:apply-templates select="." mode="generateLink"/>
@@ -1033,8 +1020,7 @@ glyphes non standard</head>
                     <xsl:attribute name="href">
                         <xsl:apply-templates mode="generateLink" select="id(substring(@corresp,2))"/>
                     </xsl:attribute>
-                    <xsl:text>bibliography</xsl:text>
-          <!--	  <span class="citLink">✍</span>-->
+                    <xsl:text>bibliography</xsl:text><!--	  <span class="citLink">✍</span>-->
                 </a>
                 <xsl:text>&#160;</xsl:text>
             </div>
@@ -1146,9 +1132,7 @@ glyphes non standard</head>
             </address>
         </div>
         <xsl:if test="not($googleAnalytics='')">
-            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-        <!-- load google analytics -->
-            </script>
+            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"><!-- load google analytics --></script>
             <script type="text/javascript">
                 <xsl:text>_uacct = "</xsl:text>
                 <xsl:value-of select="$googleAnalytics"/>

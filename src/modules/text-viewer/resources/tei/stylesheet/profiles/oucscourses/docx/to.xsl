@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0" exclude-result-prefixes="teix ve o r m v wp w10 w wne mml tbx iso a xs pic fn teidocx">
-  <!-- import conversion style -->
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0" exclude-result-prefixes="teix ve o r m v wp w10 w wne mml tbx iso a xs pic fn teidocx"><!-- import conversion style -->
     <xsl:import href="../../default/docx/to.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -105,8 +104,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:for-each>
             </sessions>
         </xsl:variable>
-        <xsl:for-each select="$data2/sessions/session">
-<!--      <xsl:if test="not(weekday=preceding-sibling::session[1]/weekday)">
+        <xsl:for-each select="$data2/sessions/session"><!--      <xsl:if test="not(weekday=preceding-sibling::session[1]/weekday)">
         <w:p>
           <w:pPr>
             <w:pStyle>
@@ -154,8 +152,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template match="table[@rend='roomlabel2']">
-    <!-- room, date, start, end, title, person -->
+    <xsl:template match="table[@rend='roomlabel2']"><!-- room, date, start, end, title, person -->
         <xsl:variable name="data">
             <sessions>
                 <xsl:for-each select="row">
@@ -263,7 +260,7 @@ of this software, even if advised of the possibility of such damage.
                             <w:br w:type="page"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <w:t> </w:t>
+                            <w:t/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </w:r>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:html="http://www.w3.org/1999/xhtml" version="2.0" exclude-result-prefixes="#default s html a fo rng tei teix">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:s="http://www.ascc.net/xml/schematron" version="2.0" exclude-result-prefixes="#default s html a fo rng tei teix">
     <xsl:param name="cssFile"/>
     <xsl:param name="cssSecondaryFile"/>
     <xsl:param name="summaryDoc">false</xsl:param>
@@ -130,9 +130,9 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:variable name="pagetitle">
                             <xsl:text>TEI </xsl:text>
                             <xsl:value-of select="substring-before(local-name(),'Spec')"/>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:value-of select="$name"/>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:sequence select="tei:makeGloss(.,$langs)"/>
                         </xsl:variable>
                         <xsl:sequence select="tei:htmlHead($pagetitle,7)"/>
@@ -192,7 +192,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:call-template name="verbatim-reformatText">
                         <xsl:with-param name="sofar">0</xsl:with-param>
                         <xsl:with-param name="indent">
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                         </xsl:with-param>
                         <xsl:with-param name="text">
                             <xsl:value-of select="$contents"/>
@@ -319,10 +319,10 @@ of this software, even if advised of the possibility of such damage.
         </xsl:choose>
     </xsl:template>
     <xsl:template name="showSpace">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template name="showSpaceBetweenItems">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:schemaSpec">
         <xsl:choose>
@@ -789,7 +789,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:attribute>
                 <xsl:value-of select="@ident"/>
             </a>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </span>
     </xsl:template>
     <xsl:template match="tei:divGen[@type='modelclasscat']" priority="100">

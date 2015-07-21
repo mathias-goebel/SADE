@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Format" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fotex="http://www.tug.org/fotex" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" exclude-result-prefixes=" a fotex rng tei teix" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:fotex="http://www.tug.org/fotex" exclude-result-prefixes=" a fotex rng tei teix" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>
@@ -160,7 +160,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:call-template name="i18n">
                 <xsl:with-param name="word">figureWord</xsl:with-param>
             </xsl:call-template>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:if>
         <xsl:call-template name="calculateFigureNumber"/>
         <xsl:if test="$showFloatHead='true' and tei:head">
@@ -228,8 +228,7 @@ of this software, even if advised of the possibility of such damage.
         <desc/>
     </doc>
     <xsl:template match="tei:row[@role='header']">
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
         <table-header>
             <xsl:apply-templates select="tei:cell"/>
         </table-header>
@@ -242,7 +241,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:call-template name="i18n">
                 <xsl:with-param name="word">tableWord</xsl:with-param>
             </xsl:call-template>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:if>
         <xsl:if test="$showFloatHead='true' and tei:head">
             <xsl:text> (</xsl:text>
@@ -275,7 +274,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:call-template name="i18n">
                                 <xsl:with-param name="word">tableWord</xsl:with-param>
                             </xsl:call-template>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:call-template name="calculateTableNumber"/>
                             <xsl:text>. </xsl:text>
                         </xsl:if>
@@ -298,8 +297,7 @@ of this software, even if advised of the possibility of such damage.
                 <fotex:eqnarray>
                     <xsl:for-each select="tei:row">
                         <xsl:apply-templates select=".//tei:formula"/>
-                        <xsl:if test="following-sibling::tei:row">
-<!--        <character character=" "/>-->
+                        <xsl:if test="following-sibling::tei:row"><!--        <character character=" "/>-->
                             <xsl:processing-instruction name="xmltex">\\</xsl:processing-instruction>
                         </xsl:if>
                     </xsl:for-each>
@@ -320,8 +318,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:apply-templates select="tei:row[@role='header']"/>
             <table-body text-indent="0pt">
                 <xsl:for-each select="tei:row[not(@role='header')]">
-                    <xsl:text>
-</xsl:text>
+                    <xsl:text/>
                     <table-row>
                         <xsl:apply-templates select="tei:cell"/>
                     </table-row>
@@ -361,8 +358,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:if>
                 <xsl:attribute name="border-start-style">solid</xsl:attribute>
             </xsl:when>
-            <xsl:otherwise>
-  </xsl:otherwise>
+            <xsl:otherwise/>
         </xsl:choose>
         <xsl:if test="not(ancestor::tei:table/@rend='tight')">
             <xsl:attribute name="padding">
@@ -384,8 +380,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:variable>
                 <xsl:variable name="align">
                     <xsl:value-of select="$tableSpecs/Info/TableSpec[@xml:id=$tid]/table-column[@column-number=$thiscol]/@fotex:column-align"/>
-                </xsl:variable>
-            <!--
+                </xsl:variable><!--
     <xsl:message>    Cell: whats my position: <xsl:value-of select="$thiscol"/>, <xsl:value-of select="$align"/>, <xsl:value-of select="$tid"/>
 </xsl:message>
 -->

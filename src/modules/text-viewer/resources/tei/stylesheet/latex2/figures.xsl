@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" exclude-result-prefixes="a rng tei teix" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="a rng tei teix" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the figures module,
@@ -139,8 +139,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="following-sibling::tei:row">
             <xsl:text>\\</xsl:text>
             <xsl:if test="@role='label' or parent::tei:table/@rend='rules'">\hline </xsl:if>
-            <xsl:text>
-</xsl:text>
+            <xsl:text/>
         </xsl:if>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
@@ -328,7 +327,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates mode="ok" select="tei:head"/>
                 <xsl:text>}\\ </xsl:text>
             </xsl:when>
-            <xsl:otherwise> </xsl:otherwise>
+            <xsl:otherwise/>
         </xsl:choose>
         <xsl:if test="contains($r,'rules') or tei:row[1][@role='label']">\hline </xsl:if>
         <xsl:apply-templates/>

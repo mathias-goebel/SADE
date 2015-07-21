@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xj="http://xml.apache.org/xalan/java" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:saxon="http://icl.com/saxon" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:loc="http://www.thaiopensource.com/ns/location" xmlns:i="http://www.iso.org/ns/1.0" xmlns:err="http://www.thaiopensource.com/ns/error" xmlns:sch="http://www.ascc.net/xml/schematron" version="2.0" i:dummy-for-xmlns="" tei:dummy-for-xmlns="">
+<xsl:stylesheet xmlns:loc="http://www.thaiopensource.com/ns/location" xmlns:saxon="http://icl.com/saxon" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:err="http://www.thaiopensource.com/ns/error" xmlns:i="http://www.iso.org/ns/1.0" xmlns:xj="http://xml.apache.org/xalan/java" version="2.0" i:dummy-for-xmlns="" tei:dummy-for-xmlns="">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for simplifying TEI ODD markup </p>

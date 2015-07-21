@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="a fo html rng tei teix teidocx" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" exclude-result-prefixes="a fo html rng tei teix teidocx" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module, making
@@ -474,7 +474,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tei:head" mode="plain">
         <xsl:if test="preceding-sibling::tei:head">
-            <xsl:text> </xsl:text>
+            <xsl:text/>
         </xsl:if>
         <xsl:apply-templates mode="plain"/>
     </xsl:template>
@@ -655,7 +655,7 @@ of this software, even if advised of the possibility of such damage.
         <desc>Process element lb in plain mode</desc>
     </doc>
     <xsl:template match="tei:lb" mode="plain">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Process element lb</desc>
@@ -667,7 +667,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="parent::tei:front"/>
             <xsl:when test="@type='hyphenInWord' and @rend='hidden'"/>
             <xsl:when test="@rend='hidden'">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </xsl:when>
             <xsl:when test="@rend='-' or @type='hyphenInWord'">
                 <xsl:text>-</xsl:text>
@@ -895,8 +895,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:apply-templates mode="glosstable" select="tei:item"/>
                 </table>
             </xsl:when>
-            <xsl:when test="@type='inline' or ancestor::tei:head or parent::tei:label">
-        <!--<xsl:if test="not(tei:item)">None</xsl:if>-->
+            <xsl:when test="@type='inline' or ancestor::tei:head or parent::tei:label"><!--<xsl:if test="not(tei:item)">None</xsl:if>-->
                 <xsl:apply-templates mode="inline" select="tei:item"/>
             </xsl:when>
             <xsl:when test="@type='runin'">
@@ -951,8 +950,7 @@ of this software, even if advised of the possibility of such damage.
                 <ol class="listBibl">
                     <xsl:for-each select="tei:biblStruct">
                         <xsl:sort select="translate((          tei:*/tei:author/tei:surname|          tei:*[1]/tei:author/tei:orgName|            tei:*[1]/tei:author/tei:name|            tei:*[1]/tei:author|            tei:*[1]/tei:editor/tei:surname|            tei:*[1]/tei:editor/tei:name|            tei:*[1]/tei:editor|            tei:*[1]/tei:title[1])[1],  $uc,$lc)"/>
-                        <xsl:sort select="tei:monogr/tei:imprint/tei:date"/>
-            <!--
+                        <xsl:sort select="tei:monogr/tei:imprint/tei:date"/><!--
 	   <dt>
               <xsl:call-template name="makeAnchor"/>
               <xsl:apply-templates select="." mode="xref"/>
@@ -1242,13 +1240,13 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="matches(@n,'[0-9]')">
                     <xsl:text>.</xsl:text>
                 </xsl:if>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
             </span>
             <div class="noteBody">
                 <xsl:apply-templates/>
             </div>
             <xsl:if test="$footnoteBackLink= 'true'">
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <a class="link_return" title="Go back to text" href="#{concat($identifier,'_return')}">↵</a>
             </xsl:if>
         </div>
@@ -1277,8 +1275,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="@xml:id"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text>page</xsl:text>
-        <!--
+                <xsl:text>page</xsl:text><!--
 	<xsl:for-each select="ancestor::tei:div[1]">
 	  <xsl:number level="multiple" format="1.1.1.1.1"/>
 	  <xsl:text>-</xsl:text>
@@ -1329,7 +1326,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="word">page</xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="@n">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                         <xsl:value-of select="@n"/>
                     </xsl:if>
                     <xsl:text>] </xsl:text>
@@ -1343,7 +1340,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="word">page</xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="@n">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                         <xsl:value-of select="@n"/>
                     </xsl:if>
                     <xsl:text>] </xsl:text>
@@ -1619,7 +1616,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template match="tei:resp">
         <xsl:apply-templates/>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Process element respStmt</desc>
@@ -1793,7 +1790,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>[html] Active a value for @rend<param name="value">value</param>
@@ -2164,16 +2161,14 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:with-param name="value" select="$rest"/>
                     </xsl:call-template>
                 </span>
-            </xsl:when>
-      <!-- NN added -->
+            </xsl:when><!-- NN added -->
             <xsl:when test="$value='ul'">
                 <u>
                     <xsl:call-template name="applyRend">
                         <xsl:with-param name="value" select="$rest"/>
                     </xsl:call-template>
                 </u>
-            </xsl:when>
-      <!-- NN added -->
+            </xsl:when><!-- NN added -->
             <xsl:when test="$value='interlinMarks'">
                 <xsl:text>`</xsl:text>
                 <xsl:call-template name="applyRend">
@@ -2455,7 +2450,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:attribute name="class">
                     <xsl:if test="not($class1='')">
                         <xsl:value-of select="$class1"/>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:if>
                     <xsl:value-of select="$class2"/>
                 </xsl:attribute>

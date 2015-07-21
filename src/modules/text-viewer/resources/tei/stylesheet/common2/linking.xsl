@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei xs" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the linking module. </p>
@@ -142,7 +142,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:call-template name="i18n">
                                 <xsl:with-param name="word">appendixWords</xsl:with-param>
                             </xsl:call-template>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:call-template name="numberBackDiv"/>
                             <xsl:if test="$minimal='false'">
                                 <xsl:value-of select="$numberSpacer"/>
@@ -186,7 +186,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:with-param>
                         <xsl:with-param name="class">
                             <xsl:value-of select="$class_toc"/>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:value-of select="concat($class_toc,'_',$depth)"/>
                         </xsl:with-param>
                         <xsl:with-param name="body">
@@ -296,10 +296,8 @@ of this software, even if advised of the possibility of such damage.
         </desc>
     </doc>
     <xsl:template name="makeTEILink">
-        <xsl:param name="ptr" as="xs:boolean" select="false()"/>
-      <!-- is this a ptr or a ref? -->
-        <xsl:choose>
-      <!-- If there is a target attribute starting with #, it is always a local reference -->
+        <xsl:param name="ptr" as="xs:boolean" select="false()"/><!-- is this a ptr or a ref? -->
+        <xsl:choose><!-- If there is a target attribute starting with #, it is always a local reference -->
             <xsl:when test="@target and starts-with(@target,'#')">
                 <xsl:call-template name="makeInternalLink">
                     <xsl:with-param name="target" select="substring(@target,2)"/>
@@ -312,8 +310,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:call-template>
                     </xsl:with-param>
                 </xsl:call-template>
-            </xsl:when>
-         <!-- if we are doing TEI P4, all targets are local -->
+            </xsl:when><!-- if we are doing TEI P4, all targets are local -->
             <xsl:when test="@target and $teiP4Compat='true'">
                 <xsl:call-template name="makeInternalLink">
                     <xsl:with-param name="target" select="@target"/>
@@ -326,8 +323,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:call-template>
                     </xsl:with-param>
                 </xsl:call-template>
-            </xsl:when>
-         <!-- other uses of target means it is external -->
+            </xsl:when><!-- other uses of target means it is external -->
             <xsl:when test="@target">
                 <xsl:call-template name="makeExternalLink">
                     <xsl:with-param name="ptr" select="$ptr"/>
@@ -335,8 +331,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:value-of select="@target"/>
                     </xsl:with-param>
                 </xsl:call-template>
-            </xsl:when>
-         <!-- If there is a url attribute starting with #, it is a local
+            </xsl:when><!-- If there is a url attribute starting with #, it is a local
        reference -->
             <xsl:when test="@url and starts-with(@url,'#')">
                 <xsl:call-template name="makeInternalLink">
@@ -350,8 +345,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:call-template>
                     </xsl:with-param>
                 </xsl:call-template>
-            </xsl:when>
-         <!-- otherwise it is an external URL -->
+            </xsl:when><!-- otherwise it is an external URL -->
             <xsl:when test="@url">
                 <xsl:call-template name="makeExternalLink">
                     <xsl:with-param name="ptr" select="$ptr"/>
@@ -359,8 +353,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:value-of select="@url"/>
                     </xsl:with-param>
                 </xsl:call-template>
-            </xsl:when>
-         <!-- A doc attribute means an external reference -->
+            </xsl:when><!-- A doc attribute means an external reference -->
             <xsl:when test="@doc">
                 <xsl:call-template name="makeExternalLink">
                     <xsl:with-param name="ptr" select="$ptr"/>
@@ -369,8 +362,7 @@ of this software, even if advised of the possibility of such damage.
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:otherwise>
-        <!--
+            <xsl:otherwise><!--
       <xsl:for-each select="@*">
 	[[markup error: <xsl:value-of select="name(.)"/>=<xsl:value-of select="."/>]]
       </xsl:for-each>

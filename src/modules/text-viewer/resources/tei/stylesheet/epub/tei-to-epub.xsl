@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:smil="http://www.w3.org/ns/SMIL" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" version="2.0" exclude-result-prefixes="iso tei teix dc              html opf ncx smil">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:smil="http://www.w3.org/ns/SMIL" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="iso tei teix dc              html opf ncx smil">
     <xsl:import href="../xhtml2/tei.xsl"/>
     <xsl:import href="epub-common.xsl"/>
     <xsl:import href="epub-preflight.xsl"/>
@@ -146,8 +146,7 @@ of this software, even if advised of the possibility of such damage.
                     <TOC>
                         <xsl:call-template name="mainTOC"/>
                     </TOC>
-                </xsl:variable>
-<!--
+                </xsl:variable><!--
 	    <xsl:result-document href="/tmp/TOC">
 	    <xsl:copy-of select="$TOC"/>
 	    </xsl:result-document>
@@ -254,7 +253,7 @@ height: </xsl:text>
                 </xsl:if>
                 <xsl:result-document href="{concat($directory,'/OEBPS/content.opf')}" method="xml">
                     <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="dcidid" version="2.0">
-                        <metadata xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/">
                             <dc:title>
                                 <xsl:call-template name="generateSimpleTitle"/>
                             </dc:title>
@@ -316,8 +315,7 @@ height: </xsl:text>
                                 <meta name="cover" content="cover-image"/>
                             </xsl:if>
                         </metadata>
-                        <manifest>
-	      <!-- deal with intricacies of overlay files -->
+                        <manifest><!-- deal with intricacies of overlay files -->
                             <xsl:variable name="TL" select="key('Timeline',1)"/>
                             <xsl:if test="$mediaoverlay='true' and        key('Timeline',1)">
                                 <xsl:if test="$verbose='true'">
@@ -452,8 +450,7 @@ height: </xsl:text>
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:otherwise>
-                            </xsl:choose>
-		  <!-- images -->
+                            </xsl:choose><!-- images -->
                             <xsl:for-each select="key('GRAPHICS',1)">
                                 <xsl:variable name="img" select="@url|@facs"/>
                                 <xsl:if test="not($img=$coverImageOutside)">
@@ -475,9 +472,7 @@ height: </xsl:text>
                                     </xsl:variable>
                                     <item href="{$img}" id="image-{$ID}" media-type="{$mimetype}"/>
                                 </xsl:if>
-                            </xsl:for-each>
-
-		<!-- page images -->
+                            </xsl:for-each><!-- page images -->
                             <xsl:for-each select="key('PBGRAPHICS',1)">
                                 <xsl:variable name="img" select="@facs"/>
                                 <xsl:variable name="ID">
@@ -794,7 +789,7 @@ height: </xsl:text>
                     <xsl:message>write file OEBPS/page-template.xpgt</xsl:message>
                 </xsl:if>
                 <xsl:result-document method="xml" href="{concat($directory,'/OEBPS/page-template.xpgt')}">
-                    <ade:template xmlns:ade="http://ns.adobe.com/2006/ade" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+                    <ade:template xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:ade="http://ns.adobe.com/2006/ade">
                         <fo:layout-master-set>
                             <fo:simple-page-master master-name="single_column">
                                 <fo:region-body margin-bottom="3pt" margin-top="0.5em" margin-left="3pt" margin-right="3pt"/>

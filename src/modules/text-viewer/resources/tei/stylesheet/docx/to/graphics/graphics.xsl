@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:contypes="http://schemas.openxmlformats.org/package/2006/content-types" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" exclude-result-prefixes="cp ve o r m v wp w10 w wne       mml tbx iso  tei a xs       pic fn xsi dc dcterms       dcmitype rel contypes teidocx teix html cals">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:contypes="http://schemas.openxmlformats.org/package/2006/content-types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="cp ve o r m v wp w10 w wne       mml tbx iso  tei a xs       pic fn xsi dc dcterms       dcmitype rel contypes teidocx teix html cals">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for making Word docx files from TEI XML
@@ -67,9 +67,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:otherwise>
             </xsl:choose>
         </a:blip>
-    </xsl:template>
-    
-    <!-- 
+    </xsl:template><!-- 
         Handle figures 
     -->
     <xsl:template match="tei:figure">
@@ -95,8 +93,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:number level="any"/>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="../@xml:id">
-	    <!-- we want a bookmark for referencing this figure -->
+            <xsl:when test="../@xml:id"><!-- we want a bookmark for referencing this figure -->
                 <xsl:call-template name="block-element">
                     <xsl:with-param name="style">
                         <xsl:choose>
@@ -125,8 +122,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:graphic">
-        <!-- perform some tests on the graphic -->
+    <xsl:template match="tei:graphic"><!-- perform some tests on the graphic -->
         <xsl:variable name="maxWidth" select="number(number($pageWidth)*100) cast as xs:integer"/>
         <xsl:variable name="maxHeight" select="number(number($pageHeight)*100) cast as          xs:integer"/>
         <xsl:variable name="filename">
@@ -162,9 +158,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="$filename and  ( ($origwidth &gt; 0 and $origheight &gt; 0) or (@width and @height))">
-            
-            <!--
+            <xsl:when test="$filename and  ( ($origwidth &gt; 0 and $origheight &gt; 0) or (@width and @height))"><!--
                 
                 is there a number present?
                 
@@ -229,9 +223,7 @@ of this software, even if advised of the possibility of such damage.
                             </xsl:message>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
-            
-	    <!-- check for sense -->
+                </xsl:variable><!-- check for sense -->
                 <xsl:variable name="imageWidth">
                     <xsl:choose>
                         <xsl:when test="$Width = -1">
@@ -260,8 +252,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:value-of select="$Height"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
-	    <!--
+                </xsl:variable><!--
 		
 		<xsl:message>
 		========================
@@ -276,11 +267,9 @@ of this software, even if advised of the possibility of such damage.
 		* imageWidth: <xsl:value-of select="$imageWidth"/>
 		* imageHeight: <xsl:value-of select="$imageHeight"/>
 		</xsl:message>
-	    -->
-	    <!-- prepare actual graphic -->
+	    --><!-- prepare actual graphic -->
                 <xsl:variable name="generatedID">
-                    <xsl:number level="any"/>
-	    <!--
+                    <xsl:number level="any"/><!--
 		<xsl:choose>
 		<xsl:when test="@n">
 		  <xsl:value-of select="@n"/>
@@ -342,11 +331,9 @@ of this software, even if advised of the possibility of such damage.
                             </pic:pic>
                         </a:graphicData>
                     </a:graphic>
-                </xsl:variable>
-            <!-- end graphic element -->
+                </xsl:variable><!-- end graphic element -->
                 <w:r>
-                    <w:drawing>
-                    <!-- choose between inline and block -->
+                    <w:drawing><!-- choose between inline and block -->
                         <xsl:choose>
                             <xsl:when test="parent::tei:figure[@place='left'           or @place='centre' or @place='right' or @place='center']">
                                 <wp:anchor simplePos="0" relativeHeight="10" behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1">

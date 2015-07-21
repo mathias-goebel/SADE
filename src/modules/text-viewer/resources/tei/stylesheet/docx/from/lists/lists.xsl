@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop     iso m mml mo mv o pic r rel     tbx tei teidocx v xs ve w10 w wne wp">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:prop="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" exclude-result-prefixes="a cp dc dcterms dcmitype prop     iso m mml mo mv o pic r rel     tbx tei teidocx v xs ve w10 w wne wp">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet for converting Word docx files to TEI </p>
@@ -39,10 +39,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: lists.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-    
-    
-    <!-- 
+    </doc><!-- 
         This template handles lists and takes care of nested lists.
     -->
     <xsl:template name="listSection">
@@ -50,15 +47,11 @@ of this software, even if advised of the possibility of such damage.
             <xsl:value-of select="w:pPr/w:pStyle/@w:val"/>
         </xsl:variable>
         <list>
-            <xsl:call-template name="listType"/>
-	  
-	  <!-- ISO Notes are be handled by a specific handler -->
+            <xsl:call-template name="listType"/><!-- ISO Notes are be handled by a specific handler -->
             <xsl:for-each-group select="current-group()" group-adjacent="if(w:pPr/w:pStyle/@w:val=$level)  then 0             else if(w:pPr/w:pStyle/@w:val='Note') then 0                             else if(w:pPr/w:pStyle/@w:val='dl') then 1                            else 1">
-                <xsl:choose>
-	      <!-- we are still on the same level -->
+                <xsl:choose><!-- we are still on the same level -->
                     <xsl:when test="current-grouping-key()=0">
-                        <xsl:for-each select="current-group()">
-		  <!-- put items and notes as siblings  for now -->
+                        <xsl:for-each select="current-group()"><!-- put items and notes as siblings  for now -->
                             <xsl:choose>
                                 <xsl:when test="tei:is-list(.)">
                                     <item>
@@ -77,9 +70,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:choose>
             </xsl:for-each-group>
         </list>
-    </xsl:template>
-    
-    <!--
+    </xsl:template><!--
         Trying to figure out the style of a list.
     -->
     <xsl:template name="listType">
@@ -91,45 +82,32 @@ of this software, even if advised of the possibility of such damage.
             <xsl:choose>
                 <xsl:when test="string-length($type) &gt; 0">
                     <xsl:value-of select="$type"/>
-                </xsl:when>
-                
-                <!-- try to figure it out by looking at the corresponding numbering file -->
-                <xsl:otherwise>
-                    
-                    <!-- look up the numbering definition .. either in document.xml or in styles.xml  -->
+                </xsl:when><!-- try to figure it out by looking at the corresponding numbering file -->
+                <xsl:otherwise><!-- look up the numbering definition .. either in document.xml or in styles.xml  -->
                     <xsl:variable name="numbering-def">
                         <xsl:choose>
                             <xsl:when test="w:pPr/w:numPr/w:numId/@w:val">
                                 <xsl:value-of select="w:pPr/w:numPr/w:numId/@w:val"/>
                             </xsl:when>
-                            <xsl:otherwise>
-                                <!-- we might want to follow the basedOn reference, but not at the moment -->
+                            <xsl:otherwise><!-- we might want to follow the basedOn reference, but not at the moment -->
                                 <xsl:value-of select="document(concat($wordDirectory,'/word/styles.xml'))//w:style[w:name/@w:val=$style]/w:pPr/w:numPr/w:numId/@w:val"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </xsl:variable>
-                    
-                    <!-- look up the level .. either in document.xml or in styles.xml  -->
+                    </xsl:variable><!-- look up the level .. either in document.xml or in styles.xml  -->
                     <xsl:variable name="numbering-level">
                         <xsl:choose>
                             <xsl:when test="w:pPr/w:numPr/w:ilvl/@w:val">
                                 <xsl:value-of select="w:pPr/w:numPr/w:ilvl/@w:val"/>
                             </xsl:when>
-                            <xsl:otherwise>
-                                <!-- we might want to follow the basedOn reference, but not at the moment -->
+                            <xsl:otherwise><!-- we might want to follow the basedOn reference, but not at the moment -->
                                 <xsl:value-of select="document(concat($wordDirectory,'/word/styles.xml'))//w:style[w:name/@w:val=$style]/w:pPr/w:numPr/w:ilvl/@w:val"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </xsl:variable>
-                    
-                    <!-- find the abstract numbering definition and then the corresponding numfmt -->
+                    </xsl:variable><!-- find the abstract numbering definition and then the corresponding numfmt -->
                     <xsl:variable name="abstract-def" select="document(concat($wordDirectory,'/word/numbering.xml'))//w:num[@w:numId=$numbering-def]/w:abstractNumId/@w:val"/>
                     <xsl:variable name="numfmt">
                         <xsl:value-of select="document(concat($wordDirectory,'/word/numbering.xml'))//w:abstractNum[@w:abstractNumId=$abstract-def]/w:lvl[@w:ilvl=$numbering-level]/w:numFmt/@w:val"/>
-                    </xsl:variable>
-                    
-                    
-                    <!-- figure out what numbering scheme to use -->
+                    </xsl:variable><!-- figure out what numbering scheme to use -->
                     <xsl:choose>
                         <xsl:when test="$style='dl'">gloss</xsl:when>
                         <xsl:when test="string-length($numfmt)=0">unordered</xsl:when>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:t="http://www.thaiopensource.com/ns/annotations" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html t a rng s iso tbx       cals teix dc" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:cals="http://www.oasis-open.org/specs/tm9901" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:t="http://www.thaiopensource.com/ns/annotations" xmlns:dc="http://purl.org/dc/elements/1.1/" exclude-result-prefixes="tei html t a rng s iso tbx       cals teix dc" version="2.0">
     <xsl:import href="../../../epub/tei-to-epub.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -54,9 +54,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="pagebreakStyle">none</xsl:param>
     <xsl:template match="tei:title[@type='main']/text()">
         <xsl:value-of select="replace(.,' \[Electronic resource\]','')"/>
-    </xsl:template>
-
-    <!--
+    </xsl:template><!--
       <div class="pagebreak">
 	<xsl:text>✁[</xsl:text>
 	<xsl:text> Page </xsl:text>
@@ -81,7 +79,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:apply-templates/>
                         </span>
                     </xsl:for-each>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:for-each select="tei:ab">
                         <xsl:choose>
                             <xsl:when test="@type='song'">
@@ -106,7 +104,7 @@ of this software, even if advised of the possibility of such damage.
                             <xsl:apply-templates/>
                         </span>
                     </xsl:for-each>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                     <xsl:for-each select="tei:ab">
                         <xsl:apply-templates/>
                     </xsl:for-each>

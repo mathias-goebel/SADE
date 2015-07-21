@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.tei-c.org/ns/1.0" xmlns:ns1="http://www.iso.org/ns/1.0" elementFormDefault="qualified" targetNamespace="http://www.tei-c.org/ns/1.0">
+<xs:schema xmlns:ns2="http://www.tei-c.org/ns/1.0" xmlns:ns1="http://www.iso.org/ns/1.0" xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.tei-c.org/ns/1.0">
     <xs:import namespace="http://www.iso.org/ns/1.0" schemaLocation="ns1.xsd"/>
     <xs:import namespace="http://www.tei-c.org/ns/teidocx/1.0" schemaLocation="teidocx.xsd"/>
-    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2004/10/xml.xsd"/>
-  <!--
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2004/10/xml.xsd"/><!--
     Schema generated from ODD source 2010-06-04T15:06:38Z. 
     Edition: 1.6.0 (June 2010)
     
-  -->
-  <!---->
+  --><!---->
     <xs:complexType name="macro.paraContent" mixed="true">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:group ref="ns2:model.gLike"/>

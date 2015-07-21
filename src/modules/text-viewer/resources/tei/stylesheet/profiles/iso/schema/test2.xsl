@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:i="http://www.iso.org/ns/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.0">
+<xsl:stylesheet xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:saxon="http://saxon.sf.net/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:i="http://www.iso.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>This software is dual-licensed:
@@ -38,8 +38,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: test2.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-<!--Implementers: please note that overriding process-prolog or process-root is 
+    </doc><!--Implementers: please note that overriding process-prolog or process-root is 
     the preferred method for meta-stylesheets to use where possible. -->
     <xsl:param name="archiveDirParameter" tunnel="yes"/>
     <xsl:param name="archiveNameParameter" tunnel="yes"/>
@@ -47,31 +46,11 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="fileDirParameter" tunnel="yes"/>
     <xsl:variable name="document-uri">
         <xsl:value-of select="document-uri(/)"/>
-    </xsl:variable>
-
-   <!--PHASES-->
-
-
-<!--PROLOG-->
-    <xsl:output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" method="xml" omit-xml-declaration="no" standalone="yes" indent="yes"/>
-
-   <!--XSD TYPES FOR XSLT2-->
-
-
-<!--KEYS AND FUNCTIONS-->
-
-
-<!--DEFAULT RULES-->
-
-
-<!--MODE: SCHEMATRON-SELECT-FULL-PATH-->
-<!--This mode can be used to generate an ugly though full XPath for locators-->
+    </xsl:variable><!--PHASES--><!--PROLOG-->
+    <xsl:output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" method="xml" omit-xml-declaration="no" standalone="yes" indent="yes"/><!--XSD TYPES FOR XSLT2--><!--KEYS AND FUNCTIONS--><!--DEFAULT RULES--><!--MODE: SCHEMATRON-SELECT-FULL-PATH--><!--This mode can be used to generate an ugly though full XPath for locators-->
     <xsl:template match="*" mode="schematron-select-full-path">
         <xsl:apply-templates select="." mode="schematron-get-full-path"/>
-    </xsl:template>
-
-   <!--MODE: SCHEMATRON-FULL-PATH-->
-<!--This mode can be used to generate an ugly though full XPath for locators-->
+    </xsl:template><!--MODE: SCHEMATRON-FULL-PATH--><!--This mode can be used to generate an ugly though full XPath for locators-->
     <xsl:template match="*" mode="schematron-get-full-path">
         <xsl:apply-templates select="parent::*" mode="schematron-get-full-path"/>
         <xsl:text>/</xsl:text>
@@ -106,10 +85,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:text>']</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-   <!--MODE: SCHEMATRON-FULL-PATH-2-->
-<!--This mode can be used to generate prefixed XPath for humans-->
+    </xsl:template><!--MODE: SCHEMATRON-FULL-PATH-2--><!--This mode can be used to generate prefixed XPath for humans-->
     <xsl:template match="node() | @*" mode="schematron-get-full-path-2">
         <xsl:for-each select="ancestor-or-self::*">
             <xsl:text>/</xsl:text>
@@ -123,9 +99,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="not(self::*)">
             <xsl:text/>/@<xsl:value-of select="name(.)"/>
         </xsl:if>
-    </xsl:template>
-   <!--MODE: SCHEMATRON-FULL-PATH-3-->
-<!--This mode can be used to generate prefixed XPath for humans 
+    </xsl:template><!--MODE: SCHEMATRON-FULL-PATH-3--><!--This mode can be used to generate prefixed XPath for humans 
 	(Top-level element has index)-->
     <xsl:template match="node() | @*" mode="schematron-get-full-path-3">
         <xsl:for-each select="ancestor-or-self::*">
@@ -140,9 +114,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="not(self::*)">
             <xsl:text/>/@<xsl:value-of select="name(.)"/>
         </xsl:if>
-    </xsl:template>
-
-   <!--MODE: GENERATE-ID-FROM-PATH -->
+    </xsl:template><!--MODE: GENERATE-ID-FROM-PATH -->
     <xsl:template match="/" mode="generate-id-from-path"/>
     <xsl:template match="text()" mode="generate-id-from-path">
         <xsl:apply-templates select="parent::*" mode="generate-id-from-path"/>
@@ -164,9 +136,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:apply-templates select="parent::*" mode="generate-id-from-path"/>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="concat('.',name(),'-',1+count(preceding-sibling::*[name()=name(current())]),'-')"/>
-    </xsl:template>
-
-   <!--MODE: GENERATE-ID-2 -->
+    </xsl:template><!--MODE: GENERATE-ID-2 -->
     <xsl:template match="/" mode="generate-id-2">U</xsl:template>
     <xsl:template match="*" mode="generate-id-2" priority="2">
         <xsl:text>U</xsl:text>
@@ -185,11 +155,8 @@ of this software, even if advised of the possibility of such damage.
         <xsl:value-of select="string-length(local-name(.))"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="translate(name(),':','.')"/>
-    </xsl:template>
-   <!--Strip characters-->
-    <xsl:template match="text()" priority="-1"/>
-
-   <!--SCHEMA SETUP-->
+    </xsl:template><!--Strip characters-->
+    <xsl:template match="text()" priority="-1"/><!--SCHEMA SETUP-->
     <xsl:template match="/">
         <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" title="ISO Schematron rules" schemaVersion="">
             <xsl:comment>
@@ -256,19 +223,10 @@ of this software, even if advised of the possibility of such damage.
             </svrl:active-pattern>
             <xsl:apply-templates select="/" mode="M9"/>
         </svrl:schematron-output>
-    </xsl:template>
-
-   <!--SCHEMATRON PATTERNS-->
-    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">ISO Schematron rules</svrl:text>
-
-   <!--PATTERN ptr-constraint-ptrAtts-->
-
-
-	<!--RULE -->
+    </xsl:template><!--SCHEMATRON PATTERNS-->
+    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">ISO Schematron rules</svrl:text><!--PATTERN ptr-constraint-ptrAtts--><!--RULE -->
     <xsl:template match="tei:ptr" priority="1000" mode="M4">
-        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:ptr"/>
-
-		    <!--REPORT -->
+        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:ptr"/><!--REPORT -->
         <xsl:if test="@target and @cRef">
             <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@target and @cRef">
                 <xsl:attribute name="location">
@@ -283,16 +241,9 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="text()" priority="-1" mode="M4"/>
     <xsl:template match="@*|node()" priority="-2" mode="M4">
         <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M4"/>
-    </xsl:template>
-
-   <!--PATTERN isoList-->
-
-
-	<!--RULE -->
+    </xsl:template><!--PATTERN isoList--><!--RULE -->
     <xsl:template match="tei:list[@type='termlist']/tei:item" priority="1000" mode="M5">
-        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:list[@type='termlist']/tei:item"/>
-
-		    <!--ASSERT -->
+        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:list[@type='termlist']/tei:item"/><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="@n"/>
             <xsl:otherwise>
@@ -309,16 +260,9 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="text()" priority="-1" mode="M5"/>
     <xsl:template match="@*|node()" priority="-2" mode="M5">
         <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M5"/>
-    </xsl:template>
-
-   <!--PATTERN isoHeader-title-->
-
-
-	<!--RULE -->
+    </xsl:template><!--PATTERN isoHeader-title--><!--RULE -->
     <xsl:template match="tei:teiHeader" priority="1000" mode="M6">
-        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:teiHeader"/>
-
-		    <!--ASSERT -->
+        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:teiHeader"/><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:titleStmt/tei:title[@type='introductory']"/>
             <xsl:otherwise>
@@ -331,9 +275,7 @@ An introductory component of the title is expected
 		    </svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
             <xsl:otherwise>
@@ -346,9 +288,7 @@ An introductory component of the title is expected
 		    </svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:titleStmt/tei:respStmt/tei:name"/>
             <xsl:otherwise>
@@ -361,9 +301,7 @@ An introductory component of the title is expected
 		  </svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:publicationStmt/tei:idno[@i:meta='wgNumber']"/>
             <xsl:otherwise>
@@ -375,9 +313,7 @@ An introductory component of the title is expected
 		  an idno of type wgNumber is expected</svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:publicationStmt/tei:idno[@i:meta='serialNumber']"/>
             <xsl:otherwise>
@@ -389,9 +325,7 @@ An introductory component of the title is expected
 		  an idno of type serialNumber is expected</svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:publicationStmt/tei:idno[@i:meta='documentNumber']"/>
             <xsl:otherwise>
@@ -403,9 +337,7 @@ An introductory component of the title is expected
 		  an idno of type documentNumber is expected</svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:publicationStmt/tei:idno[@i:meta='partNumber']"/>
             <xsl:otherwise>
@@ -417,9 +349,7 @@ An introductory component of the title is expected
 		  an idno of type partNumber is expected</svrl:text>
                 </svrl:failed-assert>
             </xsl:otherwise>
-        </xsl:choose>
-
-		    <!--ASSERT -->
+        </xsl:choose><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:fileDesc/tei:publicationStmt/tei:idno[@i:meta='stage']"/>
             <xsl:otherwise>
@@ -437,16 +367,9 @@ An introductory component of the title is expected
     <xsl:template match="text()" priority="-1" mode="M6"/>
     <xsl:template match="@*|node()" priority="-2" mode="M6">
         <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M6"/>
-    </xsl:template>
-
-   <!--PATTERN TEI-constraint-isoStructure-->
-
-
-	<!--RULE -->
+    </xsl:template><!--PATTERN TEI-constraint-isoStructure--><!--RULE -->
     <xsl:template match="tei:TEI" priority="1000" mode="M7">
-        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:TEI"/>
-
-		    <!--ASSERT -->
+        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:TEI"/><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:text/tei:front/tei:div[@type='foreword']"/>
             <xsl:otherwise>
@@ -464,16 +387,9 @@ A Foreword clause in the front matter is mandatory</svrl:text>
     <xsl:template match="text()" priority="-1" mode="M7"/>
     <xsl:template match="@*|node()" priority="-2" mode="M7">
         <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
-    </xsl:template>
-
-   <!--PATTERN isoSimple-->
-
-
-	<!--RULE -->
+    </xsl:template><!--PATTERN isoSimple--><!--RULE -->
     <xsl:template match="tei:TEI" priority="1000" mode="M8">
-        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:TEI"/>
-
-		    <!--ASSERT -->
+        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:TEI"/><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="tei:text"/>
             <xsl:otherwise>
@@ -490,16 +406,9 @@ A Foreword clause in the front matter is mandatory</svrl:text>
     <xsl:template match="text()" priority="-1" mode="M8"/>
     <xsl:template match="@*|node()" priority="-2" mode="M8">
         <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
-    </xsl:template>
-
-   <!--PATTERN div-constraint-isoDiv-->
-
-
-	<!--RULE -->
+    </xsl:template><!--PATTERN div-constraint-isoDiv--><!--RULE -->
     <xsl:template match="tei:div" priority="1000" mode="M9">
-        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:div"/>
-
-		    <!--ASSERT -->
+        <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tei:div"/><!--ASSERT -->
         <xsl:choose>
             <xsl:when test="not(tei:div) or count(tei:div)&gt;1"/>
             <xsl:otherwise>

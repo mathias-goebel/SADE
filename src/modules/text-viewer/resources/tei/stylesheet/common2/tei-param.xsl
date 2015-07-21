@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="m tei xsi sch" version="2.0">
+<xsl:stylesheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:m="http://www.w3.org/1998/Math/MathML" exclude-result-prefixes="m tei xsi sch" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p>TEI stylesheet customization module, common for all output
@@ -110,7 +110,7 @@ of this software, even if advised of the possibility of such damage.
     section header</desc>
     </doc>
     <xsl:param name="numberSpacer">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:param>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="links" type="string">
         <desc> Name of department within institution</desc>

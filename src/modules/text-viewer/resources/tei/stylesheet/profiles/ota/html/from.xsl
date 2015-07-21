@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html" version="2.0">
-    <!-- import base conversion style -->
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="tei html" version="2.0"><!-- import base conversion style -->
     <xsl:import href="../../../tools/html2tei.xsl"/>
     <xsl:param name="NAME"/>
     <xsl:variable name="Q">'</xsl:variable>
@@ -88,8 +87,7 @@ of this software, even if advised of the possibility of such damage.
             </fileDesc>
             <profileDesc>
                 <creation>
-                    <date>
-</date>
+                    <date/>
                 </creation>
                 <langUsage>
                     <language ident="eng">English</language>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:n="www.example.com" exclude-result-prefixes="rng tei n" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0"><!--
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:n="www.example.com" exclude-result-prefixes="rng tei n" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0"><!--
 This software is dual-licensed:
 
 1. Distributed under a Creative Commons Attribution-ShareAlike 3.0
@@ -35,32 +35,23 @@ of this software, even if advised of the possibility of such damage.
 $Id: oddbyexample.xsl 9812 2011-11-22 21:52:48Z louburnard $
 
 2008, TEI Consortium
--->
-  <!-- typical usage:
+--><!-- typical usage:
    saxon -it:main -o:myodd /usr/share/xml/tei/stylesheet/tools2/oddbyexample.xsl   corpus=`pwd`/
 
 -->
-    <xsl:import href="getfiles.xsl"/>
-  <!-- 
+    <xsl:import href="getfiles.xsl"/><!-- 
 read a corpus of TEI P5 documents and construct
 an ODD customization file which expresses the subset
 of the TEI you need to validate that corpus
 -->
-    <xsl:output indent="yes"/>
-  <!-- name of odd -->
-    <xsl:param name="schema">oddbyexample</xsl:param>
-  <!-- whether to do all the global attributes -->
-    <xsl:param name="keepGlobals">false</xsl:param>
-  <!-- the document corpus -->
-    <xsl:param name="corpus">./</xsl:param>
-  <!-- the source of the TEI (just needs *Spec)-->
-    <xsl:param name="tei">/usr/share/xml/tei/odd/p5subset.xml</xsl:param>
-  <!-- should we make valList for @rend -->
+    <xsl:output indent="yes"/><!-- name of odd -->
+    <xsl:param name="schema">oddbyexample</xsl:param><!-- whether to do all the global attributes -->
+    <xsl:param name="keepGlobals">false</xsl:param><!-- the document corpus -->
+    <xsl:param name="corpus">./</xsl:param><!-- the source of the TEI (just needs *Spec)-->
+    <xsl:param name="tei">/usr/share/xml/tei/odd/p5subset.xml</xsl:param><!-- should we make valList for @rend -->
     <xsl:param name="enumerateRend">false</xsl:param>
-    <xsl:param name="enumerateType">false</xsl:param>
-  <!-- should we deal with non-TEI namespaces -->
-    <xsl:param name="processNonTEI">false</xsl:param>
-  <!-- which attributes should be make valLists for, regardless -->
+    <xsl:param name="enumerateType">false</xsl:param><!-- should we deal with non-TEI namespaces -->
+    <xsl:param name="processNonTEI">false</xsl:param><!-- which attributes should be make valLists for, regardless -->
     <xsl:param name="attributeList"/>
     <xsl:variable name="checkAtts">
         <xsl:text>,</xsl:text>
@@ -75,8 +66,7 @@ of the TEI you need to validate that corpus
     <xsl:key name="MEMBERS" use="@key" match="elementSpec/classes/memberOf"/>
     <xsl:key name="CLASSMEMBERS" use="@key" match="classSpec/classes/memberOf"/>
     <xsl:key name="Used" use="@ident" match="docs/elementSpec"/>
-    <xsl:key name="UsedAtt" use="concat(../@ident,@ident)" match="docs/elementSpec/attDef"/>
-  <!--
+    <xsl:key name="UsedAtt" use="concat(../@ident,@ident)" match="docs/elementSpec/attDef"/><!--
 1) start a variable and copy in all of the TEI 
 2) read the corpus and get a list of all the elements and their
 attributes that it uses, put that in the same variable
@@ -90,8 +80,7 @@ valList
     <xsl:template name="processAll">
         <xsl:variable name="count">
             <xsl:value-of select="count(/n:ROOT/*)"/>
-        </xsl:variable>
-    <!-- assemble together all the TEI elements and attributes, 
+        </xsl:variable><!-- assemble together all the TEI elements and attributes, 
      followed by all the
      elements and attributes used in the corpus -->
         <xsl:variable name="stage1">
@@ -167,8 +156,7 @@ valList
             </stage1>
         </xsl:variable>
         <xsl:variable name="stage2">
-            <stage2>
-        <!-- for every attribute class, see if its members should be
+            <stage2><!-- for every attribute class, see if its members should be
      deleted, by seeing if they are used anywhere-->
                 <xsl:for-each select="$stage1/stage1/tei/classSpec">
                     <classSpec ident="{@ident}" module="{@module}" type="atts" mode="change">
@@ -176,8 +164,7 @@ valList
                             <xsl:for-each select="attDef">
                                 <xsl:variable name="this" select="@ident"/>
                                 <xsl:variable name="used">
-                                    <xsl:for-each select="../member">
-                    <!--		 <xsl:message>check for <xsl:value-of select="concat(@ident,$this)"/></xsl:message>-->
+                                    <xsl:for-each select="../member"><!--		 <xsl:message>check for <xsl:value-of select="concat(@ident,$this)"/></xsl:message>-->
                                         <xsl:if test="key('UsedAtt',concat(@ident,$this))">true</xsl:if>
                                     </xsl:for-each>
                                 </xsl:variable>
@@ -196,8 +183,7 @@ valList
                             </xsl:for-each>
                         </attList>
                     </classSpec>
-                </xsl:for-each>
-        <!-- for every TEI element, say if it is actually used or is to be deleted -->
+                </xsl:for-each><!-- for every TEI element, say if it is actually used or is to be deleted -->
                 <xsl:for-each select="$stage1/stage1/tei/elementSpec">
                     <xsl:choose>
                         <xsl:when test="key('Used',@ident)">
@@ -216,42 +202,32 @@ valList
                         <xsl:choose>
                             <xsl:when test="self::n:ROOT"/>
                             <xsl:when test="namespace-uri()='http://www.tei-c.org/ns/1.0'"/>
-                            <xsl:otherwise>
-                <!-- build new 'add' elementSpec -->
+                            <xsl:otherwise><!-- build new 'add' elementSpec -->
                                 <elementSpec ident="{current-grouping-key()}" mode="add" ns="{namespace-uri()}">
-                                    <xsl:text>
-</xsl:text>
+                                    <xsl:text/>
                                     <xsl:comment>add an &lt;equiv/&gt; to point to an named  template
 in an XSLT file which will transform this to pure TEI</xsl:comment>
-                                    <xsl:text>
-</xsl:text>
+                                    <xsl:text/>
                                     <equiv filter="somefile.xsl" mimeType="text/xsl" name="{current-grouping-key()}"/>
                                     <desc>
-                                        <xsl:text>
-</xsl:text>
+                                        <xsl:text/>
                                         <xsl:comment> Describe the <xsl:value-of select="current-grouping-key()"/> element  here</xsl:comment>
-                                        <xsl:text>
-</xsl:text>
+                                        <xsl:text/>
                                     </desc>
                                     <classes>
-                                        <xsl:text>
-</xsl:text>
+                                        <xsl:text/>
                                         <xsl:comment> Add a 'memberOf key="model.className"' stanza for whatever classes it belongs to  here</xsl:comment>
-                                        <xsl:text>
-</xsl:text>
+                                        <xsl:text/>
                                     </classes>
                                     <content>
-                                        <xsl:text>
-</xsl:text>
+                                        <xsl:text/>
                                         <xsl:comment>Add RNG content model here</xsl:comment>
-                                        <xsl:text>
-</xsl:text>
+                                        <xsl:text/>
                                     </content>
                                     <xsl:if test="key('Atts',local-name())">
                                         <attList>
                                             <xsl:comment>Add attDefs:</xsl:comment>
-                                            <xsl:text>
-</xsl:text>
+                                            <xsl:text/>
                                             <xsl:for-each-group select="key('Atts',local-name())" group-by="local-name()">
                                                 <xsl:sort/>
                                                 <attDef ident="{local-name()}" mode="add"/>
@@ -264,8 +240,7 @@ in an XSLT file which will transform this to pure TEI</xsl:comment>
                     </xsl:for-each-group>
                 </xsl:if>
             </stage2>
-        </xsl:variable>
-    <!-- start writing the final ODD document -->
+        </xsl:variable><!-- start writing the final ODD document -->
         <TEI xml:lang="en">
             <teiHeader>
                 <fileDesc>
@@ -280,7 +255,7 @@ in an XSLT file which will transform this to pure TEI</xsl:comment>
                         </edition>
                     </editionStmt>
                     <publicationStmt>
-                        <p> </p>
+                        <p/>
                     </publicationStmt>
                     <sourceDesc>
                         <p>generated by oddbyexample.xsl, based on analyzing 
@@ -291,18 +266,16 @@ in an XSLT file which will transform this to pure TEI</xsl:comment>
                 </fileDesc>
             </teiHeader>
             <text>
-                <body>
-          <!--<xsl:copy-of select="$stage1"/>-->
+                <body><!--<xsl:copy-of select="$stage1"/>-->
                     <schemaSpec ident="{$schema}">
                         <xsl:attribute name="start">
                             <xsl:if test="$stage2/stage2/elementSpec[@mode='keep' and     @ident='TEI']">TEI</xsl:if>
-                            <xsl:text> </xsl:text>
+                            <xsl:text/>
                             <xsl:if test="$stage2/stage2/elementSpec[@mode='keep' and @ident='teiCorpus']">teiCorpus</xsl:if>
                         </xsl:attribute>
                         <moduleRef key="tei"/>
                         <xsl:apply-templates select="$stage2/stage2/classSpec[@module='tei']"/>
-                        <moduleRef key="core"/>
-            <!-- we need to list only modules from which elements have been used -->
+                        <moduleRef key="core"/><!-- we need to list only modules from which elements have been used -->
                         <xsl:for-each-group select="$stage2/stage2/elementSpec[@mode='keep']" group-by="@module">
                             <xsl:sort select="current-grouping-key()"/>
                             <xsl:choose>
@@ -312,8 +285,7 @@ in an XSLT file which will transform this to pure TEI</xsl:comment>
                                 </xsl:otherwise>
                             </xsl:choose>
                             <xsl:for-each select="current-group()">
-                                <xsl:variable name="e" select="@ident"/>
-                <!-- for every attribute, if its a class attribute, see if
+                                <xsl:variable name="e" select="@ident"/><!-- for every attribute, if its a class attribute, see if
 	       its already deleted. if its a local attribute, see if its used. -->
                                 <xsl:variable name="a">
                                     <attList>
@@ -357,18 +329,13 @@ in an XSLT file which will transform this to pure TEI</xsl:comment>
                             <xsl:apply-templates select="$stage2/stage2/classSpec[@module=current-grouping-key()]"/>
                         </xsl:for-each-group>
                         <xsl:for-each select="$stage2/stage2/elementSpec[@mode='add']">
-                            <xsl:text>
-
-
-</xsl:text>
+                            <xsl:text/>
                             <xsl:comment>You've added an element '<xsl:value-of select="@ident"/>'
 	   which does not seem to be a proper TEI element. This will make your TEI
 	   documents non-conformant, but if you really want to do this you should
 	   add an elementSpec for it if you want your document to validate. It
 	   would be better to use a separate namespace. </xsl:comment>
-                            <xsl:text>
-
-</xsl:text>
+                            <xsl:text/>
                             <xsl:copy-of select="."/>
                         </xsl:for-each>
                     </schemaSpec>
@@ -415,8 +382,7 @@ in an XSLT file which will transform this to pure TEI</xsl:comment>
                 <xsl:when test="@ident='rend' and $enumerateRend='true'">true</xsl:when>
                 <xsl:when test="@ident='type' and $enumerateType='true'">true</xsl:when>
                 <xsl:when test="valList[@type='closed']">true</xsl:when>
-                <xsl:when test="datatype/rng:ref[@name='data.enumerated']">true</xsl:when>
-        <!--
+                <xsl:when test="datatype/rng:ref[@name='data.enumerated']">true</xsl:when><!--
       <xsl:when
 	  test="datatype/rng:ref[@name='data.word']">true</xsl:when>
       -->

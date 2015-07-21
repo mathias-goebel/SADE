@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:atom="http://www.w3.org/2005/Atom" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:iso="http://www.iso.org/ns/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sch="http://www.ascc.net/xml/schematron" version="2.0" exclude-result-prefixes="xlink xhtml dbk iso rng sch m tei teix atom">
+<xsl:stylesheet xmlns:iso="http://www.iso.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xlink="http://www.w3.org/1999/xlink" version="2.0" exclude-result-prefixes="xlink xhtml dbk iso rng sch m tei teix atom">
     <xsl:import href="../../../common2/verbatim.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
@@ -40,9 +40,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: tei-docx-verbatim.xsl 9669 2011-11-07 19:17:54Z rahtz $</p>
             <p>Copyright: 2008, TEI Consortium</p>
         </desc>
-    </doc>
-    
-    <!--
+    </doc><!--
         <xsl:param name="startComment"><span class="comment"></xsl:param>
     <xsl:param name="endComment"></span></xsl:param>
     <xsl:param name="startElement"><span class="element"></xsl:param>

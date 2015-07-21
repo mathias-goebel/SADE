@@ -1,6 +1,7 @@
 xquery version "3.0";
 module namespace app="http://sade/app";
 declare namespace tgmd="http://textgrid.info/namespaces/metadata/core/2010";
+declare namespace digilib="digilib:digilib";
 
 import module namespace templates="http://exist-db.org/xquery/templates" at "templates.xql";
 import module namespace config="http://exist-db.org/xquery/apps/config" at "config.xqm";
@@ -21,28 +22,6 @@ let $login := xmldb:login('/sade-projects/textgrid/data/xml/data',  'admin',  ''
     $egal := xmldb:create-collection('/db/sade-projects/textgrid/data/xml', 'meta'),
     $egal := xmldb:create-collection('/db/sade-projects/textgrid/data/xml', 'tile'),
     $egal := xmldb:create-collection('/db/sade-projects/textgrid/data/xml', 'agg'),
-    $nav1 := (<navigation>
-                <!-- This file is responsible for the navigation bar on top of the page.
-                It will be update automatically if one submits data from the TextGrid Laboratory. 
-                THIS MAY OVERRIDES YOUR COSTUMIZATIONS! -->
-                <submenu label="Dokumentation">
-                    <item label="Anpassen des Portals" link="index.html?id=webgui.md"/>
-                    <item label="Facetierte Suche" link="index.html?id=fsearch.md"/>
-                    <item label="Publizieren aus TextGridLab" link="index.html?id=sadepublish.md"/>
-                    <item label="TODO" link="index.html?id=TODO.md"/>
-                </submenu>
-                <submenu label="Weiterführende Links" link="#">
-                    <item label="eXist Dashboard" link="/exist/apps/dashboard/index.html" target="_blank"/>
-                    <item label="eXist Dokumentation" link="http://exist-db.org/exist/apps/doc/"/>
-                    <item label="eXist XQuery Function Dokumentation" link="http://exist-db.org/exist/apps/fundocs/index.html"/>
-                    <divider/>
-                    <item label="XQuery Wikibook" link="http://en.wikibooks.org/wiki/XQuery"/>
-                    <item label="TextGrid Benutzerhandbuch" link="https://dev2.dariah.eu/wiki/display/TextGrid/User+Manual+2.0"/>
-                    <item label="TextGrid Homepage" link="http://textgrid.de"/>
-                </submenu>
-                <item label="Info" link="info.html"/>
-            </navigation>),
-    $egal := xmldb:store('/db/sade-projects/textgrid/', 'navigation.xml', $nav1 ,  'text/xml'),
     $nav2 := <div class="row">
                 <div class="span3">
                     <div class="well">
@@ -58,7 +37,9 @@ let $login := xmldb:login('/sade-projects/textgrid/data/xml/data',  'admin',  ''
                     </div>
                 </div>
             </div>,
-    $egal := xmldb:store('/db/sade-projects/textgrid/', 'navigation-bootstrap3.xml', $nav2 ,  'text/xml')
+    $egal := xmldb:store('/db/sade-projects/textgrid/', 'navigation-bootstrap3.xml', $nav2 ,  'text/xml'),
+    $egal := xmldb:store('/db/sade-projects/textgrid/', 'navigation-tg.xml', <navigation/> ,  'text/xml')
+
 return 'ok'
 };
 
@@ -173,9 +154,9 @@ function app:cite($node as node(), $model as map(*)) {
                         <div class="clearfix"></div>
                       </div>
                       <div class="modal-body">
-                        {if (contains(request:get-url(), 'content')) then '' else 'Webseite zu'}<br/>
-                        Theodor Fontane: Notizbücher. Gabriele Radecke (Hrsg.).<br/>
-                        {request:get-url(), if (request:get-query-string()) then '?' || request:get-query-string() else ''}<br/>
+                        
+                        Theodor Fontane: Notizbücher. Hrsg. von Gabriele Radecke.<br/>
+                        {replace(request:get-url(), 'localhost:8080/exist/apps/SADE/textgrid', 'fontane-nb.dariah.eu') ||(if (request:get-query-string()) then '?' || request:get-query-string() else '')}<br/>
                         abgerufen am: {day-from-date(current-date())}. {month-from-date(current-date())}. {year-from-date(current-date())}
                       </div>
                     </div><!-- /.modal-content -->
@@ -185,35 +166,121 @@ function app:cite($node as node(), $model as map(*)) {
 </span>
 };
 
-declare function app:list($datadir, $param) {
-    let $metacoll := collection($datadir)
-
+declare function app:kaesten($node as node(), $model as map(*)){
+    let $q := request:get-parameter('n', '')
 return
-    for $nb in $metacoll//tgmd:object
-    where $nb//tgmd:format = 'text/xml' and $nb//tgmd:title/contains(., $param) and $nb//tgmd:revision = max($metacoll//tgmd:revision[preceding::tgmd:title[1] = $nb//tgmd:title])
-    order by $nb//tgmd:title/string()
-    return 
-        <div class="panel panel-blue">
+    
+    (<ul class="nav nav-tabs">
+        {for $kasten in (('a', 'b', 'c', 'd', 'e'))
+        return
+            if ($q = $kasten)
+            then 
+                <li class="active">
+                    <a href="#{$kasten}" data-toggle="tab">Kasten {upper-case($kasten)}</a>
+                </li>
+            else 
+                <li>
+                    <a href="#{$kasten}" data-toggle="tab">Kasten {upper-case($kasten)}</a>
+                </li>
+        }
+    </ul>,
+    <div class="tab-content">
+    {
+        for $kasten in (('a', 'b', 'c', 'd', 'e'))
+            return
+                if ($q = $kasten)
+            then 
+        <div class="tab-pane active" id="{$kasten}">
+                    {app:list(config:param-value($model, 'data-dir') || '/xml/meta', upper-case($kasten))}
+        </div>
+        else 
+            <div class="tab-pane" id="{$kasten}">
+                    {app:list(config:param-value($model, 'data-dir') || '/xml/meta', upper-case($kasten))}
+        </div>
+    }
+    </div>)
+};
+declare function app:list($datadir, $param) {
+    let $tgnav:= doc('/db/sade-projects/textgrid/navigation-fontane.xml')
+
+    for $item in distinct-values($tgnav//object[@type="text/xml"][starts-with(@title, 'Notizbuch ' || $param)]/@title)
+    let $maxRev:=  max($tgnav//object[@title = $item]/number(substring-after(@uri, '.'))),
+    $uri:= $tgnav//object[@title = $item][number(substring-after(@uri, '.')) = $maxRev]/substring-after(@uri, 'textgrid:')
+    return
+(:declare function app:list($datadir, $param) {:)
+(:    let $metacoll := collection($datadir):)
+(:    let $pattern := $param || '\d\d$':)
+(:return:)
+(:    for $nb in distinct-values($metacoll//tgmd:title[starts-with(., 'Notizbuch ' || $param)]):)
+(:    order by $nb:)
+(:    return :)
+(:        let $imgUri := doc('/db/sade-projects/textgrid/data/xml/data/217qs.1.xml')//digilib:image[@name = (substring( $nb , 10, 13) || '_001.jpg')]/@uri:)
+(:        let $maxRev := max($metacoll//tgmd:revision[preceding::tgmd:title[1] = $nb]):)
+(:        let $uri := substring-after($metacoll//tgmd:textgridUri[preceding::tgmd:title[1] = $nb][following::tgmd:revision[1] = $maxRev], 'textgrid:'):)
+(:        return:)
+        <div class="panel panel-dark">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{$nb//tgmd:title/string()}</h3>
+                      <h3 class="panel-title">{ if (matches($item, '0\d')) then replace($item, '0', '') else $item }</h3>
                     </div>
                     <div class="panel-body">
-                      Revision: {$nb//tgmd:revision}
+                    <div class="row">
+                        <div class="col-md-9">
+                              uri: {$uri[last()]}<br/>
+                              Revision: {$maxRev}<br/>
+                              <a href="content.html?id=/xml/data/{$uri[last()]}.xml">content.html</a><br/>
+                              <a href="content2.html?id=/xml/data/{$uri[last()]}.xml">content2.html</a><br/>
+                                <ul>
+                                    <li>Digitalisate</li>
+                                    <li>Transkriptionsansicht</li>
+                                    <li>Edierter Text/Textkritischer Apparat</li>
+                                    <li>TEI/XML-Ansicht</li>
+                                    <li>Kommentare und Register
+                                        <ul>
+                                            <li>Überblickskommentar</li>
+                                            <li>Stellenkommentar</li>
+                                            <li>Register
+                                                <ul>
+                                                    <li>Register der Personen und Werke</li>
+                                                    <li>Register der Werke</li>
+                                                    <li>Register der Werke Theodor Fontanes</li>
+                                                    <li>Geographisches Register</li>
+                                                    <li>Register der Periodika</li>
+                                                    <li>Register der Institutionen und Körperschaften</li>
+                                                </ul>
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li>Inhaltsverzeichnis</li>
+                                    
+                                </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="thumb">
+                                <img src="/digilib/{substring-after($item, ' ')}_001.jpg?dh=350&amp;mo=png"/>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                   </div>
 };
-declare function app:listA($node as node(), $model as map(*)) {
-    app:list(config:param-value($model, 'data-dir') || '/xml/meta', ' A')
+
+(: Synch with TFA-Homepage: :)
+declare function app:publications($node as node(), $model as map(*)) {
+httpclient:get(xs:anyURI('http://www.uni-goettingen.de/de/publikationen/303721.html'), true(), ())//ul[@class="txtlist"][1]/li[position() < 4]
 };
-declare function app:listB($node as node(), $model as map(*)) {
-    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' B')
+
+declare function app:presentations($node as node(), $model as map(*)) {
+httpclient:get(xs:anyURI('http://www.uni-goettingen.de/de/vortr%C3%A4ge-und-pr%C3%A4sentationen/303717.html'), true(), ())//ul[@class="txtlist"][1]/li[position() < 5]
 };
-declare function app:listC($node as node(), $model as map(*)) {
-    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' C')
-};
-declare function app:listD($node as node(), $model as map(*)) {
-    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' D')
-};
-declare function app:listE($node as node(), $model as map(*)) {
-    app:list(config:param-value($model, 'data-dir') || '/xml/meta',' E')
+
+declare function app:countdown($node as node(), $model as map(*)) {
+let $target := xs:dateTime('2015-11-15T12:00:00.000+02:00')
+let $duration := $target - current-dateTime()
+return
+    <ul>
+      <li class="chart" data-percent="{ days-from-duration($duration) div 200 * 100 }"><span>{ days-from-duration($duration) }</span>Tage</li>
+      <li class="chart" data-percent="{ hours-from-duration($duration) div 24 * 100}"><span>{ hours-from-duration($duration) }</span>Stunden</li>
+      <li class="chart" data-percent="{ minutes-from-duration($duration) div 60 * 100 }"><span>{ minutes-from-duration($duration) }</span>Minuten</li>
+    </ul>
 };

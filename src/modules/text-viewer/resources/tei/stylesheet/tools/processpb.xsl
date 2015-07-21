@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0">
-<!--
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xpath-default-namespace="http://www.tei-c.org/ns/1.0" version="2.0"><!--
 This software is dual-licensed:
 
 1. Distributed under a Creative Commons Attribution-ShareAlike 3.0
@@ -59,10 +58,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:apply-templates select="*|processing-instruction()|comment()|text()" mode="pass2"/>
             </xsl:for-each>
         </xsl:copy>
-    </xsl:template>
-
-
- <!-- first (recursive) pass. look for <pb> elements and group on them -->
+    </xsl:template><!-- first (recursive) pass. look for <pb> elements and group on them -->
     <xsl:template match="comment()|@*|processing-instruction()|text()">
         <xsl:copy-of select="."/>
     </xsl:template>
@@ -118,9 +114,7 @@ of this software, even if advised of the possibility of such damage.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each-group>
-    </xsl:template>
-
-  <!-- second pass. group by <pb> (now all at top level) and wrap groups
+    </xsl:template><!-- second pass. group by <pb> (now all at top level) and wrap groups
        in <page> -->
     <xsl:template match="*" mode="pass2">
         <xsl:copy>

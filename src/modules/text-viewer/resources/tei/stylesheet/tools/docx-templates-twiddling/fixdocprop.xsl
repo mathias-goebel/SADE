@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" version="2.0" exclude-result-prefixes="w vt p">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:p="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" version="2.0" exclude-result-prefixes="w vt p">
     <xsl:output encoding="UTF-8" standalone="yes" method="xml"/>
-    <xsl:param name="template"/>
-  <!-- identity transform -->
+    <xsl:param name="template"/><!-- identity transform -->
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy-of select="."/>
     </xsl:template>

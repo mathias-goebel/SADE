@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:t="http://www.thaiopensource.com/ns/annotations" exclude-result-prefixes="a t tei fo rng xs" version="2.0">
+<xsl:stylesheet xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:t="http://www.thaiopensource.com/ns/annotations" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="a t tei fo rng xs" version="2.0">
     <xsl:import href="teiodds.xsl"/>
     <xsl:import href="../common2/i18n.xsl"/>
     <xsl:import href="../common2/tei-param.xsl"/>
@@ -50,7 +50,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="appendixWords"/>
     <xsl:param name="filesuffix"/>
     <xsl:template name="headingNumberSuffix">
-        <xsl:text> </xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:param name="numberBackHeadings"/>
     <xsl:param name="numberFrontHeadings"/>
@@ -351,8 +351,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:for-each select="key('MacroModule',@ident)">
             <xsl:if test="not(@type='dt')">
                 <xsl:choose>
-                    <xsl:when test="@predeclare='true'"/>
-               <!--	    <xsl:when test="key('PredeclareMacros',@ident)"/>-->
+                    <xsl:when test="@predeclare='true'"/><!--	    <xsl:when test="key('PredeclareMacros',@ident)"/>-->
                     <xsl:otherwise>
                         <xsl:apply-templates mode="tangle" select="."/>
                     </xsl:otherwise>
@@ -514,8 +513,7 @@ of this software, even if advised of the possibility of such damage.
                     <xsl:call-template name="declareAnElement"/>
                 </xsl:for-each>
             </xsl:otherwise>
-        </xsl:choose>
-      <!-- walk over all the elementSpec elements and make list of 
+        </xsl:choose><!-- walk over all the elementSpec elements and make list of 
 	 elements -->
     </xsl:template>
     <xsl:template name="declareAnElement">
@@ -742,8 +740,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="$contentbody=''"/>
-            <xsl:when test="$contentbody='()'"/>
-	        <!-- some special cases of known evil -->
+            <xsl:when test="$contentbody='()'"/><!-- some special cases of known evil -->
             <xsl:when test="$contentbody='(#PCDATA |  #PCDATA)'">
                 <xsl:text>(#PCDATA)</xsl:text>
             </xsl:when>
@@ -803,8 +800,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:value-of select="@name"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-   <!--  
+    </xsl:template><!--  
        <xsl:template match="tei:text()"/>-->
     <xsl:template match="rng:empty">
         <xsl:text>EMPTY</xsl:text>
@@ -1061,7 +1057,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="not(@type) or @type='defaultpe' or @type='pe' or @type='epe' or @type='dt'">
             <xsl:text>%</xsl:text>
         </xsl:if>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:value-of select="@ident"/>
         <xsl:text> '</xsl:text>
         <xsl:for-each select="tei:content">
@@ -1148,7 +1144,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:if test="$parameterize='true'">
             <xsl:text> %om.RR;</xsl:text>
         </xsl:if>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:variable name="Contents">
             <BLAH>
                 <xsl:choose>
@@ -1315,7 +1311,7 @@ of this software, even if advised of the possibility of such damage.
 &lt;!ENTITY %</xsl:text>
         <xsl:text> file.</xsl:text>
         <xsl:value-of select="@key"/>
-        <xsl:text> </xsl:text>
+        <xsl:text/>
         <xsl:text>PUBLIC</xsl:text>
         <xsl:text> '-//TEI P5//</xsl:text>
         <xsl:value-of select="key('FILES',@key)/tei:altIdent[@type='FPI']"/>
@@ -1486,8 +1482,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:text>"&gt; </xsl:text>
     </xsl:template>
     <xsl:template name="memberOfClassDefinition">
-        <xsl:param name="type"/>
-      <!-- does a class model need bracketing if all its members are also classes?
+        <xsl:param name="type"/><!-- does a class model need bracketing if all its members are also classes?
 	 <xsl:if test="count(N[@type='class'])=count(N) and count(N) > 2">
 	 <xsl:text>(</xsl:text>
 	 </xsl:if>
@@ -1515,8 +1510,7 @@ of this software, even if advised of the possibility of such damage.
  </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:for-each>
-      <!-- see above
+        </xsl:for-each><!-- see above
 	 <xsl:if test="count(N[@type='class'])=count(N) and count(N) > 2">
 	 <xsl:text>)</xsl:text>
 	 </xsl:if>
@@ -1532,8 +1526,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:apply-templates mode="tangle" select="tei:attList/tei:*"/>
     </xsl:template>
     <xsl:template match="tei:attDef" mode="tangle">
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
         <xsl:choose>
             <xsl:when test="@ns='http://www.w3.org/XML/1998/namespace'">
                 <xsl:text>xml:</xsl:text>
@@ -1613,8 +1606,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:copy-of select="$content"/>
     </xsl:template>
     <xsl:template name="CR">
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <xsl:template match="tei:memberOf" mode="tangleAtts">
         <xsl:variable name="ident">
@@ -1641,8 +1633,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:text>;</xsl:text>
     </xsl:template>
     <xsl:template name="checkClass">
-        <xsl:param name="id"/>
-      <!-- should a class be included?
+        <xsl:param name="id"/><!-- should a class be included?
 	 * it must exist in the ODD spec
 	 * it must have other classes which point to it
 	 * whatever it points to must have members which are in the ODD

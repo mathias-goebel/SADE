@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI utility stylesheet for identity transformation </p>
@@ -39,9 +39,7 @@ of this software, even if advised of the possibility of such damage.
             <p>Id: $Id: identity.xsl 9646 2011-11-05 23:39:08Z rahtz $</p>
             <p>Copyright: 2013, TEI Consortium</p>
         </desc>
-    </doc>
-
-    <!-- identity transform -->
+    </doc><!-- identity transform -->
     <xsl:template match="@*|text()|comment()|processing-instruction()" mode="iden">
         <xsl:copy-of select="."/>
     </xsl:template>

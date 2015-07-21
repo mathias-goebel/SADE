@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="tei" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the figures module. </p>
@@ -49,7 +49,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">figureWord</xsl:with-param>
                 </xsl:call-template>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:choose>
                     <xsl:when test="ancestor::tei:front">
                         <xsl:number count="tei:figure[tei:head]" from="tei:front" level="any"/>
@@ -80,7 +80,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:call-template name="i18n">
                     <xsl:with-param name="word">tableWord</xsl:with-param>
                 </xsl:call-template>
-                <xsl:text> </xsl:text>
+                <xsl:text/>
                 <xsl:number level="any"/>
                 <xsl:if test="tei:head">
                     <xsl:text>. </xsl:text>

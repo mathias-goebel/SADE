@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://exist.sourceforge.net/NS/exist" name="/db/apps/SADE/modules/admin/kickstrap/Kickstrap/apps/pinesnotify/use%20for%20pines%20style%20icons" version="1" owner="monex" group="monex" mode="775" created="2015-06-16T14:47:04.596+02:00">
+    <acl entries="0" version="1"/>
+    <resource type="BinaryResource" name="jquery.pnotify.default.icons.css" skip="no" owner="monex" group="monex" mode="664" created="2015-06-16T14:47:04.6+02:00" modified="2015-06-16T14:47:04.6+02:00" filename="jquery.pnotify.default.icons.css" mimetype="text/css">
+        <acl entries="0" version="1"/>
+    </resource>
+</collection>

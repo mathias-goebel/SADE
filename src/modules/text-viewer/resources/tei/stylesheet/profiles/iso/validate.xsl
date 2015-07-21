@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
     <xsl:import href="isotei-schema.xsl"/>
     <xsl:import href="isoutils.xsl"/>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
@@ -66,7 +66,7 @@ ISO Error:
 	   Annex <xsl:number count="tei:div" from="tei:back" format="A.1.1" level="multiple"/>
                 </xsl:when>
             </xsl:choose>
-            <xsl:text> </xsl:text>
+            <xsl:text/>
             <xsl:value-of select="tei:head"/>
         </xsl:for-each>
         <xsl:text>
@@ -74,8 +74,7 @@ ISO Error:
         <xsl:for-each select="parent::*">
             <xsl:call-template name="Identify"/>
         </xsl:for-each>
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
         <xsl:value-of select="$message"/>
     </xsl:template>
     <xsl:template name="copyMe"/>
@@ -124,8 +123,7 @@ ISO Error:
         </xsl:for-each>
         <xsl:if test="tbx:descripGrp/tbx:descrip[@type='definition']">
             <tr>
-                <td>
-</td>
+                <td/>
                 <td colspan="2">
                     <xsl:apply-templates select="tbx:descripGrp/tbx:descrip[@type='definition']"/>
                 </td>
@@ -133,8 +131,7 @@ ISO Error:
         </xsl:if>
         <xsl:if test="tbx:note">
             <tr>
-                <td>
-</td>
+                <td/>
                 <td colspan="2">
                     <xsl:apply-templates select="tbx:note"/>
                 </td>

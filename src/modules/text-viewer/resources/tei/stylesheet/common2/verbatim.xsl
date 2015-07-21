@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:i="http://www.iso.org/ns/1.0" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sch="http://purl.oclc.org/dsdl/schematron" exclude-result-prefixes="a fo html i rng s sch tei teix xi xs xsl         m atom xlink xhtml dbk" version="2.0">
+<xsl:stylesheet xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:i="http://www.iso.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:s="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="a fo html i rng s sch tei teix xi xs xsl         m atom xlink xhtml dbk" version="2.0">
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
         <desc>
             <p> TEI stylesheet dealing with elements from the core module. </p>
@@ -107,8 +107,7 @@ of this software, even if advised of the possibility of such damage.
     </doc>
     <xsl:template name="verbatim-lineBreak">
         <xsl:param name="id"/>
-        <xsl:text>
-</xsl:text>
+        <xsl:text/>
     </xsl:template>
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>
@@ -131,7 +130,7 @@ of this software, even if advised of the possibility of such damage.
                         <xsl:call-template name="verbatim-reformatText">
                             <xsl:with-param name="sofar">0</xsl:with-param>
                             <xsl:with-param name="indent">
-                                <xsl:text> </xsl:text>
+                                <xsl:text/>
                             </xsl:with-param>
                             <xsl:with-param name="text">
                                 <xsl:value-of select="normalize-space(.)"/>
@@ -162,8 +161,7 @@ of this software, even if advised of the possibility of such damage.
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:if test="string-length(.)&gt;$wrapLength or parent::sch:assert">
-                    <xsl:text>
-</xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$indent"/>
                 </xsl:if>
                 <xsl:call-template name="verbatim-reformatText">
@@ -176,14 +174,13 @@ of this software, even if advised of the possibility of such damage.
                     </xsl:with-param>
                 </xsl:call-template>
                 <xsl:if test="string-length(.)&gt;$wrapLength or parent::sch:assert">
-                    <xsl:text>
-</xsl:text>
+                    <xsl:text/>
                     <xsl:value-of select="$indent"/>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="not(preceding-sibling::node() or         contains(.,'&#xA;'))">
                 <xsl:if test="starts-with(.,' ')">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:call-template name="verbatim-Text">
                     <xsl:with-param name="words">
@@ -191,7 +188,7 @@ of this software, even if advised of the possibility of such damage.
                     </xsl:with-param>
                 </xsl:call-template>
                 <xsl:if test="substring(.,string-length(.),1)=' '">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="normalize-space(.)=''">
@@ -220,8 +217,7 @@ of this software, even if advised of the possibility of such damage.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:with-param>
-                </xsl:call-template>
-        <!--
+                </xsl:call-template><!--
 	<xsl:if test="substring(.,string-length(.))=' '">
 	  <xsl:text> </xsl:text>
 	</xsl:if>
@@ -235,8 +231,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:param name="sofar"/>
         <xsl:choose>
             <xsl:when test="number($sofar) &gt; $wrapLength">
-                <xsl:text>
-</xsl:text>
+                <xsl:text/>
                 <xsl:value-of select="$indent"/>
                 <xsl:call-template name="verbatim-reformatText">
                     <xsl:with-param name="text">
@@ -264,7 +259,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:call-template name="verbatim-Text">
                     <xsl:with-param name="words">
                         <xsl:value-of select="$chunk"/>
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                 </xsl:call-template>
                 <xsl:call-template name="verbatim-reformatText">
@@ -288,17 +283,16 @@ of this software, even if advised of the possibility of such damage.
         <xsl:variable name="finalSpace">
             <xsl:choose>
                 <xsl:when test="substring($text,string-length($text),1)=' '">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:when>
                 <xsl:when test="substring($text,string-length($text),1)='⌤'">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:text/>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>
-    <!--
+        </xsl:variable><!--
 <xsl:message>my text is [<xsl:value-of select="$text"/>]</xsl:message>
 <xsl:message>my space is [<xsl:value-of select="$finalSpace"/>]</xsl:message>
 -->
@@ -307,17 +301,16 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="contains($text,'⌤')">
                 <xsl:if test="$count &gt; 0">
                     <xsl:value-of select="$indent"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:if test="starts-with($text,' ')">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:call-template name="verbatim-Text">
                     <xsl:with-param name="words">
                         <xsl:value-of select="normalize-space(substring-before($text,'⌤'))"/>
                     </xsl:with-param>
-                </xsl:call-template>
-        <!--	<xsl:if test="not(substring-after($text,'
+                </xsl:call-template><!--	<xsl:if test="not(substring-after($text,'
 ')='')">-->
                 <xsl:call-template name="verbatim-lineBreak">
                     <xsl:with-param name="id">6</xsl:with-param>
@@ -338,11 +331,11 @@ of this software, even if advised of the possibility of such damage.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:if test="starts-with($text,' ')">
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:if test="$count &gt; 0 and parent::*">
                     <xsl:value-of select="$indent"/>
-                    <xsl:text> </xsl:text>
+                    <xsl:text/>
                 </xsl:if>
                 <xsl:call-template name="verbatim-Text">
                     <xsl:with-param name="words">
@@ -387,8 +380,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:template match="*" mode="verbatim">
         <xsl:param name="highlight"/>
         <xsl:choose>
-            <xsl:when test="parent::xhtml:Wrapper"/>
-      <!--      <xsl:when test="child::node()[last()]/self::text()[not(.='')] and child::node()[1]/self::text()[not(.='')]"/>-->
+            <xsl:when test="parent::xhtml:Wrapper"/><!--      <xsl:when test="child::node()[last()]/self::text()[not(.='')] and child::node()[1]/self::text()[not(.='')]"/>-->
             <xsl:when test="not(parent::*)  or parent::teix:egXML">
                 <xsl:choose>
                     <xsl:when test="preceding-sibling::node()[1][self::text()]      and following-sibling::node()[1][self::text()]"/>
@@ -398,8 +390,7 @@ of this software, even if advised of the possibility of such damage.
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:call-template name="verbatim-newLine"/>
-            <!-- <xsl:call-template name="makeIndent"/>-->
+                        <xsl:call-template name="verbatim-newLine"/><!-- <xsl:call-template name="makeIndent"/>-->
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -514,8 +505,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
     <xsl:template name="verbatim-makeElementName">
         <xsl:param name="start"/>
-        <xsl:param name="highlight"/>
-    <!-- get namespace prefix -->
+        <xsl:param name="highlight"/><!-- get namespace prefix -->
         <xsl:variable name="ns-prefix">
             <xsl:call-template name="verbatim-getNamespacePrefix"/>
         </xsl:variable>
@@ -560,8 +550,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:if test="$start='true' and not(namespace-uri()=namespace-uri(..))">
                     <xsl:text> xmlns="</xsl:text>
                     <xsl:value-of select="namespace-uri()"/>
-                    <xsl:text>"</xsl:text>
-          <!-- 
+                    <xsl:text>"</xsl:text><!-- 
 	       <xsl:call-template name="verbatim-lineBreak">
 	       <xsl:with-param name="id">5</xsl:with-param>
 	       </xsl:call-template>
@@ -643,7 +632,7 @@ of this software, even if advised of the possibility of such damage.
                 <xsl:call-template name="verbatim-reformatText">
                     <xsl:with-param name="sofar">0</xsl:with-param>
                     <xsl:with-param name="indent">
-                        <xsl:text> </xsl:text>
+                        <xsl:text/>
                     </xsl:with-param>
                     <xsl:with-param name="text">
                         <xsl:value-of select="normalize-space(.)"/>
