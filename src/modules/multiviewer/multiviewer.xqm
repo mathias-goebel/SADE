@@ -5,18 +5,26 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace svg="http://www.w3.org/2000/svg";
 declare namespace xlink="http://www.w3.org/1999/xlink";
+declare namespace tgmd="http://textgrid.info/namespaces/metadata/core/2010";
 
 import module namespace config="http://exist-db.org/xquery/apps/config" at "../../core/config.xqm";
 import module namespace md="http://exist-db.org/xquery/markdown" at "/apps/markdown/content/markdown.xql";
 import module namespace dsk-view="http://semtonotes.github.io/SemToNotes/dsk-view"
   at './SemToNotes.xqm';
-
-(:import module namespace console="http://exist-db.org/xquery/console";:)
+import module namespace fontaneTransfo="http://fontane-nb.dariah.eu/Transfo"
+  at './fontane.xqm';
+import module namespace fontaneSfEx="http://fontane-nb.dariah.eu/SfEx"
+  at './fontane-surfaceExtract.xqm';
+  
+import module namespace console="http://exist-db.org/xquery/console";
 
 declare function mviewer:show($node as node(), $model as map(*), $id as xs:string) as item()* {
 
     let $data-dir := config:param-value($model, 'data-dir')
-    let $docpath := $data-dir || '/' || $id
+    let $docpath := if(tokenize($id, '.')[3]) 
+                    then $data-dir || '/' || $id 
+                    else $data-dir || '/' || $id
+(: collection('/db/sade-projects/textgrid/data/xml/meta/')//tgmd:textgridUri[following::tgmd:revision[1]/number(string()) = max( collection('/db/sade-projects/textgrid/data/xml/meta/')//tgmd:revision[preceding::tgmd:textgridUri/starts-with(substring-after(., 'textgrid:'), tokenize($id, '.')[1])]/number(string(.)) )]/substring-after(., 'textgrid:') || '.xml' :)
     let $authstr := config:param-value($model, 'secret')
     let $auth:= if (request:get-cookie-value('fontaneAuth') != $authstr and request:get-parameter('authstr', '') = $authstr) then  response:set-cookie('fontaneAuth', $authstr) else ''
 
@@ -24,7 +32,7 @@ declare function mviewer:show($node as node(), $model as map(*), $id as xs:strin
         switch(tokenize($id, "\.")[last()])
             case "xml"
             return
-                if (request:get-cookie-value('fontaneAuth') = $authstr) then
+                if (request:get-cookie-value('fontaneAuth') = $authstr or  request:get-parameter('authstr', '') = $authstr) then
                     if (contains($id, '/tile/')) then mviewer:renderTILE($node, $model, $docpath)
                     else
                     mviewer:renderXml($node, $model, $docpath)
@@ -36,7 +44,7 @@ declare function mviewer:show($node as node(), $model as map(*), $id as xs:strin
                                 <input name="authstr" type="password" id="authstr" class="form-control" placeholder="Passwort"/>
                             </div>
                             <input type="hidden" name="id" value="{request:get-parameter('id', '')}" />
-                            <button type="submit" class="btn btn-dark" onclick="createCookie('fontaneAuth', document.getElementById('authstr').value ,14)">Send</button>
+                            <button type="submit" class="btn btn-dark" onclick="createCookie('fontaneAuth', document.getElementById('authstr').value ,140)">Send</button>
                         </form>
                         </div>
                     </div>
@@ -55,22 +63,78 @@ declare function mviewer:renderMarkdown($node as node(), $model as map(*), $docp
     return
         <div class="markdown">
         {md:parse($input)}
+            <script type="text/javascript" src="$shared/resources/scripts/jquery/jquery-1.7.1.min.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/ace.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/mode-javascript.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/mode-text.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/mode-xquery.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/mode-java.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/mode-css.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/mode-xml.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/ace/theme-clouds.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/highlight.js"/>
+        <script type="text/javascript">
+            $(document).ready(function() {{
+                $(".code").highlight({{theme: "clouds"}});
+            }});
+        </script>
         </div>
 };
 
 declare function mviewer:renderXml($node as node(), $model as map(*), $docpath as xs:string) as item()* {
-
-    let $doc := doc($docpath)
-    
-    (:todo: if tei :)
+let $doc := doc($docpath)
+(:todo: if tei :)
 (:    let $page := xs:integer(request:get-parameter("page", -1)):)
 (:    let $doc := mviewer:tei-paging($doc, $page):)
-    let $html := mviewer:choose-xsl-and-transform($doc, $model)
-    
-    return if(local-name($html[1]) = "html") then
-            <div class="teiXsltView">{$html/xhtml:body/*}</div>
-        else
-            <div class="teiXsltView">{$html}</div>
+
+let $tgurl := 'http://textgridlab.org/1.0/tgcrud/rest/textgrid:'
+let $sid := 'gM8eogFsgESvZmqEYiJMFNRWipcV7K6DMlU62fBt5BEG5kVtWxDCx1Gy1434546037956017'
+let $baseuri := substring-before(substring-before(substring-after(request:get-parameter('id', ''), '/xml/data/'), '.'), '.')
+let $uri := substring-before(substring-after(request:get-parameter('id', ''), '/xml/data/'), '.')
+
+let $page := if(request:get-parameter-names() = 'page') then if(request:get-parameter('page', '') = '') then 'outer_front_cover' else request:get-parameter('page', '') else ''
+let $html :=  
+    if ( (request:get-parameter('test', '') = '1') and ($page = '') )
+    then (: test if we can use a cached html :)
+
+        let $datacol := substring-before($docpath, '/xml/data/') || '/xml'
+        let $dbDocName := substring-after($docpath, 'xml/data/')
+        let $dbDocNameXhtml := replace($dbDocName, 'xml', 'xhtml')
+        let $metadata := xs:dateTime(doc($tgurl|| $uri ||'/metadata?sessionId='|| $sid)//tgmd:lastModified)
+        let $lastChangeXhtml := 
+                    if  ( doc-available($datacol||'/xhtml/' || $dbDocNameXhtml) ) 
+                    then( xmldb:last-modified('/db/sade-projects/textgrid/data/xml/xhtml', $dbDocNameXhtml) )
+                    else( xs:dateTime('2005-09-28T21:38:18.089+02:00') )
+        let $lastChangeProcessing := xmldb:last-modified('/db/apps/SADE/modules/multiviewer','fontane.xqm')
+        return
+            if($metadata gt $lastChangeXhtml or $lastChangeProcessing gt $lastChangeXhtml) 
+            then (let $transfo := fontaneTransfo:magic(doc($tgurl|| substring-before(substring-after(request:get-parameter('id', ''), '/xml/data/'), '.') ||'/data?sessionId='||$sid)/tei:TEI)
+                let $store := (
+                    xmldb:login(substring-before($docpath, '/xml/data/') || '/xml/xhtml', config:param-value($model, 'sade.user'), config:param-value($model, 'sade.password')),
+                    xmldb:store( substring-before($docpath, '/xml/data/') || '/xml/xhtml' , $dbDocNameXhtml, <xhtml:body>{$transfo}</xhtml:body>),
+                    session:invalidate()
+                    )
+                return $transfo
+)
+            else doc('/db/sade-projects/textgrid/data/xml/xhtml/'||$dbDocNameXhtml)//xhtml:body/*
+    else
+        if ( (request:get-parameter('test', '') = '1') and ($page != '') )
+        then
+            let $id := request:get-parameter('id', '')
+            let $id := if (contains($id, '/')) then $id else replace($id, '%2F', '/')
+            let $uri := tokenize( tokenize($id, '/')[last()], '\.')[1]
+            let $tei := doc($tgurl|| $uri ||'/data?sessionId='|| $sid)/tei:TEI
+            let $extract := fontaneSfEx:extract( $tei, $page )
+            
+            return fontaneTransfo:magic($extract)
+
+    else  mviewer:choose-xsl-and-transform($doc, $model)
+
+return
+    if(local-name($html[1]) = "html") then
+        <div class="teiXsltView">{$html//xhtml:div[@id='sourceDoc']}</div>
+    else
+        <div class="teiXsltView">{$html}</div>
 };
 declare function mviewer:renderTILE($node as node(), $model as map(*), $docpath as xs:string) as item()* {
 let $doc := doc($docpath)
